@@ -1,257 +1,125 @@
--- Polimorfism
--- 1. parametric
--- 2. ad-hoc
+-- Polimorfism in Haskell
 
--- Polimorfism parametric
--- valorile tipului parametru sunt tratate identic indiferent de tipul concret
+length' :: [Int] -> Int
+length' [] = 0
+length' (hd:tl) = 1 + length' tl
 
--- Exemplu:
+length'' :: [Bool] -> Int
+length'' [] = 0
+length'' (hd:tl) = 1 + length'' tl
 
-swap :: (a, b) -> (b, a)
-swap (x, y) = (y, x)
+length''' :: [a] -> Int
+-- "a" este o variabila de tip
+-- "a" poate fi inlocuit de sistem cu orice tip (e.g., Int, Bool, [Int])
+length''' [] = 0
+length''' (hd:tl) = 1 + length''' tl
 
--- Polimorfismul ad-hoc
--- daca apare o restrictie de tip ==> polimorfism ad-hoc
--- comportamentul functiei este adaptat in functie de tipul care instantiaza variabila de tip
-
-ordoneaza :: Ord a => (a, a) -> (a, a)
-ordoneaza (x, y) = if x < y then -- functia "<" vine din implementarea clasei Ord de catre
-                     (x, y)      -- tipul a
-                   else
-                     (y, x)
-
-data Nat = Zero | Succ Nat deriving (Show, Eq)
-
-instance Ord Nat where
-  (<=) Zero _ = False
-  (<=) (Succ _) Zero = True
-  (<=) (Succ x) (Succ y) = x <= y
-
-n2 = Succ (Succ Zero)
-n3 = Succ (Succ (Succ Zero))
-
--- Sunt cateva functii imposibil de scris:
-
--- NU: sort :: [a] -> [a]          (polimorfism parametric)
--- DA: sort :: Ord a => [a] -> [a] (polimorfism ad-hoc)
-
-mister :: a -> a
--- v1: mister x = x
--- v2:
-mister x = mister x
-
-mister' :: a -> b
-mister' x = mister' x
-
--- Avantaje polimorfism ad-hoc: pot face lucruri mai "interesante"
--- Avantaje polimorfism parametric: imi dau seama ce face functia din signatura
-
--- Combinatii:
-
-exf :: Num a => (a, b) -> (b, a)
-exf (x, y) = (y, signum x)
-
--- Cum recunoastem p.p.: lipsesc constragerile de tip
---                 p.ad-hoc.: sunt prezente constrangerile de tip
+-- polimorfism parametric
 
 
--- exf2 :: [a] -> a
--- daca exf2 nu merge la infinit, atunci valoarea returnata
---                                sigur sigur va fi o valoare din lista initiala
+-- polimorfismul adhoc
 
--- TEOREME "GRATUITE"
--- daca exf2 [1, 2, 3] = 2, atunci exf2 ['A', 'B', 'C'] = 'B'
--- Philip Wadler: Theorems for Free
+-- sort este polimorfica adhoc
+sort :: Ord a => [a] -> [a]
+sort [] = []
+sort (hd:tl) = sort (filter (<=hd) tl) ++ [hd] ++ sort (filter (>hd) tl)
 
--- In Haskell, nu avem polimorfism ad-hoc in tipurile de date
+-- sort' este polimorfica parametric
+sort' :: (a -> a -> Bool) -> [a] -> [a]
+sort' c [] = []
+sort' c (hd:tl) = sort' c (filter (c hd) tl) ++ [hd] ++ sort' c (filter (\x -> not (c hd x)) tl)
 
--- Asa DA:
-data ABC a = Leaf | Node a (ABC a) (ABC a) deriving (Show, Eq)
--- Asa NU:
--- data Ord a => ABC a = Leaf | Node a (ABC a) (ABC a) deriving (Show, Eq)
+-- de ce as prefera polimorfismul parametric?
 
--- slowfind :: Eq a => a -> ABC -> Bool
--- fastfind :: Ord a => a -> ABC -> Bool
+-- 1. mai general
+-- 2. mai eficient (potential)
+-- 3. mai interesant :P
 
-insert :: Ord a => a -> ABC a -> ABC a
-insert x Leaf = Node x Leaf Leaf
-insert x (Node y l r) = if x < y then
-                          Node y (insert x l) r
-                        else if x > y then
-                          Node y l (insert x r)
+f :: a -> a
+f x = x
+
+f' :: a -> a
+f' x = f' x
+
+g :: a -> Int
+g x = 13
+
+g' :: a -> Int
+g' x = g' x
+
+h :: a -> b
+h x = h x
+-- h x = 13
+
+-- i :: [a] -> [a]
+-- Promit     : i [1  ,  2 ,  3 ] = [  1,   3]
+-- Obligatoriu: i ['a', 'b', 'c'] = ['a', 'c']
+-- Promit     : i [1  ,  2 ,  1 ] = [  1,   1]
+-- Q          : i ['a', 'b', 'c'] = ['a', 'a'], ['a', 'c'], ['c', 'c'], ['c', 'a']
+
+-- Teorema (gratuita):
+-- Pentru orice lista l : [a],
+-- Pentru orice functie f : a -> b,
+--  i (map f l) = map f (i l)
+
+-- ∀ l : [a] . ∀ f : a -> b . i (map f l) = map f (i l).
+
+-- Exemplu: l = [1, 2, 3]
+--          f 1 = 'a', f 2 = 'b', f 3 = 'c'
+--     i ['a', 'b', 'c'] = map f (i [1, 2, 3])
+
+data Arb a = Leaf | Node a (Arb a) (Arb a) deriving Show
+
+insert :: Ord a => Arb a -> a -> Arb a
+insert Leaf x = (Node x Leaf Leaf)
+insert (Node y l r) x = if x < y then
+                          (Node y (insert l x) r)
                         else
-                          Node y l r
-
--- insert 2 (insert 5 (insert 1 Leaf))
---          1
---             \
---                 5
---                /
---               2
-
--- II. Evaluarea Lenesa
-
--- 1. stricta
--- 2. lenesa
-
--- Instructiunea "x = exp" se executa in felul urmator:
---    1. se evalueaza expresia "exp";
---    2. valoarea expresiei se salveaza in variabila "x".
-
--- Apelul unei functii "f(e1, ..., en)" se evalueaza in felul urmator:
---    1. se evalueaza expresiile e1, e2, ..., en, in aceasta ordine;
---    2. valorile expresiilor inlocuiesc argumentele functiei f si se evalueaza corpul functiei f.
-
-f :: Int -> Int -> Int
-f x y = if x > 2 then
-          y
-        else
-          x
-
-fib :: Int -> Int
-fib 0 = 0
-fib 1 = 1
-fib x = (fib (x - 1)) + (fib (x - 2))
-
--- f 2 (fib 34) merge instant
--- f (fib 34) 2 merge incet
+                          (Node y l (insert r x))
 
 
--- Evaluare "lenesa"
--- Lazy evaluation
--- Nicio expresie Haskell nu este evaluata decat daca este strict necesara pentru obtinerea rezultatului
+-- Evaluare nerabdatoare (eager evaluation): C/C++/Java/C#
 
--- Remember: rationamente ecuationale
+-- Cum se evalueaza o expresie de atribuire:
+-- x = f(6) * h(7);
+-- 1. Se evalueaza expresia din partea dreapta (f(6) * h(7));
+-- 2. Se stocheaza rezultatul in x.
+
+-- Evaluare lenesa (lazy evaluation): Haskell
+
+ff :: Int -> Int
+ff 0 = 1
+ff 1 = 1
+ff x = ff (x - 1) + ff (x - 2)
+
+h' :: Int -> Int
+h' 0 = 1
+h' 1 = 1
+h' x = h' (x - 1) + h' (x - 2)
+
+x = ff 34
 
 
--- if True then x else y = x
--- if False then x else y = y
+-- Intr-un limbaj eager: cum se evalueaza un apel de functie
+-- 1. Se evalueaza fiecare argument
+-- 2. Se apeleaza functia cu valorile obtinute
 
-{-
- f 2 (fib 34) =               (UNFOLD f)
- if 2 > 2 then
-        fib 34
-      else
-        2     =               (2 > 2)
- if False then
-        fib 34
-       else
-        2      =              (ITE)
- 2
--}
+asdf :: Int -> Int -> Int
+asdf x y = if x < 10 then
+             y
+           else
+             x + 78
 
-ite :: Bool -> a -> a -> a
-ite True x y = x
-ite False x y = y
+ite :: Bool -> Int -> Int -> Int
+ite b x y = if b then
+              x
+            else
+              y
 
-f' :: Int -> Int -> Int
-f' x y = ite (x > 2) y x
-
--- ce e mai eficient?
--- nu stim cine este functia f.
--- f 2 (fib 34) evaluat lenes sau evaluat strict?
-
+double :: Int -> Int
 double x = x + x
 
--- 1. Evaluare stricta (double (double 2))
--- 2. Evaluare lenesa (double (double 2))
+lista :: Int -> [Int]
+lista x = x : (lista (x + 1))
 
-{-
-1. double (double 2) = double (2 + 2) = double 4 = 4 + 4 = 8.
-           ^^^^^^^^
-  --> am evaluat o singura data argumentul (double 2)
-
-2. double (double 2) = double 2 + double 2 = (2 + 2) + double 2 = 4 + double 2 = 4 + (2 + 2) = 4 + 4 = 8.
-   ^^^^^^ 
-
-   --> am evaluat de doua ori (double 2)
-
--}
-
-
--- Haskell foloseste o strategie call-by-need care evalueaza o expresie cel mult o data
-
-
-g :: Int -> [Int]
-g i = i : (g (i + 1))
-
-listamea :: [Int]
-listamea = g 5
-
--- lista mea este lista 5, 6, 7, 8, ...
-
-listamea' = map (*3) listamea
-
--- avantaje: poate fi mai eficient
---           pot sa imi definesc structuri infinite
--- dezavantaje: este dificil de estimat timpul de executie al unei functii
-
-
--- In Haskell, o variabila - nu tine minte o valoare
---                         - tine un pointer spre un program (= thunk)
---                           pe care, daca il execut la un moment dat in viitor,
---                           produce valoarea de care am nevoie
-
-
--- dezavantaj al evaluarii pure: -- nu pot face structuri circulare
--- evaluarea lenesa (to some extent) reduce acest dezavantaj
-lista = 4 : 5 : 6 : lista
-
--- joc de X si 0
-
-data Cell = Z | X | E deriving (Eq, Show)
-
--- "type" introduce un sinonim de tip
-type Line = (Cell, Cell, Cell)
-
-type Board = (Line, Line, Line)
-
-data Player = PZ | PX deriving (Eq, Show)
-
-succCell :: Cell -> Player -> [Cell]
-succCell E PX = [ X ]
-succCell E PZ = [ Z ]
-succCell _ _ = []
-
-succLine :: Line -> Player -> [Line]
-succLine (c1, c2, c3) p = (map (\x -> (x, c2, c3)) (succCell c1 p)) ++
-                          (map (\x -> (c1, x, c3)) (succCell c2 p)) ++
-                          (map (\x -> (c1, c2, x)) (succCell c3 p))
--- TODO: de revenit si rezolvat problema cu DRY
-
-emptyLine = (E, E, E)
-
-empty :: Board
-empty = (emptyLine, emptyLine, emptyLine)
-
-succBoard :: Board -> Player ->  [Board]
-succBoard (l1, l2, l3) p = (map (\x -> (x, l2, l3)) (succLine l1 p)) ++
-                            (map (\x -> (l1, x, l3)) (succLine l2 p)) ++
-                            (map (\x -> (l1, l2, x)) (succLine l3 p))
--- TODO: de revenit si rezolvat problema cu DRY
-                          
-type Config = (Board, Player)
-
-configInit = (empty, PX)
-
-other :: Player -> Player
-other PX = PZ
-other PZ = PX
-
-succConfig :: Config -> [Config]
-succConfig (board, p) = map (\x -> (x, other p)) (succBoard board p)
-
-data Arb = Nod Config [Arb] deriving (Show, Eq)
-
-terminal :: Config -> Bool
-terminal x = length (succConfig x) == 0
-
-arbAux :: Config -> Arb
-arbAux config = Nod config (map arbAux (succConfig config))
-
-arb :: Arb -- <-- imposibil (cel putin dificil) de definit intr-un limbaj eager
-arb = arbAux configInit
-
-get :: Arb -> [Int] -> Config
-get (Nod x _) [] = x
-get (Nod x s) (hd:tl) = get (s !! hd) tl
+-- prime :: [Int]
