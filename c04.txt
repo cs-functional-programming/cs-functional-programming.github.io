@@ -1,0 +1,725 @@
+stefan@stefans-MBP sapt04 % ghci
+ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+:l c04
+:l c04
+ghci> :l c04
+[1 of 2] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+ghci> f 3 4
+f 3 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g "aa" "b"
+g "aa" "b"
+"aab"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> h "aa" "b"
+h "aa" "b"
+"baa"
+ghci> (\x -> x + 3) 5 
+(\x -> x + 3) 5 
+8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f' 8
+f' 8
+11
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f'' 3 4
+f'' 3 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f' 3
+f' 3
+6
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g "aa" "b"
+g "aa" "b"
+"aab"
+ghci> h' "aa" "b"
+h' "aa" "b"
+"baa"
+ghci> (flip' g) "aa" "b"
+(flip' g) "aa" "b"
+"baa"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mod 10 3
+mod 10 3
+1
+ghci> (flip' mod) 10 3
+(flip' mod) 10 3
+3
+ghci> (flip mod) 10 3
+(flip mod) 10 3
+3
+ghci> \x -> x + 3
+\x -> x + 3
+
+<interactive>:23:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f1 3 4
+f1 3 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g1 6
+g1 6
+13
+ghci> g1 10
+g1 10
+17
+ghci> g1 1
+g1 1
+8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g2 6
+g2 6
+16
+ghci> g2 10g
+g2 10g
+
+<interactive>:34:1: error:
+    • Couldn't match expected type ‘(String -> String -> String) -> t’
+                  with actual type ‘Int’
+    • The function ‘g2’ is applied to two value arguments,
+        but its type ‘Int -> Int’ has only one
+      In the expression: g2 10 g
+      In an equation for ‘it’: it = g2 10 g
+    • Relevant bindings include it :: t (bound at <interactive>:34:1)
+ghci> g2 6
+g2 6
+16
+ghci> g2 10
+g2 10
+20
+ghci> g2 1
+g2 1
+11
+ghci> (f1 42) 7
+(f1 42) 7
+49
+ghci> (f1 42) 10
+(f1 42) 10
+52
+ghci> (f1 42) 20
+(f1 42) 20
+62
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g1' 1
+g1' 1
+8
+ghci> g1' 6
+g1' 6
+13
+ghci> g1' 10
+g1' 10
+17
+ghci> g2' 10
+g2' 10
+20
+ghci> g2' 1
+g2' 1
+11
+ghci> g2' 6
+g2' 6
+16
+ghci> f 3 4
+f 3 4
+7
+ghci> (f 3) 4
+(f 3) 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sum3 1 2 3 
+sum3 1 2 3 
+6
+ghci> (sum3 1) 2 3 
+(sum3 1) 2 3 
+6
+ghci> ((sum3 1) 2) 3 
+((sum3 1) 2) 3 
+6
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> aa
+aa
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> v [ 20, 30, 41 ] 
+v [ 20, 30, 41 ] 
+[21,31,42]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> w [ 20, 30, 41 ]
+w [ 20, 30, 41 ]
+[40,60,82]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> xyz (\x -> x + 1) [ 20, 30, 41 ]
+xyz (\x -> x + 1) [ 20, 30, 41 ]
+[21,31,42]
+ghci> xyz (\x -> x * 2) [ 20, 30, 41 ]
+xyz (\x -> x * 2) [ 20, 30, 41 ]
+[40,60,82]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> v' [ 20, 30, 41 ]
+v' [ 20, 30, 41 ]
+[21,31,42]
+ghci> w' [ 20, 30, 41 ]
+w' [ 20, 30, 41 ]
+[40,60,82]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t xyz
+:t xyz
+xyz :: (a -> b) -> [a] -> [b]
+ghci> :t map
+:t map
+map :: (a -> b) -> [a] -> [b]
+ghci> map (\x + x + 1) [ 1, 3, 7 ]
+map (\x + x + 1) [ 1, 3, 7 ]
+
+<interactive>:75:9: error: parse error on input ‘+’
+ghci> map (\x -> x + 1) [ 1, 3, 7 ]
+map (\x -> x + 1) [ 1, 3, 7 ]
+[2,4,8]
+ghci> map (\x -> x ++ "!") [ "Salut", "Hello" ]
+map (\x -> x ++ "!") [ "Salut", "Hello" ]
+["Salut!","Hello!"]
+ghci> map (\x -> ord x) [ 'a', 'b' ]
+map (\x -> ord x) [ 'a', 'b' ]
+
+<interactive>:78:12: error:
+    Variable not in scope: ord :: Char -> b
+    Suggested fix:
+      Perhaps use one of these:
+        ‘or’ (imported from Prelude), ‘odd’ (imported from Prelude)
+ghci> map (\x -> odd x) [ 4, 3 ]
+map (\x -> odd x) [ 4, 3 ]
+[False,True]
+ghci> :i ord
+:i ord
+
+<interactive>:1:1: error: Not in scope: ‘ord’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> filter' odd [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+filter' odd [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+[1,3,5,5]
+ghci> filter' (\x -> x mod 3 == 0) [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+filter' (\x -> x mod 3 == 0) [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+
+<interactive>:83:1: error:
+    • No instance for (Show
+                         ((Integer -> Integer -> Integer) -> Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> filter' (\x -> x `mod` 3 == 0) [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+filter' (\x -> x `mod` 3 == 0) [ 1, 3, 4, 5, 8, 4, 5, 6 ]
+[3,6]
+ghci> length "aab"
+length "aab"
+3
+ghci> filter (\x -> length x == 2) [ "aab", "aa", "xyz", "ab", "a" ]
+filter (\x -> length x == 2) [ "aab", "aa", "xyz", "ab", "a" ]
+["aa","ab"]
+ghci> filter' (\x -> length x == 2) [ "aab", "aa", "xyz", "ab", "a" ]
+filter' (\x -> length x == 2) [ "aab", "aa", "xyz", "ab", "a" ]
+["aa","ab"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce [ 1, 5, 7 ]
+reduce [ 1, 5, 7 ]
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+
+c04.hs:73:28: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘[Int] -> Int’
+    • Probable cause: ‘reduce’ is applied to too few arguments
+      In the second argument of ‘f’, namely ‘(reduce tl)’
+      In the expression: f hd (reduce tl)
+      In an equation for ‘reduce’: reduce f (hd : tl) = f hd (reduce tl)
+   |
+73 | reduce f (hd : tl) = f hd (reduce tl)
+   |                            ^^^^^^^^^
+
+c04.hs:73:35: error:
+    • Couldn't match expected type: Int -> Int -> Int
+                  with actual type: [Int]
+    • In the first argument of ‘reduce’, namely ‘tl’
+      In the second argument of ‘f’, namely ‘(reduce tl)’
+      In the expression: f hd (reduce tl)
+   |
+73 | reduce f (hd : tl) = f hd (reduce tl)
+   |                                   ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+ghci> reduce (+) [ 1, 5, 7 ]
+reduce (+) [ 1, 5, 7 ]
+13
+ghci> reduce (*) [ 1, 5, 7 ]
+reduce (*) [ 1, 5, 7 ]
+0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce (+) 0 [ 1, 5, 7 ]
+reduce (+) 0 [ 1, 5, 7 ]
+13
+ghci> reduce (*) 1 [ 1, 5, 7 ]
+reduce (*) 1 [ 1, 5, 7 ]
+35
+ghci> reduce (\ x y -> if x > y then x else y) 0 [ 1, 5, 7, 42, 8 ]
+reduce (\ x y -> if x > y then x else y) 0 [ 1, 5, 7, 42, 8 ]
+42
+ghci> reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+1
+ghci> reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+reduce (\ x y -> if x < y then x else y) 99 [ 1, 5, 7, 42, 8 ]
+1
+ghci> reduce (\ x y -> if x > y then x else y) 0 [ 1, 5, 7, 42, 8 ]
+reduce (\ x y -> if x > y then x else y) 0 [ 1, 5, 7, 42, 8 ]
+42
+ghci> reduce (*) 1 [ 1, 5, 7 ]
+reduce (*) 1 [ 1, 5, 7 ]
+35
+ghci> reduce (+) 0 [ 1, 5, 7 ]
+reduce (+) 0 [ 1, 5, 7 ]
+13
+ghci> reduce (++) "" [ "aaa", "bb", "x" ]
+reduce (++) "" [ "aaa", "bb", "x" ]
+"aaabbx"
+ghci> :t foldr
+:t foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+ghci> :t foldl
+:t foldl
+foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+ghci> foldr (++) "xyz" [ "aa", "bb", "c" ]
+foldr (++) "xyz" [ "aa", "bb", "c" ]
+"aabbcxyz"
+ghci> foldl (++) "xyz" [ "aa", "bb", "c" ]
+foldl (++) "xyz" [ "aa", "bb", "c" ]
+"xyzaabbc"
+ghci> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+ghci> g1 8
+g1 8
+15
+ghci> g1 10
+g1 10
+17
+ghci> ($) g1 8
+($) g1 8
+15
+ghci> ($) g1 10
+($) g1 10
+17
+ghci> (($) g1) 10
+(($) g1) 10
+17
+ghci> (($) g1) 8
+(($) g1) 8
+15
+ghci> ($) g1 8
+($) g1 8
+15
+ghci> g1 $ 8
+g1 $ 8
+15
+ghci> g1 $ 10
+g1 $ 10
+17
+ghci> odd 10 or True
+odd 10 or True
+
+<interactive>:120:1: error:
+    • Couldn't match expected type ‘(t0 Bool -> Bool) -> Bool -> t’
+                  with actual type ‘Bool’
+    • The function ‘odd’ is applied to three value arguments,
+        but its type ‘a0 -> Bool’ has only one
+      In the expression: odd 10 or True
+      In an equation for ‘it’: it = odd 10 or True
+    • Relevant bindings include it :: t (bound at <interactive>:120:1)
+ghci> (odd 10) or True
+(odd 10) or True
+
+<interactive>:121:1: error:
+    • Couldn't match expected type ‘(t0 Bool -> Bool) -> Bool -> t’
+                  with actual type ‘Bool’
+    • The function ‘odd’ is applied to three value arguments,
+        but its type ‘a0 -> Bool’ has only one
+      In the expression: (odd 10) or True
+      In an equation for ‘it’: it = (odd 10) or True
+    • Relevant bindings include it :: t (bound at <interactive>:121:1)
+ghci> or (odd 10) True
+or (odd 10) True
+
+<interactive>:122:1: error:
+    • Couldn't match expected type ‘Bool -> t’ with actual type ‘Bool’
+    • The function ‘or’ is applied to two value arguments,
+        but its type ‘t0 Bool -> Bool’ has only one
+      In the expression: or (odd 10) True
+      In an equation for ‘it’: it = or (odd 10) True
+    • Relevant bindings include it :: t (bound at <interactive>:122:1)
+
+<interactive>:122:5: error:
+    • Couldn't match expected type ‘t0 Bool’ with actual type ‘Bool’
+    • In the first argument of ‘or’, namely ‘(odd 10)’
+      In the expression: or (odd 10) True
+      In an equation for ‘it’: it = or (odd 10) True
+ghci> odd 10 + 1
+odd 10 + 1
+
+<interactive>:123:8: error:
+    • No instance for (Num Bool) arising from a use of ‘+’
+    • In the expression: odd 10 + 1
+      In an equation for ‘it’: it = odd 10 + 1
+ghci> odd (10 + 1)
+odd (10 + 1)
+True
+ghci> odd (10 + 1 + 8 * 8 + 65)
+odd (10 + 1 + 8 * 8 + 65)
+False
+ghci> odd $ 10 + 1 + 8 * 8 + 65
+odd $ 10 + 1 + 8 * 8 + 65
+False
+ghci> ($) g1 10 
+($) g1 10 
+17
+ghci> g1 10
+g1 10
+17
+ghci> g1 $ 10
+g1 $ 10
+17
+ghci> (+) 3 4
+(+) 3 4
+7
+ghci> 3 + 4
+3 + 4
+7
+ghci> "aaa" ++ "bb"
+"aaa" ++ "bb"
+"aaabb"
+ghci> (++) "aaa" "bb"
+(++) "aaa" "bb"
+"aaabb"
+ghci> (++"bb") "aaaa"
+(++"bb") "aaaa"
+"aaaabb"
+ghci> ($7) g1
+($7) g1
+
+<interactive>:135:2: warning: [-Woperator-whitespace-ext-conflict]
+    The prefix use of a ‘$’ would denote an untyped splice
+      were the TemplateHaskell extension enabled.
+    Suggested fix: Add whitespace after the ‘$’.
+14
+ghci> ($ 7) g1
+($ 7) g1
+14
+ghci> (+4) 10
+(+4) 10
+14
+ghci> (3+) 10
+(3+) 10
+13
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> ((.) odd length) "aaa"
+((.) odd length) "aaa"
+True
+ghci> ((.) odd length) "aaab"
+((.) odd length) "aaab"
+False
+ghci> f = (.) odd length
+f = (.) odd length
+ghci> f "aaab"
+f "aaab"
+False
+ghci> f "aab"
+f "aab"
+True
+ghci> (odd . length) "aaab"
+(odd . length) "aaab"
+False
+ghci> ((*3) . (+4)) 10
+((*3) . (+4)) 10
+42
+ghci> (*3) . (+4) $ 10
+(*3) . (+4) $ 10
+42
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sum2 3 4
+sum2 3 4
+7
+ghci> (sum2 3) 4
+(sum2 3) 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+
+c04.hs:88:1: error:
+    Multiple declarations of ‘sum2’
+    Declared at: c04.hs:84:1
+                 c04.hs:88:1
+   |
+88 | sum2 (x, y) = x + y
+   | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+ghci> sum' (3, 4)
+sum' (3, 4)
+
+<interactive>:153:1: error:
+    Variable not in scope: sum' :: (a0, b0) -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘sum’ (imported from Prelude), ‘sum2’ (line 84), ‘sum3’ (line 41)
+ghci> sum2' (3, 4)
+sum2' (3, 4)
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (uncurry sum2') 3 4
+(uncurry sum2') 3 4
+
+<interactive>:156:2: error:
+    Ambiguous occurrence ‘uncurry’
+    It could refer to
+       either ‘Prelude.uncurry’,
+              imported from ‘Prelude’ at c04.hs:1:1
+              (and originally defined in ‘Data.Tuple’)
+           or ‘Main.uncurry’, defined at c04.hs:91:1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (uncurry' sum2') 3 4
+(uncurry' sum2') 3 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (curry (uncurry' sum2')) (3, 4)
+(curry (uncurry' sum2')) (3, 4)
+
+<interactive>:160:18: error:
+    • Couldn't match type ‘Int’ with ‘((a0, b0), b)’
+      Expected: (((a0, b0), b), Int) -> Int
+        Actual: (Int, Int) -> Int
+    • In the first argument of ‘uncurry'’, namely ‘sum2'’
+      In the first argument of ‘curry’, namely ‘(uncurry' sum2')’
+      In the expression: (curry (uncurry' sum2')) (3, 4)
+    • Relevant bindings include
+        it :: b -> Int -> Int (bound at <interactive>:160:1)
+ghci> (curry' (uncurry' sum2')) (3, 4)
+(curry' (uncurry' sum2')) (3, 4)
+7
+ghci> sum2' (3, 4)
+sum2' (3, 4)
+7
+ghci> (curry' sum2) (10, 12)
+(curry' sum2) (10, 12)
+22
+ghci> :t curry
+:t curry
+curry :: ((a, b) -> c) -> a -> b -> c
+ghci> :t uncurry
+:t uncurry
+uncurry :: (a -> b -> c) -> (a, b) -> c
+ghci> (curry (flip (++))) ("a","b")
+(curry (flip (++))) ("a","b")
+
+<interactive>:166:14: error:
+    • Couldn't match type: [a]
+                     with: ((String, String), b)
+      Expected: [a] -> ((String, String), b) -> [a]
+        Actual: [a] -> [a] -> [a]
+    • In the first argument of ‘flip’, namely ‘(++)’
+      In the first argument of ‘curry’, namely ‘(flip (++))’
+      In the expression: (curry (flip (++))) ("a", "b")
+    • Relevant bindings include
+        it :: b -> [a] -> [a] (bound at <interactive>:166:1)
+ghci> (uncurry (flip (++))) ("a","b")
+(uncurry (flip (++))) ("a","b")
+"ba"
+ghci> (uncurry . flip $ (++)) ("a","b")
+(uncurry . flip $ (++)) ("a","b")
+"ba"
+ghci> uncurry . flip $ (++) $ ("a","b")
+uncurry . flip $ (++) $ ("a","b")
+
+<interactive>:169:18: error:
+    • Couldn't match type: [a2]
+                     with: a1 -> c
+      Expected: [a2] -> a1 -> c
+        Actual: [a2] -> [a2]
+    • Possible cause: ‘($)’ is applied to too many arguments
+      In the second argument of ‘($)’, namely ‘(++) $ ("a", "b")’
+      In the expression: uncurry . flip $ (++) $ ("a", "b")
+      In an equation for ‘it’: it = uncurry . flip $ (++) $ ("a", "b")
+    • Relevant bindings include
+        it :: (a1, [a2]) -> c (bound at <interactive>:169:1)
+
+<interactive>:169:25: error:
+    • Couldn't match expected type: [a2]
+                  with actual type: (String, String)
+    • In the second argument of ‘($)’, namely ‘("a", "b")’
+      In the second argument of ‘($)’, namely ‘(++) $ ("a", "b")’
+      In the expression: uncurry . flip $ (++) $ ("a", "b")
+    • Relevant bindings include
+        it :: (a1, [a2]) -> c (bound at <interactive>:169:1)
+ghci> (uncurry . flip $ (++)) ("a","b")
+(uncurry . flip $ (++)) ("a","b")
+"ba"
+ghci> (uncurry . flip $ (++)) $ ("a","b")
+(uncurry . flip $ (++)) $ ("a","b")
+"ba"
+ghci> uncurry . flip $ (++) $ ("a","b")
+uncurry . flip $ (++) $ ("a","b")
+
+<interactive>:172:18: error:
+    • Couldn't match type: [a2]
+                     with: a1 -> c
+      Expected: [a2] -> a1 -> c
+        Actual: [a2] -> [a2]
+    • Possible cause: ‘($)’ is applied to too many arguments
+      In the second argument of ‘($)’, namely ‘(++) $ ("a", "b")’
+      In the expression: uncurry . flip $ (++) $ ("a", "b")
+      In an equation for ‘it’: it = uncurry . flip $ (++) $ ("a", "b")
+    • Relevant bindings include
+        it :: (a1, [a2]) -> c (bound at <interactive>:172:1)
+
+<interactive>:172:25: error:
+    • Couldn't match expected type: [a2]
+                  with actual type: (String, String)
+    • In the second argument of ‘($)’, namely ‘("a", "b")’
+      In the second argument of ‘($)’, namely ‘(++) $ ("a", "b")’
+      In the expression: uncurry . flip $ (++) $ ("a", "b")
+    • Relevant bindings include
+        it :: (a1, [a2]) -> c (bound at <interactive>:172:1)
+ghci> (uncurry . flip $ (++)) $ ("a","b")
+(uncurry . flip $ (++)) $ ("a","b")
+"ba"
+ghci> 

@@ -1,0 +1,606 @@
+stefan@stefans-MBP sapt03 % ghci
+ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+:l c03.hs
+:l c03.hs
+ghci> :l c03.hs
+[1 of 2] Compiling Main             ( c03.hs, interpreted )
+Ok, one module loaded.
+ghci> Mon
+Mon
+
+<interactive>:2:1: error:
+    • No instance for (Show Dow) arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon
+Mon
+Mon
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> next Mon
+next Mon
+Tue
+ghci> next (next Mon)
+next (next Mon)
+Wed
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> silogic Fals Adevarat
+silogic Fals Adevarat
+Fals
+ghci> :i Bool
+:i Bool
+type Bool :: *
+data Bool = False | True
+  	-- Defined in ‘GHC.Types’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Read Bool -- Defined in ‘GHC.Read’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Eq Bool -- Defined in ‘GHC.Classes’
+instance Ord Bool -- Defined in ‘GHC.Classes’
+ghci> :i Show
+:i Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+  	-- Defined in ‘GHC.Show’
+instance Show Dow -- Defined at c03.hs:13:61
+instance Show Logic -- Defined at c03.hs:24:39
+instance Show Double -- Defined in ‘GHC.Float’
+instance Show Float -- Defined in ‘GHC.Float’
+instance Show () -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (a, b) -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c) => Show (a, b, c)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d) => Show (a, b, c, d)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e) =>
+         Show (a, b, c, d, e)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f) =>
+         Show (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f,
+          Show g) =>
+         Show (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h) =>
+         Show (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i) =>
+         Show (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j) =>
+         Show (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n, Show o) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Show’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Show Char -- Defined in ‘GHC.Show’
+instance Show Int -- Defined in ‘GHC.Show’
+instance Show Integer -- Defined in ‘GHC.Show’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Show Ordering -- Defined in ‘GHC.Show’
+instance Show GHC.Types.RuntimeRep -- Defined in ‘GHC.Show’
+instance Show a => Show (Solo a) -- Defined in ‘GHC.Show’
+instance Show Word -- Defined in ‘GHC.Show’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :i Logic
+:i Logic
+type Logic :: *
+data Logic = Fals | Adevarat
+  	-- Defined at c03.hs:24:1
+instance Show Logic -- Defined at c03.hs:24:39
+ghci> show Adevarat
+show Adevarat
+"Adevarat"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mydiv 10 0
+mydiv 10 0
+Invalid
+ghci> mydiv 10 4
+mydiv 10 4
+Valid 2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> aduna3 (mydiv 10 0)
+aduna3 (mydiv 10 0)
+42
+ghci> aduna3 (mydiv 10 2)
+aduna3 (mydiv 10 2)
+8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Cons 2 (Cons 8 Nil)
+Cons 2 (Cons 8 Nil)
+Cons 2 (Cons 8 Nil)
+ghci> Cons 1 (Cons 7 (Cons 4 Nil))
+Cons 1 (Cons 7 (Cons 4 Nil))
+Cons 1 (Cons 7 (Cons 4 Nil))
+ghci> count (Cons 2 (Cons 8 Nil))
+count (Cons 2 (Cons 8 Nil))
+2
+ghci> count (Cons 1 (Cons 7 (Cons 4 Nil)))
+count (Cons 1 (Cons 7 (Cons 4 Nil)))
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+
+c03.hs:48:25: error:
+    Ambiguous occurrence ‘sum’
+    It could refer to
+       either ‘Prelude.sum’,
+              imported from ‘Prelude’ at c03.hs:1:1
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Main.sum’, defined at c03.hs:47:1
+   |
+48 | sum (Cons hd tl) = hd + sum tl
+   |                         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted )
+Ok, one module loaded.
+ghci> suma (Cons 1 (Cons 7 (Cons 4 Nil)))
+suma (Cons 1 (Cons 7 (Cons 4 Nil)))
+12
+ghci> sum (Cons 2 (Cons 8 Nil))
+sum (Cons 2 (Cons 8 Nil))
+
+<interactive>:29:6: error:
+    • Couldn't match expected type ‘t0 a’ with actual type ‘Lista’
+    • In the first argument of ‘sum’, namely ‘(Cons 2 (Cons 8 Nil))’
+      In the expression: sum (Cons 2 (Cons 8 Nil))
+      In an equation for ‘it’: it = sum (Cons 2 (Cons 8 Nil))
+    • Relevant bindings include it :: a (bound at <interactive>:29:1)
+ghci> suma (Cons 2 (Cons 8 Nil))
+suma (Cons 2 (Cons 8 Nil))
+10
+ghci> even 10
+even 10
+True
+ghci> even 7
+even 7
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impare (Cons 1 (Cons 7 (Cons 4 Nil)))
+impare (Cons 1 (Cons 7 (Cons 4 Nil)))
+Cons 1 (Cons 7 Nil)
+ghci> impare (Cons 2 (Cons 8 Nil))
+impare (Cons 2 (Cons 8 Nil))
+Nil
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> incrlist (Cons 1 (Cons 7 (Cons 4 Nil)))
+incrlist (Cons 1 (Cons 7 (Cons 4 Nil)))
+Cons 2 (Cons 8 (Cons 5 Nil))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impare (Cons 2 (Cons 8 Nil))
+impare (Cons 2 (Cons 8 Nil))
+Nil
+ghci> impare (Cons 1 (Cons 7 (Cons 4 Nil)))
+impare (Cons 1 (Cons 7 (Cons 4 Nil)))
+Cons 1 (Cons 7 Nil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> GCons 1 (GCons 7 (GCons 4 Gnil))
+GCons 1 (GCons 7 (GCons 4 Gnil))
+
+<interactive>:42:27: error:
+    Data constructor not in scope: Gnil :: GLista a
+    Suggested fix: Perhaps use ‘GNil’ (line 61)
+ghci> GCons 1 (GCons 7 (GCons 4 GNil))
+GCons 1 (GCons 7 (GCons 4 GNil))
+GCons 1 (GCons 7 (GCons 4 GNil))
+ghci> GCons True (GCons False (GCons True GNil))
+GCons True (GCons False (GCons True GNil))
+GCons True (GCons False (GCons True GNil))
+ghci> GCons "asdf" (GCons "123" (GCons "Awqwqwq" GNil))
+GCons "asdf" (GCons "123" (GCons "Awqwqwq" GNil))
+GCons "asdf" (GCons "123" (GCons "Awqwqwq" GNil))
+ghci> GCons False (GCons 1 GNil)
+GCons False (GCons 1 GNil)
+
+<interactive>:46:20: error:
+    • No instance for (Num Bool) arising from the literal ‘1’
+    • In the first argument of ‘GCons’, namely ‘1’
+      In the second argument of ‘GCons’, namely ‘(GCons 1 GNil)’
+      In the expression: GCons False (GCons 1 GNil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> gcount (GCons "asdf" (GCons "123" (GCons "Awqwqwq" GNil)))
+gcount (GCons "asdf" (GCons "123" (GCons "Awqwqwq" GNil)))
+3
+ghci> gcount (GCons False (GCons True GNil))
+gcount (GCons False (GCons True GNil))
+2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ghead (GCons 1 (GCons 7 GNil))
+ghead (GCons 1 (GCons 7 GNil))
+1
+ghci> ghead (GCons True (GCons False GNil))
+ghead (GCons True (GCons False GNil))
+
+<interactive>:52:14: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the first argument of ‘GCons’, namely ‘True’
+      In the first argument of ‘ghead’, namely
+        ‘(GCons True (GCons False GNil))’
+      In the expression: ghead (GCons True (GCons False GNil))
+
+<interactive>:52:26: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the first argument of ‘GCons’, namely ‘False’
+      In the second argument of ‘GCons’, namely ‘(GCons False GNil)’
+      In the first argument of ‘ghead’, namely
+        ‘(GCons True (GCons False GNil))’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ghead' (GCons 1 (GCons 7 GNil))
+ghead' (GCons 1 (GCons 7 GNil))
+Valid 1
+ghci> ghead' GNil
+ghead' GNil
+Invalid
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+
+c03.hs:78:1: error:
+    Multiple declarations of ‘ghead'’
+    Declared at: c03.hs:74:1
+                 c03.hs:78:1
+   |
+78 | ghead' GNil = GInvalid
+   | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted )
+Ok, one module loaded.
+ghci> ghead' GNil
+ghead' GNil
+Invalid
+ghci> ghead'' (GCons 1 (GCons 7 GNil))
+ghead'' (GCons 1 (GCons 7 GNil))
+GValid 1
+ghci> ghead'' GNil
+ghead'' GNil
+GInvalid
+ghci> ghead'' (GCons True (GCons False GNil))
+ghead'' (GCons True (GCons False GNil))
+GValid True
+ghci> ghead'' (GCons "asdf" (GCons "asf" GNil))
+ghead'' (GCons "asdf" (GCons "asf" GNil))
+GValid "asdf"
+ghci> :i Maybe
+:i Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ghead''' (GCons "asdf" (GCons "asf" GNil))
+ghead''' (GCons "asdf" (GCons "asf" GNil))
+Just "asdf"
+ghci> ghead''' GNil
+ghead''' GNil
+Nothing
+ghci> :i []
+:i []
+type [] :: * -> *
+data [] a = [] | a : [a]
+  	-- Defined in ‘GHC.Types’
+instance Traversable [] -- Defined in ‘Data.Traversable’
+instance MonadFail [] -- Defined in ‘Control.Monad.Fail’
+instance Foldable [] -- Defined in ‘Data.Foldable’
+instance Applicative [] -- Defined in ‘GHC.Base’
+instance Functor [] -- Defined in ‘GHC.Base’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monoid [a] -- Defined in ‘GHC.Base’
+instance Semigroup [a] -- Defined in ‘GHC.Base’
+instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance Read a => Read [a] -- Defined in ‘GHC.Read’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ghead'''' (7 : (2 : []))
+ghead'''' (7 : (2 : []))
+Just 7
+ghci> ghead'''' (True : (False : []))
+ghead'''' (True : (False : []))
+Just True
+ghci> ghead'''' ("adsf" : ("xx" : []))
+ghead'''' ("adsf" : ("xx" : []))
+Just "adsf"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> convert ("adsf" : ("xx" : []))
+convert ("adsf" : ("xx" : []))
+GCons "adsf" (GCons "xx" GNil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> convert' (convert ("adsf" : ("xx" : [])))
+convert' (convert ("adsf" : ("xx" : [])))
+["adsf","xx"]
+ghci> [ 1, 2, 3, 4 ]
+[ 1, 2, 3, 4 ]
+[1,2,3,4]
+ghci> [ 1, 2, 3, 4 ] == (1 : (2 : (3 : (4 : []))))
+[ 1, 2, 3, 4 ] == (1 : (2 : (3 : (4 : []))))
+True
+ghci> Pair 1 3
+Pair 1 3
+
+<interactive>:78:1: error:
+    Data constructor not in scope: Pair :: t0 -> t1 -> t
+ghci> PairCons 1 3
+PairCons 1 3
+
+<interactive>:79:1: error:
+    Data constructor not in scope: PairCons :: t0 -> t1 -> t
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> PairCons 1 3
+PairCons 1 3
+PairCons 1 3
+ghci> PairCons 3 7
+PairCons 3 7
+PairCons 3 7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> prima (PairCons 3 7)
+prima (PairCons 3 7)
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> gdoua (GPairCons 3 "asdf")
+gdoua (GPairCons 3 "asdf")
+"asdf"
+ghci> Mult (Add (Const 3) (Const 4)) (Const 5)
+Mult (Add (Const 3) (Const 4)) (Const 5)
+
+<interactive>:87:1: error:
+    Data constructor not in scope: Mult :: t5 -> t6 -> t
+
+<interactive>:87:7: error:
+    Data constructor not in scope: Add :: t3 -> t4 -> t5
+    Suggested fix: Perhaps use variable ‘odd’ (imported from Prelude)
+
+<interactive>:87:12: error:
+    Data constructor not in scope: Const :: t2 -> t3
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:87:22: error:
+    Data constructor not in scope: Const :: t1 -> t4
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:87:33: error:
+    Data constructor not in scope: Const :: t0 -> t6
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+ghci> Mul (Add (Const 3) (Const 4)) (Const 5)
+Mul (Add (Const 3) (Const 4)) (Const 5)
+
+<interactive>:88:1: error:
+    Data constructor not in scope: Mul :: t5 -> t6 -> t
+
+<interactive>:88:6: error:
+    Data constructor not in scope: Add :: t3 -> t4 -> t5
+    Suggested fix: Perhaps use variable ‘odd’ (imported from Prelude)
+
+<interactive>:88:11: error:
+    Data constructor not in scope: Const :: t2 -> t3
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:88:21: error:
+    Data constructor not in scope: Const :: t1 -> t4
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:88:32: error:
+    Data constructor not in scope: Const :: t0 -> t6
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+ghci> Mul (Add (Const 3) (Const 4)) (Const 5)
+Mul (Add (Const 3) (Const 4)) (Const 5)
+
+<interactive>:89:1: error:
+    Data constructor not in scope: Mul :: t5 -> t6 -> t
+
+<interactive>:89:6: error:
+    Data constructor not in scope: Add :: t3 -> t4 -> t5
+    Suggested fix: Perhaps use variable ‘odd’ (imported from Prelude)
+
+<interactive>:89:11: error:
+    Data constructor not in scope: Const :: t2 -> t3
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:89:21: error:
+    Data constructor not in scope: Const :: t1 -> t4
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+
+<interactive>:89:32: error:
+    Data constructor not in scope: Const :: t0 -> t6
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Cons’ (line 42), variable ‘const’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+
+c03.hs:113:76: error: Not in scope: type variable ‘derving’
+    |
+113 | data Exp = Const Int | Add Exp Exp | Sub Exp Exp | Mul Exp Exp | Minus Exp derving Show
+    |                                                                            ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted )
+Ok, one module loaded.
+ghci> Mul (Add (Const 3) (Const 4)) (Const 5)
+Mul (Add (Const 3) (Const 4)) (Const 5)
+Mul (Add (Const 3) (Const 4)) (Const 5)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval (Mul (Add (Const 3) (Const 4)) (Const 5))
+eval (Mul (Add (Const 3) (Const 4)) (Const 5))
+35
+ghci> eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+
+<interactive>:95:17: error:
+    Data constructor not in scope: Var :: String -> Exp
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (Mul (Add (Var "x") (Const 4)) (Const 5))
+(Mul (Add (Var "x") (Const 4)) (Const 5))
+Mul (Add (Var "x") (Const 4)) (Const 5)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+55
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+eval (Mul (Add (Var "x") (Const 4)) (Const 5))
+55
+ghci> (Mul (Add (Var "x") (Const 4)) (Const 0))
+(Mul (Add (Var "x") (Const 4)) (Const 0))
+Mul (Add (Var "x") (Const 4)) (Const 0)
+ghci> (Const 0) == (Const 0)
+(Const 0) == (Const 0)
+
+<interactive>:103:11: error:
+    • No instance for (Eq Exp) arising from a use of ‘==’
+    • In the expression: (Const 0) == (Const 0)
+      In an equation for ‘it’: it = (Const 0) == (Const 0)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> simpl (Mul (Add (Var "x") (Const 4)) (Const 0))
+simpl (Mul (Add (Var "x") (Const 4)) (Const 0))
+Const 0
+ghci> simpl (Mul (Add (Var "x") (Const 4)) (Const 1))
+simpl (Mul (Add (Var "x") (Const 4)) (Const 1))
+Add (Var "x") (Const 4)
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt03 % g++ -Wall -o c03 c03.cpp
+g++ -Wall -o c03 c03.cpp

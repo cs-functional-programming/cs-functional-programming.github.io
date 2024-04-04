@@ -1,0 +1,600 @@
+stefan@stefans-MacBook-Pro curs02 % pwd
+pwd
+/Users/stefan/teaching/pf-2022-2023/curs02
+stefan@stefans-MacBook-Pro curs02 % ghci
+ghci
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+:l curs02
+:l curs02
+Prelude> :l curs02
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :i Int
+:i Int
+type Int :: *
+data Int = GHC.Types.I# GHC.Prim.Int#
+  	-- Defined in ‘GHC.Types’
+instance Eq Int -- Defined in ‘GHC.Classes’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Enum Int -- Defined in ‘GHC.Enum’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Real Int -- Defined in ‘GHC.Real’
+instance Show Int -- Defined in ‘GHC.Show’
+instance Read Int -- Defined in ‘GHC.Read’
+instance Bounded Int -- Defined in ‘GHC.Enum’
+instance Integral Int -- Defined in ‘GHC.Real’
+*Main> :i Integer
+:i Integer
+type Integer :: *
+data Integer
+  = integer-gmp-1.0.3.0:GHC.Integer.Type.S# GHC.Prim.Int#
+  | integer-gmp-1.0.3.0:GHC.Integer.Type.Jp# {-# UNPACK #-}integer-gmp-1.0.3.0:GHC.Integer.Type.BigNat
+  | integer-gmp-1.0.3.0:GHC.Integer.Type.Jn# {-# UNPACK #-}integer-gmp-1.0.3.0:GHC.Integer.Type.BigNat
+  	-- Defined in ‘integer-gmp-1.0.3.0:GHC.Integer.Type’
+instance Eq Integer
+  -- Defined in ‘integer-gmp-1.0.3.0:GHC.Integer.Type’
+instance Ord Integer
+  -- Defined in ‘integer-gmp-1.0.3.0:GHC.Integer.Type’
+instance Enum Integer -- Defined in ‘GHC.Enum’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Real Integer -- Defined in ‘GHC.Real’
+instance Show Integer -- Defined in ‘GHC.Show’
+instance Read Integer -- Defined in ‘GHC.Read’
+instance Integral Integer -- Defined in ‘GHC.Real’
+*Main> :i Bounded
+:i Bounded
+type Bounded :: * -> Constraint
+class Bounded a where
+  minBound :: a
+  maxBound :: a
+  {-# MINIMAL minBound, maxBound #-}
+  	-- Defined in ‘GHC.Enum’
+instance Bounded Word -- Defined in ‘GHC.Enum’
+instance Bounded Ordering -- Defined in ‘GHC.Enum’
+instance Bounded Int -- Defined in ‘GHC.Enum’
+instance Bounded Char -- Defined in ‘GHC.Enum’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n, Bounded o) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j,
+          Bounded k) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i) =>
+         Bounded (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h) =>
+         Bounded (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g) =>
+         Bounded (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f) =>
+         Bounded (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e) =>
+         Bounded (a, b, c, d, e)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d) =>
+         Bounded (a, b, c, d)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c) => Bounded (a, b, c)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b) => Bounded (a, b)
+  -- Defined in ‘GHC.Enum’
+instance Bounded () -- Defined in ‘GHC.Enum’
+*Main> minBound :: Int
+minBound :: Int
+-9223372036854775808
+*Main> maxBound :: Int
+maxBound :: Int
+9223372036854775807
+*Main> 2^63
+2^63
+9223372036854775808
+*Main> -2^63
+-2^63
+-9223372036854775808
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo 0
+fibo 0
+0
+*Main> fibo 1
+fibo 1
+1
+*Main> fibo 2
+fibo 2
+*** Exception: curs02.hs:(70,1)-(71,10): Non-exhaustive patterns in function fibo
+
+*Main> :r 
+:r 
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo 2
+fibo 2
+1
+*Main> fibo 3
+fibo 3
+2
+*Main> fibo 4
+fibo 4
+3
+*Main> fibo 5
+fibo 5
+5
+*Main> fibo 6
+fibo 6
+8
+*Main> fibo 7
+fibo 7
+13
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo' 7
+fibo' 7
+13
+*Main> fibo 7
+fibo 7
+13
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:117:1: error:
+    Duplicate type signatures for ‘fibo'’
+    at curs02.hs:105:1-5
+       curs02.hs:117:1-5
+    |
+117 | fibo' :: Integer -> Integer
+    | ^^^^^
+
+curs02.hs:118:1: error:
+    Multiple declarations of ‘fibo'’
+    Declared at: curs02.hs:106:1
+                 curs02.hs:118:1
+    |
+118 | fibo' x | x == 0 = 0
+    | ^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo'' 7
+fibo'' 7
+13
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:125:20: error: parse error on input ‘=’
+    |
+125 |                    = fibo''' (x - 1) + fibo''' (x - 2)
+    |                    ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> otherwise
+otherwise
+True
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo''' 7
+fibo''' 7
+13
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:127:20: error: parse error on input ‘->’
+    |
+127 | fibo'''' : Integer -> Integer
+    |                    ^^
+Failed, no modules loaded.
+Prelude>:r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> fibo'''' 7
+fibo'''' 7
+13
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> cmmdc (2 * 2 * 3 * 3 * 5) (2 * 3 * 3 * 3 * 7)
+cmmdc (2 * 2 * 3 * 3 * 5) (2 * 3 * 3 * 3 * 7)
+18
+*Main> 2 * 3 * 3
+2 * 3 * 3
+18
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:143:1: error:
+    Illegal type signature: ‘Integer -> Integer -> Integer cmmdc' x 0’
+      Type signatures are only allowed in patterns with ScopedTypeVariables
+    |
+143 | cmmdc' :: Integer -> Integer -> Integer
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+curs02.hs:144:11: error:
+    Illegal type: ‘0’ Perhaps you intended to use DataKinds
+    |
+144 |  cmmdc' x 0 = x
+    |           ^
+
+curs02.hs:145:1: error:
+    Multiple declarations of ‘cmmdc'’
+    Declared at: curs02.hs:143:1
+                 curs02.hs:145:1
+    |
+145 | cmmdc' 0 y = y
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:153:1: error: Not in scope: data constructor ‘F’
+    |
+153 | F x = x + 1
+    | ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> sumn 1
+sumn 1
+1
+*Main> sumn 2
+sumn 2
+3
+*Main> sumn 3
+sumn 3
+6
+*Main> sumn 4
+sumn 4
+10
+*Main> sumn 5
+sumn 5
+15
+*Main> sumn 10
+sumn 10
+55
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:179:13: error:
+    • Couldn't match expected type ‘Integer -> Integer’
+                  with actual type ‘Integer’
+    • The function ‘sumn’ is applied to two arguments,
+      but its type ‘Integer -> Integer’ has only one
+      In the expression: sumn (n - 1) (a + n)
+      In an equation for ‘sumna’: sumna n a = sumn (n - 1) (a + n)
+    |
+179 | sumna n a = sumn (n - 1) (a + n)
+    |             ^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> sumna 10 0
+sumna 10 0
+55
+*Main> sumna 1 0
+sumna 1 0
+1
+*Main> sumna 2 0
+sumna 2 0
+3
+*Main> sumna 3 0
+sumna 3 0
+6
+*Main> (1, 2)
+(1, 2)
+(1,2)
+*Main> (1, True)
+(1, True)
+(1,True)
+*Main> ('A', True)
+('A', True)
+('A',True)
+*Main> ('A', 97)
+('A', 97)
+('A',97)
+*Main> :t ('A', True)
+:t ('A', True)
+('A', True) :: (Char, Bool)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:245:1: error:
+    The type signature for ‘pairup’ lacks an accompanying binding
+    |
+245 | pairup :: Char -> Bool -> (Char, Bool)
+    | ^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> pairup 'A' 97
+pairup 'A' 97
+
+<interactive>:64:12: error:
+    • No instance for (Num Bool) arising from the literal ‘97’
+    • In the second argument of ‘pairup’, namely ‘97’
+      In the expression: pairup 'A' 97
+      In an equation for ‘it’: it = pairup 'A' 97
+*Main> pairup 'A' True
+pairup 'A' True
+('A',True)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> myfst (pairup 'A' True)
+myfst (pairup 'A' True)
+'A'
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:252:16: error:
+    • Couldn't match expected type ‘Char’ with actual type ‘Bool’
+    • In the expression: y
+      In an equation for ‘mysnd’: mysnd (x, y) = y
+    |
+252 | mysnd (x, y) = y
+    |                ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> myfst (pairup 'A' True)
+myfst (pairup 'A' True)
+'A'
+*Main> mysnd (pairup 'A' True)
+mysnd (pairup 'A' True)
+True
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> ('A', True, 123)
+('A', True, 123)
+('A',True,123)
+*Main> ('A', True, 123, 321312)
+('A', True, 123, 321312)
+('A',True,123,321312)
+*Main> ('A', True, 123, 321312, "asdfsa")
+('A', True, 123, 321312, "asdfsa")
+('A',True,123,321312,"asdfsa")
+*Main> fst ('A', True, 123, 321312, "asdfsa")
+fst ('A', True, 123, 321312, "asdfsa")
+
+<interactive>:76:5: error:
+    • Couldn't match expected type ‘(a, b0)’
+                  with actual type ‘(Char, Bool, c0, d0, [Char])’
+    • In the first argument of ‘fst’, namely
+        ‘('A', True, 123, 321312, "asdfsa")’
+      In the expression: fst ('A', True, 123, 321312, "asdfsa")
+      In an equation for ‘it’:
+          it = fst ('A', True, 123, 321312, "asdfsa")
+    • Relevant bindings include it :: a (bound at <interactive>:76:1)
+*Main> fst ('A', True, 123)
+fst ('A', True, 123)
+
+<interactive>:77:5: error:
+    • Couldn't match expected type ‘(a, b0)’
+                  with actual type ‘(Char, Bool, c0)’
+    • In the first argument of ‘fst’, namely ‘('A', True, 123)’
+      In the expression: fst ('A', True, 123)
+      In an equation for ‘it’: it = fst ('A', True, 123)
+    • Relevant bindings include it :: a (bound at <interactive>:77:1)
+*Main> fst ('A', True)
+fst ('A', True)
+'A'
+*Main> snd ('A', True)
+snd ('A', True)
+True
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:298:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+Failed, no modules loaded.
+Prelude>pairup True True
+pairup True True
+
+<interactive>:81:1: error:
+    Variable not in scope: pairup :: Bool -> Bool -> t
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:274:1: error:
+    Duplicate type signatures for ‘cmmdc’
+    at curs02.hs:134:1-5
+       curs02.hs:274:1-5
+    |
+274 | cmmdc :: Integer -> Integer -> Integer
+    | ^^^^^
+
+curs02.hs:275:1: error:
+    Multiple declarations of ‘cmmdc’
+    Declared at: curs02.hs:135:1
+                 curs02.hs:275:1
+    |
+275 | cmmdc x 0 = x
+    | ^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:286:1: error:
+    Equations for ‘cmmdc''’ have different numbers of arguments
+      curs02.hs:286:1-18
+      curs02.hs:(288,1)-(291,32)
+    |
+286 | cmmdc'' (0, y) = y
+    | ^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+
+curs02.hs:286:1: error:
+    Equations for ‘cmmdc''’ have different numbers of arguments
+      curs02.hs:286:1-18
+      curs02.hs:(288,1)-(291,34)
+    |
+286 | cmmdc'' (0, y) = y
+    | ^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> pairup True True
+pairup True True
+(True,True)
+*Main> pairup 'A' True
+pairup 'A' True
+('A',True)
+*Main> pairup 123.2 True
+pairup 123.2 True
+(123.2,True)
+*Main> pairup 123.2 "asdf"
+pairup 123.2 "asdf"
+(123.2,"asdf")
+*Main> :t
+:t
+
+<no location info>: error: not an expression: ‘’
+*Main> :t pairup
+:t pairup
+pairup :: a -> b -> (a, b)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> swap (pairup 123.2 "asdf")
+swap (pairup 123.2 "asdf")
+("asdf",123.2)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> a
+a
+123
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> f 5
+f 5
+1
+*Main> f 0
+ f 0
+*** Exception: divide by zero
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> g 10
+g 10
+
+
+
+
+
+
+  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^CInterrupted.
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+*Main> b
+b
+
+
+
+
+  ^C ^C^CInterrupted.
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main> 

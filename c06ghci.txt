@@ -1,0 +1,999 @@
+stefan@stefans-MacBook-Pro curs06 % stack ghci
+stack ghci
+
+Note: No local targets specified, so a
+      plain ghci will be started with no
+      package hiding or package options.
+      
+      You are using snapshot: lts-17.8
+      
+      If you want to use package hiding
+      and options, then you can try one
+      of the following:
+      
+      * If you want to start a different
+        project configuration
+        than /Users/stefan/.stack/global-project/stack.yaml, then you can use
+        stack init to create a new
+        stack.yaml for the packages in
+        the current directory. 
+        
+      * If you want to use the project
+        configuration
+        at /Users/stefan/.stack/global-project/stack.yaml, then you can add to its 'packages' field.
+      
+Configuring GHCi with the following packages: 
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+:l c06
+:l c06
+
+
+
+
+
+
+Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/2a3bbd58/ghci-script
+Prelude> :l c06
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> 
+*Main> 
+*Main> 
+*Main> f 13
+f 13
+136
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> swap (13, 14)
+swap (13, 14)
+(14,13)
+*Main> swap ('A', 14)
+swap ('A', 14)
+(14,'A')
+*Main> swap ('A', True)
+swap ('A', True)
+(True,'A')
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> ordoneaza (1, 3)
+ordoneaza (1, 3)
+(1,3)
+*Main> ordoneaza (3, 1)
+ordoneaza (3, 1)
+(1,3)
+*Main> ordoneaza ('A', 'B')
+ordoneaza ('A', 'B')
+('A','B')
+*Main> ordoneaza ('C', 'B')
+ordoneaza ('C', 'B')
+('B','C')
+*Main> :i Ord
+:i Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance Ord Word -- Defined in ‘GHC.Classes’
+instance Ord Ordering -- Defined in ‘GHC.Classes’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Ord Float -- Defined in ‘GHC.Classes’
+instance Ord Double -- Defined in ‘GHC.Classes’
+instance Ord Char -- Defined in ‘GHC.Classes’
+instance Ord Bool -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b) -- Defined in ‘GHC.Classes’
+instance Ord () -- Defined in ‘GHC.Classes’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord Integer
+  -- Defined in ‘integer-gmp-1.0.3.0:GHC.Integer.Type’
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> ordoneaza (n2, n3)
+ordoneaza (n2, n3)
+*** Exception: c06.hs:(26,3)-(28,33): Non-exhaustive patterns in function <=
+
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> ordoneaza (n2, n3)
+ordoneaza (n2, n3)
+(Succ (Succ Zero),Succ (Succ (Succ Zero)))
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> ordoneaza (n2, n3)
+ordoneaza (n2, n3)
+(Succ (Succ (Succ Zero)),Succ (Succ Zero))
+*Main> :i Num
+:i Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:38:1: error:
+    The type signature for ‘mister’ lacks an accompanying binding
+      Perhaps you meant ‘mister'’ (Defined at c06.hs:43:1)
+   |
+38 | mister :: a -> a
+   | ^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> exf (10, 'A')
+exf (10, 'A')
+('A',1)
+*Main> exf (-10, 'A')
+exf (-10, 'A')
+('A',-1)
+*Main> exf (-23, 'A')
+exf (-23, 'A')
+('A',-1)
+*Main> exf (-0, 'A')
+exf (-0, 'A')
+('A',0)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:77:36: error: parse error on input ‘then’
+   |
+77 |                         else x > y then
+   |                                    ^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:58:1: error:
+    The type signature for ‘exf2’ lacks an accompanying binding
+      Perhaps you meant ‘exf’ (Defined at c06.hs:52:1)
+   |
+58 | exf2 :: [a] -> a
+   | ^^^^
+
+c06.hs:69:41: error: Not in scope: type variable ‘b’
+   |
+69 | data ABC a = Leaf | Node a (ABC a) (ABC b) deriving (Show, Eq)
+   |                                         ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:58:1: error:
+    The type signature for ‘exf2’ lacks an accompanying binding
+      Perhaps you meant ‘exf’ (Defined at c06.hs:52:1)
+   |
+58 | exf2 :: [a] -> a
+   | ^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> insert 2 (insert 5 (insert 1 Leaf))
+insert 2 (insert 5 (insert 1 Leaf))
+Node 2 (Node 2 Leaf Leaf) (Node 5 Leaf Leaf)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> insert 2 (insert 5 (insert 1 Leaf))
+insert 2 (insert 5 (insert 1 Leaf))
+Node 1 Leaf (Node 5 (Node 2 Leaf Leaf) Leaf)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> f 10
+f 10
+
+<interactive>:38:1: error: Variable not in scope: f :: t0 -> t
+*Main> :r
+:r
+Ok, one module loaded.
+*Main> fib 10
+fib 10
+55
+*Main> fib 20
+fib 20
+6765
+*Main> fib 30
+fib 30
+832040
+*Main> fib 32
+fib 32
+2178309
+*Main> :h
+:h
+ Commands available from the prompt:
+
+   <statement>                 evaluate/run <statement>
+   :                           repeat last command
+   :{\n ..lines.. \n:}\n       multiline command
+   :add [*]<module> ...        add module(s) to the current target set
+   :browse[!] [[*]<mod>]       display the names defined by module <mod>
+                               (!: more details; *: all top-level names)
+   :cd <dir>                   change directory to <dir>
+   :cmd <expr>                 run the commands returned by <expr>::IO String
+   :complete <dom> [<rng>] <s> list completions for partial input string
+   :ctags[!] [<file>]          create tags file <file> for Vi (default: "tags")
+                               (!: use regex instead of line number)
+   :def[!] <cmd> <expr>        define command :<cmd> (later defined command has
+                               precedence, ::<cmd> is always a builtin command)
+                               (!: redefine an existing command name)
+   :doc <name>                 display docs for the given name (experimental)
+   :edit <file>                edit file
+   :edit                       edit last module
+   :etags [<file>]             create tags file <file> for Emacs (default: "TAGS")
+   :help, :?                   display this list of commands
+   :info[!] [<name> ...]       display information about the given names
+                               (!: do not filter instances)
+   :instances <type>           display the class instances available for <type>
+   :issafe [<mod>]             display safe haskell information of module <mod>
+   :kind[!] <type>             show the kind of <type>
+                               (!: also print the normalised type)
+   :load[!] [*]<module> ...    load module(s) and their dependents
+                               (!: defer type errors)
+   :main [<arguments> ...]     run the main function with the given arguments
+   :module [+/-] [*]<mod> ...  set the context for expression evaluation
+   :quit                       exit GHCi
+   :reload[!]                  reload the current module set
+                               (!: defer type errors)
+   :run function [<arguments> ...] run the function with the given arguments
+   :script <file>              run the script <file>
+   :type <expr>                show the type of <expr>
+   :type +d <expr>             show the type of <expr>, defaulting type variables
+   :type +v <expr>             show the type of <expr>, with its specified tyvars
+   :unadd <module> ...         remove module(s) from the current target set
+   :undef <cmd>                undefine user-defined command :<cmd>
+   ::<cmd>                     run the builtin command
+   :!<command>                 run the shell command <command>
+
+ -- Commands for debugging:
+
+   :abandon                    at a breakpoint, abandon current computation
+   :back [<n>]                 go back in the history N steps (after :trace)
+   :break [<mod>] <l> [<col>]  set a breakpoint at the specified location
+   :break <name>               set a breakpoint on the specified function
+   :continue                   resume after a breakpoint
+   :delete <number> ...        delete the specified breakpoints
+   :delete *                   delete all breakpoints
+   :disable <number> ...       disable the specified breakpoints
+   :disable *                  disable all breakpoints
+   :enable <number> ...        enable the specified breakpoints
+   :enable *                   enable all breakpoints
+   :force <expr>               print <expr>, forcing unevaluated parts
+   :forward [<n>]              go forward in the history N step s(after :back)
+   :history [<n>]              after :trace, show the execution history
+   :list                       show the source code around current breakpoint
+   :list <identifier>          show the source code for <identifier>
+   :list [<module>] <line>     show the source code around line number <line>
+   :print [<name> ...]         show a value without forcing its computation
+   :sprint [<name> ...]        simplified version of :print
+   :step                       single-step after stopping at a breakpoint
+   :step <expr>                single-step into <expr>
+   :steplocal                  single-step within the current top-level binding
+   :stepmodule                 single-step restricted to the current module
+   :trace                      trace after stopping at a breakpoint
+   :trace <expr>               evaluate <expr> with tracing on (see :history)
+
+ -- Commands for changing settings:
+
+   :set <option> ...           set options
+   :seti <option> ...          set options for interactive evaluation only
+   :set local-config { source | ignore }
+                               set whether to source .ghci in current dir
+                               (loading untrusted config is a security issue)
+   :set args <arg> ...         set the arguments returned by System.getArgs
+   :set prog <progname>        set the value returned by System.getProgName
+   :set prompt <prompt>        set the prompt used in GHCi
+   :set prompt-cont <prompt>   set the continuation prompt used in GHCi
+   :set prompt-function <expr> set the function to handle the prompt
+   :set prompt-cont-function <expr>
+                               set the function to handle the continuation prompt
+   :set editor <cmd>           set the command used for :edit
+   :set stop [<n>] <cmd>       set the command to run when a breakpoint is hit
+   :unset <option> ...         unset options
+
+  Options for ':set' and ':unset':
+
+    +m            allow multiline commands
+    +r            revert top-level expressions after each evaluation
+    +s            print timing/memory stats after each evaluation
+    +t            print type after evaluation
+    +c            collect type/location info after loading modules
+    -<flags>      most GHC command line flags can also be set here
+                         (eg. -v2, -XFlexibleInstances, etc.)
+                    for GHCi-specific flags, see User's Guide,
+                    Flag reference, Interactive-mode options
+
+ -- Commands for displaying information:
+
+   :show bindings              show the current bindings made at the prompt
+   :show breaks                show the active breakpoints
+   :show context               show the breakpoint context
+   :show imports               show the current imports
+   :show linker                show current linker state
+   :show modules               show the currently loaded modules
+   :show packages              show the currently active package flags
+   :show paths                 show the currently active search paths
+   :show language              show the currently active language flags
+   :show targets               show the current set of targets
+   :show <setting>             show value of <setting>, which is one of
+                                  [args, prog, editor, stop]
+   :showi language             show language flags for interactive evaluation
+
+*Main> :set +s
+:set +s
+*Main> fib 10
+fib 10
+55
+(0.00 secs, 143,176 bytes)
+*Main> fib 20
+fib 20
+6765
+(0.01 secs, 3,705,744 bytes)
+*Main> fib 30
+fib 30
+832040
+(0.68 secs, 441,693,160 bytes)
+*Main> fib 32
+fib 32
+2178309
+(1.79 secs, 1,156,179,248 bytes)
+*Main> fib 34
+fib 34
+5702887
+(4.62 secs, 3,026,726,184 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> f 4 10
+f 4 10
+10
+(0.00 secs, 114,336 bytes)
+*Main> f 1 10
+f 1 10
+1
+(0.00 secs, 113,600 bytes)
+*Main> f 0 10
+f 0 10
+0
+(0.00 secs, 113,600 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> f (fib 34) 2
+f (fib 34) 2
+2
+(5.20 secs, 3,026,722,448 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> dirs
+dirs
+
+<interactive>:58:1: error: Variable not in scope: dirs
+(0.00 secs,)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> let x = 3
+let x = 3
+(0.00 secs, 111,688 bytes)
+*Main> x
+x
+3
+(0.00 secs, 113,512 bytes)
+*Main> let x = 10
+let x = 10
+(0.00 secs, 111,688 bytes)
+*Main> x
+x
+10
+(0.00 secs, 114,248 bytes)
+*Main> let x = fib 34
+let x = fib 34
+(0.00 secs, 111,696 bytes)
+*Main> x
+x
+5702887
+(4.31 secs, 3,026,726,136 bytes)
+*Main> f 2 (fib 34)
+f 2 (fib 34)
+2
+(0.00 secs, 113,616 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> f' 2 (fib 34)
+f' 2 (fib 34)
+2
+(0.00 secs, 113,656 bytes)
+*Main> f' (fib 34) 2
+f' (fib 34) 2
+2
+(4.32 secs, 3,026,722,504 bytes)
+*Main> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+ex.c:12:9: error: unknown type name 'bool'
+int ite(bool b, int x, int y)
+        ^
+ex.c:23:22: error: use of undeclared identifier 'true'
+  printf("%d\n", ite(true, 2, fib(34)));
+                     ^
+2 errors generated.
+stefan@stefans-MacBook-Pro curs06 % :r
+:r
+zsh: command not found: :r
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+ex.c:12:9: error: unknown type name 'bool'
+int ite(bool b, int x, int y)
+        ^
+1 error generated.
+stefan@stefans-MacBook-Pro curs06 % :r
+:r
+zsh: command not found: :r
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+stefan@stefans-MacBook-Pro curs06 % ./ex
+./ex
+2
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+stefan@stefans-MacBook-Pro curs06 % ./ex
+./ex
+2
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+stefan@stefans-MacBook-Pro curs06 % ./ex
+./ex
+1134903170
+stefan@stefans-MacBook-Pro curs06 % gcc -Wall -o ex ex.c
+gcc -Wall -o ex ex.c
+stefan@stefans-MacBook-Pro curs06 % ./ex
+./ex
+Hello, World!Hello, myself!13
+stefan@stefans-MacBook-Pro curs06 % stack ghci
+stack ghci
+
+Note: No local targets specified, so a plain ghci will be started with no package hiding or package
+      options.
+      
+      You are using snapshot: lts-17.8
+      
+      If you want to use package hiding and options, then you can try one of the following:
+      
+      * If you want to start a different project configuration
+        than /Users/stefan/.stack/global-project/stack.yaml, then you can use stack init to create a new
+        stack.yaml for the packages in the current directory. 
+        
+      * If you want to use the project configuration
+        at /Users/stefan/.stack/global-project/stack.yaml, then you can add to its 'packages' field.
+      
+Configuring GHCi with the following packages: 
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/2a3bbd58/ghci-script
+Prelude> let x = fib 34
+let x = fib 34
+
+<interactive>:1:9: error: Variable not in scope: fib :: t0 -> t
+Prelude> :l c06
+:l c06
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> let x = fib 34
+let x = fib 34
+*Main> let y = fib 34
+let y = fib 34
+*Main> :set +s
+:set +s
+*Main> x
+x
+5702887
+(5.40 secs, 3,026,726,736 bytes)
+*Main> x
+x
+5702887
+(0.00 secs, 117,880 bytes)
+*Main> y
+y
+5702887
+(4.33 secs, 3,026,726,136 bytes)
+*Main> y
+y
+5702887
+(0.00 secs, 117,880 bytes)
+*Main> (x, y)
+(x, y)
+(5702887,5702887)
+(0.00 secs, 125,488 bytes)
+*Main> let x' = fib 34
+let x' = fib 34
+(0.00 secs, 111,696 bytes)
+*Main> let y' = fib 34
+let y' = fib 34
+(0.00 secs, 111,696 bytes)
+*Main> (x', y')
+(x', y')
+(5702887,5702887)
+(8.56 secs, 6,053,342,000 bytes)
+*Main> double (fib 34)
+double (fib 34)
+11405774
+(4.30 secs, 3,026,726,968 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:175:1: error:
+    Duplicate type signatures for ‘f’
+    at c06.hs:105:1
+       c06.hs:175:1
+    |
+175 | f :: Int -> [Int]
+    | ^
+
+c06.hs:176:1: error:
+    Multiple declarations of ‘f’
+    Declared at: c06.hs:106:1
+                 c06.hs:176:1
+    |
+176 | f i = i : (f (i + 1))
+    | ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:176:12: error:
+    • Couldn't match expected type ‘[Int]’
+                  with actual type ‘Int -> Int’
+    • Probable cause: ‘f’ is applied to too few arguments
+      In the second argument of ‘(:)’, namely ‘(f (i + 1))’
+      In the expression: i : (f (i + 1))
+      In an equation for ‘g’: g i = i : (f (i + 1))
+    |
+176 | g i = i : (f (i + 1))
+    |            ^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> [ 4, 7, 3] !! 2
+[ 4, 7, 3] !! 2
+3
+(0.00 secs, 113,768 bytes)
+*Main> [ 4, 7, 3] !! 0
+[ 4, 7, 3] !! 0
+4
+(0.00 secs, 113,768 bytes)
+*Main> [ 4, 7, 3] !! 0
+[ 4, 7, 3] !! 0
+4
+(0.00 secs, 113,768 bytes)
+*Main> [ 4, 7, 3] !! 1
+[ 4, 7, 3] !! 1
+7
+(0.00 secs, 113,768 bytes)
+*Main> [ 4, 7, 3] !! 2
+[ 4, 7, 3] !! 2
+3
+(0.00 secs, 113,768 bytes)
+*Main> [ 4, 7, 3] !! 321321
+[ 4, 7, 3] !! 321321
+*** Exception: Prelude.!!: index too large
+*Main> (g 5) !! 2
+(g 5) !! 2
+7
+(0.00 secs, 114,520 bytes)
+*Main> (g 5) !! 100
+(g 5) !! 100
+105
+(0.00 secs, 128,712 bytes)
+*Main> 
+
+*Main> 
+
+*Main> length [1, 4, 7]
+length [1, 4, 7]
+3
+(0.01 secs, 113,648 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> listamea !! 100
+listamea !! 100
+105
+(0.00 secs, 129,296 bytes)
+*Main> length listamea
+length listamea
+  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^C  ^C ^C^CInterrupted.
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main>   ^C ^C
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> listamea' !! 100
+listamea' !! 100
+315
+(0.01 secs, 138,256 bytes)
+*Main> :t take
+:t take
+take :: Int -> [a] -> [a]
+*Main> take 10 listamea'
+take 10 listamea'
+[15,18,21,24,27,30,33,36,39,42]
+(0.01 secs, 137,088 bytes)
+*Main> let x = 2 + 2
+let x = 2 + 2
+(0.00 secs, 111,688 bytes)
+*Main> x
+x
+4
+(0.00 secs, 113,624 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> x !! 0
+x !! 0
+4
+(0.00 secs, 113,600 bytes)
+*Main> x !! 4
+x !! 4
+5
+(0.00 secs, 114,272 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> :t (Z, Z, Z)
+:t (Z, Z, Z)
+(Z, Z, Z) :: (Cell, Cell, Cell)
+*Main> :t (Z, Z, Z) :: Line
+:t (Z, Z, Z) :: Line
+(Z, Z, Z) :: Line :: Line
+*Main> :t (Z, Z, Z) :: (Cell, Cell, Cell)
+:t (Z, Z, Z) :: (Cell, Cell, Cell)
+(Z, Z, Z) :: (Cell, Cell, Cell) :: (Cell, Cell, Cell)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:220:41: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+    |
+220 | -- succConfig (l1, l2, l3) = succLine l1
+    |                                         ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:212:1: error:
+    Equations for ‘succCell’ have different numbers of arguments
+      c06.hs:212:1-21
+      c06.hs:214:1-15
+    |
+212 | succCell E PX = [ X ]
+    | ^^^^^^^^^^^^^^^^^^^^^...
+
+c06.hs:217:25: error:
+    • Couldn't match expected type ‘Player -> [Line]’
+                  with actual type ‘[(a0, Cell, Cell)]’
+    • Possible cause: ‘map’ is applied to too many arguments
+      In the expression: map (\ x -> (x, c2, c3)) (succCell c1)
+      In an equation for ‘succLine’:
+          succLine (c1, c2, c3) = map (\ x -> (x, c2, c3)) (succCell c1)
+    |
+217 | succLine (c1, c2, c3) = map (\x -> (x, c2, c3)) (succCell c1)
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+c06.hs:217:50: error:
+    • Couldn't match expected type ‘[a0]’
+                  with actual type ‘Player -> [Cell]’
+    • Probable cause: ‘succCell’ is applied to too few arguments
+      In the second argument of ‘map’, namely ‘(succCell c1)’
+      In the expression: map (\ x -> (x, c2, c3)) (succCell c1)
+      In an equation for ‘succLine’:
+          succLine (c1, c2, c3) = map (\ x -> (x, c2, c3)) (succCell c1)
+    |
+217 | succLine (c1, c2, c3) = map (\x -> (x, c2, c3)) (succCell c1)
+    |                                                  ^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> succCell E PX
+succCell E PX
+[X]
+(0.00 secs, 116,504 bytes)
+*Main> succCell E PZ
+succCell E PZ
+[Z]
+(0.00 secs, 115,496 bytes)
+*Main> succCell X PZ
+succCell X PZ
+[]
+(0.00 secs, 114,528 bytes)
+*Main> succCell X PX
+succCell X PX
+[]
+(0.00 secs, 114,528 bytes)
+*Main> succLine ( X, Z, E )
+succLine ( X, Z, E )
+
+<interactive>:52:1: error:
+    • No instance for (Show (Player -> [Line]))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+(0.00 secs,)
+*Main> succLine ( X, Z, E ) PX
+succLine ( X, Z, E ) PX
+[]
+(0.00 secs, 114,880 bytes)
+*Main> succLine ( X, Z, E ) PY
+succLine ( X, Z, E ) PY
+
+<interactive>:54:22: error:
+    • Data constructor not in scope: PY :: Player
+    • Perhaps you meant one of these: ‘PZ’ (line 209), ‘PX’ (line 209)
+(0.00 secs,)
+*Main> succLine ( X, Z, E ) PZ
+succLine ( X, Z, E ) PZ
+[]
+(0.00 secs, 114,880 bytes)
+*Main> succLine ( X, Z, E ) PX
+succLine ( X, Z, E ) PX
+[]
+(0.00 secs, 114,880 bytes)
+*Main> succLine ( E, Z, X ) PX
+succLine ( E, Z, X ) PX
+[(X,Z,X)]
+(0.00 secs, 120,784 bytes)
+*Main> succLine ( E, Z, X ) PZ
+succLine ( E, Z, X ) PZ
+[(Z,Z,X)]
+(0.00 secs, 120,784 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> succLine ( E, Z, X ) PZ
+succLine ( E, Z, X ) PZ
+[(Z,Z,X)]
+(0.00 secs, 122,360 bytes)
+*Main> succLine ( E, E, X ) PZ
+succLine ( E, E, X ) PZ
+[(Z,E,X),(E,Z,X)]
+(0.00 secs, 128,104 bytes)
+*Main> succLine ( E, E, E ) PZ
+succLine ( E, E, E ) PZ
+[(Z,E,E),(E,Z,E),(E,E,Z)]
+(0.00 secs, 134,816 bytes)
+*Main> succLine ( E, E, E ) PX
+succLine ( E, E, E ) PX
+[(X,E,E),(E,X,E),(E,E,X)]
+(0.00 secs, 134,832 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:223:65: error: Variable not in scope: p :: Player
+    |
+223 | succConfig (l1, l2, l3) = (map (\x -> (x, l2, l3)) (succLine l1 p)) ++
+    |                                                                 ^
+
+c06.hs:224:65: error: Variable not in scope: p :: Player
+    |
+224 |                           (map (\x -> (l1, x, l3)) (succLine l2 p)) ++
+    |                                                                 ^
+
+c06.hs:225:65: error: Variable not in scope: p :: Player
+    |
+225 |                           (map (\x -> (l1, l2, x)) (succLine l3 p))
+    |                                                                 ^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> succConfig empty PX
+succConfig empty PX
+[((X,E,E),(E,E,E),(E,E,E)),((E,X,E),(E,E,E),(E,E,E)),((E,E,X),(E,E,E),(E,E,E)),((E,E,E),(X,E,E),(E,E,E)),((E,E,E),(E,X,E),(E,E,E)),((E,E,E),(E,E,X),(E,E,E)),((E,E,E),(E,E,E),(X,E,E)),((E,E,E),(E,E,E),(E,X,E)),((E,E,E),(E,E,E),(E,E,X))]
+(0.00 secs, 312,400 bytes)
+*Main> length (succConfig empty PX)
+length (succConfig empty PX)
+9
+(0.00 secs, 118,656 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:242:25: error:
+    • Couldn't match expected type ‘[Config]’
+                  with actual type ‘([Board], Player)’
+    • In the expression: (succBoard board p, other p)
+      In an equation for ‘succConfig’:
+          succConfig (board, p) = (succBoard board p, other p)
+    |
+242 | succConfig (board, p) = (succBoard board p, other p)
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> succConfig configInit
+succConfig configInit
+[(((Z,E,E),(E,E,E),(E,E,E)),PX),(((E,Z,E),(E,E,E),(E,E,E)),PX),(((E,E,Z),(E,E,E),(E,E,E)),PX),(((E,E,E),(Z,E,E),(E,E,E)),PX),(((E,E,E),(E,Z,E),(E,E,E)),PX),(((E,E,E),(E,E,Z),(E,E,E)),PX),(((E,E,E),(E,E,E),(Z,E,E)),PX),(((E,E,E),(E,E,E),(E,Z,E)),PX),(((E,E,E),(E,E,E),(E,E,Z)),PX)]
+(0.03 secs, 351,504 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+
+c06.hs:244:12: error:
+    Multiple declarations of ‘Node’
+    Declared at: c06.hs:69:21
+                 c06.hs:244:12
+    |
+244 | data Arb = Node Config [Arb] deriving (Show, Eq)
+    |            ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> get arb []
+get arb []
+(((E,E,E),(E,E,E),(E,E,E)),PZ)
+(0.00 secs, 139,280 bytes)
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c06.hs, interpreted )
+Ok, one module loaded.
+*Main> get arb []
+get arb []
+(((E,E,E),(E,E,E),(E,E,E)),PX)
+(0.01 secs, 139,280 bytes)
+*Main> get arb [0]
+get arb [0]
+(((X,E,E),(E,E,E),(E,E,E)),PZ)
+(0.00 secs, 139,384 bytes)
+*Main> get arb [0,2]
+get arb [0,2]
+(((X,E,E),(Z,E,E),(E,E,E)),PX)
+(0.00 secs, 141,328 bytes)
+*Main> get arb [0,2,4,5,3]
+get arb [0,2,4,5,3]
+(((X,E,E),(Z,E,X),(X,E,Z)),PZ)
+(0.00 secs, 153,128 bytes)
+*Main> 

@@ -1,0 +1,390 @@
+stefan@stefans-MacBook-Pro curs01 % ghci
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+Prelude> :quit
+Leaving GHCi.
+stefan@stefans-MacBook-Pro curs01 % ghci
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+Prelude> :help
+ Commands available from the prompt:
+
+   <statement>                 evaluate/run <statement>
+   :                           repeat last command
+   :{\n ..lines.. \n:}\n       multiline command
+   :add [*]<module> ...        add module(s) to the current target set
+   :browse[!] [[*]<mod>]       display the names defined by module <mod>
+                               (!: more details; *: all top-level names)
+   :cd <dir>                   change directory to <dir>
+   :cmd <expr>                 run the commands returned by <expr>::IO String
+   :complete <dom> [<rng>] <s> list completions for partial input string
+   :ctags[!] [<file>]          create tags file <file> for Vi (default: "tags")
+                               (!: use regex instead of line number)
+   :def[!] <cmd> <expr>        define command :<cmd> (later defined command has
+                               precedence, ::<cmd> is always a builtin command)
+                               (!: redefine an existing command name)
+   :doc <name>                 display docs for the given name (experimental)
+   :edit <file>                edit file
+   :edit                       edit last module
+   :etags [<file>]             create tags file <file> for Emacs (default: "TAGS")
+   :help, :?                   display this list of commands
+   :info[!] [<name> ...]       display information about the given names
+                               (!: do not filter instances)
+   :instances <type>           display the class instances available for <type>
+   :issafe [<mod>]             display safe haskell information of module <mod>
+   :kind[!] <type>             show the kind of <type>
+                               (!: also print the normalised type)
+   :load[!] [*]<module> ...    load module(s) and their dependents
+                               (!: defer type errors)
+   :main [<arguments> ...]     run the main function with the given arguments
+   :module [+/-] [*]<mod> ...  set the context for expression evaluation
+   :quit                       exit GHCi
+   :reload[!]                  reload the current module set
+                               (!: defer type errors)
+   :run function [<arguments> ...] run the function with the given arguments
+   :script <file>              run the script <file>
+   :type <expr>                show the type of <expr>
+   :type +d <expr>             show the type of <expr>, defaulting type variables
+   :type +v <expr>             show the type of <expr>, with its specified tyvars
+   :unadd <module> ...         remove module(s) from the current target set
+   :undef <cmd>                undefine user-defined command :<cmd>
+   ::<cmd>                     run the builtin command
+   :!<command>                 run the shell command <command>
+
+ -- Commands for debugging:
+
+   :abandon                    at a breakpoint, abandon current computation
+   :back [<n>]                 go back in the history N steps (after :trace)
+   :break [<mod>] <l> [<col>]  set a breakpoint at the specified location
+   :break <name>               set a breakpoint on the specified function
+   :continue                   resume after a breakpoint
+   :delete <number> ...        delete the specified breakpoints
+   :delete *                   delete all breakpoints
+   :disable <number> ...       disable the specified breakpoints
+   :disable *                  disable all breakpoints
+   :enable <number> ...        enable the specified breakpoints
+   :enable *                   enable all breakpoints
+   :force <expr>               print <expr>, forcing unevaluated parts
+   :forward [<n>]              go forward in the history N step s(after :back)
+   :history [<n>]              after :trace, show the execution history
+   :list                       show the source code around current breakpoint
+   :list <identifier>          show the source code for <identifier>
+   :list [<module>] <line>     show the source code around line number <line>
+   :print [<name> ...]         show a value without forcing its computation
+   :sprint [<name> ...]        simplified version of :print
+   :step                       single-step after stopping at a breakpoint
+   :step <expr>                single-step into <expr>
+   :steplocal                  single-step within the current top-level binding
+   :stepmodule                 single-step restricted to the current module
+   :trace                      trace after stopping at a breakpoint
+   :trace <expr>               evaluate <expr> with tracing on (see :history)
+
+ -- Commands for changing settings:
+
+   :set <option> ...           set options
+   :seti <option> ...          set options for interactive evaluation only
+   :set local-config { source | ignore }
+                               set whether to source .ghci in current dir
+                               (loading untrusted config is a security issue)
+   :set args <arg> ...         set the arguments returned by System.getArgs
+   :set prog <progname>        set the value returned by System.getProgName
+   :set prompt <prompt>        set the prompt used in GHCi
+   :set prompt-cont <prompt>   set the continuation prompt used in GHCi
+   :set prompt-function <expr> set the function to handle the prompt
+   :set prompt-cont-function <expr>
+                               set the function to handle the continuation prompt
+   :set editor <cmd>           set the command used for :edit
+   :set stop [<n>] <cmd>       set the command to run when a breakpoint is hit
+   :unset <option> ...         unset options
+
+  Options for ':set' and ':unset':
+
+    +m            allow multiline commands
+    +r            revert top-level expressions after each evaluation
+    +s            print timing/memory stats after each evaluation
+    +t            print type after evaluation
+    +c            collect type/location info after loading modules
+    -<flags>      most GHC command line flags can also be set here
+                         (eg. -v2, -XFlexibleInstances, etc.)
+                    for GHCi-specific flags, see User's Guide,
+                    Flag reference, Interactive-mode options
+
+ -- Commands for displaying information:
+
+   :show bindings              show the current bindings made at the prompt
+   :show breaks                show the active breakpoints
+   :show context               show the breakpoint context
+   :show imports               show the current imports
+   :show linker                show current linker state
+   :show modules               show the currently loaded modules
+   :show packages              show the currently active package flags
+   :show paths                 show the currently active search paths
+   :show language              show the currently active language flags
+   :show targets               show the current set of targets
+   :show <setting>             show value of <setting>, which is one of
+                                  [args, prog, editor, stop]
+   :showi language             show language flags for interactive evaluation
+
+Prelude> 3 + 4
+7
+Prelude> 3 * 6
+18
+Prelude> 3.1
+3.1
+Prelude> 'a'
+'a'
+Prelude> 'A'
+'A'
+Prelude> True
+True
+Prelude> False
+False
+Prelude> True && False
+False
+Prelude> True || False
+True
+Prelude> !True
+
+<interactive>:11:6: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+Prelude> not True
+False
+Prelude> 'a' == 'a'
+True
+Prelude> 'a' == 'b'
+False
+Prelude> 'a' != 'b'
+
+<interactive>:15:5: error:
+    • Variable not in scope: (!=) :: Char -> Char -> t
+    • Perhaps you meant one of these:
+        ‘>=’ (imported from Prelude), ‘==’ (imported from Prelude),
+        ‘/=’ (imported from Prelude)
+Prelude> 'a' /= 'b'
+True
+Prelude> 8 < 9
+True
+Prelude> 2 ^ 3
+8
+Prelude> 22 ^ 3
+10648
+Prelude> "asdf"
+"asdf"
+Prelude> "Asdf"
+"Asdf"
+Prelude> "Asdf" == "Asdf"
+True
+Prelude> 4897328473287438243274232871372187382137218372183812 * 1473264873216487321649831276487321
+7215062012297311120394210576828034839259094790813115013177224328584992852855099447652
+Prelude> mod 10 5
+0
+Prelude> mod(10, 5)
+
+<interactive>:25:1: error:
+    • Non type-variable argument in the constraint: Integral (a, b)
+      (Use FlexibleContexts to permit this)
+    • When checking the inferred type
+        it :: forall a b.
+              (Integral (a, b), Num a, Num b) =>
+              (a, b) -> (a, b)
+Prelude> mod 10 5
+0
+Prelude> not True
+False
+Prelude> not True True
+
+<interactive>:28:1: error:
+    • Couldn't match expected type ‘Bool -> t’ with actual type ‘Bool’
+    • The function ‘not’ is applied to two arguments,
+      but its type ‘Bool -> Bool’ has only one
+      In the expression: not True True
+      In an equation for ‘it’: it = not True True
+    • Relevant bindings include it :: t (bound at <interactive>:28:1)
+Prelude> not not True
+
+<interactive>:29:1: error:
+    • Couldn't match expected type ‘Bool -> t’ with actual type ‘Bool’
+    • The function ‘not’ is applied to two arguments,
+      but its type ‘Bool -> Bool’ has only one
+      In the expression: not not True
+      In an equation for ‘it’: it = not not True
+    • Relevant bindings include it :: t (bound at <interactive>:29:1)
+
+<interactive>:29:5: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘Bool -> Bool’
+    • Probable cause: ‘not’ is applied to too few arguments
+      In the first argument of ‘not’, namely ‘not’
+      In the expression: not not True
+      In an equation for ‘it’: it = not not True
+Prelude> not (not True)
+True
+Prelude> not (not (not True))
+False
+Prelude> not (not (not (not True)))
+True
+Prelude> not(not(True))
+True
+Prelude> not (not True)
+True
+Prelude> mod 10 3
+1
+Prelude> mod(10 3)
+
+<interactive>:36:1: error:
+    • Non type-variable argument in the constraint: Num (t -> a)
+      (Use FlexibleContexts to permit this)
+    • When checking the inferred type
+        it :: forall a t. (Integral a, Num t, Num (t -> a)) => a -> a
+Prelude> :q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro curs01 % ls -al
+total 0
+drwxr-xr-x  3 stefan  staff   96 Feb 23 15:44 .
+drwxr-xr-x  6 stefan  staff  192 Feb 23 15:43 ..
+-rw-r--r--  1 stefan  staff    0 Feb 23 15:44 curs01.hs
+stefan@stefans-MacBook-Pro curs01 % cat curs01.hs
+stefan@stefans-MacBook-Pro curs01 % ec curs01.hs
+stefan@stefans-MacBook-Pro curs01 % ghci
+GHCi, version 8.10.7: https://www.haskell.org/ghc/  :? for help
+Prelude> :load curs01.hs
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> f 7
+10
+*Main> f 13
+16
+*Main> :load curs01.hs
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> f 13
+39
+*Main> :l curs01.hs
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> :reload
+Ok, one module loaded.
+*Main> :r
+Ok, one module loaded.
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> f 3
+9
+*Main> g 10
+14
+*Main> h 1333
+22674
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> qs [1,4,5,7,3,4,8,9,3,2,6,7]
+[1,2,3,3,4,4,5,6,7,7,8,9]
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> adunare 10 13
+23
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> suman 10
+55
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+
+curs01.hs:24:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘suman'’: suman' 0 = ...
+   |
+24 | suman' 0 = 0
+   | ^^^^^^^^^^^^
+Ok, one module loaded.
+*Main> suman' 10
+*** Exception: stack overflow
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+
+curs01.hs:27:10: error:
+    • No instance for (Num [Char]) arising from a use of ‘+’
+    • In the expression: x + 3 + "asdf"
+      In an equation for ‘asdf’: asdf x = x + 3 + "asdf"
+   |
+27 | asdf x = x + 3 + "asdf"
+   |          ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+
+curs01.hs:35:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘suman'’: suman' 0 = ...
+   |
+35 | suman' 0 = 0
+   | ^^^^^^^^^^^^
+Ok, one module loaded.
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> f 13
+39
+*Main> :type 'a'
+'a' :: Char
+*Main> :type True
+True :: Bool
+*Main> :type (not True)
+(not True) :: Bool
+*Main> :type 13
+13 :: Num p => p
+*Main> :info Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num Word -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Double -- Defined in ‘GHC.Float’
+*Main> :t (13 :: Int)
+(13 :: Int) :: Int
+*Main> :t (13 :: Double)
+(13 :: Double) :: Double
+*Main> :t (13 :: Char)
+
+<interactive>:1:2: error:
+    • No instance for (Num Char) arising from the literal ‘13’
+    • In the expression: (13 :: Char)
+*Main> :t 13
+13 :: Num p => p
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> :t f
+f :: Num a => a -> a
+*Main> f 13.3
+39.900000000000006
+*Main> f 3
+9
+*Main> :r
+[1 of 1] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+*Main> f 3
+9
+*Main> :t f
+f :: Int -> Int
+*Main> f 3
+9
+*Main> f 3.3
+
+<interactive>:42:3: error:
+    • No instance for (Fractional Int) arising from the literal ‘3.3’
+    • In the first argument of ‘f’, namely ‘3.3’
+      In the expression: f 3.3
+      In an equation for ‘it’: it = f 3.3
+*Main>

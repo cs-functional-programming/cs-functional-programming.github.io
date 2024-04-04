@@ -1,0 +1,1019 @@
+stefan@stefans-MacBook-Pro curs04 % stack ghci
+stack ghci
+
+Note: No local targets specified, so a
+      plain ghci will be started with no
+      package hiding or package options.
+      
+      You are using snapshot: lts-17.8
+      
+      If you want to use package hiding
+      and options, then you can try one
+      of the following:
+      
+      * If you want to start a different
+        project configuration
+        than /Users/stefan/.stack/global-project/stack.yaml, then you can use
+        stack init to create a new
+        stack.yaml for the packages in
+        the current directory. 
+        
+      * If you want to use the project
+        configuration
+        at /Users/stefan/.stack/global-project/stack.yaml, then you can add to its 'packages' field.
+      
+Configuring GHCi with the following packages: 
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/2a3bbd58/ghci-script
+Prelude> :l c04.hs
+:l c04.hs
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t dubleaza
+:t dubleaza
+dubleaza :: Num a => a -> a
+*Main> :t adunare
+:t adunare
+adunare :: Num a => a -> a -> a
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> add3 10
+add3 10
+13
+*Main> add3 7
+add3 7
+10
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> add10 20
+add10 20
+
+<interactive>:8:1: error: Variable not in scope: add10 :: t0 -> t
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> add10 20
+add10 20
+23
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+Ok, one module loaded.
+*Main> add10 20
+add10 20
+30
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> add13 20
+add13 20
+33
+*Main> (adder 57) 100
+(adder 57) 100
+157
+*Main> (adder 3) 100
+(adder 3) 100
+103
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> (adder 3) 100
+(adder 3) 100
+103
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> :r
+:r
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:16:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+   |
+16 | sfdasjfhdsajhf
+   | ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:17:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+   |
+17 | fdaskufdasljfhsa
+   | ^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:10:1: error:
+    The type signature for ‘adder’ lacks an accompanying binding
+      Perhaps you meant ‘adder'’ (Defined at c04.hs:19:1)
+   |
+10 | adder :: (Integer -> (Integer -> Integer))
+   | ^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> :t adder'
+:t adder'
+adder' :: (Integer -> Integer) -> Integer
+*Main> :t adder
+:t adder
+adder :: Integer -> Integer -> Integer
+*Main> adder 5 7
+adder 5 7
+12
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> adunare 10 12
+adunare 10 12
+22
+*Main> add10 = adunare 10
+add10 = adunare 10
+*Main> :t add10
+:t add10
+add10 :: Integer -> Integer
+*Main> add10 13
+add10 13
+23
+*Main> adunare 10 13
+adunare 10 13
+23
+*Main> ((adunare 10) 13)
+((adunare 10) 13)
+23
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> mister add10
+mister add10
+20
+*Main> mister dubleaza
+mister dubleaza
+20
+*Main> mister add13
+mister add13
+23
+*Main> mister (\x -> x * x)
+mister (\x -> x * x)
+100
+*Main> (\x y -> x * y + 13) 10 13
+(\x y -> x * y + 13) 10 13
+143
+*Main> ((\x y -> x * y + 13) 10) 13
+((\x y -> x * y + 13) 10) 13
+143
+*Main> ((\x -> \y -> x * y + 13) 10) 13
+((\x -> \y -> x * y + 13) 10) 13
+143
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:26:10: error:
+    Pattern syntax in expression context: Integer -> _
+   |
+26 | mister' (Integer -> Integer -> Integer) -> (Integer -> Integer -> Integer)
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+c04.hs:26:21: error:
+    Pattern syntax in expression context: Integer -> Integer
+   |
+26 | mister' (Integer -> Integer -> Integer) -> (Integer -> Integer -> Integer)
+   |                     ^^^^^^^^^^^^^^^^^^
+
+c04.hs:26:41: error: parse error on input ‘->’
+   |
+26 | mister' (Integer -> Integer -> Integer) -> (Integer -> Integer -> Integer)
+   |                                         ^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> t1 = mister' adunare
+t1 = mister' adunare
+*Main> t1 10 12
+t1 10 12
+22
+*Main> t1 10 30
+t1 10 30
+40
+*Main> t1 12 13
+t1 12 13
+25
+*Main> t1 13 12
+t1 13 12
+25
+*Main> t1 = mister' adunare
+t1 = mister' adunare
+*Main> t2 = mister' div
+t2 = mister' div
+*Main> t2 10 10
+t2 10 10
+1
+*Main> t2 20 10
+t2 20 10
+0
+*Main> t2 10 30
+t2 10 30
+3
+*Main> div 30 10
+div 30 10
+3
+*Main> div 10 20
+div 10 20
+0
+*Main> div 10 10
+div 10 10
+1
+*Main> t2 33 100
+t2 33 100
+3
+*Main> t2 = mister' div
+t2 = mister' div
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> (flip div) 10 30
+(flip div) 10 30
+
+<interactive>:70:2: error:
+    Ambiguous occurrence ‘flip’
+    It could refer to
+       either ‘Prelude.flip’,
+              imported from ‘Prelude’ at c04.hs:1:1
+              (and originally defined in ‘GHC.Base’)
+           or ‘Main.flip’, defined at c04.hs:30:1
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> (flip' div) 30 100
+(flip' div) 30 100
+3
+*Main> :t
+:t
+
+<no location info>: error: not an expression: ‘’
+*Main> :t flip'
+:t flip'
+flip'
+  :: (Integer -> Integer -> Integer) -> Integer -> Integer -> Integer
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t flip'
+:t flip'
+flip'
+  :: (Integer -> Integer -> Integer) -> Integer -> Integer -> Integer
+*Main> flip' div 10 33
+flip' div 10 33
+3
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> t3 = mister'' add3 dubleaza
+t3 = mister'' add3 dubleaza
+*Main> t3 5
+t3 5
+13
+*Main> t3 9
+t3 9
+21
+*Main> t4 = mister'' dubleaza add3
+t4 = mister'' dubleaza add3
+*Main> t4 5
+t4 5
+16
+*Main> t4 9
+t4 9
+24
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> (compunere add3 dubleaza) 7
+(compunere add3 dubleaza) 7
+17
+*Main> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+*Main> ((.) add3 dubleaza) 7
+((.) add3 dubleaza) 7
+17
+*Main> ((.) dubleaza add3) 7
+((.) dubleaza add3) 7
+20
+*Main> 3 + 4
+3 + 4
+7
+*Main> (+) 3 4
+(+) 3 4
+7
+*Main> (+) 7 3
+(+) 7 3
+10
+*Main> (*) 7 3
+(*) 7 3
+21
+*Main> (++) [1, 2] [3, 4]
+(++) [1, 2] [3, 4]
+[1,2,3,4]
+*Main> [1, 2] ++ [3, 4]
+[1, 2] ++ [3, 4]
+[1,2,3,4]
+*Main> (++) [1, 2] [3, 4]
+(++) [1, 2] [3, 4]
+[1,2,3,4]
+*Main> div 10 3
+div 10 3
+3
+*Main> 10 `div` 3
+10 `div` 3
+3
+*Main> (+3) 7
+(+3) 7
+10
+*Main> (+3) 7
+(+3) 7
+10
+*Main> (3+) 7
+(3+) 7
+10
+*Main> ([1,2]++) [3,4]
+([1,2]++) [3,4]
+[1,2,3,4]
+*Main> (++[1,2]) [3,4]
+(++[1,2]) [3,4]
+[3,4,1,2]
+*Main> (add3 . dubleaza) 7
+(add3 . dubleaza) 7
+17
+*Main> (dubleaza . add3) 7
+(dubleaza . add3) 7
+20
+*Main> ((.) dubleaza add3) 7
+((.) dubleaza add3) 7
+20
+*Main> ((.dubleaza) add3) 7
+((.dubleaza) add3) 7
+17
+*Main> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> mister''' add3 7
+mister''' add3 7
+10
+*Main> mister''' (*7) 13
+mister''' (*7) 13
+91
+*Main> ($) (*7) 13
+($) (*7) 13
+91
+*Main> ($) add3 13
+($) add3 13
+16
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> (mister''') add3 13
+(mister''') add3 13
+
+<interactive>:116:2: error:
+    • Variable not in scope:
+        mister''' :: (Integer -> Integer) -> t0 -> t
+    • Perhaps you meant ‘mister''''’ (line 49)
+*Main> (mister'''') add3 13
+(mister'''') add3 13
+16
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> aplica add3 13
+aplica add3 13
+16
+*Main> aplica dubleaza 13
+aplica dubleaza 13
+26
+*Main> ($) dubleaza 13
+($) dubleaza 13
+26
+*Main> ($) add3 13
+($) add3 13
+16
+*Main> add3 13
+add3 13
+16
+*Main> dubleaza 13
+dubleaza 13
+26
+*Main> ($13) dubleaza
+($13) dubleaza
+26
+*Main> ($13) add3
+($13) add3
+16
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> add3 dubleaza 16
+add3 dubleaza 16
+
+<interactive>:128:1: error:
+    • Couldn't match expected type ‘t0 -> t’ with actual type ‘Integer’
+    • The function ‘add3’ is applied to two arguments,
+      but its type ‘Integer -> Integer’ has only one
+      In the expression: add3 dubleaza 16
+      In an equation for ‘it’: it = add3 dubleaza 16
+    • Relevant bindings include it :: t (bound at <interactive>:128:1)
+
+<interactive>:128:6: error:
+    • Couldn't match expected type ‘Integer’
+                  with actual type ‘a0 -> a0’
+    • Probable cause: ‘dubleaza’ is applied to too few arguments
+      In the first argument of ‘add3’, namely ‘dubleaza’
+      In the expression: add3 dubleaza 16
+      In an equation for ‘it’: it = add3 dubleaza 16
+*Main> add3 (dubleaza 16)
+add3 (dubleaza 16)
+35
+*Main> add3 $ dubleaza 16
+add3 $ dubleaza 16
+35
+*Main> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza [13, 28, 89]
+proceseaza [13, 28, 89]
+[14,29,90]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza' [13, 28, 89]
+proceseaza' [13, 28, 89]
+[11,26,87]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza'' 1 [13, 28, 89]
+proceseaza'' 1 [13, 28, 89]
+[14,29,90]
+*Main> proceseaza'' (-2) [13, 28, 89]
+proceseaza'' (-2) [13, 28, 89]
+[11,26,87]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza'' [ 13, 10, 20 ] 
+proceseaza'' [ 13, 10, 20 ] 
+
+<interactive>:140:14: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘[a0]’
+    • In the first argument of ‘proceseaza''’, namely ‘[13, 10, 20]’
+      In the expression: proceseaza'' [13, 10, 20]
+      In an equation for ‘it’: it = proceseaza'' [13, 10, 20]
+*Main> proceseaza''' [ 13, 10, 20 ] 
+proceseaza''' [ 13, 10, 20 ] 
+[156,120,240]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza4 (-1) [ 13, 28, 89 ]
+proceseaza4 (-1) [ 13, 28, 89 ]
+
+<interactive>:143:14: error:
+    • No instance for (Num (Integer -> Integer))
+        arising from a use of syntactic negation
+        (maybe you haven't applied a function to enough arguments?)
+    • In the first argument of ‘proceseaza4’, namely ‘(- 1)’
+      In the expression: proceseaza4 (- 1) [13, 28, 89]
+      In an equation for ‘it’: it = proceseaza4 (- 1) [13, 28, 89]
+*Main> proceseaza4 ((-)1) [ 13, 28, 89 ]
+proceseaza4 ((-)1) [ 13, 28, 89 ]
+[-12,-27,-88]
+*Main> proceseaza4 (+(-1)) [ 13, 28, 89 ]
+proceseaza4 (+(-1)) [ 13, 28, 89 ]
+[12,27,88]
+*Main> proceseaza4 (+1) [ 13, 28, 89 ]
+proceseaza4 (+1) [ 13, 28, 89 ]
+[14,29,90]
+*Main> proceseaza4 (+(-2)) [ 13, 28, 89 ]
+proceseaza4 (+(-2)) [ 13, 28, 89 ]
+[11,26,87]
+*Main> proceseaza4 (*12) [ 13, 28, 89 ]
+proceseaza4 (*12) [ 13, 28, 89 ]
+[156,336,1068]
+*Main> map (*12) [ 1, 2, 3 ]
+map (*12) [ 1, 2, 3 ]
+[12,24,36]
+*Main> map (*12) [ 1, 2, 3 ]
+map (*12) [ 1, 2, 3 ]
+[12,24,36]
+*Main> map (+3) [ 1, 2, 3 ]
+map (+3) [ 1, 2, 3 ]
+[4,5,6]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza_major [ 13, 89, 34, 17, 18 ]
+proceseaza_major [ 13, 89, 34, 17, 18 ]
+[89,35,18,19]
+*Main> proceseaza_major [ 13, 89, 34, 17, 18 ]
+proceseaza_major [ 13, 89, 34, 17, 18 ]
+[89,35,18,19]
+*Main> :r
+:r
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza_major [ 13, 89, 34, 17, 18 ]
+proceseaza_major [ 13, 89, 34, 17, 18 ]
+[89,34,18]
+*Main> True && False
+True && False
+False
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:90:35: error:
+    • Couldn't match expected type ‘proceseaza_interesante tl’
+                  with actual type ‘Integer’
+    • In the expression: hd :: (proceseaza_interesante tl)
+      In the expression:
+        if hd >= 26 && hd <= 65 then
+              hd :: (proceseaza_interesante tl)
+        else
+            (proceseaza_interesante tl)
+      In an equation for ‘proceseaza_interesant’:
+          proceseaza_interesant (hd : tl)
+            = if hd >= 26 && hd <= 65 then
+                    hd :: (proceseaza_interesante tl)
+              else
+                  (proceseaza_interesante tl)
+   |
+90 |                                   hd :: (proceseaza_interesante tl)
+   |                                   ^^
+
+c04.hs:92:36: error:
+    • Variable not in scope:
+        proceseaza_interesante :: [Integer] -> [Integer]
+    • Perhaps you meant ‘proceseaza_interesant’ (line 88)
+   |
+92 |                                   (proceseaza_interesante tl)
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> "r
+"r
+
+<interactive>:160:3: error:
+    lexical error in string/character literal at end of input
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:90:41: error:
+    • Variable not in scope:
+        proceseaza_interesante :: [Integer] -> [Integer]
+    • Perhaps you meant ‘proceseaza_interesant’ (line 88)
+   |
+90 |                                   hd : (proceseaza_interesante tl)
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^
+
+c04.hs:92:36: error:
+    • Variable not in scope:
+        proceseaza_interesante :: [Integer] -> [Integer]
+    • Perhaps you meant ‘proceseaza_interesant’ (line 88)
+   |
+92 |                                   (proceseaza_interesante tl)
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:90:41: error:
+    • Variable not in scope:
+        proceseaza_interesante :: [Integer] -> [Integer]
+    • Perhaps you meant ‘proceseaza_interesant’ (line 88)
+   |
+90 |                                   hd : (proceseaza_interesante tl)
+   |                                         ^^^^^^^^^^^^^^^^^^^^^^
+
+c04.hs:92:36: error:
+    • Variable not in scope:
+        proceseaza_interesante :: [Integer] -> [Integer]
+    • Perhaps you meant ‘proceseaza_interesant’ (line 88)
+   |
+92 |                                   (proceseaza_interesante tl)
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza_interesant [ 13, 89, 34, 17, 18 ]
+proceseaza_interesant [ 13, 89, 34, 17, 18 ]
+[34]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:94:1: error: parse error on input ‘where’
+   |
+94 | where tl' = proceseaza_interesant tl                                 
+   | ^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:99:27: error:
+    • Couldn't match expected type ‘proceseaza5 tl’
+                  with actual type ‘Integer’
+    • In the expression: hd :: proceseaza5 tl
+      In the expression:
+        if p hd then hd :: proceseaza5 tl else proceseaza5 tl
+      In an equation for ‘proceseaza5’:
+          proceseaza5 p (hd : tl)
+            = if p hd then hd :: proceseaza5 tl else proceseaza5 tl
+   |
+99 |                           hd :: proceseaza5 tl
+   |                           ^^
+
+c04.hs:101:27: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘[Integer] -> [Integer]’
+    • Probable cause: ‘proceseaza5’ is applied to too few arguments
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd :: proceseaza5 tl else proceseaza5 tl
+      In an equation for ‘proceseaza5’:
+          proceseaza5 p (hd : tl)
+            = if p hd then hd :: proceseaza5 tl else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                           ^^^^^^^^^^^^^^
+
+c04.hs:101:39: error:
+    • Couldn't match expected type ‘Integer -> Bool’
+                  with actual type ‘[Integer]’
+    • In the first argument of ‘proceseaza5’, namely ‘tl’
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd :: proceseaza5 tl else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                                       ^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:99:32: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘[Integer] -> [Integer]’
+    • Probable cause: ‘proceseaza5’ is applied to too few arguments
+      In the second argument of ‘(:)’, namely ‘proceseaza5 tl’
+      In the expression: hd : proceseaza5 tl
+      In the expression:
+        if p hd then hd : proceseaza5 tl else proceseaza5 tl
+   |
+99 |                           hd : proceseaza5 tl
+   |                                ^^^^^^^^^^^^^^
+
+c04.hs:99:44: error:
+    • Couldn't match expected type ‘Integer -> Bool’
+                  with actual type ‘[Integer]’
+    • In the first argument of ‘proceseaza5’, namely ‘tl’
+      In the second argument of ‘(:)’, namely ‘proceseaza5 tl’
+      In the expression: hd : proceseaza5 tl
+   |
+99 |                           hd : proceseaza5 tl
+   |                                            ^^
+
+c04.hs:101:27: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘[Integer] -> [Integer]’
+    • Probable cause: ‘proceseaza5’ is applied to too few arguments
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd : proceseaza5 tl else proceseaza5 tl
+      In an equation for ‘proceseaza5’:
+          proceseaza5 p (hd : tl)
+            = if p hd then hd : proceseaza5 tl else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                           ^^^^^^^^^^^^^^
+
+c04.hs:101:39: error:
+    • Couldn't match expected type ‘Integer -> Bool’
+                  with actual type ‘[Integer]’
+    • In the first argument of ‘proceseaza5’, namely ‘tl’
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd : proceseaza5 tl else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                                       ^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:99:33: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘[Integer] -> [Integer]’
+    • Probable cause: ‘proceseaza5’ is applied to too few arguments
+      In the second argument of ‘(:)’, namely ‘(proceseaza5 tl)’
+      In the expression: hd : (proceseaza5 tl)
+      In the expression:
+        if p hd then hd : (proceseaza5 tl) else proceseaza5 tl
+   |
+99 |                           hd : (proceseaza5 tl)
+   |                                 ^^^^^^^^^^^^^^
+
+c04.hs:99:45: error:
+    • Couldn't match expected type ‘Integer -> Bool’
+                  with actual type ‘[Integer]’
+    • In the first argument of ‘proceseaza5’, namely ‘tl’
+      In the second argument of ‘(:)’, namely ‘(proceseaza5 tl)’
+      In the expression: hd : (proceseaza5 tl)
+   |
+99 |                           hd : (proceseaza5 tl)
+   |                                             ^^
+
+c04.hs:101:27: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘[Integer] -> [Integer]’
+    • Probable cause: ‘proceseaza5’ is applied to too few arguments
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd : (proceseaza5 tl) else proceseaza5 tl
+      In an equation for ‘proceseaza5’:
+          proceseaza5 p (hd : tl)
+            = if p hd then hd : (proceseaza5 tl) else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                           ^^^^^^^^^^^^^^
+
+c04.hs:101:39: error:
+    • Couldn't match expected type ‘Integer -> Bool’
+                  with actual type ‘[Integer]’
+    • In the first argument of ‘proceseaza5’, namely ‘tl’
+      In the expression: proceseaza5 tl
+      In the expression:
+        if p hd then hd : (proceseaza5 tl) else proceseaza5 tl
+    |
+101 |                           proceseaza5 tl
+    |                                       ^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> proceseaza5 (>=18) [ 13, 29, 89, 34, 17, 18 ]
+proceseaza5 (>=18) [ 13, 29, 89, 34, 17, 18 ]
+[29,89,34,18]
+*Main> proceseaza5 (\x -> x>=26 && x <= 65) [ 13, 29, 89, 34, 17, 18 ]
+proceseaza5 (\x -> x>=26 && x <= 65) [ 13, 29, 89, 34, 17, 18 ]
+[29,34]
+*Main> filter (>=18) [ 3, 29, 30 ]
+filter (>=18) [ 3, 29, 30 ]
+[29,30]
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+
+c04.hs:107:16: error:
+    • Couldn't match expected type ‘[Integer]’
+                  with actual type ‘Integer’
+    • In the expression: hd + (suma tl)
+      In an equation for ‘suma’: suma (hd : tl) = hd + (suma tl)
+    |
+107 | suma (hd:tl) = hd + (suma tl)
+    |                ^^^^^^^^^^^^^^
+
+c04.hs:107:22: error:
+    • Couldn't match expected type ‘Integer’
+                  with actual type ‘[Integer]’
+    • In the second argument of ‘(+)’, namely ‘(suma tl)’
+      In the expression: hd + (suma tl)
+      In an equation for ‘suma’: suma (hd : tl) = hd + (suma tl)
+    |
+107 | suma (hd:tl) = hd + (suma tl)
+    |                      ^^^^^^^
+Failed, no modules loaded.
+Prelude> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> suma [1, 3, 6 ]
+suma [1, 3, 6 ]
+10
+*Main> suma [1, 3, 6, 89 ]
+suma [1, 3, 6, 89 ]
+99
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> produs [1, 3, 9]
+produs [1, 3, 9]
+27
+*Main> produs [1, 3, 0, 9]
+produs [1, 3, 0, 9]
+0
+*Main> produs [1, 3, 9, -1]
+produs [1, 3, 9, -1]
+-27
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> reduce 1 (*) [1, 3, 9 ]
+reduce 1 (*) [1, 3, 9 ]
+27
+*Main> reduce 0 (+) [1, 3, 9 ]
+reduce 0 (+) [1, 3, 9 ]
+13
+*Main> :t reduce
+:t reduce
+reduce
+  :: Integer
+     -> (Integer -> Integer -> Integer) -> [Integer] -> Integer
+*Main> :t foldl
+:t foldl
+foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+*Main> 
+ 
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t myfoldl
+:t myfoldl
+myfoldl :: (b -> a -> b) -> b -> [a] -> b
+*Main> myfoldl (+) 0 [ 1, 2, 3 ]
+myfoldl (+) 0 [ 1, 2, 3 ]
+6
+*Main> myfoldl (*) 1 [ 1, 2, 3 ]
+myfoldl (*) 1 [ 1, 2, 3 ]
+6
+*Main> myfoldl (*) 1 [ 1, 2, 3, 4 ]
+myfoldl (*) 1 [ 1, 2, 3, 4 ]
+24
+*Main> myfoldl (+) 0 [ 1, 2, 3, 4 ]
+myfoldl (+) 0 [ 1, 2, 3, 4 ]
+10
+*Main> :t foldr
+:t foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> 
+
+*Main> :r
+:r
+[1 of 1] Compiling Main             ( c04.hs, interpreted )
+Ok, one module loaded.
+*Main> :t myfoldr
+:t myfoldr
+myfoldr :: (a -> b -> b) -> b -> [a] -> b
+*Main> :t myfoldl
+:t myfoldl
+myfoldl :: (b -> a -> b) -> b -> [a] -> b
+*Main> myfoldl (+) 0 [1, 2, 3, 4 ]
+myfoldl (+) 0 [1, 2, 3, 4 ]
+10
+*Main> myfoldr (+) 0 [1, 2, 3, 4 ]
+myfoldr (+) 0 [1, 2, 3, 4 ]
+10
+*Main> myfoldr (*) 1 [1, 2, 3, 4 ]
+myfoldr (*) 1 [1, 2, 3, 4 ]
+24
+*Main> myfoldl (*) 1 [1, 2, 3, 4 ]
+myfoldl (*) 1 [1, 2, 3, 4 ]
+24
+*Main> myfoldl (div) (2*3*4*5*6) [ 2, 5 ]
+myfoldl (div) (2*3*4*5*6) [ 2, 5 ]
+72
+*Main> myfoldr (div) (2*3*4*5*6) [ 2, 5 ]
+myfoldr (div) (2*3*4*5*6) [ 2, 5 ]
+*** Exception: divide by zero
+*Main> myfoldr (div) (2*3*4*5*6) [ 5 ]
+myfoldr (div) (2*3*4*5*6) [ 5 ]
+0
+*Main> myfoldr (++) [] [ [1, 2, 3], [4, 5, 6] ]
+myfoldr (++) [] [ [1, 2, 3], [4, 5, 6] ]
+[1,2,3,4,5,6]
+*Main> myfoldr (++) [] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+myfoldr (++) [] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+[1,2,3,4,5,6,7,8,9]
+*Main> myfoldr (++) [78] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+myfoldr (++) [78] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+[1,2,3,4,5,6,7,8,9,78]
+*Main> myfoldl (++) [78] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+myfoldl (++) [78] [ [1, 2, 3], [4, 5, 6], [ 7, 8, 9 ] ]
+[78,1,2,3,4,5,6,7,8,9]
+*Main> 

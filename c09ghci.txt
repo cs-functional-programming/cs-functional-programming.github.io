@@ -1,0 +1,998 @@
+module Lib
+    ( someFunc
+    ) where
+
+someFunc :: IO ()
+someFunc = putStrLn "someFunc"
+stefan@stefans-MBP src % cd ..
+stefan@stefans-MBP demo % ls -al
+total 56
+drwxr-xr-x  12 stefan  staff   384 Apr 27 16:45 .
+drwxr-xr-x  10 stefan  staff   320 Apr 27 16:45 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:45 .gitignore
+-rw-------   1 stefan  staff   310 Apr 27 16:45 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:45 LICENSE
+-rw-------   1 stefan  staff     7 Apr 27 16:45 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:45 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 app
+-rw-r--r--   1 stefan  staff  1897 Apr 27 16:45 demo.cabal
+-rw-------   1 stefan  staff  1350 Apr 27 16:45 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 src
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 test
+stefan@stefans-MBP demo % cd test
+stefan@stefans-MBP test % ls -al
+total 8
+drwxr-xr-x   3 stefan  staff   96 Apr 27 16:45 .
+drwxr-xr-x  12 stefan  staff  384 Apr 27 16:45 ..
+-rw-------   1 stefan  staff   63 Apr 27 16:45 Spec.hs
+stefan@stefans-MBP test % ec Spec.hs
+stefan@stefans-MBP test % ls -al
+total 8
+drwxr-xr-x   3 stefan  staff   96 Apr 27 16:45 .
+drwxr-xr-x  12 stefan  staff  384 Apr 27 16:45 ..
+-rw-------   1 stefan  staff   63 Apr 27 16:45 Spec.hs
+stefan@stefans-MBP test % cd ..
+stefan@stefans-MBP demo % ls -al
+total 56
+drwxr-xr-x  12 stefan  staff   384 Apr 27 16:45 .
+drwxr-xr-x  10 stefan  staff   320 Apr 27 16:45 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:45 .gitignore
+-rw-------   1 stefan  staff   310 Apr 27 16:45 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:45 LICENSE
+-rw-------   1 stefan  staff     7 Apr 27 16:45 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:45 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 app
+-rw-r--r--   1 stefan  staff  1897 Apr 27 16:45 demo.cabal
+-rw-------   1 stefan  staff  1350 Apr 27 16:45 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 src
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 test
+stefan@stefans-MBP demo % ec demo.cabal
+stefan@stefans-MBP demo % stack build
+Error: [S-8506]
+Error parsing targets: The specified targets matched no packages.
+Perhaps you need to run 'stack init'?
+stefan@stefans-MBP demo % cd ..
+stefan@stefans-MBP curs09 % stack new demo1
+Downloading template new-template to create project demo1 in directory demo1/...
+Downloaded /Users/stefan/.stack/templates/new-template.hsfiles.
+
+Note: The following parameters were needed by the template but not provided: author-email,
+      author-name, category, copyright and github-username.
+
+      You can provide them in Stack's global YAML configuration file
+      (/Users/stefan/.stack/config.yaml) like this:
+
+      templates:
+        params:
+          author-email: value
+          author-name: value
+          category: value
+          copyright: value
+          github-username: value
+
+      Or you can pass each one on the command line as parameters like this:
+
+      stack new demo1 new-template -p "author-email:value" -p "author-name:value" -p
+      "category:value" -p "copyright:value" -p "github-username:value"
+
+Looking for Cabal or package.yaml files to use to initialise Stack's project-level YAML
+configuration file.
+
+Using the Cabal packages:
+* demo1/
+
+Selecting the best among 19 snapshots...
+
+
+Note: Matches
+      https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml
+
+Selected the snapshot
+https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml.
+Initialising Stack's project-level YAML configuration file using snapshot
+https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml.
+Considered 1 user package.
+Writing configuration to demo1/stack.yaml.
+Stack's project-level YAML configuration file has been initialised.
+stefan@stefans-MBP curs09 % cd demo1
+stefan@stefans-MBP demo1 % stack build
+Building all executables for `demo1' once. After a successful build of all of them, only specified executables will be rebuilt.
+demo1> configure (lib + exe)
+Configuring demo1-0.1.0.0...
+demo1> build (lib + exe)
+Preprocessing library for demo1-0.1.0.0..
+Building library for demo1-0.1.0.0..
+[1 of 2] Compiling Lib
+[2 of 2] Compiling Paths_demo1
+Preprocessing executable 'demo1-exe' for demo1-0.1.0.0..
+Building executable 'demo1-exe' for demo1-0.1.0.0..
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_demo1
+Linking .stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build/demo1-exe/demo1-exe ...
+demo1> copy/register
+Installing library in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/lib/x86_64-osx-ghc-9.2.7/demo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX
+Installing executable demo1-exe in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin
+Registering library for demo1-0.1.0.0..
+stefan@stefans-MBP demo1 % ls -al
+total 72
+drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
+drwxr-xr-x  11 stefan  staff   352 Apr 27 16:52 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
+drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
+-rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
+-rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
+-rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
+-rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
+-rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
+-rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
+stefan@stefans-MBP demo1 % cd .stack-work
+stefan@stefans-MBP .stack-work % ls -al
+total 88
+drwxr-xr-x   6 stefan  staff    192 Apr 27 16:52 .
+drwxr-xr-x  15 stefan  staff    480 Apr 27 16:52 ..
+drwxr-xr-x   3 stefan  staff     96 Apr 27 16:52 dist
+drwxr-xr-x   3 stefan  staff     96 Apr 27 16:52 install
+-rw-r--r--   1 stefan  staff  45056 Apr 27 16:52 stack.sqlite3
+-rw-r--r--   1 stefan  staff      0 Apr 27 16:52 stack.sqlite3.pantry-write-lock
+stefan@stefans-MBP .stack-work % cd dist
+stefan@stefans-MBP dist % ls
+x86_64-osx
+stefan@stefans-MBP dist % cd x86_64-osx
+stefan@stefans-MBP x86_64-osx % ls
+Cabal-3.6.3.0
+stefan@stefans-MBP x86_64-osx % cd Cabal-3.6.3.0
+stefan@stefans-MBP Cabal-3.6.3.0 % ls
+build			package.conf.inplace	stack-build-caches	stack-project-root
+build-lock		setup-config		stack-cabal-mod		stack-setup-config-mod
+stefan@stefans-MBP Cabal-3.6.3.0 % cd build
+stefan@stefans-MBP build % ls
+Lib.dyn_hi
+Lib.dyn_o
+Lib.hi
+Lib.o
+Paths_demo1.dyn_hi
+Paths_demo1.dyn_o
+Paths_demo1.hi
+Paths_demo1.o
+autogen
+demo1-exe
+libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX-ghc9.2.7.dylib
+libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX.a
+stefan@stefans-MBP build % ls -al
+total 488
+drwxr-xr-x  14 stefan  staff     448 Apr 27 16:52 .
+drwxr-xr-x  10 stefan  staff     320 Apr 27 16:52 ..
+-rw-r--r--   1 stefan  staff    1471 Apr 27 16:52 Lib.dyn_hi
+-rw-r--r--   1 stefan  staff    2600 Apr 27 16:52 Lib.dyn_o
+-rw-r--r--   1 stefan  staff    1468 Apr 27 16:52 Lib.hi
+-rw-r--r--   1 stefan  staff    2592 Apr 27 16:52 Lib.o
+-rw-r--r--   1 stefan  staff   13000 Apr 27 16:52 Paths_demo1.dyn_hi
+-rw-r--r--   1 stefan  staff   27056 Apr 27 16:52 Paths_demo1.dyn_o
+-rw-r--r--   1 stefan  staff   12997 Apr 27 16:52 Paths_demo1.hi
+-rw-r--r--   1 stefan  staff   26952 Apr 27 16:52 Paths_demo1.o
+drwxr-xr-x   4 stefan  staff     128 Apr 27 16:52 autogen
+drwxr-xr-x   5 stefan  staff     160 Apr 27 16:52 demo1-exe
+-rwxr-xr-x   1 stefan  staff  102392 Apr 27 16:52 libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX-ghc9.2.7.dylib
+-rw-r--r--   1 stefan  staff   38864 Apr 27 16:52 libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX.a
+stefan@stefans-MBP build % ./demo1-exe
+zsh: permission denied: ./demo1-exe
+stefan@stefans-MBP build % ./demo1-exe/demo1-exe
+someFunc
+stefan@stefans-MBP build % pwd
+/Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build
+stefan@stefans-MBP build % cd ..
+stefan@stefans-MBP Cabal-3.6.3.0 % cd ..
+stefan@stefans-MBP x86_64-osx % cd ..
+stefan@stefans-MBP dist % cd ..
+stefan@stefans-MBP .stack-work % ls
+dist				stack.sqlite3
+install				stack.sqlite3.pantry-write-lock
+stefan@stefans-MBP .stack-work % cd ..
+stefan@stefans-MBP demo1 % ls -al
+total 72
+drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
+drwxr-xr-x  11 stefan  staff   352 Apr 27 16:52 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
+drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
+-rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
+-rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
+-rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
+-rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
+-rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
+-rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
+stefan@stefans-MBP demo1 % stack run
+someFunc
+stefan@stefans-MBP demo1 % stack install
+Copying from /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin/demo1-exe to /Users/stefan/.local/bin/demo1-exe
+
+Copied executables to /Users/stefan/.local/bin:
+- demo1-exe
+
+Warning: Installation path /Users/stefan/.local/bin not found on the PATH environment variable.
+stefan@stefans-MBP demo1 % cd /Users/stefan/.local/bin
+stefan@stefans-MBP bin % ls -al
+total 64848
+drwxr-xr-x  4 stefan  staff       128 Apr 27 16:54 .
+drwxrwxrwx  5 stefan  staff       160 Apr 27 09:58 ..
+-rwxr-xr-x  1 stefan  staff   1141568 Apr 27 16:54 demo1-exe
+-rwxr-xr-x  1 stefan  staff  32056608 Apr 27 09:58 stack
+stefan@stefans-MBP bin % ./demo1-exe
+someFunc
+stefan@stefans-MBP bin % pwd
+/Users/stefan/.local/bin
+stefan@stefans-MBP bin % cd stack
+cd: not a directory: stack
+stefan@stefans-MBP bin % ls
+demo1-exe	stack
+stefan@stefans-MBP bin % ls -al
+total 64848
+drwxr-xr-x  4 stefan  staff       128 Apr 27 16:54 .
+drwxrwxrwx  5 stefan  staff       160 Apr 27 09:58 ..
+-rwxr-xr-x  1 stefan  staff   1141568 Apr 27 16:54 demo1-exe
+-rwxr-xr-x  1 stefan  staff  32056608 Apr 27 09:58 stack
+stefan@stefans-MBP bin % cd ..
+stefan@stefans-MBP .local % cd ..
+stefan@stefans-MBP ~ % cd /Users/stefan/teaching/pf-2022-2023/curs09/demo1/
+stefan@stefans-MBP demo1 % ls
+CHANGELOG.md	README.md	app		package.yaml	stack.yaml	test
+LICENSE		Setup.hs	demo1.cabal	src		stack.yaml.lock
+stefan@stefans-MBP demo1 % ls -al
+total 72
+drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
+drwxr-xr-x  11 stefan  staff   352 Apr 27 16:54 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
+drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
+-rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
+-rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
+-rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
+-rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
+-rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
+-rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
+stefan@stefans-MBP demo1 % ec stack.yaml
+stefan@stefans-MBP demo1 % ls -al
+total 72
+drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
+drwxr-xr-x  11 stefan  staff   352 Apr 27 16:54 ..
+-rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
+drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
+-rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
+-rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
+-rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
+-rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
+-rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
+-rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
+-rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
+-rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
+drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
+stefan@stefans-MBP demo1 % stack test
+demo1-0.1.0.0: unregistering (components added: test:demo1-test)
+demo1> configure (lib + exe + test)
+Configuring demo1-0.1.0.0...
+demo1> build (lib + exe + test)
+Preprocessing library for demo1-0.1.0.0..
+Building library for demo1-0.1.0.0..
+Preprocessing test suite 'demo1-test' for demo1-0.1.0.0..
+Building test suite 'demo1-test' for demo1-0.1.0.0..
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_demo1
+Linking .stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build/demo1-test/demo1-test ...
+Preprocessing executable 'demo1-exe' for demo1-0.1.0.0..
+Building executable 'demo1-exe' for demo1-0.1.0.0..
+demo1> copy/register
+Installing library in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/lib/x86_64-osx-ghc-9.2.7/demo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX
+Installing executable demo1-exe in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin
+Registering library for demo1-0.1.0.0..
+demo1> test (suite: demo1-test)
+
+Test suite not yet implemented
+
+demo1> Test suite demo1-test passed
+Completed 2 action(s).
+stefan@stefans-MBP demo1 % cat test/Spec.hs
+main :: IO ()
+main = putStrLn "Test suite not yet implemented"
+stefan@stefans-MBP demo1 % cd ..
+stefan@stefans-MBP curs09 % pwd
+/Users/stefan/teaching/pf-2022-2023/curs09
+stefan@stefans-MBP curs09 % ls -al
+total 2928
+drwxr-xr-x  11 stefan  staff      352 Apr 27 16:54 .
+drwxr-xr-x  16 stefan  staff      512 Apr 27 16:38 ..
+-rw-r--r--   1 stefan  staff     1275 Apr 27 16:17 Nat.hi
+-rw-r--r--   1 stefan  staff     9264 Apr 27 16:17 Nat.o
+drwxr-xr-x  11 stefan  staff      352 Apr 27 16:33 Utils
+drwxr-xr-x  12 stefan  staff      384 Apr 27 16:45 demo
+drwxr-xr-x  15 stefan  staff      480 Apr 27 16:52 demo1
+-rwxr-xr-x   1 stefan  staff  1462160 Apr 27 16:31 main
+-rw-r--r--   1 stefan  staff     1166 Apr 27 16:31 main.hi
+-rw-r--r--   1 stefan  staff     1486 Apr 27 16:54 main.hs
+-rw-r--r--   1 stefan  staff    10488 Apr 27 16:31 main.o
+stefan@stefans-MBP curs09 % ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :l main
+[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
+[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
+[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
+[4 of 5] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+ghci> qs [1, 3, 2]
+[1,3,2]
+ghci> qs [2, 3, 1]
+[1,2,3]
+ghci> qs [2, 3, 4, 1]
+[1,2,3,4]
+ghci> qs [2, 7, 3, 4, 1]
+[1,2,7,3,4]
+ghci> :r
+[4 of 5] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, four modules loaded.
+ghci> qs [2, 7, 3, 4, 1]
+[1,2,3,4,7]
+ghci> qs [1, 2, 7, 3, 4, 1]
+[1,2,3,4,7]
+ghci> :q
+Leaving GHCi.
+stefan@stefans-MBP curs09 % clear
+stefan@stefans-MBP curs09 % ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :l main
+[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
+[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
+[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
+[4 of 5] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+ghci> qs [2, 3, 1]
+[1,2,3]
+ghci> qs [1, 3, 2]
+[1,2,3]
+ghci> qs [1, 2, 3]
+[1,2,3]
+ghci> qs [1, 4, 2, 3]
+[1,2,3,4]
+ghci> qs [5, 1, 4, 2, 3]
+[1,2,3,4,5]
+ghci> qs' [5, 2, 1, 4, 2, 3]
+[2,1,4,2,3,5]
+ghci> :q
+Leaving GHCi.
+stefan@stefans-MBP curs09 % ec main.hs
+stefan@stefans-MBP curs09 % ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+:ghci> :l man
+target ‘man’ is not a module name or a source file
+ghci> :l main
+[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
+[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
+[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
+[4 of 5] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+ghci> qs' [1, 3, 2]
+[1,3,2]
+ghci> qs' [1, 2, 3]
+[1,2,3]
+ghci> sorted $ qs' [1, 2, 3]
+True
+ghci> sorted $ qs' [4, 1, 2, 3]
+True
+ghci> sorted $ qs' [4, 5, 1, 2, 3]
+True
+ghci> sorted $ qs' [5, 4, 1, 2, 3]
+False
+ghci> :r
+[4 of 5] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:52:1: error:
+    Could not find module ‘Test.QuickCheck’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+   |
+52 | import Test.QuickCheck
+   | ^^^^^^^^^^^^^^^^^^^^^^
+Failed, three modules loaded.
+ghci> :q
+Leaving GHCi.
+stefan@stefans-MBP curs09 % stack --help
+stack - The Haskell Tool Stack
+
+Usage: stack [--help] [--version] [--numeric-version] [--hpack-numeric-version]
+             [--docker*] [--nix*]
+             [--verbosity VERBOSITY | (-v|--verbose) | --silent]
+             [--[no-]time-in-log] [--[no-]rsl-in-log] [--stack-root STACK-ROOT]
+             [--work-dir WORK-DIR] [--[no-]system-ghc] [--[no-]install-ghc]
+             [--arch ARCH] [--ghc-variant VARIANT] [--ghc-build BUILD]
+             [-j|--jobs JOBS] [--extra-include-dirs DIR] [--extra-lib-dirs DIR]
+             [--custom-preprocessor-extensions EXT] [--with-gcc PATH-TO-GCC]
+             [--with-hpack HPACK] [--[no-]skip-ghc-check] [--[no-]skip-msys]
+             [--local-bin-path DIR] [--setup-info-yaml URL]
+             [--[no-]modify-code-page] [--[no-]allow-different-user]
+             [--[no-]dump-logs] [--color|--colour WHEN]
+             [--snapshot-location-base URL] [--[no-]script-no-run-compile]
+             [--resolver RESOLVER] [--compiler COMPILER] [--[no-]terminal]
+             [--stack-colors|--stack-colours STYLES] [--terminal-width INT]
+             [--stack-yaml STACK-YAML] [--lock-file ARG] COMMAND|FILE
+
+Available options:
+  --help                   Show this help text
+  --version                Show version
+  --numeric-version        Show only version number
+  --hpack-numeric-version  Show only Hpack's version number
+  --docker*                Run 'stack --docker-help' for details
+  --nix*                   Run 'stack --nix-help' for details
+  --verbosity VERBOSITY    Verbosity: silent, error, warn, info, debug
+  -v,--verbose             Enable verbose mode: verbosity level "debug"
+  --silent                 Enable silent mode: verbosity level "silent"
+  --[no-]time-in-log       Enable/disable inclusion of timings in logs, for the
+                           purposes of using diff with logs (default: enabled)
+  --[no-]rsl-in-log        Enable/disable inclusion of raw snapshot layer (rsl)
+                           in logs (default: disabled)
+  --stack-root STACK-ROOT  Absolute path to the global Stack root directory
+                           (Overrides any STACK_ROOT environment variable)
+  --work-dir WORK-DIR      Relative path of work directory (Overrides any
+                           STACK_WORK environment variable, default is
+                           '.stack-work')
+  --[no-]system-ghc        Enable/disable using the system installed GHC (on the
+                           PATH) if it is available and its version matches.
+                           Disabled by default.
+  --[no-]install-ghc       Enable/disable downloading and installing GHC if
+                           necessary (can be done manually with 'stack setup')
+                           (default: enabled)
+  --arch ARCH              System architecture, e.g. i386, x86_64
+  --ghc-variant VARIANT    Specialized GHC variant, e.g. int-native or
+                           integersimple (incompatible with --system-ghc)
+  --ghc-build BUILD        Specialized GHC build, e.g. 'gmp4' or 'standard'
+                           (usually auto-detected)
+  -j,--jobs JOBS           Number of concurrent jobs to run
+  --extra-include-dirs DIR Extra directories to check for C header files
+  --extra-lib-dirs DIR     Extra directories to check for libraries
+  --custom-preprocessor-extensions EXT
+                           Extensions used for custom preprocessors
+  --with-gcc PATH-TO-GCC   Use gcc found at PATH-TO-GCC
+  --with-hpack HPACK       Use HPACK executable (overrides bundled Hpack)
+  --[no-]skip-ghc-check    Enable/disable skipping the GHC version and
+                           architecture check (default: disabled)
+  --[no-]skip-msys         Enable/disable skipping the local MSYS installation
+                           (Windows only) (default: disabled)
+  --local-bin-path DIR     Install binaries to DIR
+  --setup-info-yaml URL    Alternate URL or relative / absolute path for Stack
+                           dependencies
+  --[no-]modify-code-page  Enable/disable setting the codepage to support UTF-8
+                           (Windows only) (default: enabled)
+  --[no-]allow-different-user
+                           Enable/disable permission for users other than the
+                           owner of the Stack root directory to use a Stack
+                           installation (POSIX only) (default: true inside
+                           Docker, otherwise false)
+  --[no-]dump-logs         Enable/disable dump the build output logs for local
+                           packages to the console (default: dump warning logs)
+  --color,--colour WHEN    Specify when to use color in output; WHEN is
+                           'always', 'never', or 'auto'. On Windows versions
+                           before Windows 10, for terminals that do not support
+                           color codes, the default is 'never'; color may work
+                           on terminals that support color codes
+  --snapshot-location-base URL
+                           The base location of LTS/Nightly snapshots
+  --[no-]script-no-run-compile
+                           Enable/disable the use of options `--no-run
+                           --compile` with `stack script` (default: disabled)
+  --resolver RESOLVER      Override resolver in project file
+  --compiler COMPILER      Use the specified compiler
+  --[no-]terminal          Enable/disable overriding terminal detection in the
+                           case of running in a false terminal
+  --stack-colors,--stack-colours STYLES
+                           Specify Stack's output styles; STYLES is a
+                           colon-delimited sequence of key=value, where 'key' is
+                           a style name and 'value' is a semicolon-delimited
+                           list of 'ANSI' SGR (Select Graphic Rendition) control
+                           codes (in decimal). Use 'stack ls stack-colors
+                           --basic' to see the current sequence. In shells where
+                           a semicolon is a command separator, enclose STYLES in
+                           quotes.
+  --terminal-width INT     Specify the width of the terminal, used for
+                           pretty-print messages
+  --stack-yaml STACK-YAML  Override project stack.yaml file (overrides any
+                           STACK_YAML environment variable)
+  --lock-file ARG          Specify how to interact with lock files. Default:
+                           read/write. If resolver is overridden: read-only
+
+Available commands:
+  build                    Build the package(s) in this directory/configuration
+  install                  Shortcut for 'build --copy-bins'
+  uninstall                Show how to uninstall Stack. This command does not
+                           itself uninstall Stack.
+  test                     Shortcut for 'build --test'
+  bench                    Shortcut for 'build --bench'
+  haddock                  Shortcut for 'build --haddock'
+  new                      Create a new project from a template. Run 'stack
+                           templates' to see available templates. Will also
+                           initialise if there is no stack.yaml file. Note: you
+                           can also specify a local file or a remote URL as a
+                           template; or force an initialisation.
+  templates                Show how to find templates available for 'stack new'.
+                           'stack new' can accept a template from a remote
+                           repository (default: github), local file or remote
+                           URL. Note: this downloads the help file.
+  init                     Create Stack project configuration from Cabal or
+                           Hpack package specifications
+  setup                    Get the appropriate GHC for your project
+  path                     Print out handy path information
+  ls                       List command. (Supports snapshots, dependencies,
+                           Stack's styles and installed tools)
+  unpack                   Unpack one or more packages locally
+  update                   Update the package index
+  upgrade                  Upgrade Stack, installing to Stack's local-bin
+                           directory and, if different and permitted, the
+                           directory of the current Stack executable
+  upload                   Upload a package to Hackage
+  sdist                    Create source distribution tarballs
+  dot                      Visualize your project's dependency graph using
+                           Graphviz dot
+  ghc                      Run ghc
+  hoogle                   Run hoogle, the Haskell API search engine. Use the
+                           '-- ARGUMENT(S)' syntax to pass Hoogle arguments,
+                           e.g. 'stack hoogle -- --count=20', or 'stack hoogle
+                           -- server --local'.
+  exec                     Execute a command. If the command is absent, the
+                           first of any arguments is taken as the command.
+  run                      Build and run an executable. Defaults to the first
+                           available executable if none is provided as the first
+                           argument.
+  ghci                     Run ghci in the context of package(s) (experimental)
+  repl                     Run ghci in the context of package(s) (experimental)
+                           (alias for 'ghci')
+  runghc                   Run runghc
+  runhaskell               Run runghc (alias for 'runghc')
+  script                   Run a Stack Script
+  eval                     Evaluate some haskell code inline. Shortcut for
+                           'stack exec ghc -- -e CODE'
+  clean                    Delete build artefacts for the project packages.
+  purge                    Delete the project Stack working directories
+                           (.stack-work by default). Shortcut for 'stack clean
+                           --full'
+  query                    Query general build information (experimental)
+  list                     List package id's in snapshot (experimental)
+  ide                      IDE-specific commands
+  docker                   Subcommands specific to Docker use
+  config                   Subcommands for accessing and modifying configuration
+                           values
+  hpc                      Subcommands specific to Haskell Program Coverage
+
+Stack's documentation is available at https://docs.haskellstack.org/. Command
+'stack COMMAND --help' for help about a Stack command. Stack also supports the
+Haskell Error Index at https://errors.haskell.org/.
+stefan@stefans-MBP curs09 % stack ghci
+
+Note: No local targets specified, so a plain ghci will be started with no package hiding or
+      package options.
+
+      You are using snapshot: lts-17.8
+
+      If you want to use package hiding and options, then you can try one of the following:
+
+      * If you want to start a different project configuration
+        than /Users/stefan/.stack/global-project/stack.yaml, then you can use stack init to
+        create a new stack.yaml for the packages in the current directory.
+
+      * If you want to use the project configuration
+        at /Users/stefan/.stack/global-project/stack.yaml, then you can add to its 'packages' field.
+
+Configuring GHCi with the following packages:
+GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
+Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/2a3bbd58/ghci-script
+Prelude> :l main
+[1 of 4] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
+[2 of 4] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
+[3 of 4] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck prop1
+
+<interactive>:2:12: error: Variable not in scope: prop1
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck prop1
+*** Failed! Falsified (after 9 tests and 6 shrinks):
+[0,-1,-2]
+*Main> qs' [0, -1, -2]
+[-1,-2,0]
+*Main> sorted $ qs' [0, -1, -2]
+False
+*Main> quickCheck prop1
+*** Failed! Falsified (after 8 tests and 9 shrinks):
+[0,2,1]
+*Main> sorted $ qs' [0, 2, 1]
+False
+*Main>  qs' [0, 2, 1]
+[0,2,1]
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> quickCheck prop2
++++ OK, passed 100 tests.
+*Main> qs [1, 2, 3, 3, 4, 5, 7, 5, 4, 3, 2, 1, 1]
+[1,2,3,4,5,7]
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+
+main.hs:76:18: error:
+    • Couldn't match expected type ‘Str’ with actual type ‘[Int]’
+    • In the first argument of ‘length’, namely ‘l’
+      In the first argument of ‘(==)’, namely ‘length l’
+      In the expression: length l == length (qs l)
+   |
+76 | prop3 l = length l == length (qs l)
+   |                  ^
+
+main.hs:76:31: error:
+    • Couldn't match expected type ‘Str’ with actual type ‘[Int]’
+    • In the first argument of ‘length’, namely ‘(qs l)’
+      In the second argument of ‘(==)’, namely ‘length (qs l)’
+      In the expression: length l == length (qs l)
+   |
+76 | prop3 l = length l == length (qs l)
+   |                               ^^^^
+Failed, three modules loaded.
+*Utils.Str> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+
+main.hs:76:11: error:
+    Ambiguous occurrence ‘length’
+    It could refer to
+       either ‘Prelude.length’,
+              imported from ‘Prelude’ at main.hs:47:8-11
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Utils.Str.length’,
+              imported from ‘Utils.Str’ at main.hs:54:1-16
+              (and originally defined at Utils/Str.hs:8:1-6)
+   |
+76 | prop3 l = length l == length (qs l)
+   |           ^^^^^^
+
+main.hs:76:23: error:
+    Ambiguous occurrence ‘length’
+    It could refer to
+       either ‘Prelude.length’,
+              imported from ‘Prelude’ at main.hs:47:8-11
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Utils.Str.length’,
+              imported from ‘Utils.Str’ at main.hs:54:1-16
+              (and originally defined at Utils/Str.hs:8:1-6)
+   |
+76 | prop3 l = length l == length (qs l)
+   |                       ^^^^^^
+
+main.hs:83:23: error:
+    Ambiguous occurrence ‘length’
+    It could refer to
+       either ‘Prelude.length’,
+              imported from ‘Prelude’ at main.hs:47:8-11
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Utils.Str.length’,
+              imported from ‘Utils.Str’ at main.hs:54:1-16
+              (and originally defined at Utils/Str.hs:8:1-6)
+   |
+83 |      putStrLn (show $ length (Cons "asdf"))
+   |                       ^^^^^^
+Failed, three modules loaded.
+*Utils.Str> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+
+main.hs:76:11: error:
+    Ambiguous occurrence ‘length’
+    It could refer to
+       either ‘Prelude.length’,
+              imported from ‘Prelude’ at main.hs:47:8-11
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Utils.Str.length’,
+              imported from ‘Utils.Str’ at main.hs:54:1-16
+              (and originally defined at Utils/Str.hs:8:1-6)
+   |
+76 | prop3 l = length l == length (qs l)
+   |           ^^^^^^
+
+main.hs:76:23: error:
+    Ambiguous occurrence ‘length’
+    It could refer to
+       either ‘Prelude.length’,
+              imported from ‘Prelude’ at main.hs:47:8-11
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Utils.Str.length’,
+              imported from ‘Utils.Str’ at main.hs:54:1-16
+              (and originally defined at Utils/Str.hs:8:1-6)
+   |
+76 | prop3 l = length l == length (qs l)
+   |                       ^^^^^^
+Failed, three modules loaded.
+*Utils.Str> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> :r
+Ok, four modules loaded.
+*Main> quickCheck prop3
+*** Failed! Falsified (after 4 tests and 1 shrink):
+[-2,-2]
+*Main> quickCheck prop3
+*** Failed! Falsified (after 4 tests and 1 shrink):
+[-2,-2]
+*Main> quickCheck prop3
+*** Failed! Falsified (after 10 tests and 2 shrinks):
+[-4,-4]
+*Main> quickCheck prop3
+*** Failed! Falsified (after 13 tests and 5 shrinks):
+[-5,-5]
+*Main> quickCheck prop3
+*** Failed! Falsified (after 6 tests and 1 shrink):
+[0,0]
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck (prop2 qs')
+*** Failed! Falsified (after 5 tests and 3 shrinks):
+[-1,1,0]
+*Main> quickCheck (prop2 qs')
+*** Failed! Falsified (after 10 tests and 7 shrinks):
+[0,-1,-2]
+*Main> quickCheck (prop2 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop2 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop2 qs)
++++ OK, passed 100 tests.
+*Main> qs'' [1, 2, 3]
+[2,3,4]
+*Main> quickCheck (prop2 qs'')
+*** Failed! Falsified (after 10 tests and 7 shrinks):
+[1,0]
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck (prop2 qs'')
++++ OK, passed 100 tests.
+*Main> qs'' [1, 3, 5, 2]
+[2,3,4,6]
+*Main> :t elem
+elem :: (Foldable t, Eq a) => a -> t a -> Bool
+*Main> elem 1 [1, 2, 3]
+True
+*Main> elem 1 [2, 3]
+False
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs'')
+*** Failed! Falsified (after 6 tests and 3 shrinks):
+(0,[0])
+*Main> quickCheck (prop4 qs'')
+*** Failed! Falsified (after 2 tests):
+(0,[0])
+*Main> quickCheck (prop4 qs'')
+*** Failed! Falsified (after 4 tests and 3 shrinks):
+(0,[0])
+*Main> quickCheck (prop4 qs'')
+*** Failed! Falsified (after 2 tests and 2 shrinks):
+(0,[0])
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop4 qs)
++++ OK, passed 100 tests.
+*Main> quickCheck (prop5 qs)
+
+<interactive>:58:13: error:
+    • Variable not in scope: prop5 :: ([Int] -> [Int]) -> prop0
+    • Perhaps you meant one of these:
+        ‘prop1’ (line 70), ‘prop2’ (line 73), ‘prop3’ (line 76)
+*Main> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+
+main.hs:87:19: error:
+    • Variable not in scope: sort :: [Int] -> [Int]
+    • Perhaps you meant ‘sqrt’ (imported from Prelude)
+   |
+87 | prop5 sortfun l = sort l == sortfun l
+   |                   ^^^^
+Failed, three modules loaded.
+*Utils.Str> import Data.List
+*Utils.Str Data.List> :t sort
+sort :: Ord a => [a] -> [a]
+*Utils.Str Data.List> :t sort
+sort :: Ord a => [a] -> [a]
+*Utils.Str Data.List> import Data.List
+*Utils.Str Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck (prop5 qs)
+*** Failed! Falsified (after 6 tests and 2 shrinks):
+[2,2]
+*Main Data.List> sort [2, 2]
+[2,2]
+*Main Data.List> qs [2, 2]
+[2]
+*Main Data.List> quickCheck (prop5 qs')
+*** Failed! Falsified (after 9 tests and 4 shrinks):
+[2,2]
+*Main Data.List> quickCheck (prop5 qs'')
+*** Failed! Falsified (after 3 tests and 3 shrinks):
+[0]
+*Main Data.List> qs'' [0]
+[1]
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck (prop5 qs''')
+*** Failed! Falsified (after 8 tests and 6 shrinks):
+[0,0,-1]
+*Main Data.List> qs''' [0, 0, -1]
+[0,-1,0]
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck (prop5 qs''')
++++ OK, passed 100 tests.
+*Main Data.List> replicate
+
+<interactive>:97:1: error:
+    • No instance for (Show (Int -> a0 -> [a0]))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+*Main Data.List> :t replicate
+replicate :: Int -> a -> [a]
+*Main Data.List> replicate 10 'a'
+"aaaaaaaaaa"
+*Main Data.List> replicate 10 0
+[0,0,0,0,0,0,0,0,0,0]
+*Main Data.List> [0, 5, 6, 9] !! 2
+6
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck prop6
+*** Failed! Exception: 'Prelude.!!: index too large' (after 1 test):
+0
+0
+*Main Data.List> (replicate 0 0) !! 0
+*** Exception: Prelude.!!: index too large
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> quickCheck prop6
+*** Failed! Exception: 'Prelude.!!: index too large' (after 2 tests and 1 shrink):
+-1
+0
+*Main Data.List> quickCheck prop6
+*** Failed! Exception: 'Prelude.!!: index too large' (after 5 tests and 4 shrinks):
+-1
+0
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> :r
+Ok, four modules loaded.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> :r
+[4 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, four modules loaded.
+*Main Data.List> :t (==>)
+(==>) :: Testable prop => Bool -> prop -> Property
+*Main Data.List> :r
+Ok, four modules loaded.
+*Main Data.List> quickCheck prop6
++++ OK, passed 100 tests.
+*Main Data.List> quickCheck prop7
++++ OK, passed 100 tests; 117 discarded.
+*Main Data.List>

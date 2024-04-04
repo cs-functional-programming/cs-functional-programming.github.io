@@ -1,0 +1,345 @@
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % ./curs
+./curs
+zsh: no such file or directory: ./curs
+stefan@stefans-MBP pf-2023-2024 % ./curs2
+./curs2
+8
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % ./curs2
+./curs2
+8
+Rezultat: 2
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+curs2.c:10:22: warning: data argument not used by format string
+      [-Wformat-extra-args]
+  printf("Apel 1: ", f(3, 4));
+         ~~~~~~~~~~  ^
+curs2.c:11:22: warning: data argument not used by format string
+      [-Wformat-extra-args]
+  printf("Apel 2: ", f(3, 4));
+         ~~~~~~~~~~  ^
+2 warnings generated.
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % ./curs2
+./curs2
+Apel 1: 7
+Apel 2: 7
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % 
+./curs2
+Apel 1: 7
+Apel 2: 8
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % ./curs2
+./curs2
+Apel 1: 7
+stefan@stefans-MBP pf-2023-2024 % gcc -Wall -o curs2 curs2.c
+gcc -Wall -o curs2 curs2.c
+stefan@stefans-MBP pf-2023-2024 % ./curs2
+./curs2
+Apel 1: 7
+Apel 2: asdf
+stefan@stefans-MBP pf-2023-2024 % ghci
+ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :load curs2
+:load curs2
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+
+curs2.hs:3:13: error:
+    Ambiguous occurrence ‘sum’
+    It could refer to
+       either ‘Prelude.sum’,
+              imported from ‘Prelude’ at curs2.hs:1:1
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Main.sum’, defined at curs2.hs:2:1
+  |
+3 | sum n = n + sum (n - 1)
+  |             ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> sum' 10
+sum' 10
+55
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sum'' 10 0
+sum'' 10 0
+55
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sum''' 10 0 0
+sum''' 10 0 0
+45
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+
+curs2.hs:25:17: error:
+    Variable not in scope: true :: Bool
+    Suggested fix:
+      Perhaps use data constructor ‘True’ (imported from Prelude)
+   |
+25 |               | true = sum'''' n (i + 1) (a + i)
+   |                 ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> otherwise
+otherwise
+True
+ghci> Math.sqrt
+Math.sqrt
+
+<interactive>:14:1: error:
+    Not in scope: ‘Math.sqrt’
+    NB: no module named ‘Math’ is imported.
+ghci> sqrt
+sqrt
+
+<interactive>:15:1: error:
+    • No instance for (Show (Double -> Double))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> import Math
+import Math
+
+<no location info>: error:
+    Could not find module ‘Math’
+    It is not a module in the current program, or in any known package.
+ghci> sqrt 10
+sqrt 10
+3.1622776601683795
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> dist 0 0 10 10
+dist 0 0 10 10
+14.142136
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+
+curs2.hs:33:1: error:
+    Multiple declarations of ‘dist’
+    Declared at: curs2.hs:28:1
+                 curs2.hs:33:1
+   |
+33 | dist x1 y1 x2 y2 = sqrt (dx * dx + dy * dy)
+   | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isprime 10
+isprime 10
+False
+ghci> isprime 7
+isprime 7
+True
+ghci> isprime 11
+isprime 11
+True
+ghci> isprime 101
+isprime 101
+True
+ghci> isprime 102
+isprime 102
+False
+ghci> isprime 110
+isprime 110
+False
+ghci> isprime (7 * 13)
+isprime (7 * 13)
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isprime' 7
+isprime' 7
+False
+ghci> isprime' 10
+isprime' 10
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isprime' 10
+isprime' 10
+False
+ghci> isprime' 7
+isprime' 7
+True
+ghci> isprime' 13
+isprime' 13
+True
+ghci> isprime' (7 * 13)
+isprime' (7 * 13)
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> cmmdc (7 * 7 * 13) (13 * 13 * 7)
+cmmdc (7 * 7 * 13) (13 * 13 * 7)
+91
+ghci> 13 * 7
+13 * 7
+91
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+
+curs2.hs:64:29: error:
+    Variable not in scope: cmmmdc' :: (Int, Int) -> Int
+    Suggested fix:
+      Perhaps use one of these: ‘cmmdc'’ (line 63), ‘cmmdc’ (line 59)
+   |
+64 |               | otherwise = cmmmdc' (y, mod x y)
+   |                             ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> (7, 13)
+(7, 13)
+(7,13)
+ghci> (7, True)
+(7, True)
+(7,True)
+ghci> (7, True, 'a')
+(7, True, 'a')
+(7,True,'a')
+ghci> fst (7, True)
+fst (7, True)
+7
+ghci> snd (7, True)
+snd (7, True)
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> swap (7, 13)
+swap (7, 13)
+(13,7)
+ghci> swap (swap (7, 13))
+swap (swap (7, 13))
+(7,13)
+ghci> swap (7, True)
+swap (7, True)
+
+<interactive>:53:10: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the expression: True
+      In the first argument of ‘swap’, namely ‘(7, True)’
+      In the expression: swap (7, True)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+
+curs2.hs:70:1: error:
+    Multiple declarations of ‘swap’
+    Declared at: curs2.hs:67:1
+                 curs2.hs:70:1
+   |
+70 | swap (x, y) = (y, x)
+   | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> swap'' (3, 16)
+swap'' (3, 16)
+(16,3)
+ghci> swap'' (3, True)
+swap'' (3, True)
+(True,3)
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> fifth (3, 4, 5, 6, 7)
+fifth (3, 4, 5, 6, 7)
+
+<interactive>:60:1: error:
+    Variable not in scope: fifth :: (a0, b0, c0, d0, e0) -> t
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :load curs2
+:load curs2
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> fifth (3, 4, 5, 6, 7)
+fifth (3, 4, 5, 6, 7)
+
+<interactive>:63:1: error:
+    Variable not in scope: fifth :: (a0, b0, c0, d0, e0) -> t
+ghci> :load curs2
+:load curs2
+[1 of 2] Compiling Main             ( curs2.hs, interpreted )
+Ok, one module loaded.
+ghci> fifth (3, 4, 5, 6, 7)
+fifth (3, 4, 5, 6, 7)
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fifth (3, 4, 5, 6, 7)
+fifth (3, 4, 5, 6, 7)
+7
+ghci> 

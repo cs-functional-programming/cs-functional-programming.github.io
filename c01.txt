@@ -1,0 +1,217 @@
+stefan@stefans-MBP pf-2023-2024 % ghci
+ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :type True
+:type True
+True :: Bool
+ghci> :type (True && False)
+:type (True && False)
+(True && False) :: Bool
+ghci> :type "asdf"
+:type "asdf"
+"asdf" :: String
+ghci> :t True
+:t True
+True :: Bool
+ghci> mod 10 3
+mod 10 3
+1
+ghci> mod(10, 3)
+mod(10, 3)
+
+<interactive>:6:1: error:
+    • No instance for (Show ((Integer, Integer) -> (Integer, Integer)))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> mod 10 3
+mod 10 3
+1
+ghci> :load c01
+:load c01
+[1 of 2] Compiling Main             ( c01.hs, interpreted )
+Ok, one module loaded.
+ghci> f 10
+f 10
+11
+ghci> :load c01
+:load c01
+[1 of 2] Compiling Main             ( c01.hs, interpreted )
+Ok, one module loaded.
+ghci> :reload
+:reload
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :t f
+:t f
+f :: Int -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sumthree 10 12 13
+sumthree 10 12 13
+35
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> c
+c
+'a'
+ghci> s
+s
+"asdf"
+ghci> :t c
+:t c
+c :: Char
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> c
+c
+'a'
+ghci> :t c
+:t c
+c :: Char
+ghci> :t s
+:t s
+s :: String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t f
+:t f
+f :: Num a => a -> a
+ghci> :t 10
+:t 10
+10 :: Num a => a
+ghci> :info Num
+:info Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num Double -- Defined in ‘GHC.Float’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Word -- Defined in ‘GHC.Num’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t f
+:t f
+f :: Int -> Int
+ghci> f (2 ^ 63)
+f (2 ^ 63)
+-9223372036854775807
+ghci> 2 ^ 63
+2 ^ 63
+9223372036854775808
+ghci> f ((2 ^ 63) - 1)
+f ((2 ^ 63) - 1)
+-9223372036854775808
+ghci> f ((2 ^ 63) - 2)
+f ((2 ^ 63) - 2)
+9223372036854775807
+ghci> (2 ^ 63) :: Int
+(2 ^ 63) :: Int
+-9223372036854775808
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> f (2 ^ 63)
+f (2 ^ 63)
+-9223372036854775807
+ghci> 2 ^ 63
+2 ^ 63
+9223372036854775808
+ghci> :t (2 ^ 63)
+:t (2 ^ 63)
+(2 ^ 63) :: Num a => a
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f (2 ^ 63)
+f (2 ^ 63)
+9223372036854775809
+ghci> f(2 ^ 63)
+f(2 ^ 63)
+9223372036854775809
+ghci> f 2 ^ 63
+f 2 ^ 63
+1144561273430837494885949696427
+ghci> f (2 ^ 63)
+f (2 ^ 63)
+9223372036854775809
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> x
+x
+10
+ghci> x = 11
+x = 11
+ghci> x
+x
+11
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> x
+x
+10
+ghci> y
+y
+11
+ghci> x = 11
+x = 11
+ghci> y
+y
+11
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sumn 3
+sumn 3
+6
+ghci> sumn 10
+sumn 10
+55
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> sumn 1
+sumn 1
+1
+ghci> sumn (-5)
+sumn (-5)
+*** Exception: stack overflow
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs [4,7,3,8]
+qs [4,7,3,8]
+[3,4,7,8]
+ghci> 
