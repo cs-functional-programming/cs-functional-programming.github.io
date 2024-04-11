@@ -2,324 +2,278 @@ import System.Environment
 import System.IO
 import Control.Exception
 
+-- Tipul "unit"
+
+-- data () = ()
+
+f :: () -> Int
+f () = 13
+
 -- Monada IO
--- = modalitatea prin care pot scrie
--- de facto programe imperative in Haskell (e.g., citesc un fisier,
--- trimit un mesaj in retea, s.a.m.d.)
 
--- IO a este un tip parametrizat de variabila de tip "a"
-
--- Valorile de tip "IO a" sunt actiuni/instructiuni/comenzi, pe care,
--- daca le execut, la sfarsit vor produce o valoare de tip "a".
-
--- Spun "produce" si nu "returneaza" fiindca pastrez verbul returneaza
--- pentru functii.
-
--- Tipul unit: ()
--- Valoarea unit: ()
--- valoarea unit este singura valoare de tip unit
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
 
 -- main :: IO ()
 -- main = putStrLn "Hello, World!"
 
--- 1. se va evalua functia numita "main" (practic, nu se intampla nimic)
--- 2. se executa actiunea intoarsa de functia "main"
-
-
--- Am doua actiuni: act1 si act2.
--- Vreau sa creez o noua actiune care sa execute intai act1 si apoi act2.
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
 
 -- main :: IO ()
--- main = (>>) (putStrLn "Hello, World!")
---             (putStrLn "I am GHC.")
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
 
 -- main :: IO ()
--- main = putStrLn "Hello, World!" >>
---        putStrLn "I am GHC." >>
---        putStrLn "I am done."
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
 
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
 
--- putStrLn s intoarce/returneaza o actiune IO care, daca e executata,
--- afiseaza s la iesirea standard si produce apoi valoarea ().
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
 
--- getLine :: IO String
--- getLine nu primeste niciun argument si intoarce o actiune
+-- notatia "do"
 
--- Cand execut actiunea, sistemul asteapta de la tastatura un sir de
--- caractere si apoi (dupa ce apas enter) se produce ca rezutat sirul.
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
 
--- main :: IO ()
--- main = putStrLn "What is your name?" >>
---        getLine >> -- cum "pun mana" pe sirul produs de
---                   -- actiunea intoarsa de getLine?
---        putStrLn "Hello!"
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
 
--- (>>=) :: IO a -> (a -> IO b) -> IO b
-
--- main :: IO ()
--- main = putStrLn "What is your name?" >>
---        getLine >>=
---        (\x -> putStrLn $ "Hello, " ++ x ++ "!")
-
--- Pentru monade, Haskell defineste un zahar sintactic
--- prin "notatia do" ("do" notation)
-
--- main :: IO ()
--- main = do putStrLn "Hello, World!"
---           putStrLn "I am GHC."
---           putStrLn "I am done."
-          
--- Atentie la indentare! Daca actiunile dintr-o notatie "do" nu sunt
--- aliniate, apare o eroare la parsare.
-
--- main :: IO ()
--- main = do { putStrLn "Hello, World!" ;
---               putStrLn "I am GHC." ;
---            putStrLn "I am done." }
-
--- main :: IO ()
--- main = do
---          putStrLn "Hello, World!"
---          putStrLn "I am GHC."
---          putStrLn "I am done."
-
--- Cum folosim notatia "do" daca vrem "sa punem mana" pe valoarea produsa
--- de una dintre actiuni?
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           x <- getLine
---           putStrLn $ "Hello, " ++ x ++ "!"
-
--- Cum "dezahariseste" sistemul notatia "do"
--- main = (putStrLn "What is your name?" >>
---            (getLine >>= (\x ->
---              putStrLn $ "Hello, " ++ x ++ "!")))
-
-
--- Atentie! A nu se confunda "x <- getLine" cu "let x = getLine"
-
--- <- nu este o functie, face parte din notatia "do"
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           let x = getLine in do
---             y <- x
---             putStrLn $ "Hello, " ++ y ++ "!"
-
--- Cum obtin un comportament repetitiv?
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
 --           name <- getLine
---           putStrLn $ "Hello, " ++ name ++ "!"
---           main
+--       putStrLn ("Hello, " ++ name ++ "!")
 
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           name <- getLine
---           if name == "" then
---             putStrLn "Done!"
---           else
---             do putStrLn $ "Hello, " ++ name ++ "!"
---                main
-
--- return :: a -> IO a
--- return x intoarce o actiune care, daca este executata,
--- nu face absolut nimic, dar la sfarsit produce valoarea x
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           name <- getLine
---           if name == "" then
---             return ()
---           else
---             do putStrLn $ "Hello, " ++ name ++ "!"
---                main
-
--- Atentie! return nu seamana deloc cu "return"-ul din C/C++/Java/Python
-
--- return in Haskell e doar o functie care intoarce o actiune no-op
-
--- return in C/C++/Java/Python e o instructiune care schimba control
--- flow-ul programului
-
--- main :: IO ()
--- main = do return ()
---           putStrLn "Hello, World!"
-
-
--- (G, +, ...) e grup ddaca ...
-
--- (M, >>=, return) e monada ddaca ...
-
--- IO se intampla sa satisfaca aceste proprietati
-
--- La sfarsit sa va arat cum pot transforma un esec intr-o lista de
--- succesuri :)
-
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
-
--- putStr :: String -> IO ()
-
--- Eroare frecventa:
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
---           putStrLn $ "Sunt programul " ++ getProgName
---                      ^^^^^^^^^^^^^^^^^    ^^^^^^^^^^^
---                          String              IO String
---          (++) :: String -> String -> String
-
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
---           progName <- getProgName
---           putStrLn $ "Sunt programul " ++ progName
-
--- Am functia getProgName :: IO String.
-
--- Vreau sa imi fac functia getProgName' :: String pornind de la
--- getProgName.
-
--- Cum procedez? Nu se poate.
-
--- La fel pentru getLine :: IO String.
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
 
 {-
-
-  Daca o functie Haskell intoarce o valoare de tip IO a, functia este
-de facto imperativa.
-
-  Monada IO protejeaza toate functiile "de facto" imperative.
-
-  Un program Haskell mai mare va fi impartit in:
-
-  1. functii pure
-  2. functii din monada IO
-
-  Prefer sa am cat mai multe functii pure si cat mai putine functii
-imperative.
-
-  Monada IO asigura faptul ca nu risc sa contaminez o functie pura cu
-un apel imperativ.
-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
 -}
 
--- x = case [1,2] of
---          [] -> "vida"
---          (hd:tl) -> "asdf"
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
 
 -- main :: IO ()
 -- main = do args <- getArgs
 --           case args of
---             [] -> putStrLn "Dati un fisier ca argument!"
---             (hd:_) -> do handle <- openFile hd ReadMode
---                          contents <- hGetContents handle
---                          putStrLn contents
-
-isComment :: String -> Bool
-isComment ('-' : '-' : _) = True
-isComment _ = False
-
-notIsComment :: String -> Bool
-notIsComment = \line -> not (isComment line)
-
-proceseaza :: String -> String
-proceseaza contents = unlines $ filter notIsComment (lines contents)
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
 
 -- main :: IO ()
 -- main = do args <- getArgs
 --           case args of
---             [] -> putStrLn "Dati un fisier ca argument!"
---             (hd:_) -> do handle <- openFile hd ReadMode
---                          contents <- hGetContents handle
---                          putStrLn $ proceseaza contents
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStrLn contents
 
--- catch :: Exception e => IO a -> (e -> IO a) -> IO a
-
-handler :: IOException -> IO ()
-handler e = putStrLn "A aparut o exceptie!"
+-- proceseaza :: Handle -> IO ()
+-- proceseaza hFile = do line <- hGetLine hFile
+--                       case line of
+--                         [] -> putStrLn ""
+--                         [hd] -> putStrLn [hd]
+--                         (c1:c2:tl) -> if c1 == c2 && c1 == '-' then
+--                                         return ()
+--                                       else
+--                                         putStrLn line
+--                       catch
+--                         (proceseaza hFile)
+--                         (\(e :: IOException) -> putStrLn "DONE!")
 
 -- main :: IO ()
 -- main = do args <- getArgs
 --           case args of
---             [] -> putStrLn "Dati un fisier ca argument!"
---             (hd:_) -> catch (do handle <- openFile hd ReadMode
---                                 contents <- hGetContents handle
---                                 putStrLn $ proceseaza contents)
---                             handler
-                            
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               proceseaza hFile
+
+-- main :: IO ()
+-- main = do x <- return (10 `div` 0)
+--           putStrLn $ "Rezultatul este " ++ show x
+--           `catch`
+--           (\(e :: ArithException) -> putStrLn "Trouble!")
+
+-- isComment :: String -> Bool
+-- isComment [] = False
+-- isComment [_] = False
+-- isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+-- proceseazaLinie :: String -> IO ()
+-- proceseazaLinie line = if isComment line then
+--                          return ()
+--                        else
+--                          putStrLn line
+
+-- proceseaza :: Handle -> IO ()
+-- proceseaza hFile = do line <- hGetLine hFile
+--                       proceseazaLinie line
+--                       catch
+--                         (proceseaza hFile)
+--                         (\(e :: IOException) -> putStrLn "DONE!")
+
 -- main :: IO ()
 -- main = do args <- getArgs
 --           case args of
---             [] -> putStrLn "Dati un fisier ca argument!"
---             (hd:_) -> do handle <- openFile hd ReadMode
---                          contents <- hGetContents handle
---                          putStrLn $ proceseaza contents
---                       `catch`
---                       handler
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               proceseaza hFile
 
-handler' :: ArithException -> IO ()
-handler' _ = putStrLn "Eroare!"
+
+-- isComment :: String -> Bool
+-- isComment [] = False
+-- isComment [_] = False
+-- isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+-- proceseazaLines :: [String] -> [String]
+-- -- proceseazaLines lines = filter (\line -> not (isComment line)) lines
+-- -- proceseazaLines lines = filter (not . isComment) lines
+-- proceseazaLines = filter (not . isComment)
+
+-- proceseazaContents :: String -> String
+-- proceseazaContents contents = unlines (proceseazaLines (lines contents))
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStr $ proceseazaContents contents
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               hClose hFile
+--               contents <- hGetContents hFile
+--               putStr $ contents
 
 main :: IO ()
-main = (putStrLn $ show (div 10 0))
-       `catch`
-       handler'
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              hClose hFile
+              putStr $ contents
 
-
--- "Turning a failure into a list of successes"
-
--- Monada Maybe
-
-returnMaybe :: a -> Maybe a
-returnMaybe x = return x
-
--- >>=
-
-seqMaybe :: Maybe a -> (a -> Maybe b) -> Maybe b
-seqMaybe = (>>=)
-
-v1 = Nothing :: Maybe Int
-v2 = Just 10 :: Maybe Int
-v3 = Just 0 :: Maybe Int
-
-w1 :: Int -> Maybe Int
-w1 x = if x == 0 then Nothing else Just (div 10 x)
-
-impartire''' :: Integer -> Integer -> Maybe Integer
-impartire''' x y = if y == 0 then
-                     Nothing
-                   else
-                     Just (x `div` y)
+impartire :: Integer -> Integer -> Maybe Integer
+impartire _ 0 = Nothing
+impartire x y = Just (x `div` y)
 
 impartireInLant :: Integer -> Integer -> Integer -> Maybe Integer
-impartireInLant x y z = impartire''' x y >>= (\a -> impartire''' a z)
-                      -- = case impartire''' x y of
-                      --     Nothing -> Nothing
-                      --     Just r -> impartire''' r z
+impartireInLant x y z = case impartire x y of
+                          Nothing -> Nothing
+                          Just r -> impartire r z
 
-returnList :: a -> [a]
-returnList x = return x
+impartireInLant' :: Integer -> Integer -> Integer -> Maybe Integer
+impartireInLant' x y z = (impartire x y) >>= (\r -> impartire r z)
 
-seqList :: [a] -> (a -> [b]) -> [b]
-seqList = (>>=)
-
-f x = [1..x]
-
--- aplicati un map si apoi un concat: candidat bun pentru >>=
+impartireInLant'' :: Integer -> Integer -> Integer -> Maybe Integer
+impartireInLant'' x y z = do r <- impartire x y
+                             impartire r z
 
 
--- esec = lista vida de succesuri :)
 
-impartire :: Integer -> Integer -> [Integer]
-impartire x y = if y == 0 then
-                     []
-                else
-                     [(x `div` y)]
+impartire' :: Integer -> Integer -> [Integer]
+impartire' _ 0 = []
+impartire' x y = [ x `div` y ]
 
-impartireInLant' :: Integer -> Integer -> Integer -> [Integer]
-impartireInLant' x y z = impartire x y >>= (\a -> impartire a z)
+impartireInLant''' :: Integer -> Integer -> Integer -> [Integer]
+impartireInLant''' x y z = do r <- impartire' x y
+                              impartire' r z

@@ -1,70 +1,40 @@
-stefan@stefans-MacBook-Pro curs07 % pwd
-pwd
-/Users/stefan/teaching/pf-2022-2023/curs07
-stefan@stefans-MacBook-Pro curs07 % ghci
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i IO
-:i IO
-type IO :: * -> *
-newtype IO a
-  = GHC.Types.IO (GHC.Prim.State# GHC.Prim.RealWorld
-                  -> (# GHC.Prim.State# GHC.Prim.RealWorld, a #))
-  	-- Defined in ‘GHC.Types’
-instance Monoid a => Monoid (IO a) -- Defined in ‘GHC.Base’
-instance Semigroup a => Semigroup (IO a) -- Defined in ‘GHC.Base’
-instance Applicative IO -- Defined in ‘GHC.Base’
-instance Functor IO -- Defined in ‘GHC.Base’
-instance MonadFail IO -- Defined in ‘Control.Monad.Fail’
-instance Monad IO -- Defined in ‘GHC.Base’
-ghci> :i ()
-:i ()
-type () :: *
-data () = ()
-  	-- Defined in ‘GHC.Tuple’
-instance Monoid () -- Defined in ‘GHC.Base’
-instance Semigroup () -- Defined in ‘GHC.Base’
-instance Read () -- Defined in ‘GHC.Read’
-instance Bounded () -- Defined in ‘GHC.Enum’
-instance Enum () -- Defined in ‘GHC.Enum’
-instance Ord () -- Defined in ‘GHC.Classes’
-instance Show () -- Defined in ‘GHC.Show’
-instance Eq () -- Defined in ‘GHC.Classes’
-ghci> ()
-()
-()
-ghci> :t ()
-:t ()
-() :: ()
-ghci> :i putStrLn
-:i putStrLn
-putStrLn :: String -> IO () 	-- Defined in ‘System.IO’
+:l c07.hs
+:l c07.hs
+ghci> :l c07.hs
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> Lr
+Lr
+
+<interactive>:2:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f ()
+f ()
+13
+ghci> :t putStrLn
+:t putStrLn
+putStrLn :: String -> IO ()
 ghci> :q
 :q
 Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ls -al
-ls -al
-total 8
-drwxr-xr-x   3 stefan  staff   96 Apr  6 16:14 .
-drwxr-xr-x  12 stefan  staff  384 Apr  6 15:12 ..
--rw-r--r--   1 stefan  staff  450 Apr  6 16:14 c07.hs
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o )
 [2 of 2] Linking c07
-stefan@stefans-MacBook-Pro curs07 % ls -al
-ls -al
-total 2784
-drwxr-xr-x   6 stefan  staff      192 Apr  6 16:14 .
-drwxr-xr-x  12 stefan  staff      384 Apr  6 15:12 ..
--rwxr-xr-x   1 stefan  staff  1411704 Apr  6 16:14 c07
--rw-r--r--   1 stefan  staff      712 Apr  6 16:14 c07.hi
--rw-r--r--   1 stefan  staff      450 Apr  6 16:14 c07.hs
--rw-r--r--   1 stefan  staff     2464 Apr  6 16:14 c07.o
-stefan@stefans-MacBook-Pro curs07 % ./c07
+stefan@stefans-MBP sapt07 % ./c07
 ./c07
 Hello, World!
-stefan@stefans-MacBook-Pro curs07 % ghci
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
 ghci> :i (>>)
@@ -76,242 +46,308 @@ class Applicative m => Monad m where
   ...
   	-- Defined in ‘GHC.Base’
 infixl 1 >>
-ghci> (>>) :: IO a -> IO b -> IO b
-(>>) :: IO a -> IO b -> IO b
+ghci> 
 
-<interactive>:2:1: error:
-    • No instance for (Show (IO a0 -> IO b0 -> IO b0))
-        arising from a use of ‘print’
-        (maybe you haven't applied a function to enough arguments?)
-    • In a stmt of an interactive GHCi command: print it
+ghci> 
+
+ghci> 
+
+ghci> 
+
+ghci> 
+
+ghci> 
+
 ghci> :t (>>) :: IO a -> IO b -> IO b
 :t (>>) :: IO a -> IO b -> IO b
 (>>) :: IO a -> IO b -> IO b :: IO a -> IO b -> IO b
 ghci> :q
 :q
 Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07\
-ghc c07\
-> 
-
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
+stefan@stefans-MBP sapt07 % ./c07
 ./c07
 Hello, World!
-I am GHC.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+My name is.
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
+stefan@stefans-MBP sapt07 % ./c07
 ./c07
 Hello, World!
-I am GHC.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+My name is.
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
+stefan@stefans-MBP sapt07 % ./c07
 ./c07
-Hello, World!
-I am GHC.
-I am done.
-stefan@stefans-MacBook-Pro curs07 % ghci
+Hello!
+My name is.
+Bye!
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :i (>>)
+:i (>>)
+type Monad :: (* -> *) -> Constraint
+class Applicative m => Monad m where
+  ...
+  (>>) :: m a -> m b -> m b
+  ...
+  	-- Defined in ‘GHC.Base’
+infixl 1 >>
+ghci> :l c07
+:l c07
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+Hello!
+My name is.
+Bye!
 ghci> :i getLine
 :i getLine
 getLine :: IO String 	-- Defined in ‘System.IO’
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
 What is your name?
 Stefan
 Stefan
 Hello!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ghci
+stefan@stefans-MBP sapt07 % ./c07
+./c07
+What is your name?
+  C-c C-c^C
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :t (>>) :: IO a -> IO b -> IO b
-:t (>>) :: IO a -> IO b -> IO b
-(>>) :: IO a -> IO b -> IO b :: IO a -> IO b -> IO b
-ghci> :i (>>=)
-:i (>>=)
-type Monad :: (* -> *) -> Constraint
-class Applicative m => Monad m where
-  (>>=) :: m a -> (a -> m b) -> m b
-  ...
-  	-- Defined in ‘GHC.Base’
-infixl 1 >>=
-ghci> :i (>>=) :: IO a -> (a -> IO b) -> IO b
-:i (>>=) :: IO a -> (a -> IO b) -> IO b
+ghci> :l c07
+:l c07
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> g1
+g1
+What is your name?
+Stefan
+Stefan
+Hello!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 
-<interactive>:1:1: error: parse error on input ‘::’
+c07.hs:38:6: error:
+    • Couldn't match type ‘[]’ with ‘IO’
+      Expected: IO ()
+        Actual: [()]
+    • In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Hello, " ++ getLine ++ "!"’
+      In the expression:
+        putStrLn "What is your name?" >> getLine
+          >> putStrLn "Hello, " ++ getLine ++ "!"
+      In an equation for ‘g2’:
+          g2
+            = putStrLn "What is your name?" >> getLine
+                >> putStrLn "Hello, " ++ getLine ++ "!"
+   |
+38 |      putStrLn "Hello, " ++ getLine ++ "!"
+   |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+c07.hs:38:28: error:
+    • Couldn't match expected type: [()]
+                  with actual type: IO String
+    • In the first argument of ‘(++)’, namely ‘getLine’
+      In the second argument of ‘(++)’, namely ‘getLine ++ "!"’
+      In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Hello, " ++ getLine ++ "!"’
+   |
+38 |      putStrLn "Hello, " ++ getLine ++ "!"
+   |                            ^^^^^^^
+
+c07.hs:38:39: error:
+    • Couldn't match type ‘Char’ with ‘()’
+      Expected: [()]
+        Actual: String
+    • In the second argument of ‘(++)’, namely ‘"!"’
+      In the second argument of ‘(++)’, namely ‘getLine ++ "!"’
+      In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Hello, " ++ getLine ++ "!"’
+   |
+38 |      putStrLn "Hello, " ++ getLine ++ "!"
+   |                                       ^^^
+Failed, no modules loaded.
+ghci> :t getLine
+:t getLine
+getLine :: IO String
 ghci> :t (>>=) :: IO a -> (a -> IO b) -> IO b
 :t (>>=) :: IO a -> (a -> IO b) -> IO b
 (>>=) :: IO a -> (a -> IO b) -> IO b :: IO a -> (a -> IO b) -> IO b
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-Stefan
-Stefan
-Hello, Stefan!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> g2
+g2
 What is your name?
 Stefan
 Stefan
 Hello, Stefan!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-Hello, World!
-I am GHC.
-I am done.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g3
+g3
+What is your name?
+Stefan
+Stefan
+Hello, ???!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g3
+g3
+What is your name?
+Stefan
+Stefan
+Hello, ???!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g3
+g3
+What is your name?
+Stefan
+Stefan
+Hello, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 
-c07.hs:64:8: error:
-    Unexpected do block in function application:
-        do putStrLn "Hello, World!"
-    Suggested fixes:
-      • Use parentheses.
-      • Perhaps you intended to use BlockArguments
+c07.hs:51:32: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the first argument of ‘(++)’, namely ‘name’
+      In the second argument of ‘(++)’, namely ‘name ++ "!"’
+      In the first argument of ‘putStrLn’, namely
+        ‘("Hello, " ++ name ++ "!")’
    |
-64 | main = do putStrLn "Hello, World!"
-   |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-Hello, World!
-I am GHC.
-I am done.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-What is your name?
-Stefan1
-Stefan1
-Hello, Stefan1!
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i (<-)
-:i (<-)
+51 |         putStrLn ("Hello, " ++ name ++ "!")
+   |                                ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
 
-<interactive>:1:2: error:
-    parse error on input ‘<-’
+c07.hs:51:34: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the first argument of ‘(++)’, namely ‘name’
+      In the second argument of ‘(++)’, namely ‘name ++ "!"’
+      In the first argument of ‘putStrLn’, namely
+        ‘("Hello, " ++ name ++ "!")’
+   |
+51 |           putStrLn ("Hello, " ++ name ++ "!")
+   |                                  ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:55:9: error:
+    Parse error in pattern: putStrLn
     Suggested fix: Possibly caused by a missing 'do'?
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-
-c07.hs:103:35: error:
-    • Couldn't match expected type: [Char]
-                  with actual type: IO String
-    • In the first argument of ‘(++)’, namely ‘x’
-      In the second argument of ‘(++)’, namely ‘x ++ "!"’
-      In the second argument of ‘($)’, namely ‘"Hello, " ++ x ++ "!"’
-    |
-103 |           putStrLn $ "Hello, " ++ x ++ "!"
-    |                                   ^
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-
-c07.hs:103:37: error:
-    • Couldn't match expected type: [Char]
-                  with actual type: IO String
-    • In the first argument of ‘(++)’, namely ‘x’
-      In the second argument of ‘(++)’, namely ‘x ++ "!"’
-      In the second argument of ‘($)’, namely ‘"Hello, " ++ x ++ "!"’
-    |
-103 |             putStrLn $ "Hello, " ++ x ++ "!"
-    |                                     ^
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-
-c07.hs:102:11: error: (let ... in ...)-syntax in pattern
-    |
-102 |           let x = getLine in
-    |           ^^^^^^^^^^^^^^^^^^...
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
+   |
+55 | g5 = do putStrLn "What is your name?"
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g6
+g6
 What is your name?
-AAAA
-AAAA
-Hello, AAAA!
+Stefan
+Stefan
+Hello, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+ghci> :i ($)
+:i ($)
+($) :: (a -> b) -> a -> b 	-- Defined in ‘GHC.Base’
+infixr 0 $
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g7
+g7
 What is your name?
-BBBB
-BBBB
-Hello, BBBB!
+A
+A
+Hello, A!
 What is your name?
-CCCC
-CCCC
-Hello, CCCC!
+B
+B
+Hello, B!
 What is your name?
-  ^C ^C^C
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
+ASDF
+ASDF
+Hello, ASDF!
 What is your name?
-AAAA
-AAAA
-Hello, AAAA!
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g7
+g7
+What is your name?
+A
+A
+Hello, A!
+Bye!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g7
+g7
+What is your name?
+ASDF
+ASDF
+Hello, ASDF!
 What is your name?
 Stefan
 Stefan
@@ -319,168 +355,199 @@ Hello, Stefan!
 What is your name?
 
 
-Done!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
+Hello, !
+Bye!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 
-c07.hs:129:1: error:
-    parse error (possibly incorrect indentation or mismatched brackets)
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i return
-:i return
-type Monad :: (* -> *) -> Constraint
-class Applicative m => Monad m where
-  ...
-  return :: a -> m a
-  	-- Defined in ‘GHC.Base’
-ghci> :t return :: a -> IO a
-:t return :: a -> IO a
-return :: a -> IO a :: a -> IO a
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
+c07.hs:82:43: error:
+    • Couldn't match expected type: IO () -> [Char]
+                  with actual type: [Char]
+    • The function ‘"!"’ is applied to one value argument,
+        but its type ‘[Char]’ has none
+      In the second argument of ‘(++)’, namely ‘"!" g7’
+      In the second argument of ‘(++)’, namely ‘name ++ "!" g7’
+   |
+82 |           putStrLn $ "Hello, " ++ name ++ "!"
+   |                                           ^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> g7
+g7
 What is your name?
 Stefan
 Stefan
 Hello, Stefan!
 What is your name?
-S
-S
-Hello, S!
+ASSF
+ASSF
+Hello, ASSF!
 What is your name?
 
 
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-Hello, World!
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i Monad
-:i Monad
-type Monad :: (* -> *) -> Constraint
-class Applicative m => Monad m where
-  (>>=) :: m a -> (a -> m b) -> m b
-  (>>) :: m a -> m b -> m b
-  return :: a -> m a
-  {-# MINIMAL (>>=) #-}
-  	-- Defined in ‘GHC.Base’
-instance Monoid a => Monad ((,) a) -- Defined in ‘GHC.Base’
-instance (Monoid a, Monoid b) => Monad ((,,) a b)
-  -- Defined in ‘GHC.Base’
-instance (Monoid a, Monoid b, Monoid c) => Monad ((,,,) a b c)
-  -- Defined in ‘GHC.Base’
-instance Monad ((->) r) -- Defined in ‘GHC.Base’
-instance Monad IO -- Defined in ‘GHC.Base’
-instance Monad Maybe -- Defined in ‘GHC.Base’
-instance Monad Solo -- Defined in ‘GHC.Base’
-instance Monad [] -- Defined in ‘GHC.Base’
-instance Monad (Either e) -- Defined in ‘Data.Either’
-ghci> :ui getArgs
-:ui getArgs
-unknown command ':ui'
-use :? for help.
-ghci> :i getArgs
-:i getArgs
+Bye!
+ghci> :t (return) :: a -> IO a
+:t (return) :: a -> IO a
+(return) :: a -> IO a :: a -> IO a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g8
+g8
+What is your name?
+Stefan
+Stefan
+Hello, Stefan!
+What is your name?
 
-<interactive>:1:1: error: Not in scope: ‘getArgs’
+
+Bye!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g9
+g9
+Hello, 
+World!
+ghci> :t getArgs
+:t getArgs
+
+<interactive>:1:1: error: Variable not in scope: getArgs
 ghci> import System.IO
 import System.IO
-ghci> :i getArgs
-:i getArgs
+ghci> :t getArgs
+:t getArgs
 
-<interactive>:1:1: error: Not in scope: ‘getArgs’
+<interactive>:1:1: error: Variable not in scope: getArgs
 ghci> import System.Environment
 import System.Environment
-ghci> :i getArgs
-:i getArgs
-getArgs :: IO [String] 	-- Defined in ‘System.Environment’
+ghci> :t getArgs
+:t getArgs
+getArgs :: IO [String]
+ghci> :t getProgName
+:t getProgName
+getProgName :: IO String
 ghci> :q
 :q
 Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 Stefan Asdf
-./c07 Stefan Asdf
-["Stefan","Asdf"]
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i putStr
-:i putStr
-putStr :: String -> IO () 	-- Defined in ‘System.IO’
-ghci> :i getProgName
-:i getProgName
-
-<interactive>:1:1: error: Not in scope: ‘getProgName’
-ghci> import System.IO
-import System.IO
-ghci> :i getProgName
-:i getProgName
-
-<interactive>:1:1: error: Not in scope: ‘getProgName’
-ghci> import System.Environment
-import System.Environment
-ghci> :i getProgName
-:i getProgName
-getProgName :: IO String 	-- Defined in ‘System.Environment’
-ghci> :i (++)
-:i (++)
-(++) :: [a] -> [a] -> [a] 	-- Defined in ‘GHC.Base’
-infixr 5 ++
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 
-c07.hs:175:1: error:
-    Multiple declarations of ‘main’
-    Declared at: c07.hs:160:1
-                 c07.hs:175:1
+c07.hs:119:16: error: Variable not in scope: getArgs :: IO a0
     |
-175 | main = do args <- getArgs
-    | ^^^^
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+119 | main = do x <- getArgs
+    |                ^^^^^^^
+
+c07.hs:120:16: error:
+    Variable not in scope: getProgName :: IO [Char]
+    |
+120 |           y <- getProgName
+    |                ^^^^^^^^^^^
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 Stefan Asdf
-./c07 Stefan Asdf
-["Stefan","Asdf"]
-Sunt programul c07
-stefan@stefans-MacBook-Pro curs07 % pwd
-pwd
-/Users/stefan/teaching/pf-2022-2023/curs07
-stefan@stefans-MacBook-Pro curs07 % /Users/stefan/teaching/pf-2022-2023/curs07/c07 Stefan Asdf
-<rs/stefan/teaching/pf-2022-2023/curs07/c07 Stefan Asdf
-["Stefan","Asdf"]
-Sunt programul c07
-stefan@stefans-MacBook-Pro curs07 % ghci
+stefan@stefans-MBP sapt07 % ./c07
+./c07
+Sunt executabilul c07
+Argumentele mele sunt: []
+stefan@stefans-MBP sapt07 % ./c07 Stefan asdf 123"
+./c07 Stefan asdf 123"
+dquote> 
+
+dquote>   C-c C-c
+stefan@stefans-MBP sapt07 % ./c07 Stefan asdf 123
+./c07 Stefan asdf 123
+Sunt executabilul c07
+Argumentele mele sunt: ["Stefan","asdf","123"]
+stefan@stefans-MBP sapt07 % ghci
+ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :l c07
+:l c07
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:131:46: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the second argument of ‘(++)’, namely ‘getProgName’
+      In the second argument of ‘($)’, namely
+        ‘"Sunt executabilul " ++ getProgName’
+      In a stmt of a 'do' block:
+        putStrLn $ "Sunt executabilul " ++ getProgName
+    |
+131 |           putStrLn $ "Sunt executabilul " ++ getProgName
+    |                                              ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
+[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
+[2 of 2] Linking c07 [Objects changed]
+stefan@stefans-MBP sapt07 % ./c07
+./c07
+Dati numele fisierului in linia de comanda
+stefan@stefans-MBP sapt07 % ./c07 asdf.c
+./c07 asdf.c
+Proceseaza fisierul asdf.c
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
+[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
+[2 of 2] Linking c07 [Objects changed]
+stefan@stefans-MBP sapt07 % ./c07
+./c07
+Dati numele fisierului in linia de comanda
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
+stefan@stefans-MBP sapt07 % ./c07 asdf
+./c07 asdf
+Proceseaza fisierul asdf
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
 ghci> :i openFile
 :i openFile
 
 <interactive>:1:1: error: Not in scope: ‘openFile’
+ghci> :i open
+:i open
+
+<interactive>:1:1: error: Not in scope: ‘open’
+ghci> :i hOpen
+:i hOpen
+
+<interactive>:1:1: error: Not in scope: ‘hOpen’
+ghci> :i hOpenFle
+:i hOpenFle
+
+<interactive>:1:1: error: Not in scope: ‘hOpenFle’
+ghci> :i hOpenFile
+:i hOpenFile
+
+<interactive>:1:1: error: Not in scope: ‘hOpenFile’
 ghci> import System.IO
 import System.IO
+ghci> :i hOpenFile
+:i hOpenFile
+
+<interactive>:1:1: error: Not in scope: ‘hOpenFile’
+ghci> :i open
+:i open
+
+<interactive>:1:1: error: Not in scope: ‘open’
 ghci> :i openFile
 :i openFile
 openFile :: FilePath -> IOMode -> IO Handle
@@ -500,735 +567,584 @@ instance Enum IOMode -- Defined in ‘GHC.IO.IOMode’
 instance Ord IOMode -- Defined in ‘GHC.IO.IOMode’
 instance Show IOMode -- Defined in ‘GHC.IO.IOMode’
 instance Eq IOMode -- Defined in ‘GHC.IO.IOMode’
-ghci> case [1,2] of [] -> "vida" | (hd:tl) -> "asdf"
-case [1,2] of [] -> "vida" | (hd:tl) -> "asdf"
-
-<interactive>:6:38: error: parse error on input ‘->’
-ghci> :l c07
-:l c07
-[1 of 2] Compiling Main             ( c07.hs, interpreted )
-
-c07.hs:209:32: error: parse error on input ‘|’
-    |
-209 | x = case [1,2] of [] -> "vida" | (hd:tl) -> "asdf"
-    |                                ^
-Failed, no modules loaded.
-ghci> :r
-:r
-[1 of 2] Compiling Main             ( c07.hs, interpreted )
-
-c07.hs:211:8: error: parse error on input ‘|’
-    |
-211 |        | (hd:tl) -> "asdf"
-    |        ^
-Failed, no modules loaded.
-ghci> :r
-:r
-[1 of 2] Compiling Main             ( c07.hs, interpreted )
-
-c07.hs:210:10: warning: [-Woverlapping-patterns]
-    Pattern match is redundant
-    In a case alternative: [] -> ...
-    |
-210 |          [] -> "vida"
-    |          ^^^^^^^^^^^^
-Ok, one module loaded.
-ghci> x
-x
-"asdf"
-ghci> case [1,2] of
-         [] -> "vida"
-         (hd:tl) -> "asdf"
-case [1,2] of
-*** Exception: <interactive>:11:1-13: Non-exhaustive patterns in case
-
-ghci>          [] -> "vida"
-
-<interactive>:12:13: error: parse error on input ‘->’
-ghci>          (hd:tl) -> "asdf"
-
-<interactive>:13:18: error: parse error on input ‘->’
-ghci> case [1,2] of [] -> "vida" (hd:tl) -> "asdf"
-case [1,2] of [] -> "vida" (hd:tl) -> "asdf"
-
-<interactive>:14:36: error: parse error on input ‘->’
 ghci> :i hGetContents
 :i hGetContents
 hGetContents :: Handle -> IO String
   	-- Defined in ‘GHC.IO.Handle.Text’
-ghci> :qw
-:qw
-unknown command ':qw'
-use :? for help.
 ghci> :q
 :q
 Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-
-c07.hs:217:36: error:
-    Variable not in scope: openFile :: String -> t0 -> IO t1
-    |
-217 |             (hd:_) -> do handle <- openFile hd ReadMode
-    |                                    ^^^^^^^^
-
-c07.hs:217:48: error: Data constructor not in scope: ReadMode
-    |
-217 |             (hd:_) -> do handle <- openFile hd ReadMode
-    |                                                ^^^^^^^^
-
-c07.hs:218:38: error:
-    Variable not in scope: hGetContents :: t1 -> IO String
-    Suggested fix: Perhaps use ‘getContents’ (imported from Prelude)
-    |
-218 |                          contents <- hGetContents handle
-    |                                      ^^^^^^^^^^^^
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
+stefan@stefans-MBP sapt07 % ghc -o c07 c07.hs
+ghc -o c07 c07.hs
 [1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
 [2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 c07.hs
+stefan@stefans-MBP sapt07 % ./c07 c07.hs
 ./c07 c07.hs
 import System.Environment
 import System.IO
 
+-- Tipul "unit"
+
+-- data () = ()
+
+f :: () -> Int
+f () = 13
+
 -- Monada IO
--- = modalitatea prin care pot scrie
--- de facto programe imperative in Haskell (e.g., citesc un fisier,
--- trimit un mesaj in retea, s.a.m.d.)
 
--- IO a este un tip parametrizat de variabila de tip "a"
-
--- Valorile de tip "IO a" sunt actiuni/instructiuni/comenzi, pe care,
--- daca le execut, la sfarsit vor produce o valoare de tip "a".
-
--- Spun "produce" si nu "returneaza" fiindca pastrez verbul returneaza
--- pentru functii.
-
--- Tipul unit: ()
--- Valoarea unit: ()
--- valoarea unit este singura valoare de tip unit
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
 
 -- main :: IO ()
 -- main = putStrLn "Hello, World!"
 
--- 1. se va evalua functia numita "main" (practic, nu se intampla nimic)
--- 2. se executa actiunea intoarsa de functia "main"
-
-
--- Am doua actiuni: act1 si act2.
--- Vreau sa creez o noua actiune care sa execute intai act1 si apoi act2.
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
 
 -- main :: IO ()
--- main = (>>) (putStrLn "Hello, World!")
---             (putStrLn "I am GHC.")
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
 
 -- main :: IO ()
--- main = putStrLn "Hello, World!" >>
---        putStrLn "I am GHC." >>
---        putStrLn "I am done."
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
 
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
 
--- putStrLn s intoarce/returneaza o actiune IO care, daca e executata,
--- afiseaza s la iesirea standard si produce apoi valoarea ().
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
 
--- getLine :: IO String
--- getLine nu primeste niciun argument si intoarce o actiune
+-- notatia "do"
 
--- Cand execut actiunea, sistemul asteapta de la tastatura un sir de
--- caractere si apoi (dupa ce apas enter) se produce ca rezutat sirul.
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
 
--- main :: IO ()
--- main = putStrLn "What is your name?" >>
---        getLine >> -- cum "pun mana" pe sirul produs de
---                   -- actiunea intoarsa de getLine?
---        putStrLn "Hello!"
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
 
--- (>>=) :: IO a -> (a -> IO b) -> IO b
-
--- main :: IO ()
--- main = putStrLn "What is your name?" >>
---        getLine >>=
---        (\x -> putStrLn $ "Hello, " ++ x ++ "!")
-
--- Pentru monade, Haskell defineste un zahar sintactic
--- prin "notatia do" ("do" notation)
-
--- main :: IO ()
--- main = do putStrLn "Hello, World!"
---           putStrLn "I am GHC."
---           putStrLn "I am done."
-          
--- Atentie la indentare! Daca actiunile dintr-o notatie "do" nu sunt
--- aliniate, apare o eroare la parsare.
-
--- main :: IO ()
--- main = do { putStrLn "Hello, World!" ;
---               putStrLn "I am GHC." ;
---            putStrLn "I am done." }
-
--- main :: IO ()
--- main = do
---          putStrLn "Hello, World!"
---          putStrLn "I am GHC."
---          putStrLn "I am done."
-
--- Cum folosim notatia "do" daca vrem "sa punem mana" pe valoarea produsa
--- de una dintre actiuni?
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           x <- getLine
---           putStrLn $ "Hello, " ++ x ++ "!"
-
--- Cum "dezahariseste" sistemul notatia "do"
--- main = (putStrLn "What is your name?" >>
---            (getLine >>= (\x ->
---              putStrLn $ "Hello, " ++ x ++ "!")))
-
-
--- Atentie! A nu se confunda "x <- getLine" cu "let x = getLine"
-
--- <- nu este o functie, face parte din notatia "do"
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           let x = getLine in do
---             y <- x
---             putStrLn $ "Hello, " ++ y ++ "!"
-
--- Cum obtin un comportament repetitiv?
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
 --           name <- getLine
---           putStrLn $ "Hello, " ++ name ++ "!"
---           main
+--       putStrLn ("Hello, " ++ name ++ "!")
 
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           name <- getLine
---           if name == "" then
---             putStrLn "Done!"
---           else
---             do putStrLn $ "Hello, " ++ name ++ "!"
---                main
-
--- return :: a -> IO a
--- return x intoarce o actiune care, daca este executata,
--- nu face absolut nimic, dar la sfarsit produce valoarea x
-
--- main :: IO ()
--- main = do putStrLn "What is your name?"
---           name <- getLine
---           if name == "" then
---             return ()
---           else
---             do putStrLn $ "Hello, " ++ name ++ "!"
---                main
-
--- Atentie! return nu seamana deloc cu "return"-ul din C/C++/Java/Python
-
--- return in Haskell e doar o functie care intoarce o actiune no-op
-
--- return in C/C++/Java/Python e o instructiune care schimba control
--- flow-ul programului
-
--- main :: IO ()
--- main = do return ()
---           putStrLn "Hello, World!"
-
-
--- (G, +, ...) e grup ddaca ...
-
--- (M, >>=, return) e monada ddaca ...
-
--- IO se intampla sa satisfaca aceste proprietati
-
--- La sfarsit sa va arat cum pot transforma un esec intr-o lista de
--- succesuri :)
-
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
-
--- putStr :: String -> IO ()
-
--- Eroare frecventa:
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
---           putStrLn $ "Sunt programul " ++ getProgName
---                      ^^^^^^^^^^^^^^^^^    ^^^^^^^^^^^
---                          String              IO String
---          (++) :: String -> String -> String
-
--- main :: IO ()
--- main = do args <- getArgs
---           putStrLn $ show args
---           progName <- getProgName
---           putStrLn $ "Sunt programul " ++ progName
-
--- Am functia getProgName :: IO String.
-
--- Vreau sa imi fac functia getProgName' :: String pornind de la
--- getProgName.
-
--- Cum procedez? Nu se poate.
-
--- La fel pentru getLine :: IO String.
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
 
 {-
-
-  Daca o functie Haskell intoarce o valoare de tip IO a, functia este
-de facto imperativa.
-
-  Monada IO protejeaza toate functiile "de facto" imperative.
-
-  Un program Haskell mai mare va fi impartit in:
-
-  1. functii pure
-  2. functii din monada IO
-
-  Prefer sa am cat mai multe functii pure si cat mai putine functii
-imperative.
-
-  Monada IO asigura faptul ca nu risc sa contaminez o functie pura cu
-un apel imperativ.
-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
 -}
 
--- x = case [1,2] of
---          [] -> "vida"
---          (hd:tl) -> "asdf"
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
 
 main :: IO ()
 main = do args <- getArgs
           case args of
-            [] -> putStrLn "Dati un fisier ca argument!"
-            (hd:_) -> do handle <- openFile hd ReadMode
-                         contents <- hGetContents handle
-                         putStrLn contents
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              putStrLn contents
 
-
-stefan@stefans-MacBook-Pro curs07 % ls
-ls
-c07	c07.hi	c07.hs	c07.o
-stefan@stefans-MacBook-Pro curs07 % echo "Curs 7." >> readme
-echo "Curs 7." >> readme
-stefan@stefans-MacBook-Pro curs07 % ls
-ls
-c07	c07.hi	c07.hs	c07.o	readme
-stefan@stefans-MacBook-Pro curs07 % ./c07 readme
-./c07 readme
-Curs 7.
-
-stefan@stefans-MacBook-Pro curs07 % ghci
+stefan@stefans-MBP sapt07 % ghci
 ghci
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i lines
-:i lines
-lines :: String -> [String]
-  	-- Defined in ‘base-4.17.0.0:Data.OldList’
-ghci> lines "asdfas\n fds afads\n fsda fsd"
-lines "asdfas\n fds afads\n fsda fsd"
-["asdfas"," fds afads"," fsda fsd"]
-ghci> :i unlines
-:i unlines
-unlines :: [String] -> String
-  	-- Defined in ‘base-4.17.0.0:Data.OldList’
-ghci> unlines ["asdf", "asdf1"] 
-unlines ["asdf", "asdf1"] 
-"asdf\nasdf1\n"
+ghci> :i hGetLine
+:i hGetLine
+
+<interactive>:1:1: error: Not in scope: ‘hGetLine’
+ghci> import System.IO
+import System.IO
+ghci> :i hGetLine
+:i hGetLine
+hGetLine :: Handle -> IO String 	-- Defined in ‘GHC.IO.Handle.Text’
 ghci> :r
 :r
 Ok, no modules loaded.
-ghci> isComment "main :: IO ()"
-isComment "main :: IO ()"
+ghci> :h
+:h
+ Commands available from the prompt:
 
-<interactive>:6:1: error:
-    Variable not in scope: isComment :: String -> t
+   <statement>                 evaluate/run <statement>
+   :                           repeat last command
+   :{\n ..lines.. \n:}\n       multiline command
+   :add [*]<module> ...        add module(s) to the current target set
+   :browse[!] [[*]<mod>]       display the names defined by module <mod>
+                               (!: more details; *: all top-level names)
+   :cd <dir>                   change directory to <dir>
+   :cmd <expr>                 run the commands returned by <expr>::IO String
+   :complete <dom> [<rng>] <s> list completions for partial input string
+   :ctags[!] [<file>]          create tags file <file> for Vi (default: "tags")
+                               (!: use regex instead of line number)
+   :def[!] <cmd> <expr>        define command :<cmd> (later defined command has
+                               precedence, ::<cmd> is always a builtin command)
+                               (!: redefine an existing command name)
+   :doc <name>                 display docs for the given name (experimental)
+   :edit <file>                edit file
+   :edit                       edit last module
+   :etags [<file>]             create tags file <file> for Emacs (default: "TAGS")
+   :help, :?                   display this list of commands
+   :info[!] [<name> ...]       display information about the given names
+                               (!: do not filter instances)
+   :instances <type>           display the class instances available for <type>
+   :issafe [<mod>]             display safe haskell information of module <mod>
+   :kind[!] <type>             show the kind of <type>
+                               (!: also print the normalised type)
+   :load[!] [*]<module> ...    load module(s) and their dependents
+                               (!: defer type errors)
+   :main [<arguments> ...]     run the main function with the given arguments
+   :module [+/-] [*]<mod> ...  set the context for expression evaluation
+   :quit                       exit GHCi
+   :reload[!]                  reload the current module set
+                               (!: defer type errors)
+   :run function [<arguments> ...] run the function with the given arguments
+   :script <file>              run the script <file>
+   :type <expr>                show the type of <expr>
+   :type +d <expr>             show the type of <expr>, defaulting type variables
+   :unadd <module> ...         remove module(s) from the current target set
+   :undef <cmd>                undefine user-defined command :<cmd>
+   ::<cmd>                     run the builtin command
+   :!<command>                 run the shell command <command>
+
+ -- Commands for debugging:
+
+   :abandon                    at a breakpoint, abandon current computation
+   :back [<n>]                 go back in the history N steps (after :trace)
+   :break [<mod>] <l> [<col>]  set a breakpoint at the specified location
+   :break <name>               set a breakpoint on the specified function
+   :continue [<count>]         resume after a breakpoint [and set break ignore count]
+   :delete <number> ...        delete the specified breakpoints
+   :delete *                   delete all breakpoints
+   :disable <number> ...       disable the specified breakpoints
+   :disable *                  disable all breakpoints
+   :enable <number> ...        enable the specified breakpoints
+   :enable *                   enable all breakpoints
+   :force <expr>               print <expr>, forcing unevaluated parts
+   :forward [<n>]              go forward in the history N step s(after :back)
+   :history [<n>]              after :trace, show the execution history
+   :ignore <breaknum> <count>  for break <breaknum> set break ignore <count>
+   :list                       show the source code around current breakpoint
+   :list <identifier>          show the source code for <identifier>
+   :list [<module>] <line>     show the source code around line number <line>
+   :print [<name> ...]         show a value without forcing its computation
+   :sprint [<name> ...]        simplified version of :print
+   :step                       single-step after stopping at a breakpoint
+   :step <expr>                single-step into <expr>
+   :steplocal                  single-step within the current top-level binding
+   :stepmodule                 single-step restricted to the current module
+   :trace                      trace after stopping at a breakpoint
+   :trace <expr>               evaluate <expr> with tracing on (see :history)
+
+ -- Commands for changing settings:
+
+   :set <option> ...           set options
+   :seti <option> ...          set options for interactive evaluation only
+   :set local-config { source | ignore }
+                               set whether to source .ghci in current dir
+                               (loading untrusted config is a security issue)
+   :set args <arg> ...         set the arguments returned by System.Environment.getArgs
+   :set prog <progname>        set the value returned by System.Environment.getProgName
+   :set prompt <prompt>        set the prompt used in GHCi
+   :set prompt-cont <prompt>   set the continuation prompt used in GHCi
+   :set prompt-function <expr> set the function to handle the prompt
+   :set prompt-cont-function <expr>
+                               set the function to handle the continuation prompt
+   :set editor <cmd>           set the command used for :edit
+   :set stop [<n>] <cmd>       set the command to run when a breakpoint is hit
+   :unset <option> ...         unset options
+
+  Options for ':set' and ':unset':
+
+    +m            allow multiline commands
+    +r            revert top-level expressions after each evaluation
+    +s            print timing/memory stats after each evaluation
+    +t            print type after evaluation
+    +c            collect type/location info after loading modules
+    -<flags>      most GHC command line flags can also be set here
+                         (eg. -v2, -XFlexibleInstances, etc.)
+                    for GHCi-specific flags, see User's Guide,
+                    Flag reference, Interactive-mode options
+
+ -- Commands for displaying information:
+
+   :show bindings              show the current bindings made at the prompt
+   :show breaks                show the active breakpoints
+   :show context               show the breakpoint context
+   :show imports               show the current imports
+   :show linker                show current linker state
+   :show modules               show the currently loaded modules
+   :show packages              show the currently active package flags
+   :show paths                 show the currently active search paths
+   :show language              show the currently active language flags
+   :show targets               show the current set of targets
+   :show <setting>             show value of <setting>, which is one of
+                                  [args, prog, editor, stop]
+   :showi language             show language flags for interactive evaluation
+
+ The User's Guide has more information. An online copy can be found here:
+
+   https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/ghci.html
+
+ghci> :set args ["c07.hs"]
+:set args ["c07.hs"]
+ghci> :main
+:main
+
+<interactive>:7:53: error:
+    Variable not in scope: main :: IO a0
+    Suggested fix: Perhaps use ‘min’ (imported from Prelude)
+ghci> main
+main
+
+<interactive>:8:1: error:
+    Variable not in scope: main
+    Suggested fix: Perhaps use ‘min’ (imported from Prelude)
+ghci> :r
+:r
+Ok, no modules loaded.
 ghci> :l c07
 :l c07
 [1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+ghci> hGetLines
+hGetLines
 
-c07.hs:226:1: error:
-    Duplicate type signatures for ‘isComment’
-    at c07.hs:222:1-9
-       c07.hs:226:1-9
+<interactive>:12:1: error:
+    Variable not in scope: hGetLines
+    Suggested fix: Perhaps use ‘hGetLine’ (imported from System.IO)
+ghci> unlines
+ unlines
+
+<interactive>:13:2: error:
+    • No instance for (Show ([String] -> String))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :t unlines
+:t unlines
+unlines :: [String] -> String
+ghci> :t lines
+:t lines
+lines :: String -> [String]
+ghci> lines "Hello!\n World\n asd"
+lines "Hello!\n World\n asd"
+["Hello!"," World"," asd"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:159:36: error: Variable not in scope: hFile :: Handle
     |
-226 | isComment :: String -> Bool
-    | ^^^^^^^^^
+159 | proceseaza h = do line <- hGetLine hFile
+    |                                    ^^^^^
 Failed, no modules loaded.
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted )
 Ok, one module loaded.
-ghci> :l c07
-:l c07
-[1 of 2] Compiling Main             ( c07.hs, interpreted )
+ghci> main
+main
+import System.Environment
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 Ok, one module loaded.
-ghci> isComment "main :: IO ()"
-isComment "main :: IO ()"
-False
-ghci> isComment "--                          putStrLn contents"
-isComment "--                          putStrLn contents"
-True
-ghci> lines "--                          contents <- hGetContents handle
---                          putStrLn contents
-
-isComment :: String -> Bool
-isComment ('-' : '-' : _) = True
-"
-lines "--                          contents <- hGetContents handle
-
-<interactive>:12:67: error:
-    lexical error in string/character literal at end of input
-ghci> --                          putStrLn contents
-ghci> 
-ghci> isComment :: String -> Bool
-
-<interactive>:15:1: error:
-    • No instance for (Show (String -> Bool))
-        arising from a use of ‘print’
-        (maybe you haven't applied a function to enough arguments?)
-    • In a stmt of an interactive GHCi command: print it
-ghci> isComment ('-' : '-' : _) = True
-ghci> "
-
-<interactive>:17:2: error:
-    lexical error in string/character literal at end of input
-ghci> lines "--                          contents <- hGetContents handle\n--                          putStrLn contents\n\nisComment :: String -> Bool\n
-isComment ('-' : '-' : _) = True\n"
-                         putStrLn contents\n\nisComment :: String -> Bool\n
-
-<interactive>:18:147: error:
-    lexical error in string/character literal at end of input
-ghci> isComment ('-' : '-' : _) = True\n"
-
-<interactive>:19:36: error:
-    lexical error in string/character literal at end of input
-ghci> lines "--                          contents <- hGetContents handle\n--                          putStrLn contents\n\nisComment :: String -> Bool\n
-isComment ('-' : '-' : _) = True\n"
-                         putStrLn contents\n\nisComment :: String -> Bool\n
-
-<interactive>:20:147: error:
-    lexical error in string/character literal at end of input
-ghci> isComment ('-' : '-' : _) = True\n"
-
-<interactive>:21:36: error:
-    lexical error in string/character literal at end of input
-ghci> "asdf\n"
-"asdf\n"
-"asdf\n"
-ghci> lines "--                          contents <- hGetContents handle\n-- putStrLn contents\n\nisComment :: String -> Bool\nisComment ('-' : '-' : _) = True\n"
- True\n"
-["--                          contents <- hGetContents handle","-- putStrLn contents","","isComment :: String -> Bool","isComment ('-' : '-' : _) = True"]
-ghci> filter notIsComment (lines "--                          contents <- hGetContents handle\n-- putStrLn contents\n\nisComment :: String -> Bool\nisComment ('-' : '-' : _) = True\n")
-ent ('-' : '-' : _) = True\n")
-["","isComment :: String -> Bool","isComment ('-' : '-' : _) = True"]
-ghci> proceseaza "--                          contents <- hGetContents handle\n-- putStrLn contents\n\nisComment :: String -> Bool\nisComment ('-' : '-' : _) = True\n")
- _) = True\n")
-
-<interactive>:25:162: error: parse error on input ‘)’
-ghci> proceseaza "--                          contents <- hGetContents handle\n-- putStrLn contents\n\nisComment :: String -> Bool\nisComment ('-' : '-' : _) = True\n"
- _) = True\n"
-"\nisComment :: String -> Bool\nisComment ('-' : '-' : _) = True\n"
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 c07.hs
-./c07 c07.hs
+ghci> main
+main
 import System.Environment
 import System.IO
 
+-- Tipul "unit"
 
+-- data () = ()
 
+f :: () -> Int
+f () = 13
 
+-- Monada IO
 
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
 
+-- main :: IO ()
+-- main = putStrLn "Hello, World!"
 
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
 
+-- main :: IO ()
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
 
+-- main :: IO ()
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
 
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
 
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
 
+-- notatia "do"
 
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
 
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
 
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
+--           name <- getLine
+--       putStrLn ("Hello, " ++ name ++ "!")
 
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
 
 {-
-
-  Daca o functie Haskell intoarce o valoare de tip IO a, functia este
-de facto imperativa.
-
-  Monada IO protejeaza toate functiile "de facto" imperative.
-
-  Un program Haskell mai mare va fi impartit in:
-
-  1. functii pure
-  2. functii din monada IO
-
-  Prefer sa am cat mai multe functii pure si cat mai putine functii
-imperative.
-
-  Monada IO asigura faptul ca nu risc sa contaminez o functie pura cu
-un apel imperativ.
-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
 -}
 
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
 
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
 
-isComment :: String -> Bool
-isComment ('-' : '-' : _) = True
-isComment _ = False
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
 
-notIsComment :: String -> Bool
-notIsComment = \line -> not (isComment line)
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
 
-proceseaza :: String -> String
-proceseaza contents = unlines $ filter notIsComment (lines contents)
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStrLn contents
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      putStrLn line
+                      proceseaza hFile
 
 main :: IO ()
 main = do args <- getArgs
           case args of
-            [] -> putStrLn "Dati un fisier ca argument!"
-            (hd:_) -> do handle <- openFile hd ReadMode
-                         contents <- hGetContents handle
-                         putStrLn $ proceseaza contents
-
-stefan@stefans-MacBook-Pro curs07 % ./c07 fdhsjafhadsfads
-./c07 fdhsjafhadsfads
-c07: fdhsjafhadsfads: openFile: does not exist (No such file or directory)
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i catch
-:i catch
-
-<interactive>:1:1: error: Not in scope: ‘catch’
-ghci> import Control.Exception
-import Control.Exception
-ghci> :i catch
-:i catch
-catch :: Exception e => IO a -> (e -> IO a) -> IO a
-  	-- Defined in ‘GHC.IO’
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 c07.hs
-./c07 c07.hs
-import System.Environment
-import System.IO
-import Control.Exception
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-
-
-  Daca o functie Haskell intoarce o valoare de tip IO a, functia este
-de facto imperativa.
-
-  Monada IO protejeaza toate functiile "de facto" imperative.
-
-  Un program Haskell mai mare va fi impartit in:
-
-  1. functii pure
-  2. functii din monada IO
-
-  Prefer sa am cat mai multe functii pure si cat mai putine functii
-imperative.
-
-  Monada IO asigura faptul ca nu risc sa contaminez o functie pura cu
-un apel imperativ.
-
--}
-
-
-
-isComment :: String -> Bool
-isComment ('-' : '-' : _) = True
-isComment _ = False
-
-notIsComment :: String -> Bool
-notIsComment = \line -> not (isComment line)
-
-proceseaza :: String -> String
-proceseaza contents = unlines $ filter notIsComment (lines contents)
-
-
-
-handler :: IOException -> IO ()
-handler e = putStrLn "A aparut o exceptie!"
-
-main :: IO ()
-main = do args <- getArgs
-          case args of
-            [] -> putStrLn "Dati un fisier ca argument!"
-            (hd:_) -> catch (do handle <- openFile hd ReadMode
-                                contents <- hGetContents handle
-                                putStrLn $ proceseaza contents)
-                            handler
-                            
-
-stefan@stefans-MacBook-Pro curs07 % ./c07 readme
-./c07 readme
-Curs 7.
-
-stefan@stefans-MacBook-Pro curs07 % ./c07 adsjfhasjfhdas
-./c07 adsjfhasjfhdas
-A aparut o exceptie!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07 fdjshkafds
-./c07 fdjshkafds
-A aparut o exceptie!
-stefan@stefans-MacBook-Pro curs07 % ./c07 readme
-./c07 readme
-Curs 7.
-
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> div 10 0
-div 10 0
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+*** Exception: c07.hs: hGetLine: end of file
+ghci> :t hGetLine
+:t hGetLine
+hGetLine :: Handle -> IO String
+ghci> (10 `div` 0)
+(10 `div` 0)
 *** Exception: divide by zero
-ghci> head []
-head []
+ghci> head ""
+head ""
 *** Exception: Prelude.head: empty list
 CallStack (from HasCallStack):
   error, called at libraries/base/GHC/List.hs:1646:3 in base:GHC.List
   errorEmptyList, called at libraries/base/GHC/List.hs:85:11 in base:GHC.List
   badHead, called at libraries/base/GHC/List.hs:81:28 in base:GHC.List
-  head, called at <interactive>:2:1 in interactive:Ghci1
+  head, called at <interactive>:24:1 in interactive:Ghci1
+ghci> :t catch
+:t catch
+
+<interactive>:1:1: error: Variable not in scope: catch
 ghci> :r
 :r
-Ok, no modules loaded.
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t catch
+:t catch
+catch :: Exception e => IO a -> (e -> IO a) -> IO a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 
-c07.hs:266:19: error:
-    • Couldn't match type: IO ()
-                     with: [Char]
-      Expected: String
-        Actual: IO ()
-    • In the second argument of ‘($)’, namely
-        ‘show (div 10 0) `catch` (\ e -> putStrLn "Eroare!")’
-      In the expression:
-        putStrLn $ show (div 10 0) `catch` (\ e -> putStrLn "Eroare!")
-      In an equation for ‘main’:
-          main
-            = putStrLn $ show (div 10 0) `catch` (\ e -> putStrLn "Eroare!")
-    |
-266 | main = putStrLn $ show (div 10 0)
-    |                   ^^^^^^^^^^^^^^^...
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-
-c07.hs:267:8: error:
+c07.hs:162:23: error:
     • Ambiguous type variable ‘e0’ arising from a use of ‘catch’
       prevents the constraint ‘(Exception e0)’ from being solved.
       Probable fix: use a type annotation to specify what ‘e0’ should be.
@@ -1239,25 +1155,34 @@ c07.hs:267:8: error:
         ...plus 10 others
         ...plus two instances involving out-of-scope types
         (use -fprint-potential-instances to see them all)
-    • In the expression:
-        (putStrLn $ show (div 10 0)) `catch` (\ e -> putStrLn "Eroare!")
-      In an equation for ‘main’:
-          main
-            = (putStrLn $ show (div 10 0)) `catch` (\ e -> putStrLn "Eroare!")
+    • In a stmt of a 'do' block:
+        catch (proceseaza hFile) (\ e -> return ())
+      In the expression:
+        do line <- hGetLine hFile
+           putStrLn line
+           catch (proceseaza hFile) (\ e -> return ())
+      In an equation for ‘proceseaza’:
+          proceseaza hFile
+            = do line <- hGetLine hFile
+                 putStrLn line
+                 catch (proceseaza hFile) (\ e -> return ())
     |
-267 |        `catch`
-    |        ^^^^^^^
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+162 |                       catch
+    |                       ^^^^^
+Failed, no modules loaded.
 ghci> :i Exception
 :i Exception
 
 <interactive>:1:1: error: Not in scope: ‘Exception’
-ghci> import Control.Exception
+ghci> :t catch
+:t catch
 
+<interactive>:1:1: error: Variable not in scope: catch
+ghci> import Control.Exception
 import Control.Exception
-ghci> 
+ghci> :t catch
+:t catch
+catch :: Exception e => IO a -> (e -> IO a) -> IO a
 ghci> :i Exception
 :i Exception
 type Exception :: * -> Constraint
@@ -1267,6 +1192,24 @@ class (base-4.17.0.0:Data.Typeable.Internal.Typeable e, Show e) =>
   fromException :: SomeException -> Maybe e
   displayException :: e -> String
   	-- Defined in ‘GHC.Exception.Type’
+instance Exception AllocationLimitExceeded
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception ArrayException -- Defined in ‘GHC.IO.Exception’
+instance Exception AssertionFailed -- Defined in ‘GHC.IO.Exception’
+instance Exception AsyncException -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnMVar
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnSTM
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception CompactionFailed
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception Deadlock -- Defined in ‘GHC.IO.Exception’
+instance Exception IOException -- Defined in ‘GHC.IO.Exception’
+instance Exception SomeAsyncException
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception ArithException
+  -- Defined in ‘GHC.Exception.Type’
+instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
 instance Exception NestedAtomically
   -- Defined in ‘Control.Exception.Base’
 instance Exception NoMethodError
@@ -1283,9 +1226,424 @@ instance Exception RecUpdError
   -- Defined in ‘Control.Exception.Base’
 instance Exception TypeError -- Defined in ‘Control.Exception.Base’
 instance Exception ErrorCall -- Defined in ‘GHC.Exception’
-instance Exception ArithException
-  -- Defined in ‘GHC.Exception.Type’
-instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:164:29: error: parse error on input ‘::’
+    |
+164 |                         (\e :: IOException -> return ())
+    |                             ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+-- Tipul "unit"
+
+-- data () = ()
+
+f :: () -> Int
+f () = 13
+
+-- Monada IO
+
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!"
+
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
+
+-- main :: IO ()
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+-- notatia "do"
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
+
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
+--           name <- getLine
+--       putStrLn ("Hello, " ++ name ++ "!")
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStrLn contents
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      putStrLn line
+                      catch
+                        (proceseaza hFile)
+                        (\(e :: IOException) -> return ())
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+-- Tipul "unit"
+
+-- data () = ()
+
+f :: () -> Int
+f () = 13
+
+-- Monada IO
+
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!"
+
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
+
+-- main :: IO ()
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+-- notatia "do"
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
+
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
+--           name <- getLine
+--       putStrLn ("Hello, " ++ name ++ "!")
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStrLn contents
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      putStrLn line
+                      catch
+                        (proceseaza hFile)
+                        (\(e :: IOException) -> putStrLn "DONE!")
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+DONE!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:175:10: error:
+    parse error on input ‘<-’
+    Suggested fix: Possibly caused by a missing 'do'?
+    |
+175 | main = x <- return (10 `div` 0)
+    |          ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:175:11: error:
+    The last statement in a 'do' block must be an expression
+      x <- return (10 `div` 0)
+    |
+175 | main = do x <- return (10 `div` 0)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:175:11: error:
+    The last statement in a 'do' block must be an expression
+      x <- return (10 `div` 0)
+    |
+175 | main = do x <- return (10 `div` 0)
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+Rezultatul este Trouble!
+ghci> :t catch
+:t catch
+catch :: Exception e => IO a -> (e -> IO a) -> IO a
+ghci> :i Exception
+:i Exception
+type Exception :: * -> Constraint
+class (base-4.17.0.0:Data.Typeable.Internal.Typeable e, Show e) =>
+      Exception e where
+  toException :: e -> SomeException
+  fromException :: SomeException -> Maybe e
+  displayException :: e -> String
+  	-- Defined in ‘GHC.Exception.Type’
 instance Exception AllocationLimitExceeded
   -- Defined in ‘GHC.IO.Exception’
 instance Exception ArrayException -- Defined in ‘GHC.IO.Exception’
@@ -1301,166 +1659,1089 @@ instance Exception Deadlock -- Defined in ‘GHC.IO.Exception’
 instance Exception IOException -- Defined in ‘GHC.IO.Exception’
 instance Exception SomeAsyncException
   -- Defined in ‘GHC.IO.Exception’
-ghci> :q
-:q
-Leaving GHCi.
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-Eroare!
-stefan@stefans-MacBook-Pro curs07 % ghc c07
-ghc c07
-[1 of 2] Compiling Main             ( c07.hs, c07.o ) [Source file changed]
-[2 of 2] Linking c07 [Objects changed]
-stefan@stefans-MacBook-Pro curs07 % ./c07
-./c07
-c07: divide by zero
-stefan@stefans-MacBook-Pro curs07 % ghci
-ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :i Maybe
-:i Maybe
-type Maybe :: * -> *
-data Maybe a = Nothing | Just a
-  	-- Defined in ‘GHC.Maybe’
-instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
-instance Semigroup a => Semigroup (Maybe a)
-  -- Defined in ‘GHC.Base’
-instance Foldable Maybe -- Defined in ‘Data.Foldable’
-instance Traversable Maybe -- Defined in ‘Data.Traversable’
-instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
-instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
-instance Applicative Maybe -- Defined in ‘GHC.Base’
-instance Functor Maybe -- Defined in ‘GHC.Base’
-instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
-instance Monad Maybe -- Defined in ‘GHC.Base’
-instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
-instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
-ghci> :i return
-:i return
-type Monad :: (* -> *) -> Constraint
-class Applicative m => Monad m where
-  ...
-  return :: a -> m a
-  	-- Defined in ‘GHC.Base’
+instance Exception ArithException
+  -- Defined in ‘GHC.Exception.Type’
+instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+instance Exception NestedAtomically
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NoMethodError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NonTermination
+  -- Defined in ‘Control.Exception.Base’
+instance Exception PatternMatchFail
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecConError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecSelError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecUpdError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception TypeError -- Defined in ‘Control.Exception.Base’
+instance Exception ErrorCall -- Defined in ‘GHC.Exception’
+ghci> main
+main
+Rezultatul este Trouble!
+ghci> :rt
+:rt
+unknown command ':rt'
+use :? for help.
 ghci> :r
 :r
-Ok, no modules loaded.
-ghci> returnMaybe "10"
-returnMaybe "10"
-
-<interactive>:4:1: error:
-    Variable not in scope: returnMaybe :: String -> t
-ghci> :l c07
-:l c07
-[1 of 2] Compiling Main             ( c07.hs, interpreted )
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 Ok, one module loaded.
-ghci> returnMaybe "10"
-returnMaybe "10"
-Just "10"
-ghci> returnMaybe "asf"
-returnMaybe "asf"
-Just "asf"
-ghci> returnMaybe True
-returnMaybe True
-Just True
-ghci> returnMaybe 10
-returnMaybe 10
-Just 10
-ghci> :i (>>=)
-:i (>>=)
-type Monad :: (* -> *) -> Constraint
-class Applicative m => Monad m where
-  (>>=) :: m a -> (a -> m b) -> m b
-  ...
-  	-- Defined in ‘GHC.Base’
-infixl 1 >>=
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+-- Tipul "unit"
+
+-- data () = ()
+
+f :: () -> Int
+f () = 13
+
+-- Monada IO
+
+-- "IO a" = actiuni IO/comenzi IO/instructiuni
+--          in urma executiei unei astfel de actiuni, se produce
+--                                                       ^^^^^^^
+--                                                 nu returneaza/intoarce
+--          o valoare de tip a.
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!"
+
+-- main :: IO ()
+-- main = (>>) (putStrLn "Hello, World!") (putStrLn "My name is.")
+
+-- main :: IO ()
+-- main = putStrLn "Hello, World!" >> putStrLn "My name is."
+
+-- main :: IO ()
+-- main = putStrLn "Hello!" >>
+--        putStrLn "My name is." >>
+--        putStrLn "Bye!"
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+-- notatia "do"
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+-- greseala frecventa
+-- g4 :: IO ()
+-- g4 = do putStrLn "What is your name?"
+--         let name = getLine in
+--           putStrLn ("Hello, " ++ name ++ "!")
+
+-- atentie la indentare la notatia "do"
+-- g5 :: IO ()
+-- g5 = do putStrLn "What is your name?"
+--           name <- getLine
+--       putStrLn ("Hello, " ++ name ++ "!")
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+-- Atentie!  "<-" nu e o functie, ci face parte din notatia "do"
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+-- Atentie! return este o functie, nu o metoda de modificare a fluxului de control
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+-- (G, +, i, e) este grup ddaca
+--      (+) este asociativa: a + (b + c) == (a + b) + c
+--      e este elementul identitate: ...
+
+-- IO a este o monada
+-- (M, >>=, return) este o monada daca:
+--   1) >>= este "asociativ"
+--   2) return este "identitatea" la stanga si dreapta pentru >>=
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+-- main :: IO ()
+-- main = do x <- getArgs
+--           y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ y
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- O greseala frecventa
+-- -- imposibil:
+-- unIO :: IO String -> String
+-- unIO = ...
+-- main :: IO ()
+-- main = do x <- getArgs
+--           -- y <- getProgName
+--           putStrLn $ "Sunt executabilul " ++ (unIO getProgName)
+--           putStrLn $ "Argumentele mele sunt: " ++ show x
+
+-- Un program Haskell contine:
+--        1) functii "pure"
+--        2) functii "IO
+-- E preferabil sa am cat mai multe functii pure in dauna celor IO
+-- De ce? E imposibil de "scapat" de sub monada IO
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> putStrLn $ "Proceseaza fisierul " ++ fname
+
+-- main :: IO ()
+-- main = do args <- getArgs
+--           case args of
+--             [] -> putStrLn "Dati numele fisierului in linia de comanda"
+--             (fname:_) -> do
+--               hFile <- openFile fname ReadMode
+--               contents <- hGetContents hFile
+--               putStrLn contents
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      putStrLn line
+                      catch
+                        (proceseaza hFile)
+                        (\(e :: IOException) -> putStrLn "DONE!")
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+
+-- main :: IO ()
+-- main = do x <- return (10 `div` 0)
+--           putStrLn $ "Rezultatul este " ++ show x
+--           `catch`
+--           (\(e :: ArithException) -> putStrLn "Trouble!")
+  
+            
+DONE!
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 
-c07.hs:289:17: error:
-    • Ambiguous type variable ‘a0’ arising from a use of ‘==’
-      prevents the constraint ‘(Eq a0)’ from being solved.
-      Relevant bindings include
-        x :: Maybe a0 (bound at c07.hs:289:7)
-        w1 :: Maybe a0 -> Maybe a0 (bound at c07.hs:289:1)
-      Probable fix: use a type annotation to specify what ‘a0’ should be.
-      Potentially matching instances:
-        instance (Eq a, Eq b) => Eq (Either a b)
-          -- Defined in ‘Data.Either’
-        instance Eq ErrorCall -- Defined in ‘GHC.Exception’
-        ...plus 38 others
-        ...plus 59 instances involving out-of-scope types
-        (use -fprint-potential-instances to see them all)
-    • In the expression: x == 0
-      In the expression: if x == 0 then Nothing else div 10 x
-      In the expression: \ x -> if x == 0 then Nothing else div 10 x
+c07.hs:164:26: error:
+    • Couldn't match expected type ‘Char’ with actual type ‘[Char]’
+    • In the pattern: c1 : c2 : tl
+      In the pattern: [c1 : c2 : tl]
+      In a case alternative:
+          [c1 : c2 : tl]
+            -> if c1 == c2 && c1 == '-' then return () else putStrLn line
     |
-289 | w1 = \x -> if x == 0 then Nothing else div 10 x
-    |                 ^^
-
-c07.hs:289:20: error:
-    • No instance for (Num (Maybe a0)) arising from the literal ‘0’
-    • In the second argument of ‘(==)’, namely ‘0’
-      In the expression: x == 0
-      In the expression: if x == 0 then Nothing else div 10 x
-    |
-289 | w1 = \x -> if x == 0 then Nothing else div 10 x
-    |                    ^
-
-c07.hs:289:40: error:
-    • No instance for (Integral (Maybe a0)) arising from a use of ‘div’
-    • In the expression: div 10 x
-      In the expression: if x == 0 then Nothing else div 10 x
-      In the expression: \ x -> if x == 0 then Nothing else div 10 x
-    |
-289 | w1 = \x -> if x == 0 then Nothing else div 10 x
-    |                                        ^^^
+164 |                         [c1:c2:tl] -> if c1 == c2 && c1 == '-' then
+    |                          ^^^^^^^^
 Failed, no modules loaded.
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted )
 Ok, one module loaded.
-ghci> v1
-v1
-Nothing
-ghci> v2
-v2
-Just 10
-ghci> w1
-w1
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
 
-<interactive>:15:1: error:
-    • No instance for (Show (Int -> Maybe Int))
-        arising from a use of ‘print’
-        (maybe you haven't applied a function to enough arguments?)
-    • In a stmt of an interactive GHCi command: print it
-ghci> w1 10
-w1 10
-Just 1
-ghci> w1 100
-w1 100
-Just 0
-ghci> w1 2
-w1 2
-Just 5
-ghci> seqMaybe v1 w1
-seqMaybe v1 w1
-Nothing
-ghci> seqMaybe v2 w1
-seqMaybe v2 w1
-Just 1
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      case line of
+                        [] -> putStrLn ""
+                        [hd] -> putStrLn [hd]
+                        (c1:c2:tl) -> if c1 == c2 && c1 == '-' then
+                                        return ()
+                                      else
+                                        putStrLn line
+                      catch
+                        (proceseaza hFile)
+                        (\(e :: IOException) -> putStrLn "DONE!")
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+
+  
+            
+DONE!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:188:22: error: parse error on input ‘=’
+    |
+188 |                 [hd] = putStrLn [hd]
+    |                      ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:192:50: error:
+    Variable not in scope: line :: String
+    Suggested fix: Perhaps use ‘lines’ (imported from Prelude)
+    |
+192 |                                         putStrLn line
+    |                                                  ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:189:27: error: parse error on input ‘@’
+    |
+189 | proceseazaLinie (c1:c2:tl)@line = if c1 == c2 && c1 == '-' then
+    |                           ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:196:23: error:
+    • Couldn't match expected type: IO a0
+                  with actual type: String -> IO ()
+    • Probable cause: ‘proceseazaLinie’ is applied to too few arguments
+      In a stmt of a 'do' block: proceseazaLinie
+      In the expression:
+        do line <- hGetLine hFile
+           proceseazaLinie
+           catch (proceseaza hFile) (\ (e :: IOException) -> putStrLn "DONE!")
+      In an equation for ‘proceseaza’:
+          proceseaza hFile
+            = do line <- hGetLine hFile
+                 proceseazaLinie
+                 catch (proceseaza hFile) (\ (e :: IOException) -> putStrLn "DONE!")
+    |
+196 |                       proceseazaLinie
+    |                       ^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+
+
+  
+proceseazaLinie :: String -> IO ()
+proceseazaLinie [] = putStrLn ""
+proceseazaLinie [hd] = putStrLn [hd]
+proceseazaLinie line@(c1:c2:tl) = if c1 == c2 && c1 == '-' then
+                                        return ()
+                                  else
+                                        putStrLn line
+
+proceseaza :: Handle -> IO ()
+proceseaza hFile = do line <- hGetLine hFile
+                      proceseazaLinie line
+                      catch
+                        (proceseaza hFile)
+                        (\(e :: IOException) -> putStrLn "DONE!")
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              proceseaza hFile
+          
+DONE!
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
 Ok, one module loaded.
-ghci> seqMaybe v3 w1
-seqMaybe v3 w1
-Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:219:36: error:
+    • Couldn't match expected type ‘String -> Bool’
+                  with actual type ‘Bool’
+    • The function ‘not’ is applied to two value arguments,
+        but its type ‘Bool -> Bool’ has only one
+      In the expression: not isComment line
+      In the first argument of ‘filter’, namely
+        ‘(\ line -> not isComment line)’
+    |
+219 | proceseaza line = filter (\line -> not isComment line) line
+    |                                    ^^^^^^^^^^^^^^^^^^
+
+c07.hs:219:40: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘String -> Bool’
+    • Probable cause: ‘isComment’ is applied to too few arguments
+      In the first argument of ‘not’, namely ‘isComment’
+      In the expression: not isComment line
+      In the first argument of ‘filter’, namely
+        ‘(\ line -> not isComment line)’
+    |
+219 | proceseaza line = filter (\line -> not isComment line) line
+    |                                        ^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:219:37: error:
+    • Couldn't match expected type ‘String -> Bool’
+                  with actual type ‘Bool’
+    • The function ‘not’ is applied to two value arguments,
+        but its type ‘Bool -> Bool’ has only one
+      In the expression: not isComment line
+      In the first argument of ‘filter’, namely
+        ‘(\ line -> not isComment line)’
+    |
+219 | proceseaza lines = filter (\line -> not isComment line) lines
+    |                                     ^^^^^^^^^^^^^^^^^^
+
+c07.hs:219:41: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘String -> Bool’
+    • Probable cause: ‘isComment’ is applied to too few arguments
+      In the first argument of ‘not’, namely ‘isComment’
+      In the expression: not isComment line
+      In the first argument of ‘filter’, namely
+        ‘(\ line -> not isComment line)’
+    |
+219 | proceseaza lines = filter (\line -> not isComment line) lines
+    |                                         ^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+isComment :: String -> Bool
+isComment [] = False
+isComment [_] = False
+isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+proceseaza :: [String] -> [String]
+proceseaza lines = filter (\line -> not (isComment line)) lines
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              putStr $ unlines (proceseaza (lines contents))
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+isComment :: String -> Bool
+isComment [] = False
+isComment [_] = False
+isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+proceseaza :: [String] -> [String]
+proceseaza lines = filter (not . isComment) lines
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              putStr $ unlines (proceseaza (lines contents))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+isComment :: String -> Bool
+isComment [] = False
+isComment [_] = False
+isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+proceseaza :: [String] -> [String]
+proceseaza = filter (not . isComment)
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              putStr $ unlines (proceseaza (lines contents))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:224:40: error:
+    Variable not in scope: proceseaza :: [String] -> [String]
+    |
+224 | proceseazaContents contents = unlines (proceseaza (lines contents))
+    |                                        ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+import System.Environment
+import System.IO
+import Control.Exception
+
+
+
+f :: () -> Int
+f () = 13
+
+
+
+
+
+
+
+g1 :: IO ()
+g1 = putStrLn "What is your name?" >>
+     getLine >>
+     putStrLn "Hello!"
+
+g2 :: IO ()
+g2 = putStrLn "What is your name?" >>
+     getLine >>=
+     (\name -> putStrLn ("Hello, " ++ name ++ "!"))
+
+
+g3 :: IO ()
+g3 = do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+
+
+
+g6 :: IO ()
+g6 = do { putStrLn "What is your name?";
+      name <- getLine;
+       putStrLn ("Hello, " ++ name ++ "!") }
+
+{-
+In loc de:
+     do putStrLn "What is your name?"
+        name <- getLine
+        putStrLn ("Hello, " ++ name ++ "!")
+sistemul intelege:
+  putStrLn "What is your name?" >>
+  getLine >>= (\name ->
+        putStrLn ("Hello, " ++ name ++ "!")
+  )
+-}
+
+
+g7 :: IO ()
+g7 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          putStrLn "Bye!"
+
+g8 :: IO ()
+g8 = do putStrLn "What is your name?"
+        name <- getLine
+        if name /= "" then
+          do putStrLn $ "Hello, " ++ name ++ "!"
+             g7
+        else
+          return ()
+
+
+g9 :: IO ()
+g9 = do putStrLn "Hello, "
+        return ()
+        putStrLn "World!"
+
+
+
+{-
+int main(int argc, char **argv)
+{
+}
+-}
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+isComment :: String -> Bool
+isComment [] = False
+isComment [_] = False
+isComment (c1:c2:tl) = c1 == '-' && c2 == '-'
+  
+proceseazaLines :: [String] -> [String]
+proceseazaLines = filter (not . isComment)
+
+proceseazaContents :: String -> String
+proceseazaContents contents = unlines (proceseazaLines (lines contents))
+
+main :: IO ()
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "Dati numele fisierului in linia de comanda"
+            (fname:_) -> do
+              hFile <- openFile fname ReadMode
+              contents <- hGetContents hFile
+              putStr $ proceseazaContents contents
+ghci> :t hClose
+:t hClose
+hClose :: Handle -> IO ()
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+*** Exception: c07.hs: hGetContents: illegal operation (handle is closed)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+*** Exception: c07.hs: hGetContents: illegal operation (delayed read on closed handle)
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
@@ -1468,37 +2749,112 @@ Ok, one module loaded.
 ghci> impartireInLant 100 2 5
 impartireInLant 100 2 5
 Just 10
-ghci> impartireInLant 100 5 5
-impartireInLant 100 5 5
-Just 4
-ghci> impartireInLant 100 1005 5
-impartireInLant 100 1005 5
-Just 0
-ghci> impartireInLant 100 0 5
-impartireInLant 100 0 5
+ghci> impartireInLant 120 2 5
+impartireInLant 120 2 5
+Just 12
+ghci> impartireInLant 120 0 5
+impartireInLant 120 0 5
 Nothing
-ghci> impartireInLant 100 5 0
-impartireInLant 100 5 0
+ghci> impartireInLant 120 2 0
+impartireInLant 120 2 0
+Nothing
+ghci> :i >>=
+:i >>=
+type Monad :: (* -> *) -> Constraint
+class Applicative m => Monad m where
+  (>>=) :: m a -> (a -> m b) -> m b
+  ...
+  	-- Defined in ‘GHC.Base’
+infixl 1 >>=
+ghci> :i Maybe
+:i Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+ghci> :t  (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+
+:t  (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+(>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
+  :: Maybe a -> (a -> Maybe b) -> Maybe b
+ghci> 
+ghci> (>>=) Nothing (\x -> Just 123)
+(>>=) Nothing (\x -> Just 123)
+Nothing
+ghci> (>>=) (Just 42) (\x -> Just 123)
+(>>=) (Just 42) (\x -> Just 123)
+Just 123
+ghci> (>>=) (Just 42) (\x -> Just (x + 123))
+(>>=) (Just 42) (\x -> Just (x + 123))
+Just 165
+ghci> (>>=) Nothing (\x -> Just (x + 123))
+(>>=) Nothing (\x -> Just (x + 123))
 Nothing
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:265:63: error: parse error on input ‘)’
+    |
+265 | impartireInLant' x y z = (impartire x y) >>= (\r impartire r z)
+    |                                                               ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
 Ok, one module loaded.
-ghci> impartireInLant 100 5 5
-impartireInLant 100 5 5
-Just 4
-ghci> impartireInLant 100 5 2
-impartireInLant 100 5 2
-Just 10
-ghci> impartireInLant 100 0 5
-impartireInLant 100 0 5
+ghci> impartireInLant' 120 2 5
+impartireInLant' 120 2 5
+Just 12
+ghci> impartireInLant' 120 0 5
+impartireInLant' 120 0 5
 Nothing
-ghci> impartireInLant 100 5 0
-impartireInLant 100 5 0
+ghci> impartireInLant' 120 2 0
+impartireInLant' 120 2 0
 Nothing
-ghci> impartireInLant 100 5 5
-impartireInLant 100 5 5
-Just 4
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:268:1: error:
+    Multiple declarations of ‘impartireInLant'’
+    Declared at: c07.hs:265:1
+                 c07.hs:268:1
+    |
+268 | impartireInLant' x y z = do r <- impartire x y
+    | ^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> impartire'' 120 2 5
+impartire'' 120 2 5
+
+<interactive>:97:1: error:
+    Variable not in scope: impartire'' :: t0 -> t1 -> t2 -> t
+    Suggested fix: Perhaps use ‘impartire’ (line 256)
+ghci> impartireInLant'' 120 2 5
+impartireInLant'' 120 2 5
+Just 12
+ghci> impartireInLant'' 120 0 5
+impartireInLant'' 120 0 5
+Nothing
+ghci> impartireInLant'' 120 2 0
+impartireInLant'' 120 2 0
+Nothing
 ghci> :i []
 :i []
 type [] :: * -> *
@@ -1506,73 +2862,80 @@ data [] a = [] | a : [a]
   	-- Defined in ‘GHC.Types’
 instance Traversable [] -- Defined in ‘Data.Traversable’
 instance MonadFail [] -- Defined in ‘Control.Monad.Fail’
-instance Monoid [a] -- Defined in ‘GHC.Base’
-instance Semigroup [a] -- Defined in ‘GHC.Base’
 instance Foldable [] -- Defined in ‘Data.Foldable’
 instance Applicative [] -- Defined in ‘GHC.Base’
-instance Monad [] -- Defined in ‘GHC.Base’
 instance Functor [] -- Defined in ‘GHC.Base’
-instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monoid [a] -- Defined in ‘GHC.Base’
+instance Semigroup [a] -- Defined in ‘GHC.Base’
 instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
 instance Read a => Read [a] -- Defined in ‘GHC.Read’
 instance Show a => Show [a] -- Defined in ‘GHC.Show’
-ghci> :r
-:r
-[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
-Ok, one module loaded.
-ghci> returnList 10
-returnList 10
-[10]
-ghci> returnList "asdf"
-returnList "asdf"
-["asdf"]
-ghci> :r
-:r
-[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
-Ok, one module loaded.
-ghci> :t seqList
-:t seqList
-seqList :: [a] -> (a -> [b]) -> [b]
-ghci> "r
-"r
+instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
+ghci> :t (>>=)
+:t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+ghci> :t (>>=) [a] -> (a -> [b]) -> [b]
+:t (>>=) [a] -> (a -> [b]) -> [b]
 
-<interactive>:41:3: error:
-    lexical error in string/character literal at end of input
+<interactive>:1:11: error: parse error on input ‘->’
+ghci> :t (>>=) :: [a] -> (a -> [b]) -> [b]
+:t (>>=) :: [a] -> (a -> [b]) -> [b]
+(>>=) :: [a] -> (a -> [b]) -> [b] :: [a] -> (a -> [b]) -> [b]
+ghci> (>>=) [ 4, 7, 2 ] (\x -> [ x - 1, x + 2 ] )
+(>>=) [ 4, 7, 2 ] (\x -> [ x - 1, x + 2 ] )
+[3,6,6,9,1,4]
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
-Ok, one module loaded.
-ghci> f 10
-f 10
-[1,2,3,4,5,6,7,8,9,10]
-ghci> f 20-
-f 20-
 
-<interactive>:44:6: error:
-    parse error (possibly incorrect indentation or mismatched brackets)
-ghci> f 20
-f 20
-[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-ghci> seqList [1, 4, 8] f
-seqList [1, 4, 8] f
-[1,1,2,3,4,1,2,3,4,5,6,7,8]
+c07.hs:272:1: error:
+    Multiple declarations of ‘impartireInLant''’
+    Declared at: c07.hs:268:1
+                 c07.hs:272:1
+    |
+272 | impartireInLant'' x y z = do r <- impartire x y
+    | ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> impartire' 10 0
+impartire' 10 0
+[]
+ghci> impartire' 10 2
+impartire' 10 2
+[5]
 ghci> :r
 :r
 [1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:278:1: error:
+    Multiple declarations of ‘impartireInLant''’
+    Declared at: c07.hs:268:1
+                 c07.hs:278:1
+    |
+278 | impartireInLant'' x y z = do r <- impartire' x y
+    | ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
 Ok, one module loaded.
-ghci> impartireInLant' 100 5 5
-impartireInLant' 100 5 5
-[4]
-ghci> impartireInLant' 100 2 5
-impartireInLant' 100 2 5
-[10]
-ghci> impartireInLant' 100 5 1
-impartireInLant' 100 5 1
-[20]
-ghci> impartireInLant' 100 0 5
-impartireInLant' 100 0 5
+ghci> impartireInLant''' 120 2 5
+impartireInLant''' 120 2 5
+[12]
+ghci> impartireInLant''' 120 0 5
+impartireInLant''' 120 0 5
 []
-ghci> impartireInLant' 100 5 0
-impartireInLant' 100 5 0
+ghci> impartireInLant''' 120 2 0
+impartireInLant''' 120 2 0
 []
+ghci> impartireInLant''' 120 0 0
+impartireInLant''' 120 0 0
+[]
+ghci> impartireInLant''' 120 2 5
+impartireInLant''' 120 2 5
+[12]
 ghci> 
