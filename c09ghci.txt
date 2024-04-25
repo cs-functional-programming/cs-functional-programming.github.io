@@ -1,430 +1,216 @@
-module Lib
-    ( someFunc
-    ) where
-
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
-stefan@stefans-MBP src % cd ..
-stefan@stefans-MBP demo % ls -al
-total 56
-drwxr-xr-x  12 stefan  staff   384 Apr 27 16:45 .
-drwxr-xr-x  10 stefan  staff   320 Apr 27 16:45 ..
--rw-------   1 stefan  staff    15 Apr 27 16:45 .gitignore
--rw-------   1 stefan  staff   310 Apr 27 16:45 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:45 LICENSE
--rw-------   1 stefan  staff     7 Apr 27 16:45 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:45 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 app
--rw-r--r--   1 stefan  staff  1897 Apr 27 16:45 demo.cabal
--rw-------   1 stefan  staff  1350 Apr 27 16:45 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 src
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 test
-stefan@stefans-MBP demo % cd test
-stefan@stefans-MBP test % ls -al
-total 8
-drwxr-xr-x   3 stefan  staff   96 Apr 27 16:45 .
-drwxr-xr-x  12 stefan  staff  384 Apr 27 16:45 ..
--rw-------   1 stefan  staff   63 Apr 27 16:45 Spec.hs
-stefan@stefans-MBP test % ec Spec.hs
-stefan@stefans-MBP test % ls -al
-total 8
-drwxr-xr-x   3 stefan  staff   96 Apr 27 16:45 .
-drwxr-xr-x  12 stefan  staff  384 Apr 27 16:45 ..
--rw-------   1 stefan  staff   63 Apr 27 16:45 Spec.hs
-stefan@stefans-MBP test % cd ..
-stefan@stefans-MBP demo % ls -al
-total 56
-drwxr-xr-x  12 stefan  staff   384 Apr 27 16:45 .
-drwxr-xr-x  10 stefan  staff   320 Apr 27 16:45 ..
--rw-------   1 stefan  staff    15 Apr 27 16:45 .gitignore
--rw-------   1 stefan  staff   310 Apr 27 16:45 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:45 LICENSE
--rw-------   1 stefan  staff     7 Apr 27 16:45 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:45 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 app
--rw-r--r--   1 stefan  staff  1897 Apr 27 16:45 demo.cabal
--rw-------   1 stefan  staff  1350 Apr 27 16:45 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 src
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:45 test
-stefan@stefans-MBP demo % ec demo.cabal
-stefan@stefans-MBP demo % stack build
-Error: [S-8506]
-Error parsing targets: The specified targets matched no packages.
-Perhaps you need to run 'stack init'?
-stefan@stefans-MBP demo % cd ..
-stefan@stefans-MBP curs09 % stack new demo1
-Downloading template new-template to create project demo1 in directory demo1/...
-Downloaded /Users/stefan/.stack/templates/new-template.hsfiles.
-
-Note: The following parameters were needed by the template but not provided: author-email,
-      author-name, category, copyright and github-username.
-
-      You can provide them in Stack's global YAML configuration file
-      (/Users/stefan/.stack/config.yaml) like this:
-
-      templates:
-        params:
-          author-email: value
-          author-name: value
-          category: value
-          copyright: value
-          github-username: value
-
-      Or you can pass each one on the command line as parameters like this:
-
-      stack new demo1 new-template -p "author-email:value" -p "author-name:value" -p
-      "category:value" -p "copyright:value" -p "github-username:value"
-
-Looking for Cabal or package.yaml files to use to initialise Stack's project-level YAML
-configuration file.
-
-Using the Cabal packages:
-* demo1/
-
-Selecting the best among 19 snapshots...
-
-
-Note: Matches
-      https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml
-
-Selected the snapshot
-https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml.
-Initialising Stack's project-level YAML configuration file using snapshot
-https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/20/18.yaml.
-Considered 1 user package.
-Writing configuration to demo1/stack.yaml.
-Stack's project-level YAML configuration file has been initialised.
-stefan@stefans-MBP curs09 % cd demo1
-stefan@stefans-MBP demo1 % stack build
-Building all executables for `demo1' once. After a successful build of all of them, only specified executables will be rebuilt.
-demo1> configure (lib + exe)
-Configuring demo1-0.1.0.0...
-demo1> build (lib + exe)
-Preprocessing library for demo1-0.1.0.0..
-Building library for demo1-0.1.0.0..
-[1 of 2] Compiling Lib
-[2 of 2] Compiling Paths_demo1
-Preprocessing executable 'demo1-exe' for demo1-0.1.0.0..
-Building executable 'demo1-exe' for demo1-0.1.0.0..
-[1 of 2] Compiling Main
-[2 of 2] Compiling Paths_demo1
-Linking .stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build/demo1-exe/demo1-exe ...
-demo1> copy/register
-Installing library in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/lib/x86_64-osx-ghc-9.2.7/demo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX
-Installing executable demo1-exe in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin
-Registering library for demo1-0.1.0.0..
-stefan@stefans-MBP demo1 % ls -al
-total 72
-drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
-drwxr-xr-x  11 stefan  staff   352 Apr 27 16:52 ..
--rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
-drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
--rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
--rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
--rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
--rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
--rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
--rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
-stefan@stefans-MBP demo1 % cd .stack-work
-stefan@stefans-MBP .stack-work % ls -al
-total 88
-drwxr-xr-x   6 stefan  staff    192 Apr 27 16:52 .
-drwxr-xr-x  15 stefan  staff    480 Apr 27 16:52 ..
-drwxr-xr-x   3 stefan  staff     96 Apr 27 16:52 dist
-drwxr-xr-x   3 stefan  staff     96 Apr 27 16:52 install
--rw-r--r--   1 stefan  staff  45056 Apr 27 16:52 stack.sqlite3
--rw-r--r--   1 stefan  staff      0 Apr 27 16:52 stack.sqlite3.pantry-write-lock
-stefan@stefans-MBP .stack-work % cd dist
-stefan@stefans-MBP dist % ls
-x86_64-osx
-stefan@stefans-MBP dist % cd x86_64-osx
-stefan@stefans-MBP x86_64-osx % ls
-Cabal-3.6.3.0
-stefan@stefans-MBP x86_64-osx % cd Cabal-3.6.3.0
-stefan@stefans-MBP Cabal-3.6.3.0 % ls
-build			package.conf.inplace	stack-build-caches	stack-project-root
-build-lock		setup-config		stack-cabal-mod		stack-setup-config-mod
-stefan@stefans-MBP Cabal-3.6.3.0 % cd build
-stefan@stefans-MBP build % ls
-Lib.dyn_hi
-Lib.dyn_o
-Lib.hi
-Lib.o
-Paths_demo1.dyn_hi
-Paths_demo1.dyn_o
-Paths_demo1.hi
-Paths_demo1.o
-autogen
-demo1-exe
-libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX-ghc9.2.7.dylib
-libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX.a
-stefan@stefans-MBP build % ls -al
-total 488
-drwxr-xr-x  14 stefan  staff     448 Apr 27 16:52 .
-drwxr-xr-x  10 stefan  staff     320 Apr 27 16:52 ..
--rw-r--r--   1 stefan  staff    1471 Apr 27 16:52 Lib.dyn_hi
--rw-r--r--   1 stefan  staff    2600 Apr 27 16:52 Lib.dyn_o
--rw-r--r--   1 stefan  staff    1468 Apr 27 16:52 Lib.hi
--rw-r--r--   1 stefan  staff    2592 Apr 27 16:52 Lib.o
--rw-r--r--   1 stefan  staff   13000 Apr 27 16:52 Paths_demo1.dyn_hi
--rw-r--r--   1 stefan  staff   27056 Apr 27 16:52 Paths_demo1.dyn_o
--rw-r--r--   1 stefan  staff   12997 Apr 27 16:52 Paths_demo1.hi
--rw-r--r--   1 stefan  staff   26952 Apr 27 16:52 Paths_demo1.o
-drwxr-xr-x   4 stefan  staff     128 Apr 27 16:52 autogen
-drwxr-xr-x   5 stefan  staff     160 Apr 27 16:52 demo1-exe
--rwxr-xr-x   1 stefan  staff  102392 Apr 27 16:52 libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX-ghc9.2.7.dylib
--rw-r--r--   1 stefan  staff   38864 Apr 27 16:52 libHSdemo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX.a
-stefan@stefans-MBP build % ./demo1-exe
-zsh: permission denied: ./demo1-exe
-stefan@stefans-MBP build % ./demo1-exe/demo1-exe
-someFunc
-stefan@stefans-MBP build % pwd
-/Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build
-stefan@stefans-MBP build % cd ..
-stefan@stefans-MBP Cabal-3.6.3.0 % cd ..
-stefan@stefans-MBP x86_64-osx % cd ..
-stefan@stefans-MBP dist % cd ..
-stefan@stefans-MBP .stack-work % ls
-dist				stack.sqlite3
-install				stack.sqlite3.pantry-write-lock
-stefan@stefans-MBP .stack-work % cd ..
-stefan@stefans-MBP demo1 % ls -al
-total 72
-drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
-drwxr-xr-x  11 stefan  staff   352 Apr 27 16:52 ..
--rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
-drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
--rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
--rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
--rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
--rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
--rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
--rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
-stefan@stefans-MBP demo1 % stack run
-someFunc
-stefan@stefans-MBP demo1 % stack install
-Copying from /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin/demo1-exe to /Users/stefan/.local/bin/demo1-exe
-
-Copied executables to /Users/stefan/.local/bin:
-- demo1-exe
-
-Warning: Installation path /Users/stefan/.local/bin not found on the PATH environment variable.
-stefan@stefans-MBP demo1 % cd /Users/stefan/.local/bin
-stefan@stefans-MBP bin % ls -al
-total 64848
-drwxr-xr-x  4 stefan  staff       128 Apr 27 16:54 .
-drwxrwxrwx  5 stefan  staff       160 Apr 27 09:58 ..
--rwxr-xr-x  1 stefan  staff   1141568 Apr 27 16:54 demo1-exe
--rwxr-xr-x  1 stefan  staff  32056608 Apr 27 09:58 stack
-stefan@stefans-MBP bin % ./demo1-exe
-someFunc
-stefan@stefans-MBP bin % pwd
-/Users/stefan/.local/bin
-stefan@stefans-MBP bin % cd stack
-cd: not a directory: stack
-stefan@stefans-MBP bin % ls
-demo1-exe	stack
-stefan@stefans-MBP bin % ls -al
-total 64848
-drwxr-xr-x  4 stefan  staff       128 Apr 27 16:54 .
-drwxrwxrwx  5 stefan  staff       160 Apr 27 09:58 ..
--rwxr-xr-x  1 stefan  staff   1141568 Apr 27 16:54 demo1-exe
--rwxr-xr-x  1 stefan  staff  32056608 Apr 27 09:58 stack
-stefan@stefans-MBP bin % cd ..
-stefan@stefans-MBP .local % cd ..
-stefan@stefans-MBP ~ % cd /Users/stefan/teaching/pf-2022-2023/curs09/demo1/
-stefan@stefans-MBP demo1 % ls
-CHANGELOG.md	README.md	app		package.yaml	stack.yaml	test
-LICENSE		Setup.hs	demo1.cabal	src		stack.yaml.lock
-stefan@stefans-MBP demo1 % ls -al
-total 72
-drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
-drwxr-xr-x  11 stefan  staff   352 Apr 27 16:54 ..
--rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
-drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
--rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
--rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
--rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
--rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
--rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
--rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
-stefan@stefans-MBP demo1 % ec stack.yaml
-stefan@stefans-MBP demo1 % ls -al
-total 72
-drwxr-xr-x  15 stefan  staff   480 Apr 27 16:52 .
-drwxr-xr-x  11 stefan  staff   352 Apr 27 16:54 ..
--rw-------   1 stefan  staff    15 Apr 27 16:52 .gitignore
-drwxr-xr-x   6 stefan  staff   192 Apr 27 16:52 .stack-work
--rw-------   1 stefan  staff   311 Apr 27 16:52 CHANGELOG.md
--rw-------   1 stefan  staff  1529 Apr 27 16:52 LICENSE
--rw-------   1 stefan  staff     8 Apr 27 16:52 README.md
--rw-------   1 stefan  staff    46 Apr 27 16:52 Setup.hs
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 app
--rw-r--r--   1 stefan  staff  1909 Apr 27 16:52 demo1.cabal
--rw-------   1 stefan  staff  1357 Apr 27 16:52 package.yaml
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 src
--rw-------   1 stefan  staff  2209 Apr 27 16:52 stack.yaml
--rw-------   1 stefan  staff   541 Apr 27 16:52 stack.yaml.lock
-drwxr-xr-x   3 stefan  staff    96 Apr 27 16:52 test
-stefan@stefans-MBP demo1 % stack test
-demo1-0.1.0.0: unregistering (components added: test:demo1-test)
-demo1> configure (lib + exe + test)
-Configuring demo1-0.1.0.0...
-demo1> build (lib + exe + test)
-Preprocessing library for demo1-0.1.0.0..
-Building library for demo1-0.1.0.0..
-Preprocessing test suite 'demo1-test' for demo1-0.1.0.0..
-Building test suite 'demo1-test' for demo1-0.1.0.0..
-[1 of 2] Compiling Main
-[2 of 2] Compiling Paths_demo1
-Linking .stack-work/dist/x86_64-osx/Cabal-3.6.3.0/build/demo1-test/demo1-test ...
-Preprocessing executable 'demo1-exe' for demo1-0.1.0.0..
-Building executable 'demo1-exe' for demo1-0.1.0.0..
-demo1> copy/register
-Installing library in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/lib/x86_64-osx-ghc-9.2.7/demo1-0.1.0.0-K2NqljgAYGHAFiYyh0shlX
-Installing executable demo1-exe in /Users/stefan/teaching/pf-2022-2023/curs09/demo1/.stack-work/install/x86_64-osx/b7eb8a2d7cafb86b812167c2f9de31add7c39ccb6fd348abb0f65e865dafb0a1/9.2.7/bin
-Registering library for demo1-0.1.0.0..
-demo1> test (suite: demo1-test)
-
-Test suite not yet implemented
-
-demo1> Test suite demo1-test passed
-Completed 2 action(s).
-stefan@stefans-MBP demo1 % cat test/Spec.hs
-main :: IO ()
-main = putStrLn "Test suite not yet implemented"
-stefan@stefans-MBP demo1 % cd ..
-stefan@stefans-MBP curs09 % pwd
-/Users/stefan/teaching/pf-2022-2023/curs09
-stefan@stefans-MBP curs09 % ls -al
-total 2928
-drwxr-xr-x  11 stefan  staff      352 Apr 27 16:54 .
-drwxr-xr-x  16 stefan  staff      512 Apr 27 16:38 ..
--rw-r--r--   1 stefan  staff     1275 Apr 27 16:17 Nat.hi
--rw-r--r--   1 stefan  staff     9264 Apr 27 16:17 Nat.o
-drwxr-xr-x  11 stefan  staff      352 Apr 27 16:33 Utils
-drwxr-xr-x  12 stefan  staff      384 Apr 27 16:45 demo
-drwxr-xr-x  15 stefan  staff      480 Apr 27 16:52 demo1
--rwxr-xr-x   1 stefan  staff  1462160 Apr 27 16:31 main
--rw-r--r--   1 stefan  staff     1166 Apr 27 16:31 main.hi
--rw-r--r--   1 stefan  staff     1486 Apr 27 16:54 main.hs
--rw-r--r--   1 stefan  staff    10488 Apr 27 16:31 main.o
-stefan@stefans-MBP curs09 % ghci
+stefan@stefans-MBP sapt09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
 GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+:l main
+:l main
 ghci> :l main
-[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
-[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
-[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
-[4 of 5] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-ghci> qs [1, 3, 2]
-[1,3,2]
-ghci> qs [2, 3, 1]
-[1,2,3]
-ghci> qs [2, 3, 4, 1]
-[1,2,3,4]
-ghci> qs [2, 7, 3, 4, 1]
-[1,2,7,3,4]
+[1 of 2] Compiling Main             ( main.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+ghci> :l main
+:l main
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted )
+[2 of 3] Compiling Main             ( main.hs, interpreted )
+Ok, two modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
 ghci> :r
-[4 of 5] Compiling Main             ( main.hs, interpreted ) [Source file changed]
-Ok, four modules loaded.
-ghci> qs [2, 7, 3, 4, 1]
-[1,2,3,4,7]
-ghci> qs [1, 2, 7, 3, 4, 1]
-[1,2,3,4,7]
-ghci> :q
-Leaving GHCi.
-stefan@stefans-MBP curs09 % clear
-stefan@stefans-MBP curs09 % ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-ghci> :l main
-[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
-[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
-[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
-[4 of 5] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-ghci> qs [2, 3, 1]
-[1,2,3]
-ghci> qs [1, 3, 2]
-[1,2,3]
-ghci> qs [1, 2, 3]
-[1,2,3]
-ghci> qs [1, 4, 2, 3]
-[1,2,3,4]
-ghci> qs [5, 1, 4, 2, 3]
-[1,2,3,4,5]
-ghci> qs' [5, 2, 1, 4, 2, 3]
-[2,1,4,2,3,5]
-ghci> :q
-Leaving GHCi.
-stefan@stefans-MBP curs09 % ec main.hs
-stefan@stefans-MBP curs09 % ghci
-GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
-:ghci> :l man
-target ‘man’ is not a module name or a source file
-ghci> :l main
-[1 of 5] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
-[2 of 5] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
-[3 of 5] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
-[4 of 5] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-ghci> qs' [1, 3, 2]
-[1,3,2]
-ghci> qs' [1, 2, 3]
-[1,2,3]
-ghci> sorted $ qs' [1, 2, 3]
-True
-ghci> sorted $ qs' [4, 1, 2, 3]
-True
-ghci> sorted $ qs' [4, 5, 1, 2, 3]
-True
-ghci> sorted $ qs' [5, 4, 1, 2, 3]
-False
-ghci> :r
-[4 of 5] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
 
-main.hs:52:1: error:
-    Could not find module ‘Test.QuickCheck’
-    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+Nat.hs:11:22: error:
+    • No instance for (Num Nat) arising from the literal ‘0’
+    • In the third argument of ‘addAux’, namely ‘0’
+      In the expression: addAux x y 0
+      In an equation for ‘add’: add x y = addAux x y 0
    |
-52 | import Test.QuickCheck
-   | ^^^^^^^^^^^^^^^^^^^^^^
-Failed, three modules loaded.
+11 | add x y = addAux x y 0
+   |                      ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted )
+[2 of 3] Compiling Main             ( main.hs, interpreted )
+Ok, two modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, two modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))
+ghci> :r
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Nat changed]
+
+main.hs:6:28: error:
+    Variable not in scope:
+      addAux :: Nat.Nat -> Nat.Nat -> Nat.Nat -> a0
+  |
+6 |           putStrLn $ show (addAux two three two)
+  |                            ^^^^^^
+Failed, one module loaded.
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted )
+Ok, two modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:6:27: error: Data constructor not in scope: Zero
+  |
+6 |           putStrLn $ show Zero
+  |                           ^^^^
+Failed, one module loaded.
+ghci> :r
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
+[2 of 3] Compiling Main             ( main.hs, interpreted )
+Ok, two modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+Zero
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, two modules loaded.
+ghci> :r
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Nat changed]
+
+main.hs:6:28: error:
+    Data constructor not in scope: Succ :: Nat -> a0
+    Suggested fix: Perhaps use variable ‘succ’ (imported from Prelude)
+  |
+6 |           putStrLn $ show (Succ Zero)
+  |                            ^^^^
+Failed, one module loaded.
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted )
+Ok, two modules loaded.
+ghci> :r
+:r
+[1 of 3] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Nat changed]
+Ok, two modules loaded.
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, two modules loaded.
+ghci> L:r
+L:r
+
+<interactive>:21:1: error: Data constructor not in scope: L
+
+<interactive>:21:3: error: Variable not in scope: r :: [a]
+ghci> :r
+:r
+[2 of 3] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:2:1: error:
+    Could not find module ‘Intreg’
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+2 | import Intreg
+  | ^^^^^^^^^^^^^
+Failed, one module loaded.
+ghci> :r
+:r
+[1 of 4] Compiling Lib.Intreg       ( Lib/Intreg.hs, interpreted )
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+Succ Zero
+Cons 9
+ghci> :r
+:r
+[1 of 4] Compiling Lib.Intreg       ( Lib/Intreg.hs, interpreted ) [Source file changed]
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Lib.Intreg changed]
+
+main.hs:6:28: error:
+    Ambiguous occurrence ‘add’
+    It could refer to
+       either ‘Nat.add’,
+              imported from ‘Nat’ at main.hs:1:1-10
+              (and originally defined at Nat.hs:11:1-3)
+           or ‘Lib.Intreg.add’,
+              imported from ‘Lib.Intreg’ at main.hs:2:1-17
+              (and originally defined at Lib/Intreg.hs:9:1-3)
+  |
+6 |           putStrLn $ show (add two three)
+  |                            ^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+Succ Zero
+Cons 9
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> main
+main
+Hello!
+Succ (Succ (Succ (Succ (Succ Zero))))
+Succ Zero
+Cons 9
 ghci> :q
+:q
 Leaving GHCi.
-stefan@stefans-MBP curs09 % stack --help
+stefan@stefans-MBP sapt09 % stack
+stack
 stack - The Haskell Tool Stack
 
-Usage: stack [--help] [--version] [--numeric-version] [--hpack-numeric-version]
-             [--docker*] [--nix*]
-             [--verbosity VERBOSITY | (-v|--verbose) | --silent]
-             [--[no-]time-in-log] [--[no-]rsl-in-log] [--stack-root STACK-ROOT]
-             [--work-dir WORK-DIR] [--[no-]system-ghc] [--[no-]install-ghc]
-             [--arch ARCH] [--ghc-variant VARIANT] [--ghc-build BUILD]
-             [-j|--jobs JOBS] [--extra-include-dirs DIR] [--extra-lib-dirs DIR]
-             [--custom-preprocessor-extensions EXT] [--with-gcc PATH-TO-GCC]
-             [--with-hpack HPACK] [--[no-]skip-ghc-check] [--[no-]skip-msys]
-             [--local-bin-path DIR] [--setup-info-yaml URL]
-             [--[no-]modify-code-page] [--[no-]allow-different-user]
-             [--[no-]dump-logs] [--color|--colour WHEN]
-             [--snapshot-location-base URL] [--[no-]script-no-run-compile]
-             [--resolver RESOLVER] [--compiler COMPILER] [--[no-]terminal]
-             [--stack-colors|--stack-colours STYLES] [--terminal-width INT]
+Usage: stack [--help] [--version] [--numeric-version] [--hpack-numeric-version] 
+             [--docker*] [--nix*] 
+             [--verbosity VERBOSITY | (-v|--verbose) | --silent] 
+             [--[no-]time-in-log] [--[no-]rsl-in-log] [--stack-root STACK-ROOT] 
+             [--work-dir WORK-DIR] [--[no-]system-ghc] [--[no-]install-ghc] 
+             [--arch ARCH] [--ghc-variant VARIANT] [--ghc-build BUILD] 
+             [-j|--jobs JOBS] [--extra-include-dirs DIR] [--extra-lib-dirs DIR] 
+             [--custom-preprocessor-extensions EXT] [--with-gcc PATH-TO-GCC] 
+             [--with-hpack HPACK] [--[no-]skip-ghc-check] [--[no-]skip-msys] 
+             [--local-bin-path DIR] [--setup-info-yaml URL] 
+             [--[no-]modify-code-page] [--[no-]allow-different-user] 
+             [--[no-]dump-logs] [--color|--colour WHEN] 
+             [--snapshot-location-base URL] [--[no-]script-no-run-compile] 
+             [--resolver RESOLVER] [--compiler COMPILER] [--[no-]terminal] 
+             [--stack-colors|--stack-colours STYLES] [--terminal-width INT] 
              [--stack-yaml STACK-YAML] [--lock-file ARG] COMMAND|FILE
 
 Available options:
@@ -575,424 +361,3818 @@ Available commands:
 Stack's documentation is available at https://docs.haskellstack.org/. Command
 'stack COMMAND --help' for help about a Stack command. Stack also supports the
 Haskell Error Index at https://errors.haskell.org/.
-stefan@stefans-MBP curs09 % stack ghci
+stefan@stefans-MBP sapt09 % cabal
+cabal
+Error: cabal: no command given (try --help)
+stefan@stefans-MBP sapt09 % stack new numere
+stack new numere
+Downloading template new-template to create project numere in directory numere/...
+Downloaded /Users/stefan/.stack/templates/new-template.hsfiles.
 
-Note: No local targets specified, so a plain ghci will be started with no package hiding or
-      package options.
+Note: The following parameters were needed by the template but not provided:
+      author-email, author-name, category, copyright and github-username.
+      
+      You can provide them in Stack's global YAML configuration file
+      (/Users/stefan/.stack/config.yaml) like this:
+      
+      templates:
+        params:
+          author-email: value
+          author-name: value
+          category: value
+          copyright: value
+          github-username: value
+      
+      Or you can pass each one on the command line as parameters like this:
+      
+      stack new numere new-template -p "author-email:value" -p
+      "author-name:value" -p "category:value" -p "copyright:value" -p
+      "github-username:value"
+      
+Looking for Cabal or package.yaml files to use to initialise Stack's project-level
+YAML configuration file.
 
-      You are using snapshot: lts-17.8
+Using the Cabal packages:
+* numere/
 
-      If you want to use package hiding and options, then you can try one of the following:
+Selecting the best among 21 snapshots...
 
-      * If you want to start a different project configuration
-        than /Users/stefan/.stack/global-project/stack.yaml, then you can use stack init to
-        create a new stack.yaml for the packages in the current directory.
 
-      * If you want to use the project configuration
-        at /Users/stefan/.stack/global-project/stack.yaml, then you can add to its 'packages' field.
+Note: Matches
+      https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/18.yaml
+      
+Selected the snapshot
+https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/18.yaml.
+Initialising Stack's project-level YAML configuration file using snapshot
+https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/18.yaml.
+Considered 1 user package.
+Writing configuration to numere/stack.yaml.
+Stack's project-level YAML configuration file has been initialised.
+stefan@stefans-MBP sapt09 % ls -al
+ls -al
+total 16
+drwxr-xr-x   6 stefan  staff  192 Apr 25 10:43 .
+drwxr-xr-x  15 stefan  staff  480 Apr 25 08:56 ..
+drwxr-xr-x   3 stefan  staff   96 Apr 25 10:33 lib
+-rw-r--r--@  1 stefan  staff  285 Apr 25 10:40 main.hs
+-rw-r--r--@  1 stefan  staff  434 Apr 25 10:27 nat.hs
+drwxr-xr-x@ 13 stefan  staff  416 Apr 25 10:43 numere
+stefan@stefans-MBP sapt09 % cd numere
+cd numere
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 64
+drwxr-xr-x@ 13 stefan  staff   416 Apr 25 10:43 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:43 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % cd app
+cd app
+stefan@stefans-MBP app % ls -al
+ls -al
+total 8
+drwxr-xr-x@  3 stefan  staff   96 Apr 25 10:43 .
+drwxr-xr-x@ 13 stefan  staff  416 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff   68 Apr 25 10:43 Main.hs
+stefan@stefans-MBP app % cat Main.hs
+cat Main.hs
+module Main (main) where
 
-Configuring GHCi with the following packages:
-GHCi, version 8.10.4: https://www.haskell.org/ghc/  :? for help
-Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/2a3bbd58/ghci-script
-Prelude> :l main
-[1 of 4] Compiling Utils.Int        ( Utils/Int.hs, interpreted )
-[2 of 4] Compiling Utils.Nat        ( Utils/Nat.hs, interpreted )
-[3 of 4] Compiling Utils.Str        ( Utils/Str.hs, interpreted )
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck prop1
+import Lib
 
-<interactive>:2:12: error: Variable not in scope: prop1
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck prop1
-*** Failed! Falsified (after 9 tests and 6 shrinks):
-[0,-1,-2]
-*Main> qs' [0, -1, -2]
-[-1,-2,0]
-*Main> sorted $ qs' [0, -1, -2]
-False
-*Main> quickCheck prop1
-*** Failed! Falsified (after 8 tests and 9 shrinks):
-[0,2,1]
-*Main> sorted $ qs' [0, 2, 1]
-False
-*Main>  qs' [0, 2, 1]
-[0,2,1]
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> quickCheck prop2
-+++ OK, passed 100 tests.
-*Main> qs [1, 2, 3, 3, 4, 5, 7, 5, 4, 3, 2, 1, 1]
-[1,2,3,4,5,7]
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
+main :: IO ()
+main = someFunc
+stefan@stefans-MBP app % cd ..
+cd ..
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 64
+drwxr-xr-x@ 13 stefan  staff   416 Apr 25 10:43 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:43 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % cd src
+cd src
+stefan@stefans-MBP src % ls -al
+ls -al
+total 8
+drwxr-xr-x@  3 stefan  staff   96 Apr 25 10:43 .
+drwxr-xr-x@ 13 stefan  staff  416 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff   88 Apr 25 10:43 Lib.hs
+stefan@stefans-MBP src % cat Lib.hs
+cat Lib.hs
+module Lib
+    ( someFunc
+    ) where
 
-main.hs:76:18: error:
-    • Couldn't match expected type ‘Str’ with actual type ‘[Int]’
-    • In the first argument of ‘length’, namely ‘l’
-      In the first argument of ‘(==)’, namely ‘length l’
-      In the expression: length l == length (qs l)
-   |
-76 | prop3 l = length l == length (qs l)
-   |                  ^
+someFunc :: IO ()
+someFunc = putStrLn "someFunc"
+stefan@stefans-MBP src % cd ..
+cd ..
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 64
+drwxr-xr-x@ 13 stefan  staff   416 Apr 25 10:43 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:43 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % cd test
+cd test
+stefan@stefans-MBP test % ls
+ls
+Spec.hs
+stefan@stefans-MBP test % ec Spec.hs
+ec Spec.hs
+stefan@stefans-MBP test % cd ..
+cd ..
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 64
+drwxr-xr-x@ 13 stefan  staff   416 Apr 25 10:43 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:43 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % ec stack.yaml 
+ec stack.yaml 
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 64
+drwxr-xr-x@ 13 stefan  staff   416 Apr 25 10:48 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:48 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % ec numere.cabal 
+ec numere.cabal 
+stefan@stefans-MBP numere % stack build
+stack build
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+Building all executables for `numere' once. After a successful build of all of them, only specified executables will be rebuilt.
+numere> configure (lib + exe)
+Configuring numere-0.1.0.0...
+numere> build (lib + exe)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+[1 of 2] Compiling Lib
+[2 of 2] Compiling Paths_numere
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_numere
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-exe/numere-exe
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 72
+drwxr-xr-x@ 15 stefan  staff   480 Apr 25 10:49 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+drwxr-xr-x@  6 stefan  staff   192 Apr 25 10:49 .stack-work
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:48 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+-rw-------@  1 stefan  staff   541 Apr 25 10:49 stack.yaml.lock
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 72
+drwxr-xr-x@ 15 stefan  staff   480 Apr 25 10:49 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 10:43 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+drwxr-xr-x@  6 stefan  staff   192 Apr 25 10:49 .stack-work
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:48 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+-rw-------@  1 stefan  staff   541 Apr 25 10:49 stack.yaml.lock
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 test
+stefan@stefans-MBP numere % cd .stack-work/
+cd .stack-work/
+stefan@stefans-MBP .stack-work % ls
+ls
+dist				stack.sqlite3
+install				stack.sqlite3.pantry-write-lock
+stefan@stefans-MBP .stack-work % cd dist
+cd dist
+stefan@stefans-MBP dist % ls
+ls
+x86_64-osx
+stefan@stefans-MBP dist % cd x86_64-osx/
+cd x86_64-osx/
+stefan@stefans-MBP x86_64-osx % ls
+ls
+Cabal-3.10.1.0
+stefan@stefans-MBP x86_64-osx % cd Cabal-3.10.1.0/
+cd Cabal-3.10.1.0/
+stefan@stefans-MBP Cabal-3.10.1.0 % ls
+ls
+build			setup-config		stack-project-root
+build-lock		stack-build-caches	stack-setup-config-mod
+package.conf.inplace	stack-cabal-mod
+stefan@stefans-MBP Cabal-3.10.1.0 % ls -al
+ls -al
+total 176
+drwxr-xr-x@ 10 stefan  staff    320 Apr 25 10:49 .
+drwxr-xr-x@  3 stefan  staff     96 Apr 25 10:49 ..
+drwxr-xr-x@ 14 stefan  staff    448 Apr 25 10:49 build
+-rw-r--r--@  1 stefan  staff      0 Apr 25 10:49 build-lock
+drwxr-xr-x@  5 stefan  staff    160 Apr 25 10:49 package.conf.inplace
+-rw-r--r--@  1 stefan  staff  76166 Apr 25 10:49 setup-config
+drwxr-xr-x@  3 stefan  staff     96 Apr 25 10:49 stack-build-caches
+-rw-------@  1 stefan  staff     35 Apr 25 10:43 stack-cabal-mod
+-rw-------@  1 stefan  staff     50 Apr 25 10:49 stack-project-root
+-rw-------@  1 stefan  staff     35 Apr 25 10:49 stack-setup-config-mod
+stefan@stefans-MBP Cabal-3.10.1.0 % cd build
+cd build
+stefan@stefans-MBP build % ls
+ls
+Lib.dyn_hi
+Lib.dyn_o
+Lib.hi
+Lib.o
+Paths_numere.dyn_hi
+Paths_numere.dyn_o
+Paths_numere.hi
+Paths_numere.o
+autogen
+libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC-ghc9.6.4.dylib
+libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC.a
+numere-exe
+stefan@stefans-MBP build % ls -al
+ls -al
+total 464
+drwxr-xr-x@ 14 stefan  staff     448 Apr 25 10:49 .
+drwxr-xr-x@ 10 stefan  staff     320 Apr 25 10:49 ..
+-rw-r--r--@  1 stefan  staff    1538 Apr 25 10:49 Lib.dyn_hi
+-rw-r--r--@  1 stefan  staff    2440 Apr 25 10:49 Lib.dyn_o
+-rw-r--r--@  1 stefan  staff    1535 Apr 25 10:49 Lib.hi
+-rw-r--r--@  1 stefan  staff    2432 Apr 25 10:49 Lib.o
+-rw-r--r--@  1 stefan  staff   12035 Apr 25 10:49 Paths_numere.dyn_hi
+-rw-r--r--@  1 stefan  staff   25544 Apr 25 10:49 Paths_numere.dyn_o
+-rw-r--r--@  1 stefan  staff   12032 Apr 25 10:49 Paths_numere.hi
+-rw-r--r--@  1 stefan  staff   25440 Apr 25 10:49 Paths_numere.o
+drwxr-xr-x@  5 stefan  staff     160 Apr 25 10:49 autogen
+-rwxr-xr-x@  1 stefan  staff  101624 Apr 25 10:49 libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC-ghc9.6.4.dylib
+-rw-r--r--@  1 stefan  staff   36720 Apr 25 10:49 libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC.a
+drwxr-xr-x@  5 stefan  staff     160 Apr 25 10:49 numere-exe
+stefan@stefans-MBP build % cd numere-exe/
+cd numere-exe/
+stefan@stefans-MBP numere-exe % ls -al
+ls -al
+total 2776
+drwxr-xr-x@  5 stefan  staff      160 Apr 25 10:49 .
+drwxr-xr-x@ 14 stefan  staff      448 Apr 25 10:49 ..
+drwxr-xr-x@  5 stefan  staff      160 Apr 25 10:49 autogen
+-rwxr-xr-x@  1 stefan  staff  1420768 Apr 25 10:49 numere-exe
+drwxr-xr-x@  6 stefan  staff      192 Apr 25 10:49 numere-exe-tmp
+stefan@stefans-MBP numere-exe % ./numere-exe
+./numere-exe
+someFunc
+stefan@stefans-MBP numere-exe % cd ..
+cd ..
+stefan@stefans-MBP build % cd ..
+cd ..
+stefan@stefans-MBP Cabal-3.10.1.0 % cd ..
+cd ..
+stefan@stefans-MBP x86_64-osx % cd ..
+cd ..
+stefan@stefans-MBP dist % cd ..
+cd ..
+stefan@stefans-MBP .stack-work % cd ..
+cd ..
+stefan@stefans-MBP numere % stack build
+stack build
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere-0.1.0.0: unregistering (local file changes: src/Lib.hs)
+numere> build (lib + exe)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+[1 of 2] Compiling Lib [Source file changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Lib changed]
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-exe/numere-exe [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+stefan@stefans-MBP numere % cd .stack-work/
+cd .stack-work/
+stefan@stefans-MBP .stack-work % ls
+ls
+dist				stack.sqlite3
+install				stack.sqlite3.pantry-write-lock
+stefan@stefans-MBP .stack-work % cd dist
+cd dist
+stefan@stefans-MBP dist % ls
+ls
+x86_64-osx
+stefan@stefans-MBP dist % cd x86_64-osx/
+cd x86_64-osx/
+stefan@stefans-MBP x86_64-osx % ls
+ls
+Cabal-3.10.1.0
+stefan@stefans-MBP x86_64-osx % cd Cabal-3.10.1.0/
+cd Cabal-3.10.1.0/
+stefan@stefans-MBP Cabal-3.10.1.0 % ls
+ls
+build			setup-config		stack-project-root
+build-lock		stack-build-caches	stack-setup-config-mod
+package.conf.inplace	stack-cabal-mod
+stefan@stefans-MBP Cabal-3.10.1.0 % cd build
+cd build
+stefan@stefans-MBP build % ls
+ls
+Lib.dyn_hi
+Lib.dyn_o
+Lib.hi
+Lib.o
+Paths_numere.dyn_hi
+Paths_numere.dyn_o
+Paths_numere.hi
+Paths_numere.o
+autogen
+libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC-ghc9.6.4.dylib
+libHSnumere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC.a
+numere-exe
+stefan@stefans-MBP build % cd numere-exe/
+cd numere-exe/
+stefan@stefans-MBP numere-exe % ./numere-exe
+./numere-exe
+Hello, World!
+stefan@stefans-MBP numere-exe % cd ..
+cd ..
+stefan@stefans-MBP build % cd ..
+cd ..
+stefan@stefans-MBP Cabal-3.10.1.0 % cd ..
+cd ..
+stefan@stefans-MBP x86_64-osx % cd ..
+cd ..
+stefan@stefans-MBP dist % cd ..
+cd ..
+stefan@stefans-MBP .stack-work % cd ..
+cd ..
+stefan@stefans-MBP numere % stack run
+stack run
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+Hello, World!
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere-0.1.0.0: unregistering (components added: test:numere-test)
+numere> configure (lib + exe + test)
+Configuring numere-0.1.0.0...
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main
+[2 of 2] Compiling Paths_numere
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-test/numere-test
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+numere> test (suite: numere-test)
 
-main.hs:76:31: error:
-    • Couldn't match expected type ‘Str’ with actual type ‘[Int]’
-    • In the first argument of ‘length’, namely ‘(qs l)’
-      In the second argument of ‘(==)’, namely ‘length (qs l)’
-      In the expression: length l == length (qs l)
-   |
-76 | prop3 l = length l == length (qs l)
-   |                               ^^^^
-Failed, three modules loaded.
-*Utils.Str> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
+Test suite not yet implemented
 
-main.hs:76:11: error:
-    Ambiguous occurrence ‘length’
-    It could refer to
-       either ‘Prelude.length’,
-              imported from ‘Prelude’ at main.hs:47:8-11
-              (and originally defined in ‘Data.Foldable’)
-           or ‘Utils.Str.length’,
-              imported from ‘Utils.Str’ at main.hs:54:1-16
-              (and originally defined at Utils/Str.hs:8:1-6)
-   |
-76 | prop3 l = length l == length (qs l)
-   |           ^^^^^^
+numere> Test suite numere-test passed
+Completed 2 action(s).
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere-0.1.0.0: unregistering (local file changes: test/Spec.hs)
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-test/numere-test [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-LK5NLICUiUE6KVPWPdlxkC
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+numere> test (suite: numere-test)
 
-main.hs:76:23: error:
-    Ambiguous occurrence ‘length’
-    It could refer to
-       either ‘Prelude.length’,
-              imported from ‘Prelude’ at main.hs:47:8-11
-              (and originally defined in ‘Data.Foldable’)
-           or ‘Utils.Str.length’,
-              imported from ‘Utils.Str’ at main.hs:54:1-16
-              (and originally defined at Utils/Str.hs:8:1-6)
-   |
-76 | prop3 l = length l == length (qs l)
-   |                       ^^^^^^
+Test suite not yet implemented! Make sure to test!
 
-main.hs:83:23: error:
-    Ambiguous occurrence ‘length’
-    It could refer to
-       either ‘Prelude.length’,
-              imported from ‘Prelude’ at main.hs:47:8-11
-              (and originally defined in ‘Data.Foldable’)
-           or ‘Utils.Str.length’,
-              imported from ‘Utils.Str’ at main.hs:54:1-16
-              (and originally defined at Utils/Str.hs:8:1-6)
-   |
-83 |      putStrLn (show $ length (Cons "asdf"))
-   |                       ^^^^^^
-Failed, three modules loaded.
-*Utils.Str> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
+numere> Test suite numere-test passed
+Completed 2 action(s).
+stefan@stefans-MBP numere % stack exec -- numere-exe
+stack exec -- numere-exe
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+Hello, World!
+stefan@stefans-MBP numere % stack exec -- pwd
+stack exec -- pwd
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere
+stefan@stefans-MBP numere % stack exec -- ls
+stack exec -- ls
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+CHANGELOG.md	Setup.hs	package.yaml	stack.yaml.lock
+LICENSE		app		src		test
+README.md	numere.cabal	stack.yaml
+stefan@stefans-MBP numere % stack install 
+stack install 
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+Copying from /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin/numere-exe to /Users/stefan/.local/bin/numere-exe
 
-main.hs:76:11: error:
-    Ambiguous occurrence ‘length’
-    It could refer to
-       either ‘Prelude.length’,
-              imported from ‘Prelude’ at main.hs:47:8-11
-              (and originally defined in ‘Data.Foldable’)
-           or ‘Utils.Str.length’,
-              imported from ‘Utils.Str’ at main.hs:54:1-16
-              (and originally defined at Utils/Str.hs:8:1-6)
-   |
-76 | prop3 l = length l == length (qs l)
-   |           ^^^^^^
+Copied executables to /Users/stefan/.local/bin:
+- numere-exe
 
-main.hs:76:23: error:
-    Ambiguous occurrence ‘length’
-    It could refer to
-       either ‘Prelude.length’,
-              imported from ‘Prelude’ at main.hs:47:8-11
-              (and originally defined in ‘Data.Foldable’)
-           or ‘Utils.Str.length’,
-              imported from ‘Utils.Str’ at main.hs:54:1-16
-              (and originally defined at Utils/Str.hs:8:1-6)
-   |
-76 | prop3 l = length l == length (qs l)
-   |                       ^^^^^^
-Failed, three modules loaded.
-*Utils.Str> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> :r
-Ok, four modules loaded.
-*Main> quickCheck prop3
-*** Failed! Falsified (after 4 tests and 1 shrink):
-[-2,-2]
-*Main> quickCheck prop3
-*** Failed! Falsified (after 4 tests and 1 shrink):
-[-2,-2]
-*Main> quickCheck prop3
-*** Failed! Falsified (after 10 tests and 2 shrinks):
-[-4,-4]
-*Main> quickCheck prop3
-*** Failed! Falsified (after 13 tests and 5 shrinks):
-[-5,-5]
-*Main> quickCheck prop3
-*** Failed! Falsified (after 6 tests and 1 shrink):
-[0,0]
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck (prop2 qs')
-*** Failed! Falsified (after 5 tests and 3 shrinks):
-[-1,1,0]
-*Main> quickCheck (prop2 qs')
-*** Failed! Falsified (after 10 tests and 7 shrinks):
-[0,-1,-2]
-*Main> quickCheck (prop2 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop2 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop2 qs)
-+++ OK, passed 100 tests.
-*Main> qs'' [1, 2, 3]
-[2,3,4]
-*Main> quickCheck (prop2 qs'')
-*** Failed! Falsified (after 10 tests and 7 shrinks):
-[1,0]
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck (prop2 qs'')
-+++ OK, passed 100 tests.
-*Main> qs'' [1, 3, 5, 2]
-[2,3,4,6]
-*Main> :t elem
-elem :: (Foldable t, Eq a) => a -> t a -> Bool
-*Main> elem 1 [1, 2, 3]
-True
-*Main> elem 1 [2, 3]
-False
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs'')
-*** Failed! Falsified (after 6 tests and 3 shrinks):
-(0,[0])
-*Main> quickCheck (prop4 qs'')
-*** Failed! Falsified (after 2 tests):
-(0,[0])
-*Main> quickCheck (prop4 qs'')
-*** Failed! Falsified (after 4 tests and 3 shrinks):
-(0,[0])
-*Main> quickCheck (prop4 qs'')
-*** Failed! Falsified (after 2 tests and 2 shrinks):
-(0,[0])
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop4 qs)
-+++ OK, passed 100 tests.
-*Main> quickCheck (prop5 qs)
+Warning: Installation path /Users/stefan/.local/bin
+         not found on the PATH environment variable.
+stefan@stefans-MBP numere % ls -al /Users/stefan/.local/bin/numere-exe 
+ls -al /Users/stefan/.local/bin/numere-exe 
+-rwxr-xr-x@ 1 stefan  staff  1180712 Apr 25 10:53 /Users/stefan/.local/bin/numere-exe
+stefan@stefans-MBP numere % /Users/stefan/.local/bin/numere-exe 
+/Users/stefan/.local/bin/numere-exe 
+Hello, World!
+stefan@stefans-MBP numere % cd ..
+cd ..
+stefan@stefans-MBP sapt09 % ghi
+ghi
+zsh: command not found: ghi
+stefan@stefans-MBP sapt09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> reverse
+reverse
 
-<interactive>:58:13: error:
-    • Variable not in scope: prop5 :: ([Int] -> [Int]) -> prop0
-    • Perhaps you meant one of these:
-        ‘prop1’ (line 70), ‘prop2’ (line 73), ‘prop3’ (line 76)
-*Main> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-
-main.hs:87:19: error:
-    • Variable not in scope: sort :: [Int] -> [Int]
-    • Perhaps you meant ‘sqrt’ (imported from Prelude)
-   |
-87 | prop5 sortfun l = sort l == sortfun l
-   |                   ^^^^
-Failed, three modules loaded.
-*Utils.Str> import Data.List
-*Utils.Str Data.List> :t sort
-sort :: Ord a => [a] -> [a]
-*Utils.Str Data.List> :t sort
-sort :: Ord a => [a] -> [a]
-*Utils.Str Data.List> import Data.List
-*Utils.Str Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck (prop5 qs)
-*** Failed! Falsified (after 6 tests and 2 shrinks):
-[2,2]
-*Main Data.List> sort [2, 2]
-[2,2]
-*Main Data.List> qs [2, 2]
-[2]
-*Main Data.List> quickCheck (prop5 qs')
-*** Failed! Falsified (after 9 tests and 4 shrinks):
-[2,2]
-*Main Data.List> quickCheck (prop5 qs'')
-*** Failed! Falsified (after 3 tests and 3 shrinks):
-[0]
-*Main Data.List> qs'' [0]
-[1]
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck (prop5 qs''')
-*** Failed! Falsified (after 8 tests and 6 shrinks):
-[0,0,-1]
-*Main Data.List> qs''' [0, 0, -1]
-[0,-1,0]
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck (prop5 qs''')
-+++ OK, passed 100 tests.
-*Main Data.List> replicate
-
-<interactive>:97:1: error:
-    • No instance for (Show (Int -> a0 -> [a0]))
+<interactive>:1:1: error:
+    • No instance for (Show ([a0] -> [a0]))
         arising from a use of ‘print’
         (maybe you haven't applied a function to enough arguments?)
     • In a stmt of an interactive GHCi command: print it
-*Main Data.List> :t replicate
-replicate :: Int -> a -> [a]
-*Main Data.List> replicate 10 'a'
-"aaaaaaaaaa"
-*Main Data.List> replicate 10 0
-[0,0,0,0,0,0,0,0,0,0]
-*Main Data.List> [0, 5, 6, 9] !! 2
+ghci> reverse [1,2,3]
+reverse [1,2,3]
+[3,2,1]
+ghci> let r = (reverse :: [Int] -> [Int])
+let r = (reverse :: [Int] -> [Int])
+ghci> r
+r
+
+<interactive>:4:1: error:
+    • No instance for (Show ([Int] -> [Int]))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :t r
+:t r
+
+<interactive>:1:1: error: Variable not in scope: r
+ghci> let r = (reverse :: [Int] -> [Int])
+let r = (reverse :: [Int] -> [Int])
+ghci> :t r
+:t r
+r :: [Int] -> [Int]
+ghci> r [1,2,3]
+r [1,2,3]
+[3,2,1]
+ghci> r [True, False]
+r [True, False]
+
+<interactive>:10:4: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the expression: True
+      In the first argument of ‘r’, namely ‘[True, False]’
+      In the expression: r [True, False]
+
+<interactive>:10:10: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the expression: False
+      In the first argument of ‘r’, namely ‘[True, False]’
+      In the expression: r [True, False]
+ghci> r [1, 2, 3]
+r [1, 2, 3]
+[3,2,1]
+ghci> ec main.hs 
+ec main.hs 
+
+<interactive>:12:1: error:
+    Variable not in scope: ec :: t0 -> b0 -> c
+
+<interactive>:12:4: error:
+    Variable not in scope: main
+    Suggested fix: Perhaps use ‘min’ (imported from Prelude)
+
+<interactive>:12:9: error: Variable not in scope: hs :: a -> b0
+ghci> :!ec main.hs
+:!ec main.hs
+/bin/sh: ec: command not found
+ghci> :l main
+:l main
+[1 of 4] Compiling Lib.Intreg       ( Lib/Intreg.hs, interpreted )
+[2 of 4] Compiling Nat              ( Nat.hs, interpreted )
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> test1
+test1
+True
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> test 1
+test 1
+
+<interactive>:17:1: error:
+    Variable not in scope: test :: t0 -> t
+    Suggested fix:
+      Perhaps use one of these: ‘test1’ (line 6), ‘test2’ (line 7)
+ghci> test1
+test1
+True
+ghci> test2
+test2
+True
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> test3
+test3
+True
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> test4
+test4
+True
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> test5 [1, 3, 4]
+test5 [1, 3, 4]
+True
+ghci> test5 [7, 10, 12]
+test5 [7, 10, 12]
+True
+ghci> import Test.QuickCheck
+import Test.QuickCheck
+ghci> quickCheck test5
+quickCheck test5
++++ OK, passed 100 tests.
+ghci> verboseCheck test5
+verboseCheck test5
+Passed:
+[]
+
+Passed:
+[0]
+
+Passed:
+[-1]
+
+Passed:
+[3]
+
+Passed:
+[1,-4]
+
+Passed:
+[-3]
+
+Passed:
+[1,1]
+
+Passed:
+[-2,3,-4,-6,3]
+
+Passed:
+[-6,-5]
+
+Passed:
+[4,1,1,1]
+
+Passed:
+[5,10,-7]
+
+Passed:
+[-8,5,1,1]
+
+Passed:
+[2]
+
+Passed:
+[-3,10,3,-3,-12]
+
+Passed:
+[-14,0,-9]
+
+Passed:
+[15,14,8,-13,-8,-15]
+
+Passed:
+[-2,-14,-13,15,-5,-5,7,2,8,-14]
+
+Passed:
+[5,6,-3,-9,-7,-5,2,16,7,14,-13,-15,-12,-17,9,-10]
+
+Passed:
+[4,15,-15,-16,16,9,-15,10,12,0,-1,14,14,9,-18,-4]
+
+Passed:
+[-16,-7,-1,6,-6,-2,4,10,-18,-13,9,-10]
+
+Passed:
+[]
+
+Passed:
+[3,4,-4,10,-4,9,5,6,-20,20,-5,13,4,4,8]
+
+Passed:
+[-19,-22,-21,-1,-1,14,-11,6,4,1,-1,-6,-22,21,9,0,-6,9,18,-11,19]
+
+Passed:
+[17,-1,10,-10,-11,-4,-22,-16,-16,-11,8,16,-23,-21,2]
+
+Passed:
+[15,0,3,6,24,9,-11,-18,21,20,5,-9,3,-1,19,16,-18,8,-19,1]
+
+Passed:
+[-24,12,-19,22,-12,25,-18,-25]
+
+Passed:
+[-10,-17,17,14,-12,14,18,-2,-25,-4,22,3,-15,-16,17,2,-6,3,13,4,-10,10,18]
+
+Passed:
+[6,-6]
+
+Passed:
+[16,13,-19,14,-9,3,-24,8,6,-25,12,17,19,-20]
+
+Passed:
+[-27,6,-12,-5,7,9,1,4,20,-18,-10,-28,-10,-15]
+
+Passed:
+[19,-2,20,18,-1,-21,-21,23,-10,-15,-28,-29,-10,19,-16,21,30,16,-20,27,22,-4,-5,-15,27,-22,-21,-30,-10,11]
+
+Passed:
+[-17,8,-16,-18,29,-25,-26,7,-24,2,-28,17,-16,-19,-9,-12,2,22,9,0,3,31]
+
+Passed:
+[-16,-19,-3,-16,3,-4,-27,-2,-18,-13,21,-22,28,20,-30,-22,-21]
+
+Passed:
+[-2,0,-8,23,-27,-20,-33,4,13,-16,7]
+
+Passed:
+[-22,7,-26,-19,-5,26,-30,-27]
+
+Passed:
+[10,-4,-33,-15,0,8,-13,1,10,19,-2,32,-20,2,30,7]
+
+Passed:
+[-31,-19,-36,5,6,25,3,-34,-3,-21,-32,5,28,-4,15,27,-15,-6,-4,12,36,-18,-29,-24,23,-6,5,-2,5,11,-32,-28,-5,-9]
+
+Passed:
+[15,-15,20,-18,-13]
+
+Passed:
+[-7,12,-7,-24]
+
+Passed:
+[37,-39,-18]
+
+Passed:
+[26,-14,-36,37,-37,-32,38,12,-25,0,34,23,-8]
+
+Passed:
+[8,7,40,-22,22,-28,-32,11,28,11,30,-28,25,33,-10,0,28,36,33,30,-12,13,24,16,-40,-21,-34,31,5,-40,33,34,-19,0,-28,29]
+
+Passed:
+[-11,32,-38,-38,38,29,27,41,18,32,-41,-13,-37,41,13,7,17]
+
+Passed:
+[-17,-39,-29,32,39,37,4,-6,9]
+
+Passed:
+[5,21,-35,1,-29,3,0,-27,7,31,41,43,7,-6,13,-7,-28,6,40,31,2,20,15,1,9]
+
+Passed:
+[27]
+
+Passed:
+[-19,-20,10,13,40,22,44,-14,23,2,17,17,-18,-36,-31,40,-13,-32,1,34,21,44,-16,2,19,41,-10,8,14,-31,40,-26,-17,19,16]
+
+Passed:
+[10,47,-31,5,-36,-33,11,-31,14,11,-19,-31,-39]
+
+Passed:
+[19,-13,-32,-25,15,-15,-13,-10,15,13,15,29,16,45,-35,22,-40,47,-9,32,15,-27,14,34,22,-43,-37,-13,-16,-26,-46,-48,-36,-39,22,33,-44,-45,-37,-22,25,-32,-22]
+
+Passed:
+[37,3,22,-41,-42,36,-28,-37]
+
+Passed:
+[27,13,-37,-40,-7,20,43,-4,11,7,49,-23,48,-43,-28,12,-45,1,-12,-2,3,-33,15,-43,6,9,4,14,-28,49,-29,30,-47,-19,-14,-17,17,-16,21,22,32,50,34,-24]
+
+Passed:
+[-45,-44,-16,-30,27,17,34,-13,-42,-49,-36,-23,8,-40,-22,-8,-20,24,1,-39,-6,-9,1,48,-4,42]
+
+Passed:
+[18,2,-1,-25,51,1,-17,-16,41,-16,10,40,17,-4,-3,26,20,45,1,-12,3,-13,-40,-35,51,15,-4,26,-43,-31,-18,-28,-11,-21,16,32,-15,36,-24,20,19,10,41,-16,-21,-9,-52,-4,-43,13,-37,33]
+
+Passed:
+[27,53,-1,-40,26,-18,-29,-8,13,-43,44,-35,48,-40,14,-43,3,3,-27,-22,3,-2,34,24,-5,43,-51,40]
+
+Passed:
+[15,40,3,-31,-21,-38,50,-33,-48,46,-22,17,14,-14,-24,-10,51,41,28,-33,53,8,2,-5,-49,-12,37,-25,14,16,-3,-51,-54,-20,-20,35,-13,5,12]
+
+Passed:
+[20,-52,-26,39,22,43,-29,7,36,-39,19,-2,-47,-41,-2,-38,-2,-7,52,-42,49,-30,-8,33,26,22,9,-40,29,45,38,-20,19,-51,39,-44,-20,53,13,22,-30,-46,28,-38,-17,36,-49]
+
+Passed:
+[30,-13,-54,-55,12,48,-20,-55,-34,40,51,-30,-11,-21,10,-32,-16,-34,52,36,56,18,-26,38,34,21,-36,3,-7,-24,40,-22,2,16,50,-17,26,12]
+
+Passed:
+[-3,-18,-44,14,46,-47,-43,-38,-41,25,-54,-45,21,-23,14,18,-46,40,-22,38,3]
+
+Passed:
+[-13,16,50,-25,-31,-10,42,24,31,17]
+
+Passed:
+[-39,-59,-7,-6,31,17,17,11,-31,58,21,29,12,29,20,55,-8,-44,13,31,49,24,-56,51,-11,-30,51,31,27,45,-29,-30,12,17,20]
+
+Passed:
+[45,53,6,7,19,18,25,27,21,22,33,23,-48,37,-7,2]
+
+Passed:
+[27,13,-25,13,-24,-27,41,40,-36,42,30,-55,51,-13,-51,8,-61,8,-11,-16,-58,59,35,52,-26,-20,20,10,16]
+
+Passed:
+[-2,60,14,61,29,-44,-44,4,-21,57,59,-49,9,48,-22,-12,-29,23,11,7,-39,46,-43,-37,-5,-30,29,29,31,39,23,43]
+
+Passed:
+[4,42,39,-60,16,16,-35,-29,-16,36,-16,-37,47]
+
+Passed:
+[-58,11,-8,31,-31,38,10,-36,-21,-53,-63,51,17,-28,35,-6,7,63,42,-4,-60,-4,-4,-43,6,8,-54,-1,-16,13,30,49,50,31,-60]
+
+Passed:
+[25,28,50,-43,62,22,28,-59,29,50,10,-29,46,32,56,4,0,-5,25,17,38,-14,-49,-45,36,2,-28,13,-30,-64,53,38,-29,2,30,31,-22,-46,-39,24,-7,-20,58,35,-35,-35]
+
+Passed:
+[-27,19,32,-7,61,53,-23,-37,-6,56,-27,33,-62,1,-47,64,-23,12,-9,-46,-65,-65,-35,14,-34,48,20,-3,14]
+
+Passed:
+[-64,47,33,62,-29,54,-64,-67,-48,8,62,-12,6,60,17,-26,-46,29,-31,-31,-64,-41,-41,-17,18,22,39,48,6,65,46,-3,-50,-55,47,21,60,-34,66,-60,-14,66,13,11,11,-45,-2,8,-3,-38,-62,66,-33,44,-20,58]
+
+Passed:
+[-7,23,-50,-64,0,32,2,52,10,-9,33,8,26,-19,11,-56,-48,-44,66,29,59,67,-46,-12,44,51,58,-17,59,-59,-56,-1,-24,-63,-64,36,-45,-48,57,-14,-50,-52,-41,-46,-36,62,67,48,-66,43,-64,-36,27,40,-27,-48,-33,67,-15,63,9,49,-65]
+
+Passed:
+[-13,-43,-47,58,10,-43,-7,-18,-20,-3,6,-28,-12,56,38,-37,46,-53,-9,-59,-36,24,-1,-29,44,64,41,50,-28,42,8,-69,-55,17,-55,-69,-17,0,4]
+
+Passed:
+[30,66,-41,61,-28,-8,-52,-7,-36,-65,-9,5,64,66,-15,-63,-63,17,22,9,29,38,35,28,-48,45,-52,-34,26,46,-66,40,-1,-45,-42,-41,-59,65,-33,55,31,-39,-29,-8,-18]
+
+Passed:
+[31,9,29,60,18,40,-41,-30,31,15,39,54,5,-58,-45,-42,17,45,18,-42,-50,5,9,-16,69,46,57,71,3,-51,32,-63,21,-11]
+
+Passed:
+[47,27,-71,-37,-29,-59,68,28,39,54,-19,39,-6,47,-41,11,-49,-57,21,-28,70,-70,-52,14,13,-1,0,-11,-42,-27,-49,29,59,32,-63,46,59,54,41,-21,57,64,-61,-6,-69]
+
+Passed:
+[32,59,67,-61,62,-30,46,-34,-19,0,40,3,-52,-26,-56,62,12,-71,-22,-9,39,13,44,-3,40,61,-52,-33,51,66,-57,41,-71,-68,12,69]
+
+Passed:
+[-49,-70,58,58,41,45,-14,-50,-43,55,-17,42,1,-72,-5,3,-4,-13,-51,1,37,66,-15,74,24,-51,-39,63,-50,-30,-70,62,36,-61,-54,12,-42,-39,-19,34,51,46,-18,-52,16,63,-53,-70,61,-1,-14,-42,1,-29,-22,61,36,68,57,36,-60,-9,-13,-58,31,-40,19,42,15,-41,-30,71,27]
+
+Passed:
+[5,29,-51,-3,-23,-56,72,52,-54,27,-46,-60,63,57,2,-44,-35,-2,-44,21,-2,42,72,24,70,-45,-38,-13,73,-28,-47,-31,-15,51,-60,-30,-58,16,30,35,62,54,21,-66,-33,-40,-30,42,32,-59,-66,24,-44,-30,7,-64,57,-74,43,10]
+
+Passed:
+[-5,-75,62,43,68,-59,-8,23,47,-16,74,-34,-54,-73,5,1,9,20,-12,12,-57,47,68,24,43,-75,15,-23,71,-70,43,-47,-66,-76,6,25,21,-15,11,47,-37,-10,-16,65,68,-6,-57,10,4,-58,-41,-49,32,-68,52,20,75,11,-52,-12,-47,-4,-74,67,67,-24,11]
+
+Passed:
+[68,63,56,75,-36,63,46,-20,68,64,27,51,21,41,23,-8,-2,-40,48,-6,14,43,21,34,-3,-35,47,-68,-45,14,-18,-77,29,52,37,-29,-69,13,41,-71,-9,76,-12,24,55,-38,30,55,-16,67,50,-30,-31,48,-32,41,-56,-26,54,3,28,52,41,-24,-75,69,-22,-5,14,19,52,53]
+
+Passed:
+[-55,-74,-43,-31,48,-4,-22,11,58,17,5,67,60,-37,-76,-55,-76,-8,42,31,-4,36,-26,3,34,56,53,20,43,-68,-77,61,-70,57,77]
+
+Passed:
+[12,-61,40,-43,-27,72,-42,-2,-52,-71,-43,59,-68,42,78,-74,-22,-63,-9,-28,-55,23,73,-8,66,44,-21,40,77,45,27,8,-23,42,24,69,-37,-9,-39,-71,6,-68]
+
+Passed:
+[-33,-31,-33,-64,40,39,77,18,45,-13,5,68,-63,-37,73,68,15,69,56,-39,47,-66,-44,-9,28,44,28,-55,35,7,16,-56,-13,-27,-42,62,-40,51,-30,65,-11,-75,62,-9,-38,-80,-74,15,72,61,-35,-35,56,1,21,46,0,-50,-40,45,6,-26,-41,34,63,76,-33,-67,-57,-2,33]
+
+Passed:
+[77,-73,-74,-32,-77,-12,55,41,-16,48,-36,-37,48,48,52,25,43,78,-80,-45,63,17,9,-22,27,65,76,66]
+
+Passed:
+[-2,-45,-6,-71,3,79,21,11,31,-1,-79,-81,4,60]
+
+Passed:
+[34,-77,-7,45,-2,-65,-49,30,-50,-45,-63,31,45,38,-77,48,-32,-18,40,-2,-77,-11,36,30,37,67,79,46,-58,70,27,-78,12,16,-33,33,29,-4,0,-69,52,79,-18,67,-45,43,51,80,11,-81,-77,-12,-31,16,2,-30,-30,60,77,-4,72,41,26,81,-66,-80,-71,70,78,-19,-1,-44,12]
+
+Passed:
+[-30,33,-41,5,-2,17,77,-73,38,20,54,-21,-59,-25,-71,-27,82,-41,-3,17,52,-5,59,-42,-81,-35,-80,-20,-2,-73]
+
+Passed:
+[-9,-34,72,-13,77,-7,-62,31,60,21,-82,31,-85,-11,78,18,41,-8,-83,71,-29,0,6,-26,42,38,48,-85,39,55,29,73,81,63,-47,-46,63,-42,76,38,74,-69,3,-76,61,60,-75,-52,21,22,22,-13,73,-12,6,-82,-11,-68,-52,-5,-3,-53,17,52,-29,-45,-47,-44,-54,-66,-52,-58,0,-3]
+
+Passed:
+[79,-44,-83,71,-69,17,79,59,64,40,51,8,-18,-66,71,-25,78,30,-45,40,23,-22,9,23,86,14,64,22,-7,-51,-78,38,-54,17,5,-19,-41,27,-22,71,4,-14,-39,52,-31,-58,37,73,-10,-10,66,75,66,-86,-40,-7,-49,26,-61,-75,-14,-76,9,66,54,13,0,-14,14,28,74,53,-85,59,-64]
+
+Passed:
+[-57,53,-58,37,56,22,51,68,13,32,60,73,-11,75,3,-19,-27,-37,16,-3,49,-83,31,34,-76,46,-36,-48,60,-25,-28,-20]
+
+Passed:
+[57,-46,-73,-16,76,-5,6,42,-4,-66,84,48,56,-71,-65,-56,-74,-57,42,72,-58,76,79]
+
+Passed:
+[-18,58,-71,-77,50,-88,32,77,-85,-21,-53,-43,-85,49,26,-84,86,-79,54,72,24,-21,68,50,3,67,-37,-37,-62,66,-61,68,-65,-34,27,-9,-74,74,53,-21,49,-39,-70,-48,61,25,-66,-72,-31,38,-86,86,-72]
+
+Passed:
+[38,-27,-31,-65,18,19,14,-15,-55,-77,52,-74,40,-34,20,-15,-2,19,-66,-74,12,17,-76,72,87,-65,-50,-43,-59,-82,-79,-10,10,3,-14,-57,82,17,67,22,-68,88,81,-47,-30]
+
+Passed:
+[-18,12,42,-74,-58,89,91,16,-26,-37,19]
+
+Passed:
+[20,-56,23,47,-27,67,92,65,37,67,45,-18,57,-24,-76,-28,13,64,-29,71,-71,53,-23,-66,-74,68,-69,-66,53,-49,20,25,32,-60,85,-22,-19,-88,-70,74,-90,-42,-3,80,-16,-41,36,24,45,-3,-84,-20]
+
+Passed:
+[90,73,-1,1,-83,2,-49,-75,-13,-39,-14,29,-86,-3,-48,-23,87,-30,-29,-68,-61,91,10,91,-10,46,67,82,-82,-23,83,-22,-8,-70,21,-24,85,-74,-42,65,-22,-33,-78,-21,22,-72,-76,93,-25,91,-87,38,-45,-36,6,-27,-5,-9,-60,-88,-7,-50,-43,-63,-14,-66,19,-91,64,86,58,44,-34,-54,16,27,18,62,84,24,93,48,-71,-67,58,-26,-83,83]
+
+Passed:
+[70,-49,-36,19,22,6,-76,53,47,-41,-11,-58,-61,-52,75,50,78,29,-79,79,-68,36,33,73,67,26,68,31,50,76,-33,1,-71,-15,-63,-20,71,17,50,47,-86,39,22,-74]
+
+Passed:
+[-87,38]
+
+Passed:
+[48,-49,89,6,-22,-95,27,-95,-37,66,-34,34,95,94,44,-3,80,-71,-92,-40,-13,-50,53,-43,-86,34,-28,92,-31,35,76,53,-55,43,-86,-51,-61,5,-46,-29,-94,-11,-16,88,62,19,-28,-77,63,36,-7,48,-66,96,-50,-31,94,79,74,89,87,-51,55,-45,75,46,-42,23,46,-49,82,15,-77,-1,26,70,-91,88,-26,-65,17,79,-35,-52,33,-92,93,3,68,-5,51,-94,-65,55]
+
+Passed:
+[-47,93,-25,-48,-88,50,88,21,-37,-70,23,-57,-34,-47,-71,-71,-68,63,7,95,61,-86,-87,-88,78,-7,-58,-64,93,19,32,-78,11,-85,48,-93,-50,-43,-40,-64,-8,-24,-28,-52,-89,-13,93,-4,-59,-27,-9,-38,-34,39,12,-4,-63,37,24,25,-2,-21,21,-73,-90,-69,-43,59,-45,-42,-81,53,-16,94,31,-46,76,-55,-33,90,-70,-45]
+
+Passed:
+[-27,87,53,72,53,25,-69,-50,55,-31,-66,-17,-87,-84,-90,42,37,-67,76,-59,-94,1,36,88,38,97,3,45,-83,60,85,-43,-12,-28,37,-43,69,39,-24,41,-85,60,26,-44,33,56,97,35,45,-29,-55,88,-82,-1]
+
+Passed:
+[-81,-37]
+
++++ OK, passed 100 tests.
+ghci> quickCheck test5
+quickCheck test5
++++ OK, passed 100 tests.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> qs [3, 1, 5]
+qs [3, 1, 5]
+[1,3,5]
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> sorted [1,3,4]
+sorted [1,3,4]
+True
+ghci> sorted [1,4,3,4]
+sorted [1,4,3,4]
+False
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck qs
+quickCheck qs
+
+<interactive>:37:1: error:
+    • No instance for (Testable [Int])
+        arising from a use of ‘quickCheck’
+    • In the expression: quickCheck qs
+      In an equation for ‘it’: it = quickCheck qs
+ghci> quickCheck prop1
+quickCheck prop1
+*** Failed! Falsified (after 7 tests and 7 shrinks):
+[0,0,-1]
+ghci> qs [0,0,-1]
+qs [0,0,-1]
+[0,-1,0]
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> :Lr
+:Lr
+unknown command ':Lr'
+use :? for help.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> quickCheck prop2
+quickCheck prop2
+*** Failed! Falsified (after 7 tests):
+[-4,-4]
+ghci> quickCheck prop2
+quickCheck prop2
+*** Failed! Falsified (after 16 tests and 4 shrinks):
+[-14,-14]
+ghci> quickCheck prop2
+quickCheck prop2
+*** Failed! Falsified (after 5 tests and 1 shrink):
+[4,4]
+ghci> qs [4,4]
+qs [4,4]
+[4]
+ghci> verboseCheck prop2
+verboseCheck prop2
+Passed:
+[]
+
+Passed:
+[]
+
+Passed:
+[2,-1]
+
+Passed:
+[]
+
+Failed:
+[2,2]
+
+Passed:
+[]
+
+Passed:
+[2]
+
+Passed:
+[2]
+
+Passed:
+[0,2]
+
+Passed:
+[1,2]
+
+Passed:
+[2,0]
+
+Passed:
+[2,1]
+
+*** Failed! Falsified (after 5 tests):
+[2,2]
+ghci> verboseCheck prop2
+verboseCheck prop2
+Passed:
+[]
+
+Passed:
+[1]
+
+Passed:
+[0,1]
+
+Failed:
+[-3,2,2]
+
+Passed:
+[]
+
+Failed:
+[2,2]
+
+Passed:
+[]
+
+Passed:
+[2]
+
+Passed:
+[2]
+
+Passed:
+[0,2]
+
+Passed:
+[1,2]
+
+Passed:
+[2,0]
+
+Passed:
+[2,1]
+
+*** Failed! Falsified (after 4 tests and 1 shrink):
+[2,2]
+ghci> verboseCheck prop2
+verboseCheck prop2
+Passed:
+[]
+
+Passed:
+[]
+
+Passed:
+[]
+
+Passed:
+[1,-1,0]
+
+Failed:
+[4,4,0]
+
+Passed:
+[]
+
+Passed:
+[4,0]
+
+Passed:
+[4,0]
+
+Failed:
+[4,4]
+
+Passed:
+[]
+
+Passed:
+[4]
+
+Passed:
+[4]
+
+Passed:
+[0,4]
+
+Passed:
+[2,4]
+
+Passed:
+[3,4]
+
+Passed:
+[4,0]
+
+Passed:
+[4,2]
+
+Passed:
+[4,3]
+
+*** Failed! Falsified (after 5 tests and 1 shrink):
+[4,4]
+ghci> verboseCheck prop2
+verboseCheck prop2
+Passed:
+[]
+
+Passed:
+[]
+
+Passed:
+[0]
+
+Passed:
+[-1,-3]
+
+Passed:
+[-2,4,0,2]
+
+Passed:
+[2,5,0,3,4]
+
+Passed:
+[2]
+
+Failed:
+[-4,-5,-5,4,-4]
+
+Passed:
+[]
+
+Passed:
+[-5,4,-4]
+
+Failed:
+[-4,-5,-4]
+
+Passed:
+[]
+
+Passed:
+[-5,-4]
+
+Failed:
+[-4,-4]
+
+Passed:
+[]
+
+Passed:
+[-4]
+
+Passed:
+[-4]
+
+Passed:
+[4,-4]
+
+Passed:
+[0,-4]
+
+Passed:
+[-2,-4]
+
+Passed:
+[-3,-4]
+
+Passed:
+[-4,4]
+
+Passed:
+[-4,0]
+
+Passed:
+[-4,-2]
+
+Passed:
+[-4,-3]
+
+*** Failed! Falsified (after 8 tests and 2 shrinks):
+[-4,-4]
+ghci> qs [4,4]
+qs [4,4]
+[4]
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop1
+quickCheck prop1
++++ OK, passed 100 tests.
+ghci> quickCheck prop2
+quickCheck prop2
++++ OK, passed 100 tests.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:6:20: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Nat’
+    • In the expression: x
+      In an equation for ‘convert’: convert (Succ x) = x
+  |
+6 | convert (Succ x) = x
+  |                    ^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> convert two
+convert two
+2
+ghci> convert three
+convert three
+3
+ghci> convert 3
+convert 3
+
+<interactive>:64:9: error:
+    • No instance for (Num Nat) arising from the literal ‘3’
+    • In the first argument of ‘convert’, namely ‘3’
+      In the expression: convert 3
+      In an equation for ‘it’: it = convert 3
+ghci> convert' 3
+convert' 3
+Succ (Succ (Succ Zero))
+ghci> convert' 10
+convert' 10
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:31:1: error:
+    Multiple declarations of ‘prop1’
+    Declared at: main.hs:12:1
+                 main.hs:31:1
+   |
+31 | prop1 l = sorted (qs l)
+   | ^^^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> quickCheck prop1_nat
+quickCheck prop1_nat
+  C-c C-c^C
+
+  C-c C-c^CInterrupted.
+ghci>   C-c C-c
+ghci>   C-c C-c
+ghci>   C-c C-c
+ghci>   C-c C-c
+ghci> verboseCheck prop1_nat
+verboseCheck prop1_nat
+Passed:
+0
+
+Passed:
+0
+
+Passed:
+2
+
+Passed:
+2
+
+Passed:
+0
+
+Passed:
+4
+
+  C-c C-c^C  C-c C-c^C  C-c C-c^C  C-c C-c^C  C-c C-c^Cghci>   C-c C-c
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop1_nat
+quickCheck prop1_nat
+*** Failed! (after 4 tests and 1 shrink):
+Exception:
+  Horror!
+  CallStack (from HasCallStack):
+    error, called at main.hs:9:22 in main:Main
+-1
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop2_nat
+quickCheck prop2_nat
++++ OK, passed 100 tests.
+ghci verboseCheck prop2_nat
+ verboseCheck prop2_nat
+Passed:
+0
+
+Passed:
+-1
+
+Passed:
+2
+
+Passed:
+2
+
+Passed:
+4
+
+Passed:
+5
+
+Passed:
+1
+
+Passed:
+2
+
+Passed:
+-1
+
+Passed:
+-5
+
+Passed:
+3
+
+Passed:
+10
+
+Passed:
+9
+
+Passed:
 6
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck prop6
+
+Passed:
+-2
+
+Passed:
+1
+
+Passed:
+-11
+
+Passed:
+-4
+
+Passed:
+6
+
+Passed:
+1
+
+Passed:
+-13
+
+Passed:
+-15
+
+Passed:
+-10
+
+Passed:
+14
+
+Passed:
+23
+
+Passed:
+8
+
+Passed:
+-16
+
+Passed:
+-10
+
+Passed:
+-8
+
+Passed:
+-21
+
+Passed:
+29
+
+Passed:
+-29
+
+Passed:
+-22
+
+Passed:
+12
+
+Passed:
+22
+
+Passed:
+33
+
+Passed:
+-9
+
+Passed:
+3
+
+Passed:
+-7
+
+Passed:
+-18
+
+Passed:
+-13
+
+Passed:
+41
+
+Passed:
+24
+
+Passed:
+-43
+
+Passed:
+-23
+
+Passed:
+-4
+
+Passed:
+17
+
+Passed:
+-30
+
+Passed:
+-19
+
+Passed:
+-10
+
+Passed:
+22
+
+Passed:
+25
+
+Passed:
+-51
+
+Passed:
+-5
+
+Passed:
+1
+
+Passed:
+-32
+
+Passed:
+-50
+
+Passed:
+-2
+
+Passed:
+-51
+
+Passed:
+12
+
+Passed:
+-7
+
+Passed:
+-34
+
+Passed:
+-9
+
+Passed:
+44
+
+Passed:
+44
+
+Passed:
+6
+
+Passed:
+8
+
+Passed:
+-54
+
+Passed:
+-50
+
+Passed:
+-55
+
+Passed:
+45
+
+Passed:
+-47
+
+Passed:
+44
+
+Passed:
+-49
+
+Passed:
+-41
+
+Passed:
+-16
+
+Passed:
+-43
+
+Passed:
+-25
+
+Passed:
+45
+
+Passed:
+-43
+
+Passed:
+26
+
+Passed:
+7
+
+Passed:
+32
+
+Passed:
+-65
+
+Passed:
+65
+
+Passed:
+-49
+
+Passed:
+-46
+
+Passed:
+-57
+
+Passed:
+22
+
+Passed:
+-11
+
+Passed:
+26
+
+Passed:
+31
+
+Passed:
+77
+
+Passed:
+-50
+
+Passed:
+53
+
+Passed:
+-37
+
+Passed:
+48
+
+Passed:
+49
+
+Passed:
+-69
+
+Passed:
+-17
+
 +++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck prop6
-*** Failed! Exception: 'Prelude.!!: index too large' (after 1 test):
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:15:22: error:
+    Variable not in scope: (==>) :: Bool -> Bool -> t
+    Suggested fix: Perhaps use ‘==’ (imported from Prelude)
+   |
+15 | prop3_nat x = x >= 0 ==> convert (convert' x) == x
+   |                      ^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+
+main.hs:16:22: error:
+    Variable not in scope: (==>) :: Bool -> Bool -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘==’ (imported from Prelude), ‘>=>’ (imported from Control.Monad)
+   |
+16 | prop3_nat x = x >= 0 ==> convert (convert' x) == x
+   |                      ^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> verboseCheck prop3_nat
+verboseCheck prop3_nat
+Passed:
 0
-0
-*Main Data.List> (replicate 0 0) !! 0
-*** Exception: Prelude.!!: index too large
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> quickCheck prop6
-*** Failed! Exception: 'Prelude.!!: index too large' (after 2 tests and 1 shrink):
+
+Passed:
+1
+
+Skipped (precondition false):
+-2
+
+Passed:
+1
+
+Passed:
+2
+
+Skipped (precondition false):
 -1
+
+Skipped (precondition false):
+-4
+
+Passed:
 0
-*Main Data.List> quickCheck prop6
-*** Failed! Exception: 'Prelude.!!: index too large' (after 5 tests and 4 shrinks):
+
+Passed:
+2
+
+Passed:
+3
+
+Skipped (precondition false):
+-3
+
+Skipped (precondition false):
+-3
+
+Skipped (precondition false):
+-4
+
+Skipped (precondition false):
+-3
+
+Passed:
+4
+
+Skipped (precondition false):
+-2
+
+Skipped (precondition false):
+-5
+
+Passed:
+7
+
+Skipped (precondition false):
+-2
+
+Passed:
+1
+
+Passed:
+10
+
+Skipped (precondition false):
+-5
+
+Passed:
+11
+
+Skipped (precondition false):
+-12
+
+Passed:
+12
+
+Skipped (precondition false):
+-13
+
+Passed:
+2
+
+Skipped (precondition false):
+-10
+
+Skipped (precondition false):
+-8
+
+Skipped (precondition false):
+-7
+
+Skipped (precondition false):
+-8
+
+Passed:
+1
+
+Skipped (precondition false):
+-12
+
+Skipped (precondition false):
 -1
+
+Skipped (precondition false):
+-6
+
+Skipped (precondition false):
+-9
+
+Skipped (precondition false):
+-14
+
+Skipped (precondition false):
+-2
+
+Passed:
+3
+
+Skipped (precondition false):
+-13
+
+Skipped (precondition false):
+-2
+
+Skipped (precondition false):
+-6
+
+Skipped (precondition false):
+-6
+
+Passed:
+16
+
+Skipped (precondition false):
+-4
+
+Skipped (precondition false):
+-11
+
+Skipped (precondition false):
+-9
+
+Skipped (precondition false):
+-3
+
+Passed:
+15
+
+Skipped (precondition false):
+-7
+
+Skipped (precondition false):
+-13
+
+Skipped (precondition false):
+-3
+
+Passed:
+1
+
+Skipped (precondition false):
+-4
+
+Skipped (precondition false):
+-12
+
+Passed:
+2
+
+Passed:
+12
+
+Passed:
+7
+
+Passed:
+14
+
+Passed:
+9
+
+Passed:
+18
+
+Skipped (precondition false):
+-14
+
+Skipped (precondition false):
+-5
+
+Skipped (precondition false):
+-12
+
+Skipped (precondition false):
+-10
+
+Passed:
+6
+
+Passed:
+21
+
+Passed:
+25
+
+Passed:
+18
+
+Skipped (precondition false):
+-29
+
+Skipped (precondition false):
+-18
+
+Skipped (precondition false):
+-26
+
+Passed:
+8
+
+Passed:
+5
+
+Skipped (precondition false):
+-6
+
+Passed:
+2
+
+Passed:
+30
+
+Passed:
+26
+
+Passed:
+7
+
+Skipped (precondition false):
+-11
+
+Skipped (precondition false):
+-7
+
+Passed:
+35
+
+Skipped (precondition false):
+-27
+
+Passed:
+35
+
+Skipped (precondition false):
+-19
+
+Passed:
+35
+
+Passed:
+29
+
+Skipped (precondition false):
+-25
+
+Skipped (precondition false):
+-9
+
+Passed:
+38
+
+Skipped (precondition false):
+-19
+
+Skipped (precondition false):
+-10
+
+Passed:
+7
+
+Passed:
+19
+
+Passed:
+18
+
+Passed:
+40
+
+Skipped (precondition false):
+-22
+
+Passed:
+44
+
+Skipped (precondition false):
+-24
+
+Skipped (precondition false):
+-13
+
+Skipped (precondition false):
+-25
+
+Skipped (precondition false):
+-6
+
+Skipped (precondition false):
+-13
+
+Skipped (precondition false):
+-15
+
+Passed:
+3
+
+Passed:
+14
+
+Passed:
 0
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> :r
-Ok, four modules loaded.
-*Main Data.List> quickCheck prop6
+
+Passed:
+44
+
+Passed:
+22
+
+Passed:
+0
+
+Passed:
+7
+
+Passed:
+22
+
+Skipped (precondition false):
+-15
+
+Skipped (precondition false):
+-20
+
+Skipped (precondition false):
+-49
+
+Passed:
+5
+
+Skipped (precondition false):
+-23
+
+Passed:
+47
+
+Passed:
+38
+
+Passed:
+47
+
+Passed:
+2
+
+Passed:
+6
+
+Skipped (precondition false):
+-19
+
+Passed:
+4
+
+Passed:
+59
+
+Passed:
+18
+
+Skipped (precondition false):
+-19
+
+Passed:
+6
+
+Passed:
+38
+
+Skipped (precondition false):
+-47
+
+Passed:
+29
+
+Passed:
+15
+
+Skipped (precondition false):
+-47
+
+Passed:
+26
+
+Passed:
+60
+
+Passed:
+25
+
+Passed:
+25
+
+Passed:
+33
+
+Skipped (precondition false):
+-55
+
+Skipped (precondition false):
+-38
+
+Passed:
+27
+
+Passed:
+52
+
+Passed:
+55
+
+Skipped (precondition false):
+-9
+
+Passed:
+39
+
+Passed:
+73
+
+Passed:
+59
+
+Passed:
+50
+
+Skipped (precondition false):
+-2
+
+Passed:
+37
+
+Passed:
+72
+
+Passed:
+64
+
+Passed:
+61
+
+Skipped (precondition false):
+-14
+
+Passed:
+30
+
+Skipped (precondition false):
+-17
+
+Passed:
+0
+
+Skipped (precondition false):
+-58
+
+Passed:
+56
+
+Skipped (precondition false):
+-68
+
+Passed:
+33
+
+Skipped (precondition false):
+-14
+
+Skipped (precondition false):
+-33
+
+Passed:
+23
+
+Passed:
+39
+
+Skipped (precondition false):
+-88
+
+Skipped (precondition false):
+-86
+
+Passed:
+48
+
+Passed:
+39
+
+Skipped (precondition false):
+-25
+
+Passed:
+87
+
+Skipped (precondition false):
+-11
+
+Passed:
+49
+
+Passed:
+19
+
+Passed:
+54
+
+Passed:
+91
+
+Skipped (precondition false):
+-4
+
+Passed:
+0
+
+Skipped (precondition false):
+-12
+
+Passed:
+55
+
+Skipped (precondition false):
+-43
+
+Passed:
+45
+
+Passed:
+14
+
+Skipped (precondition false):
+-74
+
+Skipped (precondition false):
+-47
+
+Passed:
+89
+
++++ OK, passed 100 tests; 86 discarded.
+ghci> :t trivial
+:t trivial
+
+<interactive>:1:1: error: Variable not in scope: trivial
+ghci> import Test.QuickCheck
+import Test.QuickCheck
+ghci> :t trivial
+:t trivial
+
+<interactive>:1:1: error: Variable not in scope: trivial
+ghci> :t collect
+:t collect
+collect :: (Show a, Testable prop) => a -> prop -> Property
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop4_nat
+quickCheck prop4_nat
++++ OK, passed 100 tests; 108 discarded:
+ 5% 18
+ 5% 4
+ 5% 5
+ 4% 0
+ 4% 2
+ 4% 3
+ 4% 7
+ 3% 1
+ 3% 11
+ 3% 15
+ 3% 20
+ 3% 35
+ 3% 50
+ 3% 9
+ 2% 12
+ 2% 19
+ 2% 22
+ 2% 23
+ 2% 27
+ 2% 28
+ 2% 31
+ 2% 37
+ 2% 38
+ 2% 39
+ 2% 42
+ 2% 43
+ 2% 6
+ 1% 10
+ 1% 13
+ 1% 21
+ 1% 24
+ 1% 30
+ 1% 33
+ 1% 34
+ 1% 36
+ 1% 40
+ 1% 41
+ 1% 44
+ 1% 46
+ 1% 48
+ 1% 52
+ 1% 54
+ 1% 59
+ 1% 63
+ 1% 77
+ 1% 78
+ 1% 81
+ 1% 82
+ 1% 86
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop5_nat
+quickCheck prop5_nat
++++ OK, passed 100 tests:
+51% False
+49% True
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:20:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘prop5_nat’: prop5_nat x = ...
+   |
+20 | prop5_nat x = collect (x < 0) $ x < 0 ==> (convert (convert' x)) == x
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Ok, three modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop5_nat
+quickCheck prop5_nat
++++ OK, passed 100 tests:
+61% False
+39% True
+ghci> quickCheck prop6_nat
+quickCheck prop6_nat
+*** Failed! (after 1 test):
+Exception:
+  Horror!
+  CallStack (from HasCallStack):
+    error, called at main.hs:11:22 in main:Main
+-1
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+Ok, three modules loaded.
+ghci> quickCheck prop6_nat
+quickCheck prop6_nat
++++ OK, passed 100 tests; 106 discarded (100% False).
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:23:37: error:
+    • No instance for (Eq Nat) arising from a use of ‘==’
+    • In the expression: convert' (convert x) == x
+      In an equation for ‘prop10_nat’:
+          prop10_nat x = convert' (convert x) == x
+   |
+23 | prop10_nat x = convert' (convert x) == x
+   |                                     ^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[2 of 4] Compiling Nat              ( Nat.hs, interpreted ) [Source file changed]
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> quickCheck prop10_nat
+quickCheck prop10_nat
+
+<interactive>:96:1: error:
+    • No instance for (Arbitrary Nat)
+        arising from a use of ‘quickCheck’
+    • In the expression: quickCheck prop10_nat
+      In an equation for ‘it’: it = quickCheck prop10_nat
+ghci> :i Arbitrary
+:i Arbitrary
+type Arbitrary :: * -> Constraint
+class Arbitrary a where
+  arbitrary :: Gen a
+  shrink :: a -> [a]
+  {-# MINIMAL arbitrary #-}
+  	-- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary () -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (a, b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c) =>
+         Arbitrary (a, b, c)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d) =>
+         Arbitrary (a, b, c, d)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e) =>
+         Arbitrary (a, b, c, d, e)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f) =>
+         Arbitrary (a, b, c, d, e, f)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g) =>
+         Arbitrary (a, b, c, d, e, f, g)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h) =>
+         Arbitrary (a, b, c, d, e, f, g, h)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i,
+          Arbitrary j) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Bool -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Char -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Double -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (CoArbitrary a, Arbitrary b) => Arbitrary (a -> b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Float -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Int -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Integer
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary (Maybe a)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Ordering
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Word -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary [a]
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance [safe] (Function a, CoArbitrary a, Arbitrary b) =>
+                Arbitrary (Fun a b)
+  -- Defined in ‘Test.QuickCheck.Function’
+instance Arbitrary ASCIIString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Blind a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Fixed a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (InfiniteList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Integral a, Bounded a) => Arbitrary (Large a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Negative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (NonEmptyList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonNegative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonPositive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Eq a, Arbitrary a) => Arbitrary (NonZero a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Ord a, Arbitrary a) => Arbitrary (OrderedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Positive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary PrintableString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Shrink2 a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, ShrinkState s a) =>
+         Arbitrary (Shrinking s a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Integral a => Arbitrary (Small a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Smart a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, Ord a) => Arbitrary (SortedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary UnicodeString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+ghci> :i Gen
+:i Gen
+type Gen :: * -> *
+newtype Gen a
+  = Test.QuickCheck.Gen.MkGen {Test.QuickCheck.Gen.unGen :: Test.QuickCheck.Random.QCGen
+                                                            -> Int -> a}
+  	-- Defined in ‘Test.QuickCheck.Gen’
+instance [safe] Testable prop => Testable (Gen prop)
+  -- Defined in ‘Test.QuickCheck.Property’
+instance [safe] Applicative Gen -- Defined in ‘Test.QuickCheck.Gen’
+instance [safe] Functor Gen -- Defined in ‘Test.QuickCheck.Gen’
+instance [safe] Monad Gen -- Defined in ‘Test.QuickCheck.Gen’
+ghci> :i Arbitrary
+:i Arbitrary
+type Arbitrary :: * -> Constraint
+class Arbitrary a where
+  arbitrary :: Gen a
+  shrink :: a -> [a]
+  {-# MINIMAL arbitrary #-}
+  	-- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary () -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (a, b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c) =>
+         Arbitrary (a, b, c)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d) =>
+         Arbitrary (a, b, c, d)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e) =>
+         Arbitrary (a, b, c, d, e)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f) =>
+         Arbitrary (a, b, c, d, e, f)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g) =>
+         Arbitrary (a, b, c, d, e, f, g)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h) =>
+         Arbitrary (a, b, c, d, e, f, g, h)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i,
+          Arbitrary j) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Bool -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Char -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Double -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (CoArbitrary a, Arbitrary b) => Arbitrary (a -> b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Float -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Int -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Integer
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary (Maybe a)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Ordering
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Word -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary [a]
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance [safe] (Function a, CoArbitrary a, Arbitrary b) =>
+                Arbitrary (Fun a b)
+  -- Defined in ‘Test.QuickCheck.Function’
+instance Arbitrary ASCIIString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Blind a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Fixed a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (InfiniteList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Integral a, Bounded a) => Arbitrary (Large a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Negative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (NonEmptyList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonNegative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonPositive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Eq a, Arbitrary a) => Arbitrary (NonZero a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Ord a, Arbitrary a) => Arbitrary (OrderedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Positive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary PrintableString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Shrink2 a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, ShrinkState s a) =>
+         Arbitrary (Shrinking s a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Integral a => Arbitrary (Small a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Smart a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, Ord a) => Arbitrary (SortedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary UnicodeString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:26:15: error:
+    Variable not in scope: oneOf :: [m0 Nat] -> Gen Nat
+    Suggested fix: Perhaps use ‘oneof’ (imported from Test.QuickCheck)
+   |
+26 |   arbitrary = oneOf [ return Zero, return (Succ Zero), return (Succ (Succ Zero)) ]
+   |               ^^^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> quickCheck prop10_nat
+quickCheck prop10_nat
 +++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
+ghci> verboseCheck prop10_nat
+verboseCheck prop10_nat
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Succ Zero
+
 +++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted ) [Source file changed]
+
+main.hs:26:23: error:
+    • Couldn't match expected type: Gen Nat
+                  with actual type: [m0 Nat]
+    • In the expression: map (\ x -> return (convert' x)) [0 .. 99]
+      In the first argument of ‘oneof’, namely
+        ‘[map (\ x -> return (convert' x)) [0 .. 99]]’
+      In the expression:
+        oneof [map (\ x -> return (convert' x)) [0 .. 99]]
+   |
+26 |   arbitrary = oneof [ map (\x -> return (convert' x)) [0..99] ] -- return Zero, return (Succ Zero), return (Succ (Succ Zero)) ]
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, two modules loaded.
+ghci> :r
+:r
+[3 of 4] Compiling Main             ( main.hs, interpreted )
+Ok, three modules loaded.
+ghci> verboseCheck prop10_nat
+verboseCheck prop10_nat
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ Zero
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ Zero))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ Zero))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ Zero)
+
+Passed:
+Zero
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))))))))))))))))))))))))))))))))))))))))
+
+Passed:
+Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))))))))
+
 +++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
+ghci> :i Arbitrary
+:i Arbitrary
+type Arbitrary :: * -> Constraint
+class Arbitrary a where
+  arbitrary :: Gen a
+  shrink :: a -> [a]
+  {-# MINIMAL arbitrary #-}
+  	-- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Nat -- Defined at main.hs:25:10
+instance Arbitrary () -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (a, b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c) =>
+         Arbitrary (a, b, c)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d) =>
+         Arbitrary (a, b, c, d)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e) =>
+         Arbitrary (a, b, c, d, e)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f) =>
+         Arbitrary (a, b, c, d, e, f)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g) =>
+         Arbitrary (a, b, c, d, e, f, g)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h) =>
+         Arbitrary (a, b, c, d, e, f, g, h)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b, Arbitrary c, Arbitrary d,
+          Arbitrary e, Arbitrary f, Arbitrary g, Arbitrary h, Arbitrary i,
+          Arbitrary j) =>
+         Arbitrary (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Bool -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Char -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Double -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance (CoArbitrary a, Arbitrary b) => Arbitrary (a -> b)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Float -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Int -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Integer
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary (Maybe a)
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Ordering
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary Word -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance Arbitrary a => Arbitrary [a]
+  -- Defined in ‘Test.QuickCheck.Arbitrary’
+instance [safe] (Function a, CoArbitrary a, Arbitrary b) =>
+                Arbitrary (Fun a b)
+  -- Defined in ‘Test.QuickCheck.Function’
+instance Arbitrary ASCIIString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Blind a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Fixed a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (InfiniteList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Integral a, Bounded a) => Arbitrary (Large a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Negative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (NonEmptyList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonNegative a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (NonPositive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Eq a, Arbitrary a) => Arbitrary (NonZero a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Ord a, Arbitrary a) => Arbitrary (OrderedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Num a, Ord a, Arbitrary a) => Arbitrary (Positive a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary PrintableString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Shrink2 a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, ShrinkState s a) =>
+         Arbitrary (Shrinking s a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Integral a => Arbitrary (Small a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary a => Arbitrary (Smart a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance (Arbitrary a, Ord a) => Arbitrary (SortedList a)
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+instance Arbitrary UnicodeString
+  -- Defined in ‘Test.QuickCheck.Modifiers’
+ghci> shrink [1, 2, 3]
+shrink [1, 2, 3]
+[[],[2,3],[1,3],[1,2],[0,2,3],[1,0,3],[1,1,3],[1,2,0],[1,2,2]]
+ghci> shrink [1, 2, 3, 4, 5]
+shrink [1, 2, 3, 4, 5]
+[[],[3,4,5],[1,2,5],[2,3,4,5],[1,3,4,5],[1,2,4,5],[1,2,3,5],[1,2,3,4],[0,2,3,4,5],[1,0,3,4,5],[1,1,3,4,5],[1,2,0,4,5],[1,2,2,4,5],[1,2,3,0,5],[1,2,3,2,5],[1,2,3,3,5],[1,2,3,4,0],[1,2,3,4,3],[1,2,3,4,4]]
+ghci> shrink [100, 200, 300, 400, 500]
+shrink [100, 200, 300, 400, 500]
+[[],[300,400,500],[100,200,500],[200,300,400,500],[100,300,400,500],[100,200,400,500],[100,200,300,500],[100,200,300,400],[0,200,300,400,500],[50,200,300,400,500],[75,200,300,400,500],[88,200,300,400,500],[94,200,300,400,500],[97,200,300,400,500],[99,200,300,400,500],[100,0,300,400,500],[100,100,300,400,500],[100,150,300,400,500],[100,175,300,400,500],[100,188,300,400,500],[100,194,300,400,500],[100,197,300,400,500],[100,199,300,400,500],[100,200,0,400,500],[100,200,150,400,500],[100,200,225,400,500],[100,200,263,400,500],[100,200,282,400,500],[100,200,291,400,500],[100,200,296,400,500],[100,200,298,400,500],[100,200,299,400,500],[100,200,300,0,500],[100,200,300,200,500],[100,200,300,300,500],[100,200,300,350,500],[100,200,300,375,500],[100,200,300,388,500],[100,200,300,394,500],[100,200,300,397,500],[100,200,300,399,500],[100,200,300,400,0],[100,200,300,400,250],[100,200,300,400,375],[100,200,300,400,438],[100,200,300,400,469],[100,200,300,400,485],[100,200,300,400,493],[100,200,300,400,497],[100,200,300,400,499]]
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt09 % cd numere
+cd numere
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere-0.1.0.0: unregistering (local file changes: test/Spec.hs)
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:1:1: error:
+    Could not load module ‘Test.QuickCheck’
+    It is a member of the hidden package ‘QuickCheck-2.14.3’.
+    Perhaps you need to add ‘QuickCheck’ to the build-depends in your .cabal file.
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+1 | import Test.QuickCheck
+  | ^^^^^^^^^^^^^^^^^^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % ls -al
+ls -al
+total 72
+drwxr-xr-x@ 15 stefan  staff   480 Apr 25 10:49 .
+drwxr-xr-x   6 stefan  staff   192 Apr 25 11:24 ..
+-rw-------@  1 stefan  staff    15 Apr 25 10:43 .gitignore
+drwxr-xr-x@  6 stefan  staff   192 Apr 25 10:51 .stack-work
+-rw-------@  1 stefan  staff   312 Apr 25 10:43 CHANGELOG.md
+-rw-------@  1 stefan  staff  1484 Apr 25 10:43 LICENSE
+-rw-------@  1 stefan  staff     9 Apr 25 10:43 README.md
+-rw-------@  1 stefan  staff    46 Apr 25 10:43 Setup.hs
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:43 app
+-rw-r--r--@  1 stefan  staff  2042 Apr 25 10:43 numere.cabal
+-rw-------@  1 stefan  staff  1372 Apr 25 10:48 package.yaml
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 10:50 src
+-rw-------@  1 stefan  staff  2209 Apr 25 10:43 stack.yaml
+-rw-------@  1 stefan  staff   541 Apr 25 10:49 stack.yaml.lock
+drwxr-xr-x@  3 stefan  staff    96 Apr 25 11:29 test
+stefan@stefans-MBP numere % ec package.yaml 
+ec package.yaml 
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> configure (lib + exe + test)
+Configuring numere-0.1.0.0...
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+[1 of 2] Compiling Lib
+[2 of 2] Compiling Paths_numere
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Lib package changed]
+[2 of 2] Compiling Paths_numere [Source file changed]
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-exe/numere-exe [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:1:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+  |
+1 | import Test.QuickCheck
+  | ^^^^^^^^^^^^^^^^^^^^^^
+[2 of 2] Compiling Paths_numere [Source file changed]
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-test/numere-test [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-5K7YJrUWI7MAkPikJPZQ7P
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+numere> test (suite: numere-test)
+
+Test suite not yet implemented! Make sure to test!
+
+numere> Test suite numere-test passed
+Completed 2 action(s).
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere-0.1.0.0: unregistering (local file changes: .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/autogen/Paths_numere.hs .stack-work/dist/x86_64-...)
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:8:3: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘quickCheck’
+      prevents the constraint ‘(Arbitrary a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        instance Arbitrary Ordering
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        ...plus 20 others
+        ...plus 64 instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In a stmt of a 'do' block: quickCheck prop1
+      In the expression:
+        do putStrLn "Test suite not yet implemented! Make sure to test!"
+           quickCheck prop1
+      In an equation for ‘main’:
+          main
+            = do putStrLn "Test suite not yet implemented! Make sure to test!"
+                 quickCheck prop1
+  |
+8 |   quickCheck prop1
+  |   ^^^^^^^^^^
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:8:14: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘prop1’
+      prevents the constraint ‘(Eq a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Eq Ordering -- Defined in ‘ghc-prim-0.10.0:GHC.Classes’
+        instance Eq Integer -- Defined in ‘GHC.Num.Integer’
+        ...plus 23 others
+        ...plus five instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the first argument of ‘quickCheck’, namely ‘prop1’
+      In a stmt of a 'do' block: quickCheck prop1
+      In the expression:
+        do putStrLn "Test suite not yet implemented! Make sure to test!"
+           quickCheck prop1
+  |
+8 |   quickCheck prop1
+  |              ^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % :t quickCheck
+:t quickCheck
+zsh: command not found: :t
+stefan@stefans-MBP numere % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :t quickCheck
+:t quickCheck
+
+<interactive>:1:1: error: Variable not in scope: quickCheck
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP numere % stack ghci
+stack ghci
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+Using main module: 1. Package `numere' component numere:exe:numere-exe with main-is file: /Users/stefan/teaching/pf-2023-2024/sapt09/numere/app/Main.hs
+numere> configure (lib + exe)
+Configuring numere-0.1.0.0...
+numere> initial-build-steps (lib + exe)
+The following GHC options are incompatible with GHCi and have not been passed to it: -threaded
+Configuring GHCi with the following packages: numere
+
+* * * * * * * *
+
+Warning: Multiple files use the same module name:
+         * Paths_numere found at the following paths
+           * /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/autogen/Paths_numere.hs (numere:lib)
+           * /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-exe/autogen/Paths_numere.hs (numere:exe:numere-exe)
+* * * * * * * *
+
+GHCi, version 9.6.4: https://www.haskell.org/ghc/  :? for help
+[1 of 4] Compiling Lib              ( /Users/stefan/teaching/pf-2023-2024/sapt09/numere/src/Lib.hs, interpreted )
+[2 of 4] Compiling Main             ( /Users/stefan/teaching/pf-2023-2024/sapt09/numere/app/Main.hs, interpreted )
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/app/Main.hs:2:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+  |
+2 | import Test.QuickCheck
+  | ^^^^^^^^^^^^^^^^^^^^^^
+[3 of 4] Compiling Paths_numere     ( /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/autogen/Paths_numere.hs, interpreted )
+Ok, three modules loaded.
+Loaded GHCi configuration from /private/var/folders/fz/fc0rvjms0vdgllq7mwph1tfr0000gn/T/haskell-stack-ghci/d785eea5/ghci-script
+ghci> import Test.QuickCheck
+import Test.QuickCheck
+ghci> :t quickCheck
+:t quickCheck
+quickCheck :: Testable prop => prop -> IO ()
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> configure (lib + exe + test)
+Configuring numere-0.1.0.0...
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/app/Main.hs:2:1: warning: [-Wunused-imports]
+    The import of ‘Test.QuickCheck’ is redundant
+      except perhaps to import instances from ‘Test.QuickCheck’
+    To import instances alone, use: import Test.QuickCheck()
+  |
+2 | import Test.QuickCheck
+  | ^^^^^^^^^^^^^^^^^^^^^^
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-exe/numere-exe [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:6:8: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘quickCheck’
+      prevents the constraint ‘(Arbitrary a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        instance Arbitrary Ordering
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        ...plus 20 others
+        ...plus 64 instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the expression: quickCheck prop1
+      In an equation for ‘main’: main = quickCheck prop1
+  |
+6 | main = quickCheck prop1
+  |        ^^^^^^^^^^
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:6:19: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘prop1’
+      prevents the constraint ‘(Eq a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Eq Ordering -- Defined in ‘ghc-prim-0.10.0:GHC.Classes’
+        instance Eq Integer -- Defined in ‘GHC.Num.Integer’
+        ...plus 23 others
+        ...plus five instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the first argument of ‘quickCheck’, namely ‘prop1’
+      In the expression: quickCheck prop1
+      In an equation for ‘main’: main = quickCheck prop1
+  |
+6 | main = quickCheck prop1
+  |                   ^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:6:8: error: [GHC-88464]
+    Variable not in scope: quickCheck :: (a0 -> Bool) -> IO ()
+  |
+6 | main = quickCheck prop1
+  |        ^^^^^^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % dirs -l
+dirs -l
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:6:8: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘quickCheck’
+      prevents the constraint ‘(Arbitrary a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance (Arbitrary a, Arbitrary b) => Arbitrary (Either a b)
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        instance Arbitrary Ordering
+          -- Defined in ‘Test.QuickCheck.Arbitrary’
+        ...plus 20 others
+        ...plus 64 instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the expression: quickCheck prop1
+      In an equation for ‘main’: main = quickCheck prop1
+  |
+6 | main = quickCheck prop1
+  |        ^^^^^^^^^^
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:6:19: error: [GHC-39999]
+    • Ambiguous type variable ‘a0’ arising from a use of ‘prop1’
+      prevents the constraint ‘(Eq a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Eq Ordering -- Defined in ‘ghc-prim-0.10.0:GHC.Classes’
+        instance Eq Integer -- Defined in ‘GHC.Num.Integer’
+        ...plus 23 others
+        ...plus five instances involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the first argument of ‘quickCheck’, namely ‘prop1’
+      In the expression: quickCheck prop1
+      In an equation for ‘main’: main = quickCheck prop1
+  |
+6 | main = quickCheck prop1
+  |                   ^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % :r
+:r
+zsh: command not found: :r
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+
+/Users/stefan/teaching/pf-2023-2024/sapt09/numere/test/Spec.hs:3:8: error:
+    Illegal type signature: ‘Int’
+      Type signatures are only allowed in patterns with ScopedTypeVariables
+  |
+3 | prop1 (x :: Int) = (x + 1 == x + 1)
+  |        ^^^^^^^^
+Progress 1/2
+
+Error: [S-7282]
+       Stack failed to execute the build plan.
+       
+       While executing the build plan, Stack encountered the following errors:
+       
+       [S-7011]
+       While building package numere-0.1.0.0 (scroll up to its section to see the
+       error) using:
+       /Users/stefan/.stack/setup-exe-cache/x86_64-osx/Cabal-simple_SvXsv1f__3.10.1.0_ghc-9.6.4 --verbose=1 --builddir=.stack-work/dist/x86_64-osx/Cabal-3.10.1.0 build lib:numere exe:numere-exe test:numere-test --ghc-options ""
+       Process exited with code: ExitFailure 1 
+stefan@stefans-MBP numere % stack test
+stack test
+Stack has not been tested with GHC versions above 9.4, and using 9.6.4, this may fail
+Stack has not been tested with Cabal versions above 3.8, but version 3.10.1.0 was found, this may fail
+numere> build (lib + exe + test)
+Preprocessing library for numere-0.1.0.0..
+Building library for numere-0.1.0.0..
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+Preprocessing executable 'numere-exe' for numere-0.1.0.0..
+Building executable 'numere-exe' for numere-0.1.0.0..
+Preprocessing test suite 'numere-test' for numere-0.1.0.0..
+Building test suite 'numere-test' for numere-0.1.0.0..
+[1 of 2] Compiling Main [Source file changed]
+[3 of 3] Linking .stack-work/dist/x86_64-osx/Cabal-3.10.1.0/build/numere-test/numere-test [Objects changed]
+ld: warning: directory not found for option '-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib'
+numere> copy/register
+Installing library in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/lib/x86_64-osx-ghc-9.6.4/numere-0.1.0.0-5K7YJrUWI7MAkPikJPZQ7P
+Installing executable numere-exe in /Users/stefan/teaching/pf-2023-2024/sapt09/numere/.stack-work/install/x86_64-osx/a5ad5d6efc9737627abad78ff9fb5bfb1b7642989b90270d70f54d1584574bad/9.6.4/bin
+Registering library for numere-0.1.0.0..
+numere> test (suite: numere-test)
+
 +++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> :r
-[4 of 4] Compiling Main             ( main.hs, interpreted )
-Ok, four modules loaded.
-*Main Data.List> :t (==>)
-(==>) :: Testable prop => Bool -> prop -> Property
-*Main Data.List> :r
-Ok, four modules loaded.
-*Main Data.List> quickCheck prop6
-+++ OK, passed 100 tests.
-*Main Data.List> quickCheck prop7
-+++ OK, passed 100 tests; 117 discarded.
-*Main Data.List>
+
+numere> Test suite numere-test passed
+Completed 2 action(s).
+stefan@stefans-MBP numere % 
