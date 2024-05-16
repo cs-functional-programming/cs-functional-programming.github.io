@@ -1,0 +1,665 @@
+stefan@stefans-MBP sapt11 % ghci
+ghci
+:l curs11
+:l curs11
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :l curs11
+target ‘curs11’ is not a module name or a source file
+ghci> :l curs11.hs
+:l curs11.hs
+
+<no location info>: error: Can't find curs11.hs
+Failed, no modules loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt11 % ls
+ls
+stefan@stefans-MBP sapt11 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> :l curs11
+:l curs11
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> Lr
+Lr
+
+<interactive>:2:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:7:1: error:
+    • Couldn't match expected type ‘Arb’ with actual type ‘Int -> Arb’
+    • The equation for ‘f’ has two value arguments,
+        but its type ‘Arb -> Arb’ has only one
+  |
+7 | f (Node x (Node y (Node o a1 a2) a3) z) v = (Node x (Node y (Node v a1 a2) a3) z)
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> t1
+t1
+Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> f t1
+f t1
+
+<interactive>:7:1: error:
+    • No instance for (Show (Int -> Arb)) arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> f t1 7
+f t1 7
+Node 1 (Node 2 (Node 7 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:11:12: error:
+    Cannot parse data constructor in a data/newtype declaration: [Dir]
+   |
+11 | data Poz = [Dir]
+   |            ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+
+curs11.hs:15:35: error:
+    • Illegal term-level use of the type variable ‘p’
+    • bound at curs11.hs:15:19
+    • In the second argument of ‘at’, namely ‘p’
+      In the expression: at a1 p
+      In an equation for ‘at’: at (Node _ a1 _) (L :: p) = at a1 p
+   |
+15 | at (Node _ a1 _) (L :: p) = at a1 p
+   |                                   ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> at t1 [L, L]
+at t1 [L, L]
+*** Exception: curs11.hs:(14,1)-(16,34): Non-exhaustive patterns in function at
+
+ghci> t1
+t1
+Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> at t1 [L, L]
+at t1 [L, L]
+Node 4 Nil Nil
+ghci> at t1 [R]
+at t1 [R]
+Node 3 Nil Nil
+ghci> at t1 [L, R]
+at t1 [L, R]
+Node 5 Nil Nil
+ghci> at t1 [L]
+at t1 [L]
+Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:22:24: error:
+    • Couldn't match expected type ‘Dir’ with actual type ‘[Dir]’
+    • In the pattern: L : p
+      In the pattern: [L : p]
+      In an equation for ‘change’:
+          change (Node x a1 a2) [L : p] v = (Node x (change a1 p v) a2)
+   |
+22 | change (Node x a1 a2) [L : p] v = (Node x (change a1 p v) a2)
+   |                        ^^^^^
+
+curs11.hs:23:24: error:
+    • Couldn't match expected type ‘Dir’ with actual type ‘[Dir]’
+    • In the pattern: R : p
+      In the pattern: [R : p]
+      In an equation for ‘change’:
+          change (Node x a1 a2) [R : p] v = (Node x a1 (change a2 p v))
+   |
+23 | change (Node x a1 a2) [R : p] v = (Node x a1 (change a2 p v))
+   |                        ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> change t1 p 7
+change t1 p 7
+Node 1 (Node 2 (Node 7 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> t1
+t1
+Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> f t1 == change t1 p 7
+f t1 == change t1 p 7
+
+<interactive>:24:9: error:
+    • Couldn't match expected type ‘Int -> Arb’ with actual type ‘Arb’
+    • Possible cause: ‘change’ is applied to too many arguments
+      In the second argument of ‘(==)’, namely ‘change t1 p 7’
+      In the expression: f t1 == change t1 p 7
+      In an equation for ‘it’: it = f t1 == change t1 p 7
+ghci> f t1 7 == change t1 p 7
+f t1 7 == change t1 p 7
+True
+ghci> change t1 [] 7
+change t1 [] 7
+Node 7 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> (change (change t1 [L, L] 7) [L] 42)
+(change (change t1 [L, L] 7) [L] 42)
+Node 1 (Node 42 (Node 7 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:27:13: error:
+    Multiple declarations of ‘L’
+    Declared at: curs11.hs:9:12
+                 curs11.hs:27:13
+   |
+27 | data Dir' = L | R | U deriving (Show, Eq)
+   |             ^
+
+curs11.hs:27:17: error:
+    Multiple declarations of ‘R’
+    Declared at: curs11.hs:9:16
+                 curs11.hs:27:17
+   |
+27 | data Dir' = L | R | U deriving (Show, Eq)
+   |                 ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> :Lr
+:Lr
+unknown command ':Lr'
+use :? for help.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:33:34: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11.hs:27:14
+   |
+33 | goLeft (Node x a1 a2, t) = (a1, (Left x a2) : t)
+   |                                  ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> goLeft t1 []
+goLeft t1 []
+
+<interactive>:33:1: error:
+    • Couldn't match expected type: [a0] -> t
+                  with actual type: (Arb, Trail)
+    • The function ‘goLeft’ is applied to two value arguments,
+        but its type ‘(Arb, Trail) -> (Arb, Trail)’ has only one
+      In the expression: goLeft t1 []
+      In an equation for ‘it’: it = goLeft t1 []
+    • Relevant bindings include it :: t (bound at <interactive>:33:1)
+
+<interactive>:33:8: error:
+    • Couldn't match expected type ‘(Arb, Trail)’
+                  with actual type ‘Arb’
+    • In the first argument of ‘goLeft’, namely ‘t1’
+      In the expression: goLeft t1 []
+      In an equation for ‘it’: it = goLeft t1 []
+ghci> goLeft (t1, [])
+goLeft (t1, [])
+(Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goRight (goLeft (t1, []))
+goRight (goLeft (t1, []))
+
+<interactive>:35:1: error:
+    Variable not in scope: goRight :: (Arb, Trail) -> t
+    Suggested fix: Perhaps use data constructor ‘Right’ (line 29)
+ghci> goLeft (goLeft (t1, []))
+goLeft (goLeft (t1, []))
+(Node 4 Nil Nil,[Left 2 (Node 5 Nil Nil),Left 1 (Node 3 Nil Nil)])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (t1, [])
+goLeft (t1, [])
+(Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goRight (goLeft (t1, []))
+goRight (goLeft (t1, []))
+(Node 5 Nil Nil,[Right 2 (Node 4 Nil Nil),Left 1 (Node 3 Nil Nil)])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (t1, [])
+goLeft (t1, [])
+(Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goRight (goLeft (t1, []))
+goRight (goLeft (t1, []))
+(Node 5 Nil Nil,[Right 2 (Node 4 Nil Nil),Left 1 (Node 3 Nil Nil)])
+ghci> goUp (goRight (goLeft (t1, []))) == goLeft (t1, [])
+goUp (goRight (goLeft (t1, []))) == goLeft (t1, [])
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:47:1: error:
+    Multiple declarations of ‘change’
+    Declared at: curs11.hs:21:1
+                 curs11.hs:47:1
+   |
+47 | change (Nil, _) _ = error "Cannot change information in leaf"
+   | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> change (goLeft (goLeft (t1, []))) 7
+change (goLeft (goLeft (t1, []))) 7
+
+<interactive>:47:9: error:
+    • Couldn't match expected type ‘Arb’
+                  with actual type ‘(Arb, Trail)’
+    • In the first argument of ‘change’, namely
+        ‘(goLeft (goLeft (t1, [])))’
+      In the expression: change (goLeft (goLeft (t1, []))) 7
+      In an equation for ‘it’: it = change (goLeft (goLeft (t1, []))) 7
+ghci> change' (goLeft (goLeft (t1, []))) 7
+change' (goLeft (goLeft (t1, []))) 7
+(Node 7 Nil Nil,[Left 2 (Node 5 Nil Nil),Left 1 (Node 3 Nil Nil)])
+ghci> change (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+change (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+
+<interactive>:49:9: error:
+    • Couldn't match expected type ‘Arb’
+                  with actual type ‘(Arb, Trail)’
+    • In the first argument of ‘change’, namely
+        ‘(goUp (change' (goLeft (goLeft (t1, []))) 7))’
+      In the expression:
+        change (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+      In an equation for ‘it’:
+          it = change (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+ghci> change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42
+(Node 42 (Node 7 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42)
+goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42)
+(Node 1 (Node 42 (Node 7 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> goUp (goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42))
+goUp (goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42))
+*** Exception: Cannot go up in root
+CallStack (from HasCallStack):
+  error, called at curs11.hs:42:16 in main:Main
+ghci> goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42)
+goUp (change' (goUp (change' (goLeft (goLeft (t1, []))) 7)) 42)
+(Node 1 (Node 42 (Node 7 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> :l curs11n
+:l curs11n
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+
+curs11n.hs:10:9: error: Not in scope: data constructor ‘Nil’
+   |
+10 | goLeft (Nil, _) = Nothing
+   |         ^^^
+
+curs11n.hs:11:33: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11n.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11n.hs:3:14
+   |
+11 | goLeft (Node x a1 a2, t) = (a1, Left x a2 : t)
+   |                                 ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+
+curs11n.hs:12:9: error: Not in scope: data constructor ‘Nil’
+   |
+12 | goLeft (Nil, _) = Nothing
+   |         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+
+curs11n.hs:13:28: error:
+    • Couldn't match expected type: Maybe Zipper
+                  with actual type: (Arb, [Crumb])
+    • In the expression: (a1, Left x a2 : t)
+      In an equation for ‘goLeft’:
+          goLeft (Node x a1 a2, t) = (a1, Left x a2 : t)
+   |
+13 | goLeft (Node x a1 a2, t) = (a1, Left x a2 : t)
+   |                            ^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted ) [Source file changed]
+
+curs11n.hs:21:27: error:
+    • Couldn't match expected type: Maybe Zipper
+                  with actual type: (Arb, [Crumb])
+    • In the expression: (Node x a a2, t)
+      In an equation for ‘goUp’:
+          goUp (a, Left x a2 : t) = (Node x a a2, t)
+   |
+21 | goUp (a, Left x a2 : t) = (Node x a a2, t)
+   |                           ^^^^^^^^^^^^^^^^
+
+curs11n.hs:22:28: error:
+    • Couldn't match expected type: Maybe Zipper
+                  with actual type: (Arb, [Crumb])
+    • In the expression: (Node x a1 a, t)
+      In an equation for ‘goUp’:
+          goUp (a, Right x a1 : t) = (Node x a1 a, t)
+   |
+22 | goUp (a, Right x a1 : t) = (Node x a1 a, t)
+   |                            ^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+
+curs11n.hs:26:30: error:
+    • Couldn't match expected type: Maybe Zipper
+                  with actual type: (Arb, Trail)
+    • In the expression: (Node v a1 a2, t)
+      In an equation for ‘change’:
+          change (Node _ a1 a2, t) v = (Node v a1 a2, t)
+   |
+26 | change (Node _ a1 a2, t) v = (Node v a1 a2, t)
+   |                              ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (t1, [])
+goLeft (t1, [])
+Just (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goLeft (goLeft (t1, []))
+goLeft (goLeft (t1, []))
+
+<interactive>:64:9: error:
+    • Couldn't match type: Maybe Zipper
+                     with: (Arb, Trail)
+      Expected: Zipper
+        Actual: Maybe Zipper
+    • In the first argument of ‘goLeft’, namely ‘(goLeft (t1, []))’
+      In the expression: goLeft (goLeft (t1, []))
+      In an equation for ‘it’: it = goLeft (goLeft (t1, []))
+ghci> :t (>>=)
+:t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+ghci> goLeft (t1, []) >>= goRight
+goLeft (t1, []) >>= goRight
+Just (Node 5 Nil Nil,[Right 2 (Node 4 Nil Nil),Left 1 (Node 3 Nil Nil)])
+ghci> goLeft (t1, []) >>= goRight >>= goUp
+goLeft (t1, []) >>= goRight >>= goUp
+Just (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil),[Left 1 (Node 3 Nil Nil)])
+ghci> goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+Just (Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+Just (Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+goLeft (t1, []) >>= goRight >>= goUp >>= goUp
+Just (Node 1 (Node 2 (Node 4 Nil Nil) (Node 5 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> goLeft (t1, []) >>= goRight >>= change' 43 >>= goUp >>= goUp
+goLeft (t1, []) >>= goRight >>= change' 43 >>= goUp >>= goUp
+Just (Node 1 (Node 2 (Node 4 Nil Nil) (Node 43 Nil Nil)) (Node 3 Nil Nil),[])
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :l curs11n1
+:l curs11n1
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted )
+Ok, one module loaded.
+ghci> change [1, 4, 8, 3] 2 42
+change [1, 4, 8, 3] 2 42
+[1,4,42,3]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> at [1, 4, 8, 3] [Fwd, Fwd, Fwd]
+at [1, 4, 8, 3] [Fwd, Fwd, Fwd]
+[3]
+ghci> at [1, 4, 8, 3] [Fwd, Fwd]
+at [1, 4, 8, 3] [Fwd, Fwd]
+[8,3]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+
+curs11n1.hs:16:9: error: Not in scope: data constructor ‘Nil’
+   |
+16 | change' Nil [] _ = error "Element does not exist"
+   |         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted )
+Ok, one module loaded.
+ghci> at [1, 4, 8, 3] [Fwd, Fwd]
+at [1, 4, 8, 3] [Fwd, Fwd]
+[8,3]
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> change [1, 4, 8, 3] [Fwd, Fwd] 43
+change [1, 4, 8, 3] [Fwd, Fwd] 43
+
+<interactive>:83:21: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘[Dir]’
+    • In the second argument of ‘change’, namely ‘[Fwd, Fwd]’
+      In the expression: change [1, 4, 8, 3] [Fwd, Fwd] 43
+      In an equation for ‘it’: it = change [1, 4, 8, ....] [Fwd, Fwd] 43
+ghci> change' [1, 4, 8, 3] [Fwd, Fwd] 43
+change' [1, 4, 8, 3] [Fwd, Fwd] 43
+[43,3]
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> change' [1, 4, 8, 3] [Fwd, Fwd] 43
+change' [1, 4, 8, 3] [Fwd, Fwd] 43
+[43,3]
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> change' [1, 4, 8, 3] [Fwd, Fwd] 43
+change' [1, 4, 8, 3] [Fwd, Fwd] 43
+[1,4,43,3]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+
+curs11n1.hs:27:24: error:
+    • Couldn't match expected type: [Crumb] -> Zipper
+                  with actual type: [Int]
+    • The function ‘tl’ is applied to one value argument,
+        but its type ‘[Int]’ has none
+      In the expression: tl (Forward hd : t)
+      In an equation for ‘goFwd’:
+          goFwd ((hd : tl), t) = tl (Forward hd : t)
+   |
+27 | goFwd ((hd : tl), t) = tl (Forward hd : t)
+   |                        ^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted )
+Ok, one module loaded.
+ghci> goFwd ([1, 4, 8, 3], [])
+goFwd ([1, 4, 8, 3], [])
+([4,8,3],[Forward 1])
+ghci> goFwd (goFwd ([1, 4, 8, 3], []))
+goFwd (goFwd ([1, 4, 8, 3], []))
+([8,3],[Forward 4,Forward 1])
+ghci> goBwd (goFwd (goFwd ([1, 4, 8, 3], [])))
+goBwd (goFwd (goFwd ([1, 4, 8, 3], [])))
+
+<interactive>:94:1: error:
+    Variable not in scope: goBwd :: Zipper -> t
+    Suggested fix: Perhaps use ‘goFwd’ (line 26)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goBwd (goFwd (goFwd ([1, 4, 8, 3], [])))
+goBwd (goFwd (goFwd ([1, 4, 8, 3], [])))
+([4,8,3],[Forward 1])
+ghci> goBwd (goBwd (goFwd (goFwd ([1, 4, 8, 3], []))))
+goBwd (goBwd (goFwd (goFwd ([1, 4, 8, 3], []))))
+([1,4,8,3],[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goBwd (goBwd (change'' (goFwd (goFwd ([1, 4, 8, 3], []))) 43))
+goBwd (goBwd (change'' (goFwd (goFwd ([1, 4, 8, 3], []))) 43))
+([1,4,43,3],[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :l curs11n2
+:l curs11n2
+[1 of 2] Compiling Main             ( curs11n2.hs, interpreted )
+Ok, one module loaded.
+ghci> (goFwd (goFwd ([1, 4, 8, 3], [])))
+(goFwd (goFwd ([1, 4, 8, 3], [])))
+([8,3],[4,1])
+ghci> goFwd (goFwd (goFwd ([1, 4, 8, 3, 6, 8, 3], [])))
+goFwd (goFwd (goFwd ([1, 4, 8, 3, 6, 8, 3], [])))
+([3,6,8,3],[8,4,1])
+ghci> goBwd (goFwd (goFwd (goFwd ([1, 4, 8, 3, 6, 8, 3], []))))
+goBwd (goFwd (goFwd (goFwd ([1, 4, 8, 3, 6, 8, 3], []))))
+([8,3,6,8,3],[4,1])
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :l curs11n3
+:l curs11n3
+[1 of 2] Compiling Main             ( curs11n3.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goTwiceFwd ([1, 4, 8, 3, 6, 8, 3], [])
+goTwiceFwd ([1, 4, 8, 3, 6, 8, 3], [])
+Just ([8,3,6,8,3],[4,1])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11n3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goTwiceFwd ([1, 4, 8, 3, 6, 8, 3], [])
+goTwiceFwd ([1, 4, 8, 3, 6, 8, 3], [])
+Just ([8,3,6,8,3],[4,1])
+ghci> goTwiceFwd' ([1, 4, 8, 3, 6, 8, 3], [])
+goTwiceFwd' ([1, 4, 8, 3, 6, 8, 3], [])
+Just ([8,3,6,8,3],[4,1])
+ghci> :t (>>=)
+:t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+ghci> ([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd
+([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd
+
+<interactive>:115:33: error:
+    • Couldn't match type: ([Int], [Int])
+                     with: [a0]
+      Expected: [a0] -> ([a], Zipper)
+        Actual: Zipper -> Maybe Zipper
+    • In the second argument of ‘(>>=)’, namely ‘goFwd’
+      In the first argument of ‘(>>=)’, namely
+        ‘([1, 4, 8, 3, ....], []) >>= goFwd’
+      In the expression: ([1, 4, 8, 3, ....], []) >>= goFwd >>= goFwd
+
+<interactive>:115:43: error:
+    • Couldn't match type ‘Maybe’ with ‘(,) [a]’
+      Expected: Zipper -> ([a], Zipper)
+        Actual: Zipper -> Maybe Zipper
+    • In the second argument of ‘(>>=)’, namely ‘goFwd’
+      In the expression: ([1, 4, 8, 3, ....], []) >>= goFwd >>= goFwd
+      In an equation for ‘it’:
+          it = ([1, 4, 8, ....], []) >>= goFwd >>= goFwd
+    • Relevant bindings include
+        it :: ([a], Zipper) (bound at <interactive>:115:1)
+ghci> Just ([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd
+Just ([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd
+Just ([8,3,6,8,3],[4,1])
+ghci> Just ([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd >>= change 7 >>= goBwd
+ghci> Just ([1, 4, 8, 3, 6, 8, 3], []) >>= goFwd >>= goFwd >>= change 7 >>= goBwd
+Just ([4,7,3,6,8,3],[1])
+ghci> 
