@@ -1,0 +1,1080 @@
+stefan@stefans-MBP sapt10 % gcc -Wall -o r r.c
+gcc -Wall -o r r.c
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 0
+n2: 9
+stefan@stefans-MBP sapt10 % gcc -Wall -o r r.c
+gcc -Wall -o r r.c
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 7
+n2: 8
+stefan@stefans-MBP sapt10 % gcc -Wall -o r r.c
+gcc -Wall -o r r.c
+r.c:6:9: error: implicit declaration of function 'time' is invalid in C99
+      [-Werror,-Wimplicit-function-declaration]
+  srand(time(0));
+        ^
+1 error generated.
+stefan@stefans-MBP sapt10 % gcc -Wall -o r r.c
+gcc -Wall -o r r.c
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 1
+n2: 2
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 8
+n2: 1
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 5
+n2: 0
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 2
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+n1: 9
+n2: 8
+stefan@stefans-MBP sapt10 % gcc -Wall -o r r.c
+gcc -Wall -o r r.c
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448728
+n1: 5
+n2: 9
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448729
+n1: 2
+n2: 8
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448731
+n1: 6
+n2: 6
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448731
+n1: 6
+n2: 6
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448748
+n1: 5
+n2: 5
+stefan@stefans-MBP sapt10 % ./r
+./r
+1716448750
+n1: 9
+n2: 6
+stefan@stefans-MBP sapt10 % ghci -package random
+ghci -package random
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :i random
+:i random
+
+<interactive>:1:1: error: Not in scope: ‘random’
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> random
+random
+
+<interactive>:1:1: error: Variable not in scope: random
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghci -package random
+ghci -package random
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> import System.Random
+import System.Random
+ghci> :i random
+:i random
+type Random :: * -> Constraint
+class Random a where
+  ...
+  random :: RandomGen g => g -> (a, g)
+  default random :: (RandomGen g, Uniform a) => g -> (a, g)
+  ...
+  	-- Defined in ‘System.Random’
+ghci> :t random
+:t random
+random :: (Random a, RandomGen g) => g -> (a, g)
+ghci> :i Random
+:i Random
+type Random :: * -> Constraint
+class Random a where
+  randomR :: RandomGen g => (a, a) -> g -> (a, g)
+  default randomR :: (RandomGen g, UniformRange a) =>
+                     (a, a) -> g -> (a, g)
+  random :: RandomGen g => g -> (a, g)
+  default random :: (RandomGen g, Uniform a) => g -> (a, g)
+  randomRs :: RandomGen g => (a, a) -> g -> [a]
+  randoms :: RandomGen g => g -> [a]
+  	-- Defined in ‘System.Random’
+instance (Random a, Random b) => Random (a, b)
+  -- Defined in ‘System.Random’
+instance (Random a, Random b, Random c) => Random (a, b, c)
+  -- Defined in ‘System.Random’
+instance (Random a, Random b, Random c, Random d) =>
+         Random (a, b, c, d)
+  -- Defined in ‘System.Random’
+instance (Random a, Random b, Random c, Random d, Random e) =>
+         Random (a, b, c, d, e)
+  -- Defined in ‘System.Random’
+instance (Random a, Random b, Random c, Random d, Random e,
+          Random f) =>
+         Random (a, b, c, d, e, f)
+  -- Defined in ‘System.Random’
+instance (Random a, Random b, Random c, Random d, Random e,
+          Random f, Random g) =>
+         Random (a, b, c, d, e, f, g)
+  -- Defined in ‘System.Random’
+instance Random Bool -- Defined in ‘System.Random’
+instance Random Char -- Defined in ‘System.Random’
+instance Random Double -- Defined in ‘System.Random’
+instance Random Float -- Defined in ‘System.Random’
+instance Random Int -- Defined in ‘System.Random’
+instance Random Integer -- Defined in ‘System.Random’
+instance Random Word -- Defined in ‘System.Random’
+ghci> :t random
+:t random
+random :: (Random a, RandomGen g) => g -> (a, g)
+ghci> :t mkStdGen
+:t mkStdGen
+mkStdGen :: Int -> StdGen
+ghci> :i StdGen
+:i StdGen
+type StdGen :: *
+newtype StdGen
+  = System.Random.Internal.StdGen {System.Random.Internal.unStdGen :: splitmix-0.1.0.4:System.Random.SplitMix.SMGen}
+  	-- Defined in ‘System.Random.Internal’
+instance RandomGen StdGen -- Defined in ‘System.Random.Internal’
+instance Show StdGen -- Defined in ‘System.Random.Internal’
+instance Eq StdGen -- Defined in ‘System.Random.Internal’
+ghci> g1 = mkStdGen 100
+g1 = mkStdGen 100
+ghci> :t random
+:t random
+random :: (Random a, RandomGen g) => g -> (a, g)
+ghci> :t random g1
+:t random g1
+random g1 :: Random a => (a, StdGen)
+ghci> (x, g2) = random g1 :: (Int, StdGen)
+(x, g2) = random g1 :: (Int, StdGen)
+ghci> x
+x
+9216477508314497915
+ghci> g2
+g2
+StdGen {unStdGen = SMGen 712633246999323047 2532601429470541125}
+ghci> (x', g3) = random g2 :: (Int, StdGen)
+(x', g3) = random g2 :: (Int, StdGen)
+ghci> x
+x
+9216477508314497915
+ghci> x'
+x'
+-6917749724426303066
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l sapt10
+:l sapt10
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+
+sapt10.hs:6:17: error:
+    parse error on input ‘=’
+    Suggested fix:
+      Perhaps you need a 'let' in a 'do' block?
+      e.g. 'let x = 5' instead of 'x = 5'
+  |
+6 |     let (b2, g2 = random g1 in
+  |                 ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+Ok, one module loaded.
+ghci> twoCoins
+twoCoins
+(True,False)
+ghci> twoCoins
+twoCoins
+(True,False)
+ghci> twoCoins
+twoCoins
+(True,False)
+ghci> twoCoins
+twoCoins
+(True,False)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> twoCoins (mkStdGen 100)
+twoCoins (mkStdGen 100)
+(True,False)
+ghci> twoCoins (mkStdGen 101)
+twoCoins (mkStdGen 101)
+(False,True)
+ghci> twoCoins (mkStdGen 1201021)
+twoCoins (mkStdGen 1201021)
+(True,False)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fourCoins (mkStdGen 100)
+fourCoins (mkStdGen 100)
+(True,False,True,False)
+ghci> fourCoins (mkStdGen 101)
+fourCoins (mkStdGen 101)
+(False,True,False,True)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fourCoins (mkStdGen 101)
+fourCoins (mkStdGen 101)
+(False,True,False,True)
+ghci> fourCoins (mkStdGen 101)
+fourCoins (mkStdGen 101)
+(False,True,False,True)
+ghci> fourCoins (mkStdGen 102)
+fourCoins (mkStdGen 102)
+(True,False,False,False)
+ghci> fourCoins (mkStdGen 12020)
+fourCoins (mkStdGen 12020)
+(False,True,True,True)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fourCoins (mkStdGen 12020)
+fourCoins (mkStdGen 12020)
+(False,True,True,True,StdGen {unStdGen = SMGen 17525380172626134689 18054156957673153183})
+ghci> fourCoins (mkStdGen 12020)
+fourCoins (mkStdGen 12020)
+(False,True,True,True,StdGen {unStdGen = SMGen 17525380172626134689 18054156957673153183})
+ghci> fourCoins (mkStdGen 12020)
+fourCoins (mkStdGen 12020)
+(False,True,True,True,StdGen {unStdGen = SMGen 17525380172626134689 18054156957673153183})
+ghci> :i randoms
+:i randoms
+type Random :: * -> Constraint
+class Random a where
+  ...
+  randoms :: RandomGen g => g -> [a]
+  	-- Defined in ‘System.Random’
+ghci> g1 = mkStdGen 105
+g1 = mkStdGen 105
+ghci> ns = randoms g1 :: [Int]
+ns = randoms g1 :: [Int]
+ghci> take 10 $ ns
+take 10 $ ns
+[9109691347867873941,4370122379103727680,1136292478311918397,-8527074272474650031,6688352544823420128,-8946479115594052220,9097001603016159039,-900294219568686722,-2281061326141561712,-2211398347425953610]
+ghci> take 20 $ ns
+take 20 $ ns
+[9109691347867873941,4370122379103727680,1136292478311918397,-8527074272474650031,6688352544823420128,-8946479115594052220,9097001603016159039,-900294219568686722,-2281061326141561712,-2211398347425953610,-7386072032104785293,1583427234477827115,-7129089472583491459,-7534147877391457641,-6818376815195803111,7760164730136962047,-1878699958671464887,2817192257306981143,1829735870274270777,-5316507052972197375]
+ghci> :t randoms
+:t randoms
+randoms :: (Random a, RandomGen g) => g -> [a]
+ghci> :t randomR
+:t randomR
+randomR :: (Random a, RandomGen g) => (a, a) -> g -> (a, g)
+ghci> randomR [1 :: Int,10] g1 
+randomR [1 :: Int,10] g1 
+
+<interactive>:47:9: error:
+    • Couldn't match expected type: (a, a)
+                  with actual type: [Int]
+    • In the first argument of ‘randomR’, namely ‘[1 :: Int, 10]’
+      In the expression: randomR [1 :: Int, 10] g1
+      In an equation for ‘it’: it = randomR [1 :: Int, 10] g1
+    • Relevant bindings include
+        it :: (a, StdGen) (bound at <interactive>:47:1)
+ghci> randomR (1 :: Int,10) g1 
+randomR (1 :: Int,10) g1 
+(6,StdGen {unStdGen = SMGen 13982446841190518117 13520556390570570131})
+ghci> randomR (1 :: Int,10) (mkStdGen 12932)
+randomR (1 :: Int,10) (mkStdGen 12932)
+(7,StdGen {unStdGen = SMGen 17933864440441211477 1596374094451395813})
+ghci> randomR (1 :: Int,10) (mkStdGen 1293)
+randomR (1 :: Int,10) (mkStdGen 1293)
+(9,StdGen {unStdGen = SMGen 13433986779003991346 16747958287648194799})
+ghci> randomR (1 :: Int,10) (mkStdGen 122)
+randomR (1 :: Int,10) (mkStdGen 122)
+(9,StdGen {unStdGen = SMGen 1454318829372264889 1766186853405588597})
+ghci> randomR (1 :: Int,10) (mkStdGen 11)
+randomR (1 :: Int,10) (mkStdGen 11)
+(2,StdGen {unStdGen = SMGen 10498321172634391550 5833679380957638813})
+ghci> randomR (1 :: Int,10) (mkStdGen 1000)
+randomR (1 :: Int,10) (mkStdGen 1000)
+(1,StdGen {unStdGen = SMGen 7159698332806225436 4332104999045480777})
+ghci> ns' = randomRs (1 :: Int,10) (mkStdGen 11)
+ns' = randomRs (1 :: Int,10) (mkStdGen 11)
+ghci> take 10 ns'
+take 10 ns'
+[2,1,6,8,7,3,4,5,3,4]
+ghci> take 20 ns'
+take 20 ns'
+[2,1,6,8,7,3,4,5,3,4,5,1,10,3,5,4,4,8,2,8]
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o )
+
+sapt10.hs:17:44: error:
+    Unexpected do block in function application:
+        do
+    Suggested fixes:
+      • Use parentheses.
+      • Perhaps you intended to use BlockArguments
+   |
+17 |   let (x1, g2) = randomR (1 :: Int, 10) g1 do
+   |                                            ^^
+
+sapt10.hs:18:3: error: parse error on input ‘let’
+   |
+18 |   let (x2, g3) = randomR (1 :: Int, 10) g2 do
+   |   ^^^
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o )
+
+sapt10.hs:19:21: error:
+    • Couldn't match expected type ‘(String -> IO ()) -> String -> a0’
+                  with actual type ‘Int’
+    • The function ‘x1’ is applied to one value argument,
+        but its type ‘Int’ has none
+      In the first argument of ‘($)’, namely ‘x1 putStrLn’
+      In the second argument of ‘($)’, namely ‘x1 putStrLn $ show $ x2’
+   |
+19 |   putStrLn $ show $ x1
+   |                     ^^...
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o )
+[2 of 2] Linking sapt10
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+9
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+9
+stefan@stefans-MBP sapt10 % ghci -package random
+ghci -package random
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :t getStdGen
+:t getStdGen
+
+<interactive>:1:1: error: Variable not in scope: getStdGen
+ghci> import System.Random
+import System.Random
+ghci> :t getStdGen
+:t getStdGen
+getStdGen :: Control.Monad.IO.Class.MonadIOControl.Monad.IO.Class.MonadIO m => m StdGen
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l sapt10
+:l sapt10
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+Ok, one module loaded.
+ghci> :i 
+:i 
+syntax: ':i <thing-you-want-info-about>'
+ghci> :i Control.Monad.IO.Class.MonadIO
+:i Control.Monad.IO.Class.MonadIO
+type Control.Monad.IO.Class.MonadIO :: (* -> *) -> Constraint
+class Monad m => Control.Monad.IO.Class.MonadIO m where
+  Control.Monad.IO.Class.liftIO :: IO a -> m a
+  {-# MINIMAL liftIO #-}
+  	-- Defined in ‘Control.Monad.IO.Class’
+instance [safe] Control.Monad.IO.Class.MonadIO IO
+  -- Defined in ‘Control.Monad.IO.Class’
+ghci> :t getStdGen
+:t getStdGen
+getStdGen :: Control.Monad.IO.Class.MonadIO m => m StdGen
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+
+sapt10.hs:20:22: error:
+    • Couldn't match expected type: (String -> IO ())
+                                    -> String -> String
+                  with actual type: [Char]
+    • The function ‘show’ is applied to two value arguments,
+        but its type ‘Int -> [Char]’ has only one
+      In the first argument of ‘($)’, namely ‘show x1 putStrLn’
+      In the second argument of ‘($)’, namely
+        ‘show x1 putStrLn $ show x2’
+   |
+20 |           putStrLn $ show x1
+   |                      ^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+5
+4
+ghci> main
+main
+5
+4
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o ) [Source file changed]
+[2 of 2] Linking sapt10 [Objects changed]
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+10
+9
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+10
+10
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+3
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+4
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o ) [Source file changed]
+[2 of 2] Linking sapt10 [Objects changed]
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+5
+9
+5
+9
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+5
+6
+5
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+7
+7
+7
+7
+stefan@stefans-MBP sapt10 % ghci -package
+ghci -package
+ghc-9.4.4: on the commandline: missing argument for flag: -package
+Usage: For basic information, try the `--help' option.
+stefan@stefans-MBP sapt10 % ghci -package random
+ghci -package random
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :i newStdGen
+:i newStdGen
+
+<interactive>:1:1: error: Not in scope: ‘newStdGen’
+ghci> import System.Random
+import System.Random
+ghci> :i newStdGen
+:i newStdGen
+newStdGen :: Control.Monad.IO.Class.MonadIO m => m StdGen
+  	-- Defined in ‘System.Random’
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o ) [Source file changed]
+[2 of 2] Linking sapt10 [Objects changed]
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+6
+4
+5
+2
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+7
+2
+10
+2
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+7
+3
+9
+5
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+2
+3
+7
+5
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o ) [Source file changed]
+[2 of 2] Linking sapt10 [Objects changed]
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+8
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+2
+stefan@stefans-MBP sapt10 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :i getStr
+:i getStr
+
+<interactive>:1:1: error: Not in scope: ‘getStr’
+ghci> :i getLine
+:i getLine
+getLine :: IO String 	-- Defined in ‘System.IO’
+ghci> :t reads
+:t reads
+reads :: Read a => ReadS a
+ghci> :i reads
+:i reads
+reads :: Read a => ReadS a 	-- Defined in ‘Text.Read’
+ghci> :i ReadS
+:i ReadS
+type ReadS :: * -> *
+type ReadS a = String -> [(a, String)]
+  	-- Defined in ‘Text.ParserCombinators.ReadP’
+ghci> reads "10 10101 asdf" :: [(Int, String)]
+reads "10 10101 asdf" :: [(Int, String)]
+[(10," 10101 asdf")]
+ghci> reads "1010101 asdf" :: [(Int, String)]
+reads "1010101 asdf" :: [(Int, String)]
+[(1010101," asdf")]
+ghci> reads "1010101 32193921321 asdf" :: [(Int, String)]
+reads "1010101 32193921321 asdf" :: [(Int, String)]
+[(1010101," 32193921321 asdf")]
+ghci> reads "True 1010101 32193921321 asdf" :: [(Bool, String)]
+reads "True 1010101 32193921321 asdf" :: [(Bool, String)]
+[(True," 1010101 32193921321 asdf")]
+ghci> reads "True 1010101 32193921321 asdf" :: [(Int, String)]
+reads "True 1010101 32193921321 asdf" :: [(Int, String)]
+[]
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l sapt10
+:l sapt10
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+
+sapt10.hs:1:1: error:
+    Could not load module ‘System.Random’
+    It is a member of the hidden package ‘random-1.2.1.1’.
+    You can run ‘:set -package random’ to expose it.
+    (Note: this unloads all the modules in the current scope.)
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+  |
+1 | import System.Random
+  | ^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghci -package random
+ghci -package random
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l sapt10
+:l sapt10
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+
+sapt10.hs:55:3: error:
+    The last statement in a 'do' block must be an expression
+      line <- getLine
+   |
+55 |   line <- getLine
+   |   ^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted )
+Ok, one module loaded.
+ghci> convert "10 12"
+convert "10 12"
+Nothing
+ghci> convert "a 12"
+convert "a 12"
+Nothing
+ghci> convert "10"
+convert "10"
+Just 10
+ghci> convert "1"
+convert "1"
+Just 1
+ghci> convert "0"
+convert "0"
+Nothing
+ghci> convert "-10"
+convert "-10"
+Nothing
+ghci> convert "Tryue"
+convert "Tryue"
+Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> guess 5
+guess 5
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+asdf
+asdf
+Nu am inteles. Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+8
+8
+Prea mare! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+4
+4
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+5
+5
+Exact, ai ghicit!
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghc -package random sapt10 sapt10.hs
+ghc -package random sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+
+<no location info>: error:
+    module ‘main:Main’ is defined in multiple files: sapt10.hs
+                                                     sapt10.hs
+stefan@stefans-MBP sapt10 % ghc -package random -o sapt10 sapt10.hs
+ghc -package random -o sapt10 sapt10.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+[1 of 2] Compiling Main             ( sapt10.hs, sapt10.o ) [Source file changed]
+[2 of 2] Linking sapt10 [Objects changed]
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+5
+5
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+7
+7
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+9
+9
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+10
+10
+Exact, ai ghicit!
+stefan@stefans-MBP sapt10 % ./sapt10
+./sapt10
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+5
+5
+Prea mare! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+1
+1
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+2
+2
+Prea mic! Mai incearca.
+La ce numar intre 1 si 10 crezi ca m-am gandit?
+3
+3
+Exact, ai ghicit!
+stefan@stefans-MBP sapt10 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l sapt10p
+:l sapt10p
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+
+sapt10p.hs:9:1: error:
+    The type signature for ‘manip’ lacks an accompanying binding
+    Suggested fix: Perhaps use ‘manim’ (Defined at sapt10p.hs:10:1)
+  |
+9 | manip :: Stack -> Int
+  | ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted )
+Ok, one module loaded.
+ghci> :l sapt10p
+:l sapt10p
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted )
+Ok, one module loaded.
+ghci> manip [3,6,8,2]
+manip [3,6,8,2]
+3
+ghci> manip [1,6,8,2]
+manip [1,6,8,2]
+1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t state
+:t state
+
+<interactive>:1:1: error: Variable not in scope: state
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP sapt10 % ghci -package mtl
+ghci -package mtl
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :t state
+:t state
+
+<interactive>:1:1: error: Variable not in scope: state
+ghci> import Control.Monad.State.Lazy
+import Control.Monad.State.Lazy
+ghci> :t state
+:t state
+state :: MonadState s m => (s -> (a, s)) -> m a
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l sapt10p
+:l sapt10p
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t runState
+:t runState
+runState :: State s a -> s -> (a, s)
+ghci> runState manip [1,3,6,7,5]
+runState manip [1,3,6,7,5]
+(1,[3,6,7,5])
+ghci> evalState manip [1,3,6,7,5]
+evalState manip [1,3,6,7,5]
+1
+ghci> evalState manip [15,3,6,7,5]
+evalState manip [15,3,6,7,5]
+15
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState mygcd (10, 15)
+runState mygcd (10, 15)
+(5,(5,0))
+ghci> evalState mygcd (2 * 2 * 2 * 3 * 3 * 3 * 3 * 5 * 5 * 7, 7 * 7 * 2 * 2 * 3 * 3 *3)
+ 3 *3)
+756
+ghci> 7 * 4 * 3 * 3 * 3
+7 * 4 * 3 * 3 * 3
+756
+ghci> :i State
+:i State
+type State :: * -> * -> *
+type State s = StateT s Data.Functor.Identity.Identity :: * -> *
+  	-- Defined in ‘Control.Monad.Trans.State.Lazy’
+ghci> :i StateT
+:i StateT
+type role StateT nominal representational nominal
+type StateT :: * -> (* -> *) -> * -> *
+newtype StateT s m a = StateT {runStateT :: s -> m (a, s)}
+  	-- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => MonadState s (StateT s m)
+  -- Defined in ‘Control.Monad.State.Class’
+instance [safe] MonadFix m => MonadFix (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadIO m => MonadIO (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadTrans (StateT s)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadFail m => MonadFail (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadPlus m => MonadPlus (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] (Functor m, Monad m) => Applicative (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Functor m => Functor (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => Monad (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> dist 100 2
+dist 100 2
+200.0
+ghci> v = 100
+v = 100
+ghci> t = 2
+t = 2
+ghci> dist v t
+dist v t
+200.0
+ghci> dist t v
+dist t v
+200.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> viteza 100 2
+viteza 100 2
+50.0
+ghci> viteza 2 (dist 100 2)
+viteza 2 (dist 100 2)
+1.0e-2
+ghci> viteza (dist 100 2) 2
+viteza (dist 100 2) 2
+100.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted ) [Source file changed]
+
+sapt10p.hs:64:1: error:
+    Multiple declarations of ‘dist’
+    Declared at: sapt10p.hs:54:1
+                 sapt10p.hs:64:1
+   |
+64 | dist (Viteza v) (Timp t) = Distanta (v * t)
+   | ^^^^
+
+sapt10p.hs:67:1: error:
+    Multiple declarations of ‘viteza’
+    Declared at: sapt10p.hs:57:1
+                 sapt10p.hs:67:1
+   |
+67 | viteza (Distanta d) (Timp t) = Viteza (d / t)
+   | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( sapt10p.hs, interpreted )
+Ok, one module loaded.
+ghci> viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+
+<interactive>:29:9: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Timp’
+    • In the first argument of ‘viteza’, namely ‘(Timp 2)’
+      In the expression: viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+      In an equation for ‘it’:
+          it = viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+
+<interactive>:29:24: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Viteza’
+    • In the first argument of ‘dist’, namely ‘(Viteza 100)’
+      In the second argument of ‘viteza’, namely
+        ‘(dist (Viteza 100) (Timp 2))’
+      In the expression: viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+
+<interactive>:29:37: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Timp’
+    • In the second argument of ‘dist’, namely ‘(Timp 2)’
+      In the second argument of ‘viteza’, namely
+        ‘(dist (Viteza 100) (Timp 2))’
+      In the expression: viteza (Timp 2) (dist (Viteza 100) (Timp 2))
+ghci> viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+
+<interactive>:30:15: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Viteza’
+    • In the first argument of ‘dist’, namely ‘(Viteza 100)’
+      In the first argument of ‘viteza’, namely
+        ‘(dist (Viteza 100) (Timp 2))’
+      In the expression: viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+
+<interactive>:30:28: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Timp’
+    • In the second argument of ‘dist’, namely ‘(Timp 2)’
+      In the first argument of ‘viteza’, namely
+        ‘(dist (Viteza 100) (Timp 2))’
+      In the expression: viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+
+<interactive>:30:38: error:
+    • Couldn't match expected type ‘Double’ with actual type ‘Timp’
+    • In the second argument of ‘viteza’, namely ‘(Timp 2)’
+      In the expression: viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+      In an equation for ‘it’:
+          it = viteza (dist (Viteza 100) (Timp 2)) (Timp 2)
+ghci> viteza' (dist' (Viteza 100) (Timp 2)) (Timp 2)
+viteza' (dist' (Viteza 100) (Timp 2)) (Timp 2)
+Viteza 100.0
+ghci> viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+
+<interactive>:32:10: error:
+    • Couldn't match expected type ‘Distanta’ with actual type ‘Timp’
+    • In the first argument of ‘viteza'’, namely ‘(Timp 2)’
+      In the expression: viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+      In an equation for ‘it’:
+          it = viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+
+<interactive>:32:19: error:
+    • Couldn't match expected type ‘Timp’ with actual type ‘Distanta’
+    • In the second argument of ‘viteza'’, namely
+        ‘(dist' (Viteza 100) (Timp 2))’
+      In the expression: viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+      In an equation for ‘it’:
+          it = viteza' (Timp 2) (dist' (Viteza 100) (Timp 2))
+ghci> viteza' (dist' (Viteza 100) (Timp 2)) (Timp 2)
+viteza' (dist' (Viteza 100) (Timp 2)) (Timp 2)
+Viteza 100.0
+ghci> :i StateT
+:i StateT
+type role StateT nominal representational nominal
+type StateT :: * -> (* -> *) -> * -> *
+newtype StateT s m a = StateT {runStateT :: s -> m (a, s)}
+  	-- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => MonadState s (StateT s m)
+  -- Defined in ‘Control.Monad.State.Class’
+instance [safe] MonadIO m => MonadIO (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadTrans (StateT s)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadFail m => MonadFail (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadFix m => MonadFix (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] (Functor m, Monad m) => Applicative (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Functor m => Functor (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => Monad (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+instance [safe] MonadPlus m => MonadPlus (StateT s m)
+  -- Defined in ‘Control.Monad.Trans.State.Lazy’
+ghci> :i Sate
+:i Sate
+
+<interactive>:1:1: error: Not in scope: ‘Sate’
+ghci> :i State
+:i State
+type State :: * -> * -> *
+type State s = StateT s Data.Functor.Identity.Identity :: * -> *
+  	-- Defined in ‘Control.Monad.Trans.State.Lazy’
+ghci> 
