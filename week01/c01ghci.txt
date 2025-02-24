@@ -1,0 +1,433 @@
+stefan@stefans-MBP week01 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week01.hs
+:l week01.hs
+[1 of 2] Compiling Main             ( week01.hs, interpreted )
+Ok, one module loaded.
+ghci> f 13
+f 13
+31
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week01 % clear
+clear
+stefan@stefans-MBP week01 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :load f.hs
+:load f.hs
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+Ok, one module loaded.
+ghci> f 10
+f 10
+28
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g 15 20
+g 15 20
+175
+ghci> :type f
+:type f
+f :: Int -> Int
+ghci> :type g
+:type g
+g :: Num a => a -> a -> a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t g
+:t g
+g :: Int -> Int -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g 15 20
+g 15 20
+319
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> g 15 20
+g 15 20
+319
+ghci> g 10 g 25 30
+g 10 g 25 30
+
+<interactive>:14:1: error:
+    • Couldn't match expected type ‘t0 -> t1 -> t’
+                  with actual type ‘Int’
+    • The function ‘g’ is applied to four value arguments,
+        but its type ‘Int -> Int -> Int’ has only two
+      In the expression: g 10 g 25 30
+      In an equation for ‘it’: it = g 10 g 25 30
+    • Relevant bindings include it :: t (bound at <interactive>:14:1)
+
+<interactive>:14:6: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Int -> Int -> Int’
+    • Probable cause: ‘g’ is applied to too few arguments
+      In the second argument of ‘g’, namely ‘g’
+      In the expression: g 10 g 25 30
+      In an equation for ‘it’: it = g 10 g 25 30
+ghci> g 10 (g 25 30)
+g 10 (g 25 30)
+3426
+ghci> :info Float
+:info Float
+type Float :: *
+data Float = GHC.Types.F# GHC.Prim.Float#
+  	-- Defined in ‘GHC.Types’
+instance Floating Float -- Defined in ‘GHC.Float’
+instance RealFloat Float -- Defined in ‘GHC.Float’
+instance Read Float -- Defined in ‘GHC.Read’
+instance Enum Float -- Defined in ‘GHC.Float’
+instance Fractional Float -- Defined in ‘GHC.Float’
+instance Num Float -- Defined in ‘GHC.Float’
+instance RealFrac Float -- Defined in ‘GHC.Float’
+instance Real Float -- Defined in ‘GHC.Float’
+instance Show Float -- Defined in ‘GHC.Float’
+instance Eq Float -- Defined in ‘GHC.Classes’
+instance Ord Float -- Defined in ‘GHC.Classes’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g' 10
+g' 10
+314.0
+ghci> g' 10.01
+g' 10.01
+314.62833
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> n
+n
+10
+ghci> g' n
+g' n
+
+<interactive>:22:4: error:
+    • Couldn't match expected type ‘Float’ with actual type ‘Int’
+    • In the first argument of ‘g'’, namely ‘n’
+      In the expression: g' n
+      In an equation for ‘it’: it = g' n
+ghci> :info fromIntegral
+:info fromIntegral
+fromIntegral :: (Integral a, Num b) => a -> b
+  	-- Defined in ‘GHC.Real’
+ghci> g' (fromIntegral n)
+g' (fromIntegral n)
+314.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sumn 10
+sumn 10
+55
+ghci> :reload
+:reload
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+
+f.hs:15:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘sumn’: sumn 0 = ...
+   |
+15 | sumn 0 = 0
+   | ^^^^^^^^^^
+Ok, one module loaded.
+ghci> sumn 10
+sumn 10
+*** Exception: stack overflow
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+
+f.hs:15:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘sumn’: sumn 0 = ...
+   |
+15 | sumn 0 = 0
+   | ^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calcul 10
+calcul 10
+-8
+ghci> calcul 6
+calcul 6
+24
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+
+f.hs:22:14: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+22 |              
+   |              ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isPrime 1
+isPrime 1
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+
+f.hs:41:1: error: parse error on input ‘isPrime’
+   |
+41 | isPrime :: Int -> Bool
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+
+f.hs:41:1: error: parse error on input ‘isPrime’
+   |
+41 | isPrime :: Int -> Bool
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+
+f.hs:41:1: error: parse error on input ‘isPrime’
+   |
+41 | isPrime :: Int -> Bool
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+Ok, one module loaded.
+ghci> isPrime 2
+isPrime 2
+True
+ghci> isPrime 3
+isPrime 3
+True
+ghci> isPrime 4
+isPrime 4
+False
+ghci> isPrime 5
+isPrime 5
+True
+ghci> isPrime 6
+isPrime 6
+False
+ghci> isPrime 7
+isPrime 7
+True
+ghci> isPrime 8
+isPrime 8
+False
+ghci> isPrime 9
+isPrime 9
+False
+ghci> isPrime 10
+isPrime 10
+False
+ghci> isPrime 11
+isPrime 11
+True
+ghci> isPrime 12
+isPrime 12
+False
+ghci> isPrime 13
+isPrime 13
+True
+ghci> isPrime 1
+isPrime 1
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+
+f.hs:55:30: error:
+    Variable not in scope: hasDivisors :: Int -> Int -> Int -> Bool
+   |
+55 |                              hasDivisors x (a + 1) b
+   |                              ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+Ok, one module loaded.
+ghci> isPrime' 2
+isPrime' 2
+True
+ghci> isPrime' 3
+isPrime' 3
+True
+ghci> isPrime' 4
+isPrime' 4
+False
+ghci> isPrime' 5
+isPrime' 5
+True
+ghci> isPrime' 6
+isPrime' 6
+False
+ghci> isPrime' 7
+isPrime' 7
+True
+ghci> isPrime' 8
+isPrime' 8
+False
+ghci> isPrime' 9
+isPrime' 9
+False
+ghci> isPrime' 10
+isPrime' 10
+False
+ghci> isPrime' 111
+isPrime' 111
+False
+ghci> isPrime' 12
+isPrime' 12
+False
+ghci> isPrime' 13
+isPrime' 13
+True
+ghci> isPrime' 11
+isPrime' 11
+True
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week01 % ./asdf
+./asdf
+Apel 1: 0
+Apel 2: 0
+stefan@stefans-MBP week01 % gcc -Wall -o asdf asdf.c
+gcc -Wall -o asdf asdf.c
+stefan@stefans-MBP week01 % ./asdf
+./asdf
+Apel 1: 1
+Apel 2: 2
+stefan@stefans-MBP week01 % gcc -Wall -o asdf asdf.c
+gcc -Wall -o asdf asdf.c
+stefan@stefans-MBP week01 % ./asdf
+./asdf
+stefan@stefans-MBP week01 % gcc -Wall -o asdf asdf.c
+gcc -Wall -o asdf asdf.c
+stefan@stefans-MBP week01 % ./asdf
+./asdf
+Apel 1: 1
+stefan@stefans-MBP week01 % gcc -Wall -o asdf asdf.c
+gcc -Wall -o asdf asdf.c
+stefan@stefans-MBP week01 % ./asdf
+./asdf
+Apel 1: asdf
+stefan@stefans-MBP week01 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.4/environments/default
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :i div
+:i div
+type Integral :: * -> Constraint
+class (Real a, Enum a) => Integral a where
+  ...
+  div :: a -> a -> a
+  ...
+  	-- Defined in ‘GHC.Real’
+infixl 7 `div`
+ghci> :i Integral
+:i Integral
+type Integral :: * -> Constraint
+class (Real a, Enum a) => Integral a where
+  quot :: a -> a -> a
+  rem :: a -> a -> a
+  div :: a -> a -> a
+  mod :: a -> a -> a
+  quotRem :: a -> a -> (a, a)
+  divMod :: a -> a -> (a, a)
+  toInteger :: a -> Integer
+  {-# MINIMAL quotRem, toInteger #-}
+  	-- Defined in ‘GHC.Real’
+instance Integral Int -- Defined in ‘GHC.Real’
+instance Integral Integer -- Defined in ‘GHC.Real’
+instance Integral Word -- Defined in ‘GHC.Real’
+ghci> div 10 5
+div 10 5
+2
+ghci> 10 `div` 5
+10 `div` 5
+2
+ghci> 10 `mod` 5
+10 `mod` 5
+0
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> g 10 20
+g 10 20
+
+<interactive>:7:1: error: Variable not in scope: g :: t0 -> t1 -> t
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l f.hs
+:l f.hs
+[1 of 2] Compiling Main             ( f.hs, interpreted )
+Ok, one module loaded.
+ghci> g 10 20
+g 10 20
+314
+ghci> 10 `g` 20
+10 `g` 20
+314
+ghci> 10 + 20
+10 + 20
+30
+ghci> (+) 10 20
+(+) 10 20
+30
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> otherwise
+otherwise
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( f.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> 
