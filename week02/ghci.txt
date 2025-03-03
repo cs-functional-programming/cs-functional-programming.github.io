@@ -1,0 +1,524 @@
+stefan@stefans-MBP week02 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week02
+:l week02
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> f 15
+f 15
+28
+ghci> :reload
+:reload
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add 13 12
+add 13 12
+25
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> prod 5
+prod 5
+120
+ghci> 1  * 2 * 3 * 4 * 5
+1  * 2 * 3 * 4 * 5
+120
+ghci> prod 2 
+prod 2 
+2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:21:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘prod'’: prod' 0 = ...
+   |
+21 | prod' 0 = 1
+   | ^^^^^^^^^^^
+Ok, one module loaded.
+ghci> prod' 2 
+prod' 2 
+
+
+
+
+*** Exception: stack overflow
+ghci> 
+ghci> 
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:32:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘prod'’: prod' 0 = ...
+   |
+32 | prod' 0 = 1
+   | ^^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> prod' 5
+prod' 5
+
+<interactive>:15:1: error:
+    Variable not in scope: prod' :: t0 -> t
+    Suggested fix:
+      Perhaps use one of these: ‘prod’ (line 14), ‘prod''’ (line 41)
+ghci> prod 5
+prod 5
+120
+ghci> prod'' 5 1
+prod'' 5 1
+120
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo 10
+fibo 10
+55
+ghci> fibo 20
+fibo 20
+6765
+ghci> fibo 30
+fibo 30
+832040
+ghci> :set +s
+:set +s
+ghci> fibo 30
+fibo 30
+832040
+(0.70 secs, 495,495,128 bytes)
+ghci> fibo 31
+fibo 31
+1346269
+(1.11 secs, 801,686,616 bytes)
+ghci> fibo 32
+fibo 32
+2178309
+(1.81 secs, 1,297,113,592 bytes)
+ghci> fibo 33
+fibo 33
+3524578
+(2.88 secs, 2,098,731,304 bytes)
+ghci> fibo 34
+fibo 34
+5702887
+(4.64 secs, 3,395,776,016 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo 3
+fibo 3
+2
+(0.00 secs, 65,624 bytes)
+ghci> fibo 4
+fibo 4
+3
+(0.00 secs, 66,184 bytes)
+ghci> fibo 5
+fibo 5
+5
+(0.00 secs, 67,272 bytes)
+ghci> fibo 6
+fibo 6
+8
+(0.00 secs, 69,112 bytes)
+ghci> fibo 7
+fibo 7
+13
+(0.00 secs, 72,816 bytes)
+ghci> fibo' 7 0 1
+fibo' 7 0 1
+13
+(0.00 secs, 66,728 bytes)
+ghci> fibo' 8 0 1
+fibo' 8 0 1
+21
+(0.00 secs, 66,944 bytes)
+ghci> fibo 8
+fibo 8
+21
+(0.00 secs, 77,600 bytes)
+ghci> :reload
+:reload
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo' 8
+fibo' 8
+21
+(0.00 secs, 67,136 bytes)
+ghci> fibo 8
+fibo 8
+21
+(0.00 secs, 77,608 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo' 1
+fibo' 1
+1
+(0.00 secs, 65,120 bytes)
+ghci> fibo' 0
+fibo' 0
+0
+(0.00 secs, 64,720 bytes)
+ghci> fibo' 1
+fibo' 1
+1
+(0.00 secs, 64,912 bytes)
+ghci> fibo' 2
+fibo' 2
+1
+(0.00 secs, 65,120 bytes)
+ghci> fibo' 3
+fibo' 3
+2
+(0.00 secs, 65,336 bytes)
+ghci> fibo' 4
+fibo' 4
+3
+(0.00 secs, 65,552 bytes)
+ghci> fibo' 5
+fibo' 5
+5
+(0.00 secs, 65,744 bytes)
+ghci> fibo' 6
+fibo' 6
+8
+(0.00 secs, 65,960 bytes)
+ghci> fibo' 7
+fibo' 7
+13
+(0.00 secs, 66,936 bytes)
+ghci> fibo' 8
+fibo' 8
+21
+(0.00 secs, 67,128 bytes)
+ghci> Lr
+Lr
+
+<interactive>:52:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+(0.00 secs,)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo' 8
+fibo' 8
+21
+(0.00 secs, 67,336 bytes)
+ghci> fibo' 7
+fibo' 7
+13
+(0.00 secs, 66,928 bytes)
+ghci> sin
+sin
+
+<interactive>:56:1: error:
+    • No instance for (Show (Double -> Double))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+(0.01 secs,)
+ghci> pi
+pi
+3.141592653589793
+(0.00 secs, 83,936 bytes)
+ghci> sin pi
+sin pi
+1.2246467991473532e-16
+(0.00 secs, 94,696 bytes)
+ghci> sin (pi / 2)
+sin (pi / 2)
+1.0
+(0.00 secs, 67,896 bytes)
+ghci> sin (pi * 0.5)
+sin (pi * 0.5)
+1.0
+(0.00 secs, 67,896 bytes)
+ghci> sin (pi * 30 / 180)
+sin (pi * 30 / 180)
+0.49999999999999994
+(0.00 secs, 86,400 bytes)
+ghci> cos (pi * 30 / 180)
+cos (pi * 30 / 180)
+0.8660254037844387
+(0.00 secs, 85,104 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:103:1: error:
+    The type signature for ‘f1’ lacks an accompanying binding
+    Suggested fix: Perhaps use ‘f’ (Defined at week02.hs:2:1)
+    |
+103 | f1 :: Int -> Int -> Int -> Int
+    | ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> xCoord 30
+xCoord 30
+0.8660254
+(0.00 secs, 74,808 bytes)
+ghci> yCoord 30
+yCoord 30
+0.5
+(0.00 secs, 67,784 bytes)
+ghci> yCoord 45
+yCoord 45
+0.70710677
+(0.00 secs, 75,744 bytes)
+ghci> xCoord 45
+xCoord 45
+0.70710677
+(0.00 secs, 75,728 bytes)
+ghci> (34, 100)
+(34, 100)
+(34,100)
+(0.00 secs, 70,296 bytes)
+ghci> fst (34, 100)
+fst (34, 100)
+34
+(0.01 secs, 65,520 bytes)
+ghci> snd (34, 100)
+snd (34, 100)
+100
+(0.00 secs, 66,288 bytes)
+ghci> (True, 'c')
+(True, 'c')
+(True,'c')
+(0.00 secs, 39,016 bytes)
+ghci> :type (True, 'c')
+:type (True, 'c')
+(True, 'c') :: (Bool, Char)
+ghci> :type xCoord
+:type xCoord
+xCoord :: Float -> Float
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> coords 30
+coords 30
+(0.8660254,0.5)
+(0.00 secs, 81,112 bytes)
+ghci> coords 45
+coords 45
+(0.70710677,0.70710677)
+(0.00 secs, 90,088 bytes)
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week02 % gcc -Wall -o ex2 ex2.c
+gcc -Wall -o ex2 ex2.c
+stefan@stefans-MBP week02 % ./ex2
+./ex2
+4
+stefan@stefans-MBP week02 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week02
+:l week02
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> fibo 34
+fibo 34
+5702887
+ghci> :set +s
+:set +s
+ghci> fibo 34
+fibo 34
+5702887
+(4.66 secs, 3,395,776,008 bytes)
+ghci> fibo 35
+fibo 35
+9227465
+(7.57 secs, 5,494,438,432 bytes)
+ghci> fst ('c', fibo 35)
+fst ('c', fibo 35)
+'c'
+(0.00 secs, 33,408 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:126:1: error:
+    Multiple declarations of ‘add’
+    Declared at: week02.hs:7:1
+                 week02.hs:126:1
+    |
+126 | add 0 y = y
+    | ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+
+week02.hs:127:12: error:
+    Ambiguous occurrence ‘succ’
+    It could refer to
+       either ‘Prelude.succ’,
+              imported from ‘Prelude’ at week02.hs:1:1
+              (and originally defined in ‘GHC.Enum’)
+           or ‘Main.succ’, defined at week02.hs:120:1
+    |
+127 | add' x y = succ (add' (prev x) y)
+    |            ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+
+week02.hs:127:25: error:
+    Variable not in scope: prev :: Int -> Int
+    Suggested fix:
+      Perhaps use one of these:
+        ‘pred’ (imported from Prelude), ‘pred’ (line 123)
+    |
+127 | add' x y = succ' (add' (prev x) y)
+    |                         ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> add' 3 4
+add' 3 4
+7
+(0.00 secs, 65,872 bytes)
+ghci> add' 10 20
+add' 10 20
+30
+(0.00 secs, 68,520 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:127:7: error: Parse error in pattern: x' + 1
+    |
+127 | add' (x'+1) y = succ' (add' x' y)
+    |       ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add'' 3 4
+add'' 3 4
+7
+(0.00 secs, 65,712 bytes)
+ghci> add'' 10 20
+add'' 10 20
+30
+(0.00 secs, 67,960 bytes)
+ghci> ('c', True, 123)
+('c', True, 123)
+('c',True,123)
+(0.00 secs, 75,144 bytes)
+ghci> fst ('c', True, 123)
+fst ('c', True, 123)
+
+<interactive>:19:5: error:
+    • Couldn't match expected type: (a, b0)
+                  with actual type: (Char, Bool, c0)
+    • In the first argument of ‘fst’, namely ‘('c', True, 123)’
+      In the expression: fst ('c', True, 123)
+      In an equation for ‘it’: it = fst ('c', True, 123)
+    • Relevant bindings include it :: a (bound at <interactive>:19:1)
+(0.03 secs,)
+ghci> snd ('c', True, 123)
+snd ('c', True, 123)
+
+<interactive>:20:5: error:
+    • Couldn't match expected type: (a0, b)
+                  with actual type: (Char, Bool, c0)
+    • In the first argument of ‘snd’, namely ‘('c', True, 123)’
+      In the expression: snd ('c', True, 123)
+      In an equation for ‘it’: it = snd ('c', True, 123)
+    • Relevant bindings include it :: b (bound at <interactive>:20:1)
+(0.00 secs,)
+ghci> :info fst
+:info fst
+fst :: (a, b) -> a 	-- Defined in ‘Data.Tuple’
+ghci> :info ()
+:info ()
+type () :: *
+data () = ()
+  	-- Defined in ‘GHC.Tuple’
+instance Monoid () -- Defined in ‘GHC.Base’
+instance Semigroup () -- Defined in ‘GHC.Base’
+instance Bounded () -- Defined in ‘GHC.Enum’
+instance Enum () -- Defined in ‘GHC.Enum’
+instance Show () -- Defined in ‘GHC.Show’
+instance Eq () -- Defined in ‘GHC.Classes’
+instance Ord () -- Defined in ‘GHC.Classes’
+instance Read () -- Defined in ‘GHC.Read’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:129:1: error:
+    The type signature for ‘gcd_extended’ lacks an accompanying binding
+    |
+129 | gcd_extended :: Int -> Int -> (Int, Int, Int)
+    | ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> fst_3uple (1, 5, 7)
+fst_3uple (1, 5, 7)
+1
+(0.00 secs, 64,768 bytes)
+ghci> fst_3uple (13, 5, 7)
+fst_3uple (13, 5, 7)
+13
+(0.00 secs, 65,512 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (1, (3, 4))
+(1, (3, 4))
+(1,(3,4))
+(0.00 secs, 71,376 bytes)
+ghci> ((1, 3), 4)
+((1, 3), 4)
+((1,3),4)
+(0.00 secs, 71,368 bytes)
+ghci> :t ('c', ('a', 'b'))
+:t ('c', ('a', 'b'))
+('c', ('a', 'b')) :: (Char, (Char, Char))
+ghci> :t (('c', 'a'), 'a')
+:t (('c', 'a'), 'a')
+(('c', 'a'), 'a') :: ((Char, Char), Char)
+ghci> 
