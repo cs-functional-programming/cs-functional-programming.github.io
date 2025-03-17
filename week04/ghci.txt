@@ -1,0 +1,934 @@
+stefan@stefans-MBP week04 % ghci
+ghci
+:l curs
+:l curs
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> f 3 
+f 3 
+6
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:3:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+  |
+3 | t1 : ABC
+  | ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> t1
+t1
+Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> t3
+t3
+Nod 7 (Nod 2 Empty Empty) (Nod 6 Empty Empty)
+ghci> :i Int
+:i Int
+type Int :: *
+data Int = GHC.Types.I# GHC.Prim.Int#
+  	-- Defined in ‘GHC.Types’
+instance Bounded Int -- Defined in ‘GHC.Enum’
+instance Read Int -- Defined in ‘GHC.Read’
+instance Enum Int -- Defined in ‘GHC.Enum’
+instance Eq Int -- Defined in ‘GHC.Classes’
+instance Integral Int -- Defined in ‘GHC.Real’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Real Int -- Defined in ‘GHC.Real’
+instance Show Int -- Defined in ‘GHC.Show’
+ghci> :i Bounded
+:i Bounded
+type Bounded :: * -> Constraint
+class Bounded a where
+  minBound :: a
+  maxBound :: a
+  {-# MINIMAL minBound, maxBound #-}
+  	-- Defined in ‘GHC.Enum’
+instance Bounded () -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b) => Bounded (a, b)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c) => Bounded (a, b, c)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d) =>
+         Bounded (a, b, c, d)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e) =>
+         Bounded (a, b, c, d, e)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f) =>
+         Bounded (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g) =>
+         Bounded (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h) =>
+         Bounded (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i) =>
+         Bounded (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j,
+          Bounded k) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n, Bounded o) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Enum’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Bounded Char -- Defined in ‘GHC.Enum’
+instance Bounded Int -- Defined in ‘GHC.Enum’
+instance Bounded Ordering -- Defined in ‘GHC.Enum’
+instance Bounded a => Bounded (Solo a) -- Defined in ‘GHC.Enum’
+instance Bounded Word -- Defined in ‘GHC.Enum’
+ghci> maxBound :: Int
+maxBound :: Int
+9223372036854775807
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:20:3: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+20 |   
+   |   ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> minim t3
+minim t3
+2
+ghci> minim t2
+minim t2
+2
+ghci> minim t1
+minim t1
+*** Exception: curs.hs:(13,1)-(14,27): Non-exhaustive patterns in function minim
+
+ghci> 10 / 5
+10 / 5
+2.0
+ghci> 10 / 0
+10 / 0
+Infinity
+ghci> 10 `div` 5
+10 `div` 5
+2
+ghci> 10 `div` 0
+10 `div` 0
+*** Exception: divide by zero
+ghci> [1, 2, 6, 8]
+[1, 2, 6, 8]
+[1,2,6,8]
+ghci> head [1, 2, 6, 8]
+head [1, 2, 6, 8]
+1
+ghci> :t head
+:t head
+head :: GHC.Stack.Types.HasCallStack => [a] -> a
+ghci> head []
+head []
+*** Exception: Prelude.head: empty list
+CallStack (from HasCallStack):
+  error, called at libraries/base/GHC/List.hs:1646:3 in base:GHC.List
+  errorEmptyList, called at libraries/base/GHC/List.hs:85:11 in base:GHC.List
+  badHead, called at libraries/base/GHC/List.hs:81:28 in base:GHC.List
+  head, called at <interactive>:24:1 in interactive:Ghci8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> minim' t1
+minim' t1
+Nothing
+ghci> minim' t2
+minim' t2
+Just 2
+ghci> minim' t3
+minim' t3
+Just 2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:35:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> maxim' t1
+maxim' t1
+Nothing
+ghci> maxim' t2
+maxim' t2
+Just 2
+ghci> maxim' t3
+maxim' t3
+Just 6
+ghci> t2
+t2
+Nod 2 Empty Empty
+ghci> t3
+t3
+Nod 7 (Nod 2 Empty Empty) (Nod 6 Empty Empty)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isABC t3
+isABC t3
+False
+ghci> isABC t2
+isABC t2
+*** Exception: curs.hs:(23,1)-(24,27): Non-exhaustive patterns in function maxim
+
+ghci> t2
+t2
+Nod 2 Empty Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:42:3: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+42 |   isABC l &&
+   |   ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> isABC t1
+isABC t1
+True
+ghci> isABC t2
+isABC t2
+True
+ghci> isABC t3
+isABC t3
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:51:3: error:
+    Variable not in scope: greaterThan' :: ABC -> Integer -> Bool
+    Suggested fix: Perhaps use ‘greaterThan’ (line 44)
+   |
+51 |   greaterThan' r x &&
+   |   ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isABC t5
+isABC t5
+True
+ghci> isABC t3
+isABC t3
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> search t5 12
+search t5 12
+True
+ghci> search t5 8
+search t5 8
+False
+ghci> search t5 6
+search t5 6
+True
+ghci> search t5 2
+search t5 2
+True
+ghci> search t5 1
+search t5 1
+False
+ghci> compare 3 4
+compare 3 4
+LT
+ghci> :t compare
+:t compare
+compare :: Ord a => a -> a -> Ordering
+ghci> :i Ordering
+:i Ordering
+type Ordering :: *
+data Ordering = LT | EQ | GT
+  	-- Defined in ‘GHC.Types’
+instance Monoid Ordering -- Defined in ‘GHC.Base’
+instance Semigroup Ordering -- Defined in ‘GHC.Base’
+instance Bounded Ordering -- Defined in ‘GHC.Enum’
+instance Enum Ordering -- Defined in ‘GHC.Enum’
+instance Read Ordering -- Defined in ‘GHC.Read’
+instance Eq Ordering -- Defined in ‘GHC.Classes’
+instance Ord Ordering -- Defined in ‘GHC.Classes’
+instance Show Ordering -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> search' t5 1
+search' t5 1
+False
+ghci> search' t5 2
+search' t5 2
+True
+ghci> search' t5 6
+search' t5 6
+True
+ghci> search' t5 42
+search' t5 42
+False
+ghci> search' t5 12
+search' t5 12
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> t1
+t1
+Empty
+ghci> insert t1 2
+insert t1 2
+Nod 2 Empty Empty
+ghci> insert (insert t1 2) 3
+insert (insert t1 2) 3
+Nod 2 Empty Empty
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> insert (insert t1 2) 3
+insert (insert t1 2) 3
+Nod 2 Empty Empty
+ghci> insert (insert t1 3) 2
+insert (insert t1 3) 2
+Nod 3 Empty Empty
+ghci> insert t1 3
+insert t1 3
+Nod 3 Empty Empty
+ghci> insert (Nod 3 Empty Empty) 2
+insert (Nod 3 Empty Empty) 2
+Nod 3 Empty Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> insert (Nod 3 Empty Empty) 2
+insert (Nod 3 Empty Empty) 2
+Nod 2 Empty Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> insert (Nod 3 Empty Empty) 2
+insert (Nod 3 Empty Empty) 2
+Nod 3 (Nod 2 Empty Empty) Empty
+ghci> insert (insert (Nod 3 Empty Empty) 2) 7
+insert (insert (Nod 3 Empty Empty) 2) 7
+Nod 3 (Nod 2 Empty Empty) (Nod 7 Empty Empty)
+ghci> insert (insert (insert (Nod 3 Empty Empty) 2) 7) 12
+insert (insert (insert (Nod 3 Empty Empty) 2) 7) 12
+Nod 3 (Nod 2 Empty Empty) (Nod 7 Empty (Nod 12 Empty Empty))
+ghci> insert (Nod 7 (Nod 4 (Nod 2 Empty Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)) 1
+ Empty)) 1
+Nod 7 (Nod 4 (Nod 2 (Nod 1 Empty Empty) Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)
+ghci> isABC (Nod 7 (Nod 4 (Nod 2 Empty Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty))
+Empty))
+True
+ghci> insert (Nod 7 (Nod 4 (Nod 2 Empty Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)) 1
+ Empty)) 1
+Nod 7 (Nod 4 (Nod 2 (Nod 1 Empty Empty) Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> t6
+t6
+Nod 7 (Nod 4 (Nod 2 Empty Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)
+ghci> insert t6 1
+insert t6 1
+Nod 7 (Nod 4 (Nod 2 (Nod 1 Empty Empty) Empty) (Nod 5 Empty Empty)) (Nod 11 Empty Empty)
+ghci> insert t6 12
+insert t6 12
+Nod 7 (Nod 4 (Nod 2 Empty Empty) (Nod 5 Empty Empty)) (Nod 11 Empty (Nod 12 Empty Empty))
+ghci> insert (insert t6 12) 1
+insert (insert t6 12) 1
+Nod 7 (Nod 4 (Nod 2 (Nod 1 Empty Empty) Empty) (Nod 5 Empty Empty)) (Nod 11 Empty (Nod 12 Empty Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> e1
+e1
+Suma (Const 7) (Const 14)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e1
+eval e1
+21
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e2
+eval e2
+63
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e3
+eval e3
+*** Exception: curs.hs:(104,1)-(106,43): Non-exhaustive patterns in function eval
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:115:18: error: parse error on input ‘->’
+    |
+115 | eval :: Expr ->  -> Integer
+    |                  ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+
+curs.hs:113:30: error:
+    Ambiguous occurrence ‘lookup’
+    It could refer to
+       either ‘Prelude.lookup’,
+              imported from ‘Prelude’ at curs.hs:1:1
+              (and originally defined in ‘GHC.List’)
+           or ‘Main.lookup’, defined at curs.hs:109:1
+    |
+113 |                              lookup tl x
+    |                              ^^^^^^
+Failed, no modules loaded.
+ghci> :t Prelude.lookup
+:t Prelude.lookup
+Prelude.lookup :: Eq a => a -> [(a, b)] -> Maybe b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> lookup' assignment "x"
+lookup' assignment "x"
+Just 7
+ghci> lookup' assignment "y"
+lookup' assignment "y"
+Just 12
+ghci> lookup' assignment "z"
+lookup' assignment "z"
+Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> lookup' assignment "x"
+lookup' assignment "x"
+Just 7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:120:39: error:
+    • No instance for (Num (Maybe Integer)) arising from a use of ‘+’
+    • In the expression: (eval e1 tau) + (eval e2 tau)
+      In an equation for ‘eval’:
+          eval (Suma e1 e2) tau = (eval e1 tau) + (eval e2 tau)
+    |
+120 | eval (Suma e1 e2) tau = (eval e1 tau) + (eval e2 tau)
+    |                                       ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+
+curs.hs:117:34: error:
+    • Couldn't match expected type ‘Integer’
+                  with actual type ‘Maybe Integer’
+    • In the expression: Just val
+      In a case alternative: Just val -> Just val
+      In the expression: case lookup' tau x of Just val -> Just val
+    |
+117 |                      Just val -> Just val
+    |                                  ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> eval e3 assignment
+eval e3 assignment
+21
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e4 assignment
+eval e4 assignment
+252
+ghci> 12 * 21
+12 * 21
+252:r
+ghci> 252:r
+252:r
+
+<interactive>:116:5: error: Variable not in scope: r :: [a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> e5
+e5
+Suma (Produs (Const 3) (Produs (Var "x") (Var "x"))) (Const 7)
+ghci> derivata e5
+derivata e5
+Suma (Suma (Produs (Const 0) (Produs (Var "x") (Var "x"))) (Produs (Const 3) (Suma (Produs (Const 1) (Var "x")) (Produs (Var "x") (Const 1))))) (Const 0)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted ) [Source file changed]
+
+curs.hs:150:12: error:
+    • Couldn't match expected type ‘Expr’
+                  with actual type ‘(Expr, Expr)’
+    • In the expression: (e1', e2')
+      In a case alternative: _ -> (e1', e2')
+      In the expression:
+        case (e1', e2') of
+          (Const c1, Const c2) -> (Const (c1 + c2))
+          (Const 0, _) -> e2'
+          (_, Const 0) -> e1'
+          _ -> (e1', e2')
+    |
+150 |       _ -> (e1', e2')
+    |            ^^^^^^^^^^
+
+curs.hs:160:12: error:
+    • Couldn't match expected type ‘Expr’
+                  with actual type ‘(Expr, Expr)’
+    • In the expression: (e1', e2')
+      In a case alternative: _ -> (e1', e2')
+      In the expression:
+        case (e1', e2') of
+          (Const c1, Const c2) -> (Const (c1 * c2))
+          (Const 0, _) -> Const 0
+          (_, Const 0) -> Const 0
+          (Const 1, _) -> e2'
+          (_, Const 1) -> e1'
+          _ -> (e1', e2')
+    |
+160 |       _ -> (e1', e2')
+    |            ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> simpl (derivata e5)
+simpl (derivata e5)
+Produs (Const 3) (Suma (Var "x") (Var "x"))
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+expr.cpp:47:9: warning: unused variable 'e2' [-Wunused-variable]
+  Expr *e2 = new ProdusExpr(new ConstExpr(3),
+        ^
+expr.cpp:46:9: warning: unused variable 'e1' [-Wunused-variable]
+  Expr *e1 = new SumaExpr(new ConstExpr(7), new ConstExpr(14));
+        ^
+expr.cpp:13:7: warning: private field 'c' is not used [-Wunused-private-field]
+  int c;
+      ^
+expr.cpp:29:9: warning: private field 'e1' is not used [-Wunused-private-field]
+  Expr *e1;
+        ^
+expr.cpp:30:9: warning: private field 'e2' is not used [-Wunused-private-field]
+  Expr *e2;
+        ^
+expr.cpp:38:9: warning: private field 'e1' is not used [-Wunused-private-field]
+  Expr *e1;
+        ^
+expr.cpp:39:9: warning: private field 'e2' is not used [-Wunused-private-field]
+  Expr *e2;
+        ^
+7 warnings generated.
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+stefan@stefans-MBP week04 % ./expr
+./expr
+21
+63
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+stefan@stefans-MBP week04 % ./expr
+./expr
+21
+63
+0x600001f812c0
+0x600001d84190
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+expr.cpp:97:16: error: allocating an object of abstract class type 'SumaExpr'
+    return new SumaExpr(e1->derivata(), e2->derivata());
+               ^
+expr.cpp:15:18: note: unimplemented pure virtual method 'toString' in 'SumaExpr'
+  virtual string toString() = 0;
+                 ^
+expr.cpp:113:16: error: allocating an object of abstract class type 'SumaExpr'
+    return new SumaExpr(e1p, e2p);
+               ^
+expr.cpp:139:29: error: allocating an object of abstract class type 'ProdusExpr'
+                        new ProdusExpr(e1->derivata(), e2),
+                            ^
+expr.cpp:15:18: note: unimplemented pure virtual method 'toString' in 'ProdusExpr'
+  virtual string toString() = 0;
+                 ^
+expr.cpp:140:29: error: allocating an object of abstract class type 'ProdusExpr'
+                        new ProdusExpr(e1, e2->derivata()));
+                            ^
+expr.cpp:162:16: error: allocating an object of abstract class type 'ProdusExpr'
+    return new ProdusExpr(e1p, e2p);
+               ^
+expr.cpp:176:18: error: allocating an object of abstract class type 'SumaExpr'
+  Expr *e1 = new SumaExpr(new ConstExpr(7), new ConstExpr(14));
+                 ^
+expr.cpp:178:33: error: allocating an object of abstract class type 'SumaExpr'
+                            new SumaExpr(
+                                ^
+expr.cpp:183:61: error: allocating an object of abstract class type 'VarExpr'
+                                         new ProdusExpr(new VarExpr("x"), ...
+                                                            ^
+expr.cpp:15:18: note: unimplemented pure virtual method 'toString' in 'VarExpr'
+  virtual string toString() = 0;
+                 ^
+expr.cpp:183:79: error: allocating an object of abstract class type 'VarExpr'
+  ...new ProdusExpr(new VarExpr("x"), new VarExpr("x"))), new ConstExpr(7));
+                                          ^
+9 errors generated.
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+expr.cpp:132:51: error: reference to non-static member function must be called;
+      did you mean to call it with no arguments?
+    oss << "Suma(" << e1->toString() << ", ", e2->toString << ")";
+                                              ~~~~^~~~~~~~
+                                                          ()
+expr.cpp:132:60: error: invalid operands to binary expression ('std::string' (aka
+      'basic_string<char, char_traits<char>, allocator<char> >') and
+      'const char [2]')
+    oss << "Suma(" << e1->toString() << ", ", e2->toString << ")";
+                                              ~~~~~~~~~~~~ ^  ~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h:282:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:741:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, _CharT __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:748:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, char __cn)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:781:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:788:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, signed char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:795:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, unsigned char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:802:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const _CharT* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:809:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const char* __strn)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:855:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:862:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const signed char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:870:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const unsigned char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1038:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1046:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1063:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, shared_ptr<_Yp> const& __p)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1082:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const bitset<_Size>& __x)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1030:11: note: 
+      candidate template ignored: requirement 'integral_constant<bool,
+      false>::value' was not satisfied
+      [with _Stream = std::string, _Tp = char [2]]
+_Stream&& operator<<(_Stream&& __os, const _Tp& __x)
+          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1055:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __ec)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1075:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, unique_ptr<_Yp, _Dp> const& __p)
+^
+expr.cpp:187:53: error: reference to non-static member function must be called;
+      did you mean to call it with no arguments?
+    oss << "Produs(" << e1->toString() << ", ", e2->toString << ")";
+                                                ~~~~^~~~~~~~
+                                                            ()
+expr.cpp:187:62: error: invalid operands to binary expression ('std::string' (aka
+      'basic_string<char, char_traits<char>, allocator<char> >') and
+      'const char [2]')
+    oss << "Produs(" << e1->toString() << ", ", e2->toString << ")";
+                                                ~~~~~~~~~~~~ ^  ~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h:282:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:741:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, _CharT __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:748:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, char __cn)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:781:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:788:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, signed char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:795:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, unsigned char __c)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:802:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const _CharT* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:809:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const char* __strn)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:855:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:862:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const signed char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:870:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<char, _Traits>& __os, const unsigned char* __str)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1038:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1046:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os,
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1063:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, shared_ptr<_Yp> const& __p)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1082:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const bitset<_Size>& __x)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1030:11: note: 
+      candidate template ignored: requirement 'integral_constant<bool,
+      false>::value' was not satisfied
+      [with _Stream = std::string, _Tp = char [2]]
+_Stream&& operator<<(_Stream&& __os, const _Tp& __x)
+          ^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1055:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, const error_code& __ec)
+^
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:1075:1: note: 
+      candidate template ignored: could not match 'basic_ostream' against
+      'basic_string'
+operator<<(basic_ostream<_CharT, _Traits>& __os, unique_ptr<_Yp, _Dp> const& __p)
+^
+4 errors generated.
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+stefan@stefans-MBP week04 % ./expr
+./expr
+21
+63
+Suma(Suma(Produs(0, Produs(x, x)), Produs(3, Suma(Produs(1, x), Produs(x, 1)))), 0)
+0
+stefan@stefans-MBP week04 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs
+:l curs
+[1 of 2] Compiling Main             ( curs.hs, interpreted )
+Ok, one module loaded.
+ghci> simpl (derivata e5)
+simpl (derivata e5)
+Produs (Const 3) (Suma (Var "x") (Var "x"))
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+stefan@stefans-MBP week04 % ./expr
+./expr
+21
+63
+Suma(Suma(Produs(0, Produs(x, x)), Produs(3, Suma(Produs(1, x), Produs(x, 1)))), 0)
+0
+stefan@stefans-MBP week04 % g++ -Wall -o expr expr.cpp
+g++ -Wall -o expr expr.cpp
+stefan@stefans-MBP week04 % ./expr
+./expr
+21
+63
+Suma(Suma(Produs(0, Produs(x, x)), Produs(3, Suma(Produs(1, x), Produs(x, 1)))), 0)
+Produs(3, Suma(x, x))
+stefan@stefans-MBP week04 % 
