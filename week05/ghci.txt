@@ -1,0 +1,661 @@
+stefan@stefans-MBP week05 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week05
+:l week05
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> :t (+)
+:t (+)
+(+) :: Num a => a -> a -> a
+ghci> Lr
+Lr
+
+<interactive>:3:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t add
+:t add
+add :: Int -> Int -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> app "Hello, " "World!"
+app "Hello, " "World!"
+"Hello, World!"
+ghci> g = (\ x -> x + 3)
+g = (\ x -> x + 3)
+ghci> g 10
+g 10
+13
+ghci> g 42
+g 42
+45
+ghci> g' = (\ x y -> x + y)
+g' = (\ x y -> x + y)
+ghci> g' 3 4
+g' 3 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> app "a" "b"
+app "a" "b"
+"ab"
+ghci> app' = swap app
+app' = swap app
+ghci> app' "a" "b"
+app' "a" "b"
+"ba"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mistery g
+mistery g
+
+<interactive>:18:9: error: Variable not in scope: g :: Int -> Int
+ghci> g = (\ x -> x + 3)
+g = (\ x -> x + 3)
+ghci> mistery g
+mistery g
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g 42
+g 42
+45
+ghci> g 7
+g 7
+10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g' 50
+g' 50
+60
+ghci> :t mistery
+:t mistery
+mistery :: (Int -> Int) -> Int
+ghci> :t adder 
+:t adder 
+adder :: Int -> Int -> Int
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :t adder
+:t adder
+adder :: Int -> Int -> Int
+ghci> adder'
+adder'
+
+<interactive>:31:1: error:
+    Variable not in scope: adder'
+    Suggested fix: Perhaps use ‘adder’ (line 14)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t adder'
+:t adder'
+adder' :: Int -> Int -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> adder'' 10 13
+adder'' 10 13
+23
+ghci> adder' 10 13
+adder' 10 13
+23
+ghci> :t adder'';
+:t adder'';
+
+<interactive>:1:8: error: parse error on input ‘;’
+ghci> :t adder''
+:t adder''
+adder'' :: Int -> Int -> Int
+ghci> :t adder
+:t adder
+adder :: Int -> Int -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g'' 10
+g'' 10
+13
+ghci> g'' 42
+g'' 42
+45
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> h = add 3
+h = add 3
+ghci> h 4
+h 4
+7
+ghci> h' = add 10
+h' = add 10
+ghci> h' 20
+h' 20
+30
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (add 3) 4
+(add 3) 4
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add3 10 12 13
+add3 10 12 13
+35
+ghci> add3 10 12 13
+add3 10 12 13
+35
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add3 10 12 13
+add3 10 12 13
+35
+ghci> ((add3 10) 12) 13
+((add3 10) 12) 13
+35
+ghci> :t add3
+:t add3
+add3 :: Int -> Int -> Int -> Int
+ghci> increment_by_3 = add 3
+increment_by_3 = add 3
+ghci> increment_by_3 10
+increment_by_3 10
+13
+ghci> increment_by_3 15
+increment_by_3 15
+18
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add2 (4, 5)
+add2 (4, 5)
+9
+ghci> "r
+"r
+
+<interactive>:63:3: error:
+    lexical error in string/character literal at end of input
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add' = curry add2
+add' = curry add2
+
+<interactive>:65:8: error:
+    Ambiguous occurrence ‘curry’
+    It could refer to
+       either ‘Prelude.curry’,
+              imported from ‘Prelude’ at week05.hs:1:1
+              (and originally defined in ‘Data.Tuple’)
+           or ‘Main.curry’, defined at week05.hs:47:1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add2' = curry' add2
+add2' = curry' add2
+ghci> :t add2'
+:t add2'
+add2' :: Int -> Int -> Int
+ghci> add2' 10 13
+add2' 10 13
+23
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (uncurry' (curry' add2)) (2, 3)
+(uncurry' (curry' add2)) (2, 3)
+5
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mistery' (+5) (*2) 10
+mistery' (+5) (*2) 10
+25
+ghci> mistery' (*2) (+5) 10
+mistery' (*2) (+5) 10
+30
+ghci> :t mistery'
+:t mistery'
+mistery' :: (t1 -> t2) -> (t3 -> t1) -> t3 -> t2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> compf = mistery' (*2) (+5)
+mistery' (*2) (+5)
+
+<interactive>:77:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> compf = mistery' (*2) (+5)
+compf = mistery' (*2) (+5)
+ghci> compf 10
+compf 10
+30
+ghci> compf 100
+compf 100
+210
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> ((*2) . (+5)) 100
+((*2) . (+5)) 100
+210
+ghci> ((*2) . (+5)) 10
+((*2) . (+5)) 10
+30
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> compf' = mistery' (+5)
+compf' = mistery' (+5)
+ghci> compf' (*2) 10
+compf' (*2) 10
+25
+ghci> compf' (*3) 10
+compf' (*3) 10
+35
+ghci> :t uncurry
+:t uncurry
+uncurry :: (a -> b -> c) -> (a, b) -> c
+ghci> :t curry
+:t curry
+curry :: ((a, b) -> c) -> a -> b -> c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> inc_grade [3, 8, 2]
+inc_grade [3, 8, 2]
+[4,9,3]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fac_grade [3, 8, 2]
+fac_grade [3, 8, 2]
+[3.3000002,8.8,2.2]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process_list [3,8,2]
+process_list [3,8,2]
+[3.3000002,8.8,2.2]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process_list process_grade [3, 8, 2]
+process_list process_grade [3, 8, 2]
+[3.3000002,8.8,2.2]
+ghci> process_list (\x -> (x + 1) * 1.1) [3, 8, 2]
+process_list (\x -> (x + 1) * 1.1) [3, 8, 2]
+[4.4,9.900001,3.3000002]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:76:40: error:
+    • No instance for (Num String) arising from a use of ‘+’
+    • In the first argument of ‘(+)’, namely ‘"Hello, " + hd’
+      In the first argument of ‘(:)’, namely ‘("Hello, " + hd + "!")’
+      In the expression: ("Hello, " + hd + "!") : (process_strings tl)
+   |
+76 | process_strings (hd : tl) = ("Hello, " + hd + "!") : (process_strings tl)
+   |                                        ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> process_strings ["John", "Marie", "Anne"]
+process_strings ["John", "Marie", "Anne"]
+["Hello, John!","Hello, Marie!","Hello, Anne!"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process (\x -> (x + 1) * 1.1) [3, 8, 2]
+process (\x -> (x + 1) * 1.1) [3, 8, 2]
+[4.4,9.9,3.3000000000000003]
+ghci> process (\name -> "Hello, " ++ name ++ "!") ["John", "Marie", "Anne"]
+process (\name -> "Hello, " ++ name ++ "!") ["John", "Marie", "Anne"]
+["Hello, John!","Hello, Marie!","Hello, Anne!"]
+ghci> :t map
+:t map
+map :: (a -> b) -> [a] -> [b]
+ghci> map (\x -> x `mod` 2 == 0) [3, 8, 2]
+map (\x -> x `mod` 2 == 0) [3, 8, 2]
+[False,True,True]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:84:42: error:
+    • Couldn't match type ‘a’ with ‘b’
+      Expected: b -> b
+        Actual: a -> b
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          process' :: forall a b. (a -> b) -> [a] -> [b]
+        at week05.hs:82:1-34
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          process' :: forall a b. (a -> b) -> [a] -> [b]
+        at week05.hs:82:1-34
+    • In the first argument of ‘process’, namely ‘f’
+      In the second argument of ‘(:)’, namely ‘(process f tl)’
+      In the expression: (f hd) : (process f tl)
+    • Relevant bindings include
+        tl :: [a] (bound at week05.hs:84:18)
+        hd :: a (bound at week05.hs:84:13)
+        f :: a -> b (bound at week05.hs:84:10)
+        process' :: (a -> b) -> [a] -> [b] (bound at week05.hs:83:1)
+   |
+84 | process' f (hd : tl) = (f hd) : (process f tl)
+   |                                          ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> :t map
+:t map
+map :: (a -> b) -> [a] -> [b]
+ghci> [("John", 3), ("Marie", 8), ("Anne", 2)]
+[("John", 3), ("Marie", 8), ("Anne", 2)]
+[("John",3),("Marie",8),("Anne",2)]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> who_passed [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed [("John", 3), ("Marie", 8), ("Anne", 2)]
+["Marie"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> who_passed' [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed' [("John", 3), ("Marie", 8), ("Anne", 2)]
+[("Marie",8)]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:102:47: error: parse error on input ‘then’
+    |
+102 | who_failed' ((name, grade) : tl) = if grade < then
+    |                                               ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> who_failed' [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_failed' [("John", 3), ("Marie", 8), ("Anne", 2)]
+[("John",3),("Anne",2)]
+ghci> :t filter
+:t filter
+filter :: (a -> Bool) -> [a] -> [a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> who_passed'' [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed'' [("John", 3), ("Marie", 8), ("Anne", 2)]
+[("Marie",8)]
+ghci> :t filter
+:t filter
+filter :: (a -> Bool) -> [a] -> [a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t who_passed''
+:t who_passed''
+who_passed'' :: (Ord a1, Num a1) => [(a2, a1)] -> [(a2, a1)]
+ghci> :t who_passed''''
+:t who_passed''''
+
+<interactive>:1:1: error:
+    Variable not in scope: who_passed''''
+    Suggested fix:
+      Perhaps use one of these:
+        ‘who_passed'''’ (line 101), ‘who_passed''’ (line 100),
+        ‘who_passed'’ (line 94)
+ghci> :t who_passed'''
+:t who_passed'''
+who_passed''' :: [(a, Integer)] -> [(a, Integer)]
+ghci> :t who_passed''
+:t who_passed''
+who_passed'' :: (Ord a1, Num a1) => [(a2, a1)] -> [(a2, a1)]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+["Marie"]
+ghci> fst (3, 4)
+fst (3, 4)
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+["Marie"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:114:19: error:
+    • Couldn't match expected type: ([(a0, a2)] -> [(a0, a2)])
+                                    -> [(String, Int)] -> [String]
+                  with actual type: [b1]
+    • The function ‘map’ is applied to three value arguments,
+        but its type ‘((b1, b2) -> b1) -> [(b1, b2)] -> [b1]’ has only two
+      In the expression:
+        (map fst) (.) (filter (\ (_, grade) -> grade >= 5))
+      In an equation for ‘who_passed_nice’:
+          who_passed_nice
+            = (map fst) (.) (filter (\ (_, grade) -> grade >= 5))
+    |
+114 | who_passed_nice = (map fst) (.) (filter (\(_, grade) -> grade >= 5))
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week05.hs:114:29: error:
+    • Couldn't match expected type: [(b1, b2)]
+                  with actual type: (b0 -> c0) -> (a1 -> b0) -> a1 -> c0
+    • Probable cause: ‘(.)’ is applied to too few arguments
+      In the second argument of ‘map’, namely ‘(.)’
+      In the expression:
+        (map fst) (.) (filter (\ (_, grade) -> grade >= 5))
+      In an equation for ‘who_passed_nice’:
+          who_passed_nice
+            = (map fst) (.) (filter (\ (_, grade) -> grade >= 5))
+    |
+114 | who_passed_nice = (map fst) (.) (filter (\(_, grade) -> grade >= 5))
+    |                             ^^^
+Failed, no modules loaded.
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> :t (filter (\(_, grade) -> grade >= 5))
+:t (filter (\(_, grade) -> grade >= 5))
+(filter (\(_, grade) -> grade >= 5))
+  :: (Ord a1, Num a1) => [(a2, a1)] -> [(a2, a1)]
+ghci> :t (map fst)
+:t (map fst)
+(map fst) :: [(b1, b2)] -> [b1]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+who_passed_nice [("John", 3), ("Marie", 8), ("Anne", 2)]
+["Marie"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> count [3, 8, 2]
+count [3, 8, 2]
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sumlist [3, 8, 2] 
+sumlist [3, 8, 2] 
+13
+ghci> sumlist [3, 8, 2] / count [3, 8, 2]
+sumlist [3, 8, 2] / count [3, 8, 2]
+
+<interactive>:142:19: error:
+    • No instance for (Fractional Int) arising from a use of ‘/’
+    • In the expression: sumlist [3, 8, 2] / count [3, 8, 2]
+      In an equation for ‘it’: it = sumlist [3, 8, 2] / count [3, 8, 2]
+ghci> (sumlist [3, 8, 2]) `div` (count [3, 8, 2])
+(sumlist [3, 8, 2]) `div` (count [3, 8, 2])
+4
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce [3, 8, 2] (+) 0
+reduce [3, 8, 2] (+) 0
+13
+ghci> reduce [3, 8, 2] (\_ y -> y + 1) 0
+reduce [3, 8, 2] (\_ y -> y + 1) 0
+3
+ghci> reduce [1, 2, 3, 8, 2] (\_ y -> y + 1) 0
+reduce [1, 2, 3, 8, 2] (\_ y -> y + 1) 0
+5
+ghci> reduce [1, 2, 3, 8, 2] (*) 1
+reduce [1, 2, 3, 8, 2] (*) 1
+96
+ghci> 2 * 8 * 3 * 2 
+2 * 8 * 3 * 2 
+96
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t foldl
+:t foldl
+foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+ghci> :t foldr
+:t foldr
+foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+ghci> foldl (\x hd -> x + hd) 0 [3, 8, 2]
+foldl (\x hd -> x + hd) 0 [3, 8, 2]
+13
+ghci> foldl (\x hd -> x * hd) 1 [3, 8, 2]
+foldl (\x hd -> x * hd) 1 [3, 8, 2]
+48
+ghci> foldl (\x _ -> x + 1) 0 [3, 8, 2]
+foldl (\x _ -> x + 1) 0 [3, 8, 2]
+3
+ghci> foldl (\x _ -> x + 1) 0 [3, 8, 2, 13, 14]
+foldl (\x _ -> x + 1) 0 [3, 8, 2, 13, 14]
+5
+ghci> foldr (\hd x -> hd + x) 0 [3, 8, 2]
+foldr (\hd x -> hd + x) 0 [3, 8, 2]
+13
+ghci> foldr (\_ x -> 1 + x) 0 [3, 8, 2]
+foldr (\_ x -> 1 + x) 0 [3, 8, 2]
+3
+ghci> foldr (\hd x -> hd * x) 1 [3, 8, 2]
+foldr (\hd x -> hd * x) 1 [3, 8, 2]
+48
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> foldl (++) "Hello" ["aa", "bb", "cc"]
+foldl (++) "Hello" ["aa", "bb", "cc"]
+"Helloaabbcc"
+ghci> foldr (++) "Hello" ["aa", "bb", "cc"]
+foldr (++) "Hello" ["aa", "bb", "cc"]
+"aabbccHello"
+ghci> foldl div 10000 [20, 50, 5 ]
+foldl div 10000 [20, 50, 5 ]
+2
+ghci> foldr div 10000 [20, 50, 5 ]
+foldr div 10000 [20, 50, 5 ]
+*** Exception: divide by zero
+ghci> foldr div 1 [ 1000, 20 ]
+foldr div 1 [ 1000, 20 ]
+50
+ghci> foldr div 1 [ 1000, 20, 5 ]
+foldr div 1 [ 1000, 20, 5 ]
+250
+ghci> foldr div 1 [ 1000, 20, 5, 10 ]
+foldr div 1 [ 1000, 20, 5, 10 ]
+*** Exception: divide by zero
+ghci> foldr div 1 [ 1000, 20, 5 ]
+foldr div 1 [ 1000, 20, 5 ]
+250
+ghci> foldr div 1 [ 20, 5 ]
+foldr div 1 [ 20, 5 ]
+4
+ghci> foldr div 1 [ 5 ]
+foldr div 1 [ 5 ]
+5
+ghci> foldr div 1 []
+foldr div 1 []
+1
+ghci> 
