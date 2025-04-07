@@ -1,0 +1,871 @@
+stefan@stefans-MBP week07 % ghci
+ghci
+:l c07
+:l c07
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l c07
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :i Nat
+:i Nat
+type Nat :: *
+data Nat = Zero | Succ Nat
+  	-- Defined at c07.hs:1:1
+instance Eq Nat -- Defined at c07.hs:1:44
+instance Show Nat -- Defined at c07.hs:1:38
+ghci> :i
+:i
+syntax: ':i <thing-you-want-info-about>'
+ghci> :i Eq
+:i Eq
+type Eq :: * -> Constraint
+class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+  {-# MINIMAL (==) | (/=) #-}
+  	-- Defined in ‘GHC.Classes’
+instance Eq Nat -- Defined at c07.hs:1:44
+instance Eq Integer -- Defined in ‘GHC.Num.Integer’
+instance Eq () -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b) => Eq (a, b) -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c) => Eq (a, b, c)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d) => Eq (a, b, c, d)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e) => Eq (a, b, c, d, e)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f) =>
+         Eq (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g) =>
+         Eq (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h) =>
+         Eq (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i) =>
+         Eq (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j) =>
+         Eq (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m, Eq n) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m, Eq n, Eq o) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Classes’
+instance Eq Bool -- Defined in ‘GHC.Classes’
+instance Eq Char -- Defined in ‘GHC.Classes’
+instance Eq Double -- Defined in ‘GHC.Classes’
+instance Eq Float -- Defined in ‘GHC.Classes’
+instance Eq Int -- Defined in ‘GHC.Classes’
+instance Eq Ordering -- Defined in ‘GHC.Classes’
+instance Eq a => Eq (Solo a) -- Defined in ‘GHC.Classes’
+instance Eq Word -- Defined in ‘GHC.Classes’
+instance Eq a => Eq [a] -- Defined in ‘GHC.Classes’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+ghci> :i Ord
+:i Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘GHC.Classes’
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord () -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b) -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Classes’
+instance Ord Bool -- Defined in ‘GHC.Classes’
+instance Ord Char -- Defined in ‘GHC.Classes’
+instance Ord Double -- Defined in ‘GHC.Classes’
+instance Ord Float -- Defined in ‘GHC.Classes’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Ord Ordering -- Defined in ‘GHC.Classes’
+instance Ord a => Ord (Solo a) -- Defined in ‘GHC.Classes’
+instance Ord Word -- Defined in ‘GHC.Classes’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :i Nat
+:i Nat
+type Nat :: *
+data Nat = Zero | Succ Nat
+  	-- Defined at c07.hs:1:1
+instance Eq Nat -- Defined at c07.hs:1:44
+instance Ord Nat -- Defined at c07.hs:5:10
+instance Show Nat -- Defined at c07.hs:1:38
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:12:26: error:
+    • No instance for (Ord a) arising from a use of ‘<=’
+      Possible fix:
+        add (Ord a) to the context of
+          the type signature for:
+            qs :: forall a. [a] -> [a]
+    • In the expression: (<=)
+      In the first argument of ‘filter’, namely ‘(<= hd)’
+      In the first argument of ‘qs’, namely ‘(filter (<= hd) tl)’
+   |
+12 | qs (hd:tl) = qs (filter (<=hd) tl) ++ [ hd ] ++ qs (filter (>hd) tl)
+   |                          ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> :i Ord
+:i Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘GHC.Classes’
+instance Ord Nat -- Defined at c07.hs:5:10
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord () -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b) -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Classes’
+instance Ord Bool -- Defined in ‘GHC.Classes’
+instance Ord Char -- Defined in ‘GHC.Classes’
+instance Ord Double -- Defined in ‘GHC.Classes’
+instance Ord Float -- Defined in ‘GHC.Classes’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Ord Ordering -- Defined in ‘GHC.Classes’
+instance Ord a => Ord (Solo a) -- Defined in ‘GHC.Classes’
+instance Ord Word -- Defined in ‘GHC.Classes’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> hd [1,2,3]
+hd [1,2,3]
+Just 1
+ghci> hd ['a', 'b', 'c']
+hd ['a', 'b', 'c']
+Just 'a'
+ghci> hd []
+hd []
+Nothing
+ghci> (hd [ \x -> x + 3, \x -> x * 2 ]) 12
+(hd [ \x -> x + 3, \x -> x * 2 ]) 12
+
+<interactive>:16:1: error:
+    • Couldn't match expected type: t0 -> t
+                  with actual type: Maybe (a0 -> a0)
+    • The function ‘hd’ is applied to two value arguments,
+        but its type ‘[a0 -> a0] -> Maybe (a0 -> a0)’ has only one
+      In the expression: (hd [\ x -> x + 3, \ x -> x * 2]) 12
+      In an equation for ‘it’: it = (hd [\ x -> x + 3, \ x -> x * 2]) 12
+    • Relevant bindings include it :: t (bound at <interactive>:16:1)
+ghci> let Just f = hd [ \x -> x + 3, \x -> x * 2 ] in f 12
+let Just f = hd [ \x -> x + 3, \x -> x * 2 ] in f 12
+15
+ghci> qs [ \x -> x + 3, \x -> x * 2 ]
+qs [ \x -> x + 3, \x -> x * 2 ]
+
+<interactive>:18:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :i qs
+:i qs
+qs :: Ord a => [a] -> [a] 	-- Defined at c07.hs:13:1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs [ \x -> x + 3, \x -> x * 2 ]
+qs [ \x -> x + 3, \x -> x * 2 ]
+
+<interactive>:21:1: error:
+    • No instance for (Ord (Integer -> Integer))
+        arising from a use of ‘it’
+        (maybe you haven't applied a function to enough arguments?)
+    • In the first argument of ‘print’, namely ‘it’
+      In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ex1 17
+ex1 17
+
+
+
+
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ex1 17
+ex1 17
+*** Exception: exceptie in timpul evaluarii
+CallStack (from HasCallStack):
+  error, called at c07.hs:31:9 in main:Main
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:49:1: error: Parse error in pattern: ex3
+   |
+49 | ex3 [hd1,hd2,hd3] : tl = hd2
+   | ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:40:1: error:
+    The type signature for ‘ex2’ lacks an accompanying binding
+    Suggested fix:
+      Perhaps use one of these:
+        ‘ex1’ (Defined at c07.hs:33:1), ‘ex3’ (Defined at c07.hs:49:1)
+   |
+40 | ex2 :: a -> a
+   | ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> ex3 [1,7,89,3,2]
+ex3 [1,7,89,3,2]
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ex3 [1,7,89,3,2]
+ex3 [1,7,89,3,2]
+89
+ghci> ex3 [1,7,3,2]
+ex3 [1,7,3,2]
+7
+ghci> :i Ord
+:i Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘GHC.Classes’
+instance Ord Nat -- Defined at c07.hs:5:10
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord () -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b) -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Classes’
+instance Ord Bool -- Defined in ‘GHC.Classes’
+instance Ord Char -- Defined in ‘GHC.Classes’
+instance Ord Double -- Defined in ‘GHC.Classes’
+instance Ord Float -- Defined in ‘GHC.Classes’
+instance Ord Int -- Defined in ‘GHC.Classes’
+instance Ord Ordering -- Defined in ‘GHC.Classes’
+instance Ord a => Ord (Solo a) -- Defined in ‘GHC.Classes’
+instance Ord Word -- Defined in ‘GHC.Classes’
+instance Ord a => Ord [a] -- Defined in ‘GHC.Classes’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+ghci> "asf" < "asdf"
+"asf" < "asdf"
+False
+ghci> "asdf99" < "asdf100"
+"asdf99" < "asdf100"
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:97:17: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a0] -> [a0]
+    • Probable cause: ‘qs'’ is applied to too few arguments
+      In the first argument of ‘(++)’, namely ‘qs' (filter (f hd) tl)’
+      In the expression:
+        qs' (filter (f hd) tl)
+          ++ [hd] ++ qs' (filter (\ x -> not (f hd x)) tl)
+      In an equation for ‘qs'’:
+          qs' f (hd : tl)
+            = qs' (filter (f hd) tl)
+                ++ [hd] ++ qs' (filter (\ x -> not (f hd x)) tl)
+    • Relevant bindings include
+        tl :: [a] (bound at c07.hs:97:11)
+        hd :: a (bound at c07.hs:97:8)
+        f :: a -> a -> Bool (bound at c07.hs:97:5)
+        qs' :: (a -> a -> Bool) -> [a] -> [a] (bound at c07.hs:96:1)
+   |
+97 | qs' f (hd:tl) = qs' (filter (f hd) tl) ++ [hd] ++
+   |                 ^^^^^^^^^^^^^^^^^^^^^^
+
+c07.hs:97:22: error:
+    • Couldn't match expected type: a0 -> a0 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs'’, namely ‘(filter (f hd) tl)’
+      In the first argument of ‘(++)’, namely ‘qs' (filter (f hd) tl)’
+      In the expression:
+        qs' (filter (f hd) tl)
+          ++ [hd] ++ qs' (filter (\ x -> not (f hd x)) tl)
+    • Relevant bindings include
+        tl :: [a] (bound at c07.hs:97:11)
+        hd :: a (bound at c07.hs:97:8)
+        f :: a -> a -> Bool (bound at c07.hs:97:5)
+        qs' :: (a -> a -> Bool) -> [a] -> [a] (bound at c07.hs:96:1)
+   |
+97 | qs' f (hd:tl) = qs' (filter (f hd) tl) ++ [hd] ++
+   |                      ^^^^^^^^^^^^^^^^
+
+c07.hs:98:17: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a1] -> [a1]
+    • Probable cause: ‘qs'’ is applied to too few arguments
+      In the second argument of ‘(++)’, namely
+        ‘qs' (filter (\ x -> not (f hd x)) tl)’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ qs' (filter (\ x -> not (f hd x)) tl)’
+      In the expression:
+        qs' (filter (f hd) tl)
+          ++ [hd] ++ qs' (filter (\ x -> not (f hd x)) tl)
+    • Relevant bindings include
+        tl :: [a] (bound at c07.hs:97:11)
+        hd :: a (bound at c07.hs:97:8)
+        f :: a -> a -> Bool (bound at c07.hs:97:5)
+        qs' :: (a -> a -> Bool) -> [a] -> [a] (bound at c07.hs:96:1)
+   |
+98 |                 qs' (filter (\x -> not (f hd x)) tl)
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+c07.hs:98:22: error:
+    • Couldn't match expected type: a1 -> a1 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs'’, namely
+        ‘(filter (\ x -> not (f hd x)) tl)’
+      In the second argument of ‘(++)’, namely
+        ‘qs' (filter (\ x -> not (f hd x)) tl)’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ qs' (filter (\ x -> not (f hd x)) tl)’
+    • Relevant bindings include
+        tl :: [a] (bound at c07.hs:97:11)
+        hd :: a (bound at c07.hs:97:8)
+        f :: a -> a -> Bool (bound at c07.hs:97:5)
+        qs' :: (a -> a -> Bool) -> [a] -> [a] (bound at c07.hs:96:1)
+   |
+98 |                 qs' (filter (\x -> not (f hd x)) tl)
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> qs' (<=) [1,6,4]
+qs' (<=) [1,6,4]
+[6,4,1]
+ghci> qs' (>=) [1,6,4]
+qs' (>=) [1,6,4]
+[1,4,6]
+ghci> filter ((<=) 1) [6,4]
+filter ((<=) 1) [6,4]
+[6,4]
+ghci> (<=) 1 10
+(<=) 1 10
+True
+ghci> (<=) 10 5
+(<=) 10 5
+False
+ghci> :Lr
+:Lr
+unknown command ':Lr'
+use :? for help.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs' my [1,6,4]
+qs' my [1,6,4]
+
+<interactive>:46:5: error:
+    Variable not in scope: my :: a -> a -> Bool
+    Suggested fix: Perhaps use ‘myf’ (line 95)
+ghci> qs' myf [1,6,4]
+qs' myf [1,6,4]
+[6,4,1]
+ghci> my 1 10
+my 1 10
+
+<interactive>:48:1: error:
+    Variable not in scope: my :: t0 -> t1 -> t
+    Suggested fix: Perhaps use ‘myf’ (line 95)
+ghci> myf 1 10
+myf 1 10
+True
+ghci> (myf 1) 10
+(myf 1) 10
+True
+ghci> filter (myf 1) [6,4]
+filter (myf 1) [6,4]
+[6,4]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs' myf [1,6,4]
+qs' myf [1,6,4]
+[6,4,1]
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> qs' myf [1,6,4]
+qs' myf [1,6,4]
+[6,4,1]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs' myf [1,6,4]
+qs' myf [1,6,4]
+[1,4,6]
+ghci> qs' (>=) [1,6,4]
+qs' (>=) [1,6,4]
+[6,4,1]
+ghci> read "100" :: Integer
+read "100" :: Integer
+100
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:105:46: error: parse error on input ‘::’
+    |
+105 | comp_str x = (read x) :: Integer <= (read y) :: Integer
+    |                                              ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+
+c07.hs:105:46: error: Variable not in scope: y :: String
+    |
+105 | comp_str x = ((read x) :: Integer) <= ((read y) :: Integer)
+    |                                              ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> comp_str "100" "99"
+comp_str "100" "99"
+False
+ghci> qs' comp_str [ "100", "99", "9" ]
+qs' comp_str [ "100", "99", "9" ]
+["9","99","100"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fib 30
+fib 30
+832040
+ghci> :set +s
+:set +s
+ghci> fib 30
+fib 30
+832040
+(0.68 secs, 495,495,120 bytes)
+ghci> fib 31
+fib 31
+1346269
+(1.09 secs, 801,686,600 bytes)
+ghci> fib 32
+fib 32
+2178309
+(1.74 secs, 1,297,113,600 bytes)
+ghci> fib 33
+fib 33
+3524578
+(2.81 secs, 2,098,731,312 bytes)
+ghci> fib 34
+fib 34
+5702887
+(4.56 secs, 3,395,776,008 bytes)
+ghci> fib 35
+fib 35
+9227465
+(7.40 secs, 5,494,438,424 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:140:1: error:
+    Invalid type signature: f x :: ...
+    Suggested fix:
+      A type signature should be of form <variables> :: <type>
+    |
+140 | f x :: Int -> Int
+    | ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> f 100
+f 100
+2
+(0.00 secs, 31,912 bytes)
+ghci> f (fib 100)
+f (fib 100)
+2
+(0.00 secs, 31,920 bytes)
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MBP week07 % ./c07
+./c07
+  C-c C-c^C
+stefan@stefans-MBP week07 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l c07.hs
+:l c07.hs
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> f (fib 100)
+f (fib 100)
+2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> a
+a
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> b 13
+b 13
+  C-c C-c^CInterrupted.
+ghci> b 3
+b 3
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+
+c07.hs:141:7: error:
+    • No instance for (Num ((a0 -> a0 -> a0) -> Int))
+        arising from the literal ‘2’
+        (maybe you haven't applied a function to enough arguments?)
+    • In the expression: 2 (**)
+      In an equation for ‘f’: f x = 2 (**)
+    |
+141 | f x = 2 (**)
+    |       ^
+
+c07.hs:141:9: error:
+    • Ambiguous type variable ‘a0’ arising from a use of ‘**’
+      prevents the constraint ‘(Floating a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Floating Double -- Defined in ‘GHC.Float’
+        instance Floating Float -- Defined in ‘GHC.Float’
+    • In the first argument of ‘2’, namely ‘(**)’
+      In the expression: 2 (**)
+      In an equation for ‘f’: f x = 2 (**)
+    |
+141 | f x = 2 (**)
+    |         ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> b' 3
+ b' 3
+13
+ghci>  b' 13
+ b' 13
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> patrat (double 10)
+patrat (double 10)
+400
+ghci> fib 33
+fib 33
+3524578
+ghci> :set +s
+:set +s
+ghci> fib 33
+fib 33
+3524578
+(2.84 secs, 2,098,731,304 bytes)
+ghci> patrat (fib 33)
+patrat (fib 33)
+12422650078084
+(2.91 secs, 2,098,736,672 bytes)
+ghci> fib 33
+fib 33
+3524578
+(2.84 secs, 2,098,731,304 bytes)
+ghci> patrat (fib 33)
+patrat (fib 33)
+12422650078084
+(2.86 secs, 2,098,736,680 bytes)
+ghci> (fib 33) + (fib 33)
+(fib 33) + (fib 33)
+7049156
+(5.61 secs, 4,197,393,504 bytes)
+ghci> (fib 33) * (fib 33)
+(fib 33) * (fib 33)
+12422650078084
+(5.61 secs, 4,197,398,816 bytes)
+ghci> patrat (fib 33)
+patrat (fib 33)
+12422650078084
+(2.81 secs, 2,098,736,672 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> listaAux 10
+listaAux 10
+[10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273,274,275,276,277,278,279,280,281,282,283,284,285,286,287,288,289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,304,305,306,307,308,309,310,311,312,313,314,315,316,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,414,415,416,417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540,541,542,543,544,545,546,547,548,549,550,551,552,553,554,555,556,557,558,559,560,561,562,563,564,565,566,567,568,569,570,571,572,573,574,575,576,577,578,579,580,581,582,583,584,585,586,587,588,589,590,591,592,593,594,595,596,597,598,599,600,601,602,603,604,605,606,607,608,609,610,611,612,613,614,615,616,617,618,619,620,621,622,623,624,625,626,627,628,629,630,631,632,633,634,635,636,637,638,639,640,641,642,643,644,645,646,647,648,649,650,651,652,653,654,655,656,657,658,659,660,661,662,663,664,665,666,667,668,669,670,671,672,673,674,675,676,677,678,679,680,681,682,683,684,685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720,721,722,723,724,725,726,727,728,729,730,731,732,733,734,735,736,737,738,739,740,741,742,743,744,745,746,747,748,749,750,751,752,753,754,755,756,757,758,759,760,761,762,763,764,765,766,767,768,769,770,771,772,773,774,775,776,777,778,779,780,781,782,783,784,785,786,787,788,789,790,791,792,793,794,795,796,797,798,799,800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,818,819,820,821,822,823,824,825,826,827,828,829,830,831,832,833,834,835,836,837,838,839,840,841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,893,894,895,896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023,1024,1025,1026,1027,1028,1029,1030,1031,1032,1033,1034,1035,1036,1037,1038,1039,1040,1041,1042,1043,1044,1045,1046,1047,1048,1049,1050,1051,1052,1053,1054,1055,1056,1057,1058,1059,1060,1061,1062,1063,1064,1065,1066,1067,1068,1069,1070,1071,1072,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087,1088,1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,109  C-c C-c^C1151,1152,1153,1154,115Interrupted.
+ghci>   C-c C-c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> listaPare !! 0
+listaPare !! 0
+0
+(0.00 secs, 65,584 bytes)
+ghci> listaPare !! 1
+listaPare !! 1
+2
+(0.00 secs, 64,896 bytes)
+ghci> listaPare !! 10
+listaPare !! 10
+20
+(0.00 secs, 67,472 bytes)
+ghci> listaPare !! 10000000
+listaPare !! 10000000
+20000000
+(5.45 secs, 2,576,464,072 bytes)
+ghci> listaPare !! 10000000
+listaPare !! 10000000
+20000000
+(0.14 secs, 37,232 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( c07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> 
