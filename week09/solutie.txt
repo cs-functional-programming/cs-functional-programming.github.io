@@ -1,0 +1,123 @@
+Problema 1
+
+patratPerfect :: Int -> Bool
+patratPerfect n = patratPerfectAux n 1 -- patratul unui nr
+-- intre 1 si n - 1
+
+-- patratPerfectAux n k = verifica daca n este
+-- patratul unui numar natural intre k si n - 1.
+
+patratPerfectAux :: Int -> Int -> Bool
+patratPerfectAux n k = if k * k == n then
+                         True
+                       else if k > n then
+                         False
+                       else
+                         patratPerfectAux n (k + 1)
+
+for (k = 1; k < n; ++k)
+  if (k * k == n)
+    return 1;
+return 0;
+
+
+Problema 2
+
+penultim :: [a] -> a
+penultim (x1:x2:x3:xs) = penultim (x2:x3:xs)
+penultim (x1:x2:[]) = x1
+
+penultim :: [a] -> a
+penultim [x1,x2] = x1
+penultim (x1:xs) = penultim xs
+
+data Arb = Vid | Nod Int Arb Arb deriving (Show, Eq)
+count :: Arb -> Int
+count Vid = 0
+count (Nod _ l r) = 1 + count l + count r
+
+countAux :: [Arb] -> Int -> Int
+countAux [] acc = acc
+countAux (Vid:xs) acc = countAux xs acc
+countAux (Nod _ l r:xs) acc = countAux (l:r:xs) (acc + 1)
+
+count' :: Arb -> Int
+count' x = countAux [x]
+
+
+filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4] == [4]
+
+
+
+filter :: (a -> Bool) -> [a] -> [a]
+
+(\x -> mod (x :: Int) 2 == 0) :: Int -> Bool
+
+foldr (+) 0 (map (\x -> x * x) (filter (\x -> mod x 2 == 0) l))
+
+foldr (+) 0 $ map (\x -> x * x) $ filter (\x -> mod x 2 == 0) l
+
+((foldr (+) 0) . (map (\x -> x * x)) .(filter (\x -> mod x 2 == 0))) l
+
+map' :: (a -> b) -> [a] -> [b]
+map' f [] = []
+map' f (hd:tl) = f hd : map' f tl
+
+data Nat = Zero | Succ Nat deriving (Show, Eq)
+
+-- x, y ∈ N, y != 0:    ∃a, 0 <= b < y  a.i. x = y * a + b 
+
+subtract :: Nat -> Nat -> Nat
+subtract Zero _ = Zero
+subtract x Zero = x
+subtract (Succ x) (Succ y) = subtract x y
+
+lt :: Nat -> Nat -> Bool
+lt Zero (Succ _) = True
+lt _ Zero = False
+lt (Succ x) (Succ y) = lt x y
+
+lte :: Nat -> Nat -> Bool
+lte Zero _ = True
+lte (Succ _) Zero = False
+lte (Succ x) (Succ y) = lte x y
+
+lte' :: Nat -> Nat -> Bool
+lte' x y = subtract x y == Zero
+
+quotientRemainder :: Nat -> Nat -> (Nat, Nat)
+quotientRemainder x y = if lt x y then
+                           (0, x)
+                        else -- x >= y
+                           let x' = subtract x y in
+                           let (a, b) = quotientRemainder x' y in
+                             (a + 1, b)
+
+
+data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+  Mult Integer Expr deriving (Show, Eq)
+
+simpl :: Expr -> Expr
+simpl (Const c) = Const c
+simpl (Var v) = Var v
+simpl (Minus e) = Minus (simpl e)
+simpl (Plus e1 e2) = Plus (simpl e1) (simpl e2)
+simpl (Mult c e) = if c < 0 then
+                     Minus (simpl (Mult (-c) e))
+                   else if c == 0 then
+                     Const 0
+                   else
+                     Plus (simpl e) (simpl (Mult (c - 1) e))
+
+
+esteSiLogic :: (Bool -> Bool -> Bool) -> Bool
+esteSiLogic f = f True True && not (f True False) && not (f False True) &&
+               not (f False False)
+
+contineSiLogic :: [Bool -> Bool -> Bool] -> Bool
+contineSiLogic [] = False
+contineSiLogic (hd:tl) = if esteSiLogic hd then
+                           True
+                         else
+                           contineSiLogic tl
+                           

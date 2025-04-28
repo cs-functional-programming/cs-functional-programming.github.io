@@ -1,0 +1,587 @@
+stefan@stefans-MBP week09 % ghci
+ghci
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l solutie
+:l solutie
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+Ok, one module loaded.
+ghci> map patratPerfect [1, 2, 3, 4, 5, 6, 7, 8, 9]
+map patratPerfect [1, 2, 3, 4, 5, 6, 7, 8, 9]
+[True,False,False,True,False,False,False,False,True]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> map patratPerfect [1, 2, 3, 4, 5, 6, 7, 8, 9]
+map patratPerfect [1, 2, 3, 4, 5, 6, 7, 8, 9]
+[True,False,False,True,False,False,False,False,True]
+ghci> patratPerfect 1
+patratPerfect 1
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> penultim [1,2,3,4,5]
+penultim [1,2,3,4,5]
+4
+ghci> penultim [1,2,3,4,5,1]
+penultim [1,2,3,4,5,1]
+5
+ghci> penultim [1,2,3,4,5,1,2]
+penultim [1,2,3,4,5,1,2]
+1
+ghci> penultim [1,2]
+penultim [1,2]
+1
+ghci> penultim [2,1]
+penultim [2,1]
+2
+ghci> penultim ['a','b']
+penultim ['a','b']
+'a'
+ghci> penultim ['a']
+penultim ['a']
+*** Exception: solutie.hs:(13,1)-(14,30): Non-exhaustive patterns in function penultim
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> penultim' [1,2,3,4,5]
+penultim' [1,2,3,4,5]
+4
+ghci> penultim' [1,2,3,4,5,1]
+penultim' [1,2,3,4,5,1]
+5
+ghci> penultim' [1,2,3,4,5,1,2]
+penultim' [1,2,3,4,5,1,2]
+1
+ghci> penultim' [1,2]
+penultim' [1,2]
+1
+ghci> penultim' [2,1]
+penultim' [2,1]
+2
+ghci> penultim' [2]
+penultim' [2]
+*** Exception: solutie.hs:(17,1)-(20,33): Non-exhaustive patterns in function penultim'
+
+ghci> penultim' []
+penultim' []
+*** Exception: solutie.hs:(17,1)-(20,33): Non-exhaustive patterns in function penultim'
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+
+solutie.hs:33:12: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Int -> Int’
+    • Probable cause: ‘countAux’ is applied to too few arguments
+      In the expression: countAux [x]
+      In an equation for ‘count'’: count' x = countAux [x]
+   |
+33 | count' x = countAux [x]
+   |            ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> count' t1
+count' t1
+1
+ghci> count' t2
+count' t2
+3
+ghci> count' t3 == count t3
+count' t3 == count t3
+True
+ghci> count' t3
+count' t3
+5
+ghci> filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4]
+filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4]
+[4]
+ghci> :t filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4]
+:t filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4]
+filter (\x -> mod (x :: Int) 2 == 0) [1, 3, 4] :: [Int]
+ghci> :t filter (\x -> mod x 2 == 0) [1, 3, 4]
+:t filter (\x -> mod x 2 == 0) [1, 3, 4]
+filter (\x -> mod x 2 == 0) [1, 3, 4] :: Integral a => [a]
+ghci> :i Integral
+:i Integral
+type Integral :: * -> Constraint
+class (Real a, Enum a) => Integral a where
+  quot :: a -> a -> a
+  rem :: a -> a -> a
+  div :: a -> a -> a
+  mod :: a -> a -> a
+  quotRem :: a -> a -> (a, a)
+  divMod :: a -> a -> (a, a)
+  toInteger :: a -> Integer
+  {-# MINIMAL quotRem, toInteger #-}
+  	-- Defined in ‘GHC.Real’
+instance Integral Int -- Defined in ‘GHC.Real’
+instance Integral Integer -- Defined in ‘GHC.Real’
+instance Integral Word -- Defined in ‘GHC.Real’
+ghci> let l = [1,3,4,8,7] in filter (\x -> mod x 2 == 0) l
+let l = [1,3,4,8,7] in filter (\x -> mod x 2 == 0) l
+[4,8]
+ghci> let l = [1,3,4,8,7] in map (\x -> x * x) (filter (\x -> mod x 2 == 0) l)
+
+let l = [1,3,4,8,7] in map (\x -> x * x) (filter (\x -> mod x 2 == 0) l)
+[16,64]
+ghci> 
+ghci> let l = [1,3,4,8,7] in foldr (+) 0 (map (\x -> x * x) (filter (\x -> mod x 2 == 0) l))
+2 == 0) l))
+80
+ghci> let l = [1,3,4,8,7] in foldr (+) 0 map (\x -> x * x) (filter (\x -> mod x 2 == 0) l)
+ == 0) l)
+
+<interactive>:37:36: error:
+    • Couldn't match type: [b0]
+                     with: [a2] -> t
+      Expected: (a0 -> b0) -> (a1 -> a1) -> [a2] -> t
+        Actual: (a0 -> b0) -> [a0] -> [b0]
+    • In the third argument of ‘foldr’, namely ‘map’
+      In the expression:
+        foldr (+) 0 map (\ x -> x * x) (filter (\ x -> mod x 2 == 0) l)
+      In the expression:
+        let l = [...]
+        in foldr (+) 0 map (\ x -> x * x) (filter (\ x -> mod x 2 == 0) l)
+    • Relevant bindings include it :: t (bound at <interactive>:37:1)
+ghci> let l = [1,3,4,8,7] in foldr (+) 0 (map (\x -> x * x) (filter (\x -> mod x 2 == 0) l))
+2 == 0) l))
+80
+ghci> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+ghci> let l = [1,3,4,8,7] in foldr (+) 0 $ map (\x -> x * x) $ filter (\x -> mod x 2 == 0) l
+x 2 == 0) l
+80
+ghci> :t foldr (+) 0
+:t foldr (+) 0
+foldr (+) 0 :: (Foldable t, Num b) => t b -> b
+ghci> :t map (\x -> x * x)
+:t map (\x -> x * x)
+map (\x -> x * x) :: Num b => [b] -> [b]
+ghci> :t filter (\x -> mod x 2 == 0)
+:t filter (\x -> mod x 2 == 0)
+filter (\x -> mod x 2 == 0) :: Integral a => [a] -> [a]
+ghci> let l = [1,2,3,4,5] in ((foldr (+) 0) . (map (\x -> x * x)) .(filter (\x -> mod x 2 == 0))) l
+
+ mod x 2 == 0))) l
+20
+ghci> 
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> map' (\x -> x * x) [1,2,3]
+map' (\x -> x * x) [1,2,3]
+
+<interactive>:47:1: error:
+    Variable not in scope: map' :: (a0 -> a0) -> [a1] -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘map’ (imported from Prelude), ‘mapM’ (imported from Prelude)
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> map' (\x -> x * x) [1,2,3]
+map' (\x -> x * x) [1,2,3]
+
+<interactive>:49:1: error:
+    Variable not in scope: map' :: (a0 -> a0) -> [a1] -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘map’ (imported from Prelude), ‘mapM’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> map' (\x -> x * x) [1,2,3]
+map' (\x -> x * x) [1,2,3]
+[1,4,9]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+
+solutie.hs:49:1: error:
+    Multiple declarations of ‘map'’
+    Declared at: solutie.hs:44:1
+                 solutie.hs:49:1
+   |
+49 | map' f [] = []
+   | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+
+solutie.hs:49:1: error:
+    Multiple declarations of ‘map'’
+    Declared at: solutie.hs:44:1
+                 solutie.hs:49:1
+   |
+49 | map' f [] = []
+   | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+
+solutie.hs:59:30: error:
+    Ambiguous occurrence ‘subtract’
+    It could refer to
+       either ‘Prelude.subtract’,
+              imported from ‘Prelude’ at solutie.hs:1:1
+              (and originally defined in ‘GHC.Num’)
+           or ‘Main.subtract’, defined at solutie.hs:57:1
+   |
+59 | subtract (Succ x) (Succ y) = subtract x y
+   |                              ^^^^^^^^
+
+solutie.hs:72:12: error:
+    Ambiguous occurrence ‘subtract’
+    It could refer to
+       either ‘Prelude.subtract’,
+              imported from ‘Prelude’ at solutie.hs:1:1
+              (and originally defined in ‘GHC.Num’)
+           or ‘Main.subtract’, defined at solutie.hs:57:1
+   |
+72 | lte' x y = subtract x y == Zero
+   |            ^^^^^^^^
+
+solutie.hs:78:37: error:
+    Ambiguous occurrence ‘subtract’
+    It could refer to
+       either ‘Prelude.subtract’,
+              imported from ‘Prelude’ at solutie.hs:1:1
+              (and originally defined in ‘GHC.Num’)
+           or ‘Main.subtract’, defined at solutie.hs:57:1
+   |
+78 |                            let x' = subtract x y in
+   |                                     ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+
+solutie.hs:72:12: error:
+    • No instance for (Num Nat) arising from a use of ‘subtract’
+    • In the first argument of ‘(==)’, namely ‘subtract x y’
+      In the expression: subtract x y == Zero
+      In an equation for ‘lte'’: lte' x y = subtract x y == Zero
+   |
+72 | lte' x y = subtract x y == Zero
+   |            ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+
+solutie.hs:76:29: error:
+    • No instance for (Num Nat) arising from the literal ‘0’
+    • In the expression: 0
+      In the expression: (0, x)
+      In the expression:
+        if lt x y then
+            (0, x)
+        else
+            let x' = subtract' x y in
+            let (a, b) = quotientRemainder x' y in (a + 1, b)
+   |
+76 |                            (0, x)
+   |                             ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+Ok, one module loaded.
+ghci> quotientRemainder (Succ (Succ (Succ Zero))) (Succ Zero)
+quotientRemainder (Succ (Succ (Succ Zero))) (Succ Zero)
+(Succ (Succ (Succ Zero)),Zero)
+ghci> quotientRemainder (Succ (Succ (Succ (Succ Zero)))) (Succ Zero)
+quotientRemainder (Succ (Succ (Succ (Succ Zero)))) (Succ Zero)
+(Succ (Succ (Succ (Succ Zero))),Zero)
+ghci> quotientRemainder (Succ (Succ (Succ (Succ Zero)))) (Succ (Succ Zero))
+quotientRemainder (Succ (Succ (Succ (Succ Zero)))) (Succ (Succ Zero))
+(Succ (Succ Zero),Zero)
+ghci> quotientRemainder (Succ (Succ (Succ (Succ (Succ Zero))))) (Succ (Succ Zero))
+)
+(Succ (Succ Zero),Succ Zero)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qr (Succ (Succ (Succ (Succ (Succ Zero))))) (Succ (Succ Zero))
+qr (Succ (Succ (Succ (Succ (Succ Zero))))) (Succ (Succ Zero))
+(Succ (Succ Zero),Succ Zero)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+
+solutie.hs:95:1: error:
+    Multiple declarations of ‘Expr’
+    Declared at: solutie.hs:92:1
+                 solutie.hs:95:1
+   |
+95 | data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+solutie.hs:95:13: error:
+    Multiple declarations of ‘Const’
+    Declared at: solutie.hs:92:13
+                 solutie.hs:95:13
+   |
+95 | data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+   |             ^^^^^^^^^^^^^
+
+solutie.hs:95:29: error:
+    Multiple declarations of ‘Var’
+    Declared at: solutie.hs:92:29
+                 solutie.hs:95:29
+   |
+95 | data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+   |                             ^^^^^^^^^^
+
+solutie.hs:95:42: error:
+    Multiple declarations of ‘Minus’
+    Declared at: solutie.hs:92:42
+                 solutie.hs:95:42
+   |
+95 | data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+   |                                          ^^^^^^^^^^
+
+solutie.hs:95:55: error:
+    Multiple declarations of ‘Plus’
+    Declared at: solutie.hs:92:55
+                 solutie.hs:95:55
+   |
+95 | data Expr = Const Integer | Var String | Minus Expr | Plus Expr Expr |
+   |                                                       ^^^^^^^^^^^^^^
+
+solutie.hs:96:3: error:
+    Multiple declarations of ‘Mult’
+    Declared at: solutie.hs:92:72
+                 solutie.hs:96:3
+   |
+96 |   Mult Integer Expr deriving (Show, Eq)
+   |   ^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted )
+Ok, one module loaded.
+ghci> simpl (Mult 3 (Const 10))
+simpl (Mult 3 (Const 10))
+Plus (Const 10) (Plus (Const 10) (Plus (Const 10) (Const 0)))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> simpl (Mult 3 (Const 10))
+simpl (Mult 3 (Const 10))
+Plus (Const 10) (Plus (Const 10) (Const 10))
+ghci> simpl (Mult (-3) (Const 10))
+simpl (Mult (-3) (Const 10))
+Minus (Plus (Const 10) (Plus (Const 10) (Const 10)))
+ghci> simpl (Plus (Var "x") (Mult (-3) (Var "y")))
+simpl (Plus (Var "x") (Mult (-3) (Var "y")))
+Plus (Var "x") (Minus (Plus (Var "y") (Plus (Var "y") (Var "y"))))
+ghci> simpl (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+simpl (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+Plus (Var "x") (Plus (Plus (Var "z") (Plus (Const 10) (Plus (Const 10) (Const 10)))) (Plus (Var "z") (Plus (Const 10) (Plus (Const 10) (Const 10)))))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> simpl (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+simpl (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+(x) + (((z) + ((10) + ((10) + (10)))) + ((z) + ((10) + ((10) + (10)))))
+ghci> (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+(Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+(x) + ((2 * (z) + ((3 * 10))))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+(Plus (Var "x") (Mult 2 (Plus (Var "z") (Mult 3 (Const 10)))))
+(x) + ((2 * ((z) + ((3 * (10))))))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> esteSiLogic (&&)
+esteSiLogic (&&)
+True
+ghci> esteSiLogic (||)
+esteSiLogic (||)
+False
+ghci> esteSiLogic (not . ||)
+esteSiLogic (not . ||)
+
+<interactive>:80:20: error: parse error on input ‘||’
+ghci> esteSiLogic ((not) . (||))
+esteSiLogic ((not) . (||))
+
+<interactive>:81:15: error:
+    • Couldn't match type ‘Bool’ with ‘Bool -> Bool’
+      Expected: Bool -> Bool -> Bool
+        Actual: Bool -> Bool
+    • In the first argument of ‘(.)’, namely ‘(not)’
+      In the first argument of ‘esteSiLogic’, namely ‘((not) . (||))’
+      In the expression: esteSiLogic ((not) . (||))
+
+<interactive>:81:22: error:
+    • Couldn't match type ‘Bool -> Bool’ with ‘Bool’
+      Expected: Bool -> Bool
+        Actual: Bool -> Bool -> Bool
+    • Probable cause: ‘(||)’ is applied to too few arguments
+      In the second argument of ‘(.)’, namely ‘(||)’
+      In the first argument of ‘esteSiLogic’, namely ‘((not) . (||))’
+      In the expression: esteSiLogic ((not) . (||))
+ghci> esteSiLogic ((||) . (not))
+esteSiLogic ((||) . (not))
+False
+ghci> contineSiLogic [ (&&), (||), (\x y -> x), (\x y -> y)]
+contineSiLogic [ (&&), (||), (\x y -> x), (\x y -> y)]
+True
+ghci> contineSiLogic [ (||), (\x y -> x), (\x y -> y)]
+contineSiLogic [ (||), (\x y -> x), (\x y -> y)]
+False
+ghci> contineSiLogic [ (||), (\x y -> x), (\x y -> y), (\x y -> not x), (\x y -> not (not x || not y)) ]
+not (not x || not y)) ]
+True
+ghci> contineSiLogic [ (||), (\x y -> x), (\x y -> y), (\x y -> not x) ]
+contineSiLogic [ (||), (\x y -> x), (\x y -> y), (\x y -> not x) ]
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( solutie.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :i Show
+:i Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+  	-- Defined in ‘GHC.Show’
+instance Show Arb -- Defined at solutie.hs:22:44
+instance Show Expr -- Defined at solutie.hs:95:10
+instance Show Nat -- Defined at solutie.hs:52:38
+instance Show Double -- Defined in ‘GHC.Float’
+instance Show Float -- Defined in ‘GHC.Float’
+instance Show () -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (a, b) -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c) => Show (a, b, c)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d) => Show (a, b, c, d)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e) =>
+         Show (a, b, c, d, e)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f) =>
+         Show (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f,
+          Show g) =>
+         Show (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h) =>
+         Show (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i) =>
+         Show (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j) =>
+         Show (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n, Show o) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Show’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Show Char -- Defined in ‘GHC.Show’
+instance Show Int -- Defined in ‘GHC.Show’
+instance Show Integer -- Defined in ‘GHC.Show’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Show Ordering -- Defined in ‘GHC.Show’
+instance Show GHC.Types.RuntimeRep -- Defined in ‘GHC.Show’
+instance Show a => Show (Solo a) -- Defined in ‘GHC.Show’
+instance Show Word -- Defined in ‘GHC.Show’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :i ShowS
+:i ShowS
+type ShowS :: *
+type ShowS = String -> String
+  	-- Defined in ‘GHC.Show’
+ghci> showsPrec 10 (Succ Zero) "asdf"
+showsPrec 10 (Succ Zero) "asdf"
+"Succ Zeroasdf"
+ghci> showsPrec 10 (Succ Zero) " asdasfsa"
+showsPrec 10 (Succ Zero) " asdasfsa"
+"Succ Zero asdasfsa"
+ghci> showsPrec 0 (Succ Zero) " asdasfsa"
+showsPrec 0 (Succ Zero) " asdasfsa"
+"Succ Zero asdasfsa"
+ghci> showsPrec 10000 (Succ Zero) " asdasfsa"
+showsPrec 10000 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 100 (Succ Zero) " asdasfsa"
+showsPrec 100 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 50 (Succ Zero) " asdasfsa"
+showsPrec 50 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 10 (Succ Zero) " asdasfsa"
+showsPrec 10 (Succ Zero) " asdasfsa"
+"Succ Zero asdasfsa"
+ghci> showsPrec 25 (Succ Zero) " asdasfsa"
+showsPrec 25 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 20 (Succ Zero) " asdasfsa"
+showsPrec 20 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 14 (Succ Zero) " asdasfsa"
+showsPrec 14 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 11 (Succ Zero) " asdasfsa"
+showsPrec 11 (Succ Zero) " asdasfsa"
+"(Succ Zero) asdasfsa"
+ghci> showsPrec 10 (Succ Zero) " asdasfsa"
+showsPrec 10 (Succ Zero) " asdasfsa"
+"Succ Zero asdasfsa"
+ghci> 
