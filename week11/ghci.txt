@@ -1,0 +1,875 @@
+stefan@stefans-MacBook-Pro week11 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs11
+:l curs11
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> t1
+t1
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> t1
+t1
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf)
+ghci> update 8 t1
+update 8 t1
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 8 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:15:12: error:
+    • The constructor ‘Node’ should have 3 arguments, but has been given 2
+    • In the pattern: Node n1 (Node x (Node z n2 n3) n4)
+      In an equation for ‘update'’:
+          update' v (Node n1 (Node x (Node z n2 n3) n4))
+            = (Node n1 (Node x (Node z n2 n3) n4))
+   |
+15 | update' v (Node n1 (Node x (Node z n2 n3) n4)) =
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> update' 9 (update 8 t1)
+update' 9 (update 8 t1)
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 8 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 9 Leaf Leaf) Leaf)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted ) [Source file changed]
+
+curs11.hs:20:17: error:
+    Cannot parse data constructor in a data/newtype declaration:
+      [Direction]
+   |
+20 | data Position = [Direction]
+   |                 ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+
+curs11.hs:25:11: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11.hs:18:18
+   |
+25 | update'' (Left:pos) v (Node x l r) = Node x (update'' pos v l) r
+   |           ^^^^
+
+curs11.hs:26:11: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11.hs:18:18
+   |
+26 | update'' (Left:pos) v Leaf = error "Cannot go left in leaf."
+   |           ^^^^
+
+curs11.hs:27:11: error:
+    Ambiguous occurrence ‘Right’
+    It could refer to
+       either ‘Prelude.Right’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Right’, defined at curs11.hs:18:25
+   |
+27 | update'' (Right:pos) v (Node x l r) = Node x l (update'' pos v r)
+   |           ^^^^^
+
+curs11.hs:28:11: error:
+    Ambiguous occurrence ‘Right’
+    It could refer to
+       either ‘Prelude.Right’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Right’, defined at curs11.hs:18:25
+   |
+28 | update'' (Right:pos) v Leaf = error "Cannot go right in leaf."
+   |           ^^^^^
+
+curs11.hs:31:8: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11.hs:18:18
+   |
+31 | p1 = [ Left, Right ]
+   |        ^^^^
+
+curs11.hs:31:14: error:
+    Ambiguous occurrence ‘Right’
+    It could refer to
+       either ‘Prelude.Right’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Right’, defined at curs11.hs:18:25
+   |
+31 | p1 = [ Left, Right ]
+   |              ^^^^^
+
+curs11.hs:34:8: error:
+    Ambiguous occurrence ‘Right’
+    It could refer to
+       either ‘Prelude.Right’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Right’, defined at curs11.hs:18:25
+   |
+34 | p2 = [ Right, Left ]
+   |        ^^^^^
+
+curs11.hs:34:15: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at curs11.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at curs11.hs:18:18
+   |
+34 | p2 = [ Right, Left ]
+   |               ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11.hs, interpreted )
+Ok, one module loaded.
+ghci> update'' p1 8 t1
+update'' p1 8 t1
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 8 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf)
+ghci> update'' p1 8 t1 == update 8 t1
+update'' p1 8 t1 == update 8 t1
+True
+ghci> update'' p2 9 t1 == update' 9 t1
+update'' p2 9 t1 == update' 9 t1
+True
+ghci> update'' [Left, Left, Left, Left, Left] 4242 t1
+update'' [Left, Left, Left, Left, Left] 4242 t1
+
+<interactive>:18:11: error:
+    • Couldn't match expected type ‘Direction’
+                  with actual type ‘a0 -> Either a0 b0’
+    • Probable cause: ‘Left’ is applied to too few arguments
+      In the expression: Left
+      In the first argument of ‘update''’, namely
+        ‘[Left, Left, Left, Left, ....]’
+      In the expression: update'' [Left, Left, Left, Left, ....] 4242 t1
+
+<interactive>:18:17: error:
+    • Couldn't match expected type ‘Direction’
+                  with actual type ‘a1 -> Either a1 b1’
+    • Probable cause: ‘Left’ is applied to too few arguments
+      In the expression: Left
+      In the first argument of ‘update''’, namely
+        ‘[Left, Left, Left, Left, ....]’
+      In the expression: update'' [Left, Left, Left, Left, ....] 4242 t1
+
+<interactive>:18:23: error:
+    • Couldn't match expected type ‘Direction’
+                  with actual type ‘a2 -> Either a2 b2’
+    • Probable cause: ‘Left’ is applied to too few arguments
+      In the expression: Left
+      In the first argument of ‘update''’, namely
+        ‘[Left, Left, Left, Left, ....]’
+      In the expression: update'' [Left, Left, Left, Left, ....] 4242 t1
+
+<interactive>:18:29: error:
+    • Couldn't match expected type ‘Direction’
+                  with actual type ‘a3 -> Either a3 b3’
+    • Probable cause: ‘Left’ is applied to too few arguments
+      In the expression: Left
+      In the first argument of ‘update''’, namely
+        ‘[Left, Left, Left, Left, ....]’
+      In the expression: update'' [Left, Left, Left, Left, ....] 4242 t1
+
+<interactive>:18:35: error:
+    • Couldn't match expected type ‘Direction’
+                  with actual type ‘a4 -> Either a4 b4’
+    • Probable cause: ‘Left’ is applied to too few arguments
+      In the expression: Left
+      In the first argument of ‘update''’, namely
+        ‘[Left, Left, Left, Left, ....]’
+      In the expression: update'' [Left, Left, Left, Left, ....] 4242 t1
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> update'' [L, L, L, L, L] 4242 t1
+update'' [L, L, L, L, L] 4242 t1
+Node 5 (Node 3 (Node 1 *** Exception: Cannot go left in leaf.
+CallStack (from HasCallStack):
+  error, called at curs11.hs:26:27 in main:Main
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11
+gcc -Wall -o curs11 curs11
+clang: error: no such file or directory: 'curs11'
+clang: error: no input files
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:23:15: error: use of undeclared identifier 'null'
+  if (root == null) {
+              ^
+curs11.c:26:26: error: no member named 'info' in 'struct Node'
+    printf("%d (", root->info);
+                   ~~~~  ^
+curs11.c:36:13: error: must use 'enum' tag to refer to type 'Direction'
+void update(Direction *dirs, int length, int info, Node *root)
+            ^
+            enum 
+curs11.c:38:15: error: use of undeclared identifier 'null'
+  if (root == null) {
+              ^
+curs11.c:39:12: warning: incompatible pointer types passing 'FILE *'
+      (aka 'struct __sFILE *') to parameter of type 'const char *'
+      [-Wincompatible-pointer-types]
+    printf(stderr, "Cannot update null.");
+           ^~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:129:16: note: 
+      expanded from macro 'stderr'
+#define stderr  __stderrp
+                ^~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:170:36: note: 
+      passing argument to parameter here
+int      printf(const char * __restrict, ...) __printflike(1, 2);
+                                       ^
+curs11.c:58:41: error: use of undeclared identifier 'null'
+                             newNode(1, null, null),
+                                        ^
+curs11.c:58:47: error: use of undeclared identifier 'null'
+                             newNode(1, null, null),
+                                              ^
+curs11.c:59:53: error: use of undeclared identifier 'null'
+                             newNode(7, newNode(10, null, null),
+                                                    ^
+curs11.c:59:59: error: use of undeclared identifier 'null'
+                             newNode(7, newNode(10, null, null),
+                                                          ^
+curs11.c:60:50: error: use of undeclared identifier 'null'
+                                     newNode(20, null, null))),
+                                                 ^
+curs11.c:60:56: error: use of undeclared identifier 'null'
+                                     newNode(20, null, null))),
+                                                       ^
+curs11.c:61:45: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                            ^
+curs11.c:61:51: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                                  ^
+curs11.c:61:58: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                                         ^
+curs11.c:64:3: error: must use 'enum' tag to refer to type 'Direction'
+  Direction dirs[10] = { L, R };
+  ^
+  enum 
+1 warning and 14 errors generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:23:15: error: use of undeclared identifier 'null'
+  if (root == null) {
+              ^
+curs11.c:26:26: error: no member named 'info' in 'struct Node'
+    printf("%d (", root->info);
+                   ~~~~  ^
+curs11.c:36:13: error: must use 'enum' tag to refer to type 'Direction'
+void update(Direction *dirs, int length, int info, Node *root)
+            ^
+            enum 
+curs11.c:38:15: error: use of undeclared identifier 'null'
+  if (root == null) {
+              ^
+curs11.c:39:12: warning: incompatible pointer types passing 'FILE *'
+      (aka 'struct __sFILE *') to parameter of type 'const char *'
+      [-Wincompatible-pointer-types]
+    printf(stderr, "Cannot update null.");
+           ^~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:129:16: note: 
+      expanded from macro 'stderr'
+#define stderr  __stderrp
+                ^~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:170:36: note: 
+      passing argument to parameter here
+int      printf(const char * __restrict, ...) __printflike(1, 2);
+                                       ^
+curs11.c:58:41: error: use of undeclared identifier 'null'
+                             newNode(1, null, null),
+                                        ^
+curs11.c:58:47: error: use of undeclared identifier 'null'
+                             newNode(1, null, null),
+                                              ^
+curs11.c:59:53: error: use of undeclared identifier 'null'
+                             newNode(7, newNode(10, null, null),
+                                                    ^
+curs11.c:59:59: error: use of undeclared identifier 'null'
+                             newNode(7, newNode(10, null, null),
+                                                          ^
+curs11.c:60:50: error: use of undeclared identifier 'null'
+                                     newNode(20, null, null))),
+                                                 ^
+curs11.c:60:56: error: use of undeclared identifier 'null'
+                                     newNode(20, null, null))),
+                                                       ^
+curs11.c:61:45: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                            ^
+curs11.c:61:51: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                                  ^
+curs11.c:61:58: error: use of undeclared identifier 'null'
+                     newNode(42, newNode(8, null, null), null));
+                                                         ^
+curs11.c:64:3: error: must use 'enum' tag to refer to type 'Direction'
+  Direction dirs[10] = { L, R };
+  ^
+  enum 
+1 warning and 14 errors generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:26:26: error: no member named 'info' in 'struct Node'
+    printf("%d (", root->info);
+                   ~~~~  ^
+curs11.c:36:13: error: must use 'enum' tag to refer to type 'Direction'
+void update(Direction *dirs, int length, int info, Node *root)
+            ^
+            enum 
+curs11.c:39:12: warning: incompatible pointer types passing 'FILE *'
+      (aka 'struct __sFILE *') to parameter of type 'const char *'
+      [-Wincompatible-pointer-types]
+    printf(stderr, "Cannot update NULL.");
+           ^~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:129:16: note: 
+      expanded from macro 'stderr'
+#define stderr  __stderrp
+                ^~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:170:36: note: 
+      passing argument to parameter here
+int      printf(const char * __restrict, ...) __printflike(1, 2);
+                                       ^
+curs11.c:64:3: error: must use 'enum' tag to refer to type 'Direction'
+  Direction dirs[10] = { L, R };
+  ^
+  enum 
+1 warning and 3 errors generated.
+stefan@stefans-MacBook-Pro week11 % :r
+:r
+zsh: command not found: :r
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:26:26: error: no member named 'info' in 'struct Node'
+    printf("%d (", root->info);
+                   ~~~~  ^
+curs11.c:39:12: warning: incompatible pointer types passing 'FILE *'
+      (aka 'struct __sFILE *') to parameter of type 'const char *'
+      [-Wincompatible-pointer-types]
+    printf(stderr, "Cannot update NULL.");
+           ^~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:129:16: note: 
+      expanded from macro 'stderr'
+#define stderr  __stderrp
+                ^~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h:170:36: note: 
+      passing argument to parameter here
+int      printf(const char * __restrict, ...) __printflike(1, 2);
+                                       ^
+1 warning and 1 error generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+stefan@stefans-MacBook-Pro week11 % ./curss1
+./curss1
+zsh: no such file or directory: ./curss1
+stefan@stefans-MacBook-Pro week11 % ./curs11
+./curs11
+5 (3 (1 (Leaf) (Leaf)) (7 (10 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+5 (3 (1 (Leaf) (Leaf)) (8 (10 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+stefan@stefans-MacBook-Pro week11 % ./curss1
+./curss1
+zsh: no such file or directory: ./curss1
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:46:47: error: use of undeclared identifier 'info'
+      return goPosition(dirs + 1, length - 1, info, root->left);
+                                              ^
+curs11.c:49:47: error: use of undeclared identifier 'info'
+      return goPosition(dirs + 1, length - 1, info, root->right);
+                                              ^
+curs11.c:56:18: error: use of undeclared identifier 'null'
+  assert(node != null);
+                 ^
+curs11.c:57:3: error: use of undeclared identifier 'root'
+  root->information = info;
+  ^
+4 errors generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:46:25: warning: incompatible pointer types passing 'Direction *'
+      (aka 'enum Direction *') to parameter of type 'Node *' (aka 'struct Node *')
+      [-Wincompatible-pointer-types]
+      return goPosition(dirs + 1, length - 1, root->left);
+                        ^~~~~~~~
+curs11.c:36:24: note: passing argument to parameter 'root' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                       ^
+curs11.c:46:35: warning: incompatible integer to pointer conversion passing 'int'
+      to parameter of type 'Direction *' (aka 'enum Direction *')
+      [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->left);
+                                  ^~~~~~~~~~
+curs11.c:36:41: note: passing argument to parameter 'dirs' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                        ^
+curs11.c:46:47: warning: incompatible pointer to integer conversion passing
+      'struct Node *' to parameter of type 'int' [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->left);
+                                              ^~~~~~~~~~
+curs11.c:36:51: note: passing argument to parameter 'length' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                                  ^
+curs11.c:49:25: warning: incompatible pointer types passing 'Direction *'
+      (aka 'enum Direction *') to parameter of type 'Node *' (aka 'struct Node *')
+      [-Wincompatible-pointer-types]
+      return goPosition(dirs + 1, length - 1, root->right);
+                        ^~~~~~~~
+curs11.c:36:24: note: passing argument to parameter 'root' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                       ^
+curs11.c:49:35: warning: incompatible integer to pointer conversion passing 'int'
+      to parameter of type 'Direction *' (aka 'enum Direction *')
+      [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->right);
+                                  ^~~~~~~~~~
+curs11.c:36:41: note: passing argument to parameter 'dirs' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                        ^
+curs11.c:49:47: warning: incompatible pointer to integer conversion passing
+      'struct Node *' to parameter of type 'int' [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->right);
+                                              ^~~~~~~~~~~
+curs11.c:36:51: note: passing argument to parameter 'length' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                                  ^
+curs11.c:56:10: error: use of undeclared identifier 'node'
+  assert(node != NULL);
+         ^
+6 warnings and 1 error generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+curs11.c:46:25: warning: incompatible pointer types passing 'Direction *'
+      (aka 'enum Direction *') to parameter of type 'Node *' (aka 'struct Node *')
+      [-Wincompatible-pointer-types]
+      return goPosition(dirs + 1, length - 1, root->left);
+                        ^~~~~~~~
+curs11.c:36:24: note: passing argument to parameter 'root' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                       ^
+curs11.c:46:35: warning: incompatible integer to pointer conversion passing 'int'
+      to parameter of type 'Direction *' (aka 'enum Direction *')
+      [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->left);
+                                  ^~~~~~~~~~
+curs11.c:36:41: note: passing argument to parameter 'dirs' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                        ^
+curs11.c:46:47: warning: incompatible pointer to integer conversion passing
+      'struct Node *' to parameter of type 'int' [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->left);
+                                              ^~~~~~~~~~
+curs11.c:36:51: note: passing argument to parameter 'length' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                                  ^
+curs11.c:49:25: warning: incompatible pointer types passing 'Direction *'
+      (aka 'enum Direction *') to parameter of type 'Node *' (aka 'struct Node *')
+      [-Wincompatible-pointer-types]
+      return goPosition(dirs + 1, length - 1, root->right);
+                        ^~~~~~~~
+curs11.c:36:24: note: passing argument to parameter 'root' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                       ^
+curs11.c:49:35: warning: incompatible integer to pointer conversion passing 'int'
+      to parameter of type 'Direction *' (aka 'enum Direction *')
+      [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->right);
+                                  ^~~~~~~~~~
+curs11.c:36:41: note: passing argument to parameter 'dirs' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                        ^
+curs11.c:49:47: warning: incompatible pointer to integer conversion passing
+      'struct Node *' to parameter of type 'int' [-Wint-conversion]
+      return goPosition(dirs + 1, length - 1, root->right);
+                                              ^~~~~~~~~~~
+curs11.c:36:51: note: passing argument to parameter 'length' here
+Node *goPosition(Node *root, Direction *dirs, int length)
+                                                  ^
+6 warnings generated.
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+stefan@stefans-MacBook-Pro week11 % ./curs11
+./curs11
+5 (3 (1 (Leaf) (Leaf)) (7 (10 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+5 (3 (1 (Leaf) (Leaf)) (8 (10 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+stefan@stefans-MacBook-Pro week11 % gcc -Wall -o curs11 curs11.c
+gcc -Wall -o curs11 curs11.c
+stefan@stefans-MacBook-Pro week11 % ./curs11
+./curs11
+5 (3 (1 (Leaf) (Leaf)) (7 (10 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+5 (3 (1 (Leaf) (Leaf)) (8 (42 (Leaf) (Leaf)) (20 (Leaf) (Leaf)))) (42 (8 (Leaf) (Leaf)) (Leaf))
+stefan@stefans-MacBook-Pro week11 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs11v1
+:l curs11v1
+[1 of 2] Compiling Main             ( curs11v1.hs, interpreted )
+Ok, one module loaded.
+ghci> t1
+t1
+Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf)
+ghci> go p1 t1
+go p1 t1
+Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf)
+ghci> update (go p1 t1) 8
+update (go p1 t1) 8
+Node 8 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf)
+ghci> :l curs11v2
+:l curs11v2
+[1 of 2] Compiling Main             ( curs11v2.hs, interpreted )
+
+curs11v2.hs:31:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+31 | update v (Node x l r, trail) = (Node v l r, trail)
+   | ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v2.hs, interpreted )
+
+curs11v2.hs:10:58: error:
+    • No instance for (Ord Tree)
+        arising from the second field of ‘R’ (type ‘Tree’)
+      Possible fix:
+        use a standalone 'deriving instance' declaration,
+          so you can specify the instance context yourself
+    • When deriving the instance for (Ord Crumb)
+   |
+10 | data Crumb = L Int Tree | R Int Tree deriving (Show, Eq, Ord)
+   |                                                          ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v2.hs, interpreted )
+
+curs11v2.hs:23:34: error:
+    • Couldn't match type ‘Crumb’ with ‘[Crumb]’
+      Expected: Trail
+        Actual: Crumb
+    • In the expression: L x r
+      In the expression: (l, L x r)
+      In an equation for ‘goLeft’:
+          goLeft (Node x l r, trail) = (l, L x r)
+   |
+23 | goLeft (Node x l r, trail) = (l, L x r)
+   |                                  ^^^^^
+
+curs11v2.hs:27:35: error:
+    • Couldn't match type ‘Crumb’ with ‘[Crumb]’
+      Expected: Trail
+        Actual: Crumb
+    • In the expression: R x l
+      In the expression: (r, R x l)
+      In an equation for ‘goRight’:
+          goRight (Node x l r, trail) = (r, R x l)
+   |
+27 | goRight (Node x l r, trail) = (r, R x l)
+   |                                   ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v2.hs, interpreted )
+Ok, one module loaded.
+ghci> z1
+z1
+(Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf),[])
+ghci> goLeft z1
+goLeft z1
+(Node 3 (Node 1 Leaf Leaf) (Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf)),[L 5 (Node 42 (Node 8 Leaf Leaf) Leaf)])
+ghci> goRight (goLeft z1)
+goRight (goLeft z1)
+(Node 7 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf),[R 3 (Node 1 Leaf Leaf),L 5 (Node 42 (Node 8 Leaf Leaf) Leaf)])
+ghci> update 8 (goRight (goLeft z1))
+update 8 (goRight (goLeft z1))
+(Node 8 (Node 10 Leaf Leaf) (Node 20 Leaf Leaf),[R 3 (Node 1 Leaf Leaf),L 5 (Node 42 (Node 8 Leaf Leaf) Leaf)])
+ghci> goLeft (update 8 (goRight (goLeft z1)))
+goLeft (update 8 (goRight (goLeft z1)))
+(Node 10 Leaf Leaf,[L 8 (Node 20 Leaf Leaf),R 3 (Node 1 Leaf Leaf),L 5 (Node 42 (Node 8 Leaf Leaf) Leaf)])
+ghci> update 42 (goLeft (update 8 (goRight (goLeft z1))))
+update 42 (goLeft (update 8 (goRight (goLeft z1))))
+(Node 42 Leaf Leaf,[L 8 (Node 20 Leaf Leaf),R 3 (Node 1 Leaf Leaf),L 5 (Node 42 (Node 8 Leaf Leaf) Leaf)])
+ghci> goUp (goUp (goUp (update 42 (goLeft (update 8 (goRight (goLeft z1)))))))
+goUp (goUp (goUp (update 42 (goLeft (update 8 (goRight (goLeft z1)))))))
+
+<interactive>:15:1: error: Variable not in scope: goUp :: t1 -> t
+
+<interactive>:15:7: error: Variable not in scope: goUp :: t0 -> t1
+
+<interactive>:15:13: error:
+    Variable not in scope: goUp :: Zipper -> t0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v2.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goUp (goUp (goUp (update 42 (goLeft (update 8 (goRight (goLeft z1)))))))
+goUp (goUp (goUp (update 42 (goLeft (update 8 (goRight (goLeft z1)))))))
+(Node 5 (Node 3 (Node 1 Leaf Leaf) (Node 8 (Node 42 Leaf Leaf) (Node 20 Leaf Leaf))) (Node 42 (Node 8 Leaf Leaf) Leaf),[])
+ghci> :l curs11v3
+:l curs11v3
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted )
+Ok, one module loaded.
+ghci> update 3 10 l1
+update 3 10 l1
+[3,7,4,10,42]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted ) [Source file changed]
+
+curs11v3.hs:13:17: error:
+    Cannot parse data constructor in a data/newtype declaration:
+      [Direction]
+   |
+13 | data Position = [Direction]
+   |                 ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted )
+Ok, one module loaded.
+ghci> update' (Fwd : Fwd : Fwd : []) 10 l1
+update' (Fwd : Fwd : Fwd : []) 10 l1
+[3,7,4,10,42]
+ghci> L:r
+L:r
+
+<interactive>:23:1: error: Data constructor not in scope: L
+
+<interactive>:23:3: error: Variable not in scope: r :: [a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted ) [Source file changed]
+
+curs11v3.hs:31:1: error:
+    Multiple declarations of ‘update’
+    Declared at: curs11v3.hs:5:1
+                 curs11v3.hs:31:1
+   |
+31 | update _ ([], _) = error "Cannot update empty list."
+   | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted )
+Ok, one module loaded.
+ghci> update'' 10 (goFwd (goFwd (goFwd l1)))
+update'' 10 (goFwd (goFwd (goFwd l1)))
+
+<interactive>:26:34: error:
+    • Couldn't match type: [Int]
+                     with: ([Int], Trail)
+      Expected: Zipper
+        Actual: [Int]
+    • In the first argument of ‘goFwd’, namely ‘l1’
+      In the first argument of ‘goFwd’, namely ‘(goFwd l1)’
+      In the first argument of ‘goFwd’, namely ‘(goFwd (goFwd l1))’
+ghci> update'' 10 (goFwd (goFwd (goFwd (l1, []))))
+update'' 10 (goFwd (goFwd (goFwd (l1, []))))
+([10,42],[Fwd 4,Fwd 7,Fwd 3])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goBwd (goBwd (goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))))
+goBwd (goBwd (goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))))
+([3,7,4,10,42],[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> original (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))
+original (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))
+[3,7,4,10,42]
+ghci> original (goFwd (goFwd (goFwd (l1, []))))
+original (goFwd (goFwd (goFwd (l1, []))))
+[3,7,4,6,42]
+ghci> original (goFwd (goBwd (goFwd (goFwd (l1, [])))))
+original (goFwd (goBwd (goFwd (goFwd (l1, [])))))
+[3,7,4,6,42]
+ghci> (goFwd (goFwd (l1, [])))
+ (goFwd (goFwd (l1, [])))
+([4,6,42],[Fwd 7,Fwd 3])
+ghci> goFwd (goFwd (goFwd (l1, [])))
+goFwd (goFwd (goFwd (l1, [])))
+([6,42],[Fwd 4,Fwd 7,Fwd 3])
+ghci> :l curs11v4
+:l curs11v4
+[1 of 2] Compiling Main             ( curs11v4.hs, interpreted )
+Ok, one module loaded.
+ghci> goFwd (goFwd (goFwd (l1, [])))
+goFwd (goFwd (goFwd (l1, [])))
+
+<interactive>:37:22: error: Variable not in scope: l1 :: [Int]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v4.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goFwd (goFwd (goFwd (l1, [])))
+goFwd (goFwd (goFwd (l1, [])))
+([6,42],[4,7,3])
+ghci> goBwd (update 10 (goFwd (goFwd (goFwd (l1, [])))))
+goBwd (update 10 (goFwd (goFwd (goFwd (l1, [])))))
+
+<interactive>:40:8: error:
+    Variable not in scope: update :: t0 -> Zipper -> Zipper
+    Suggested fix: Perhaps use ‘update''’ (line 16)
+ghci> goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))
+goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, [])))))
+([4,10,42],[7,3])
+ghci> goBwd (goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, []))))))
+goBwd (goBwd (update'' 10 (goFwd (goFwd (goFwd (l1, []))))))
+([7,4,10,42],[3])
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :l curs11v5
+:l curs11v5
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted )
+
+curs11v5.hs:20:24: error:
+    • Couldn't match type: Maybe Zipper
+                     with: ([Int], [Int])
+      Expected: Zipper
+        Actual: Maybe Zipper
+    • In the first argument of ‘original’, namely ‘(goBwd z)’
+      In the expression: original (goBwd z)
+      In an equation for ‘original’: original z = original (goBwd z)
+   |
+20 | original z = original (goBwd z)
+   |                        ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted )
+Ok, one module loaded.
+ghci> :t (>>=)
+:t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+ghci> Just (l1, []) >>= goFwd >>= goFwd
+Just (l1, []) >>= goFwd >>= goFwd
+Just ([4,6,42],[7,3])
+ghci> Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13
+Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13
+Just ([13,6,42],[7,3])
+ghci> Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd
+Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd
+Just ([7,13,6,42],[3])
+ghci> Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd >>= goBwd
+Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd >>= goBwd
+Just ([3,7,13,6,42],[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd >>= goBwd
+Just (l1, []) >>= goFwd >>= goFwd >>= update'' 13 >>= goBwd >>= goBwd
+Just ([3,7,13,6,42],[])
+ghci> original ([3,7,13,6,42],[])
+original ([3,7,13,6,42],[])
+[3,7,13,6,42]
+ghci> original ([13,6,42],[7,3])
+original ([13,6,42],[7,3])
+[3,7,13,6,42]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> followDirs (l1, [])
+followDirs (l1, [])
+Nothing
+ghci> l1
+l1
+[3,7,4,6,42]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted ) [Source file changed]
+
+curs11v5.hs:35:28: error:
+    • Couldn't match type: Maybe Zipper
+                     with: ([Int], [Int])
+      Expected: Zipper
+        Actual: Maybe Zipper
+    • In the first argument of ‘return’, namely ‘(Just z4)’
+      In a stmt of a 'do' block: return (Just z4)
+      In the expression:
+        do z1 <- goFwd z0
+           z2 <- goFwd z1
+           z3 <- goFwd z2
+           z4 <- goBwd z3
+           ....
+   |
+35 |                    return (Just z4)
+   |                            ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted )
+Ok, one module loaded.
+ghci> followDirs (l1, [])
+followDirs (l1, [])
+Just ([4,6,42],[7,3])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted ) [Source file changed]
+
+curs11v5.hs:34:27: error:
+    Variable not in scope: update :: t0 -> Zipper -> Maybe Zipper
+    Suggested fix: Perhaps use ‘update''’ (line 11)
+   |
+34 |                    z3' <- update 13 z3
+   |                           ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs11v5.hs, interpreted )
+Ok, one module loaded.
+ghci> followDirs (l1, [])
+followDirs (l1, [])
+Just ([4,13,42],[7,3])
+ghci> 
