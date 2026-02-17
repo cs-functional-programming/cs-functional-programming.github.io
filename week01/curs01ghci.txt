@@ -1,0 +1,435 @@
+stefan@stefans-MacBook-Pro week01 % ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> 1 + 2 * 3
+7
+ghci> 1 + 2 * 4
+9
+ghci> 2 ** 4
+16.0
+ghci> 2 ^ 4
+16
+ghci> 4 / 5
+0.8
+ghci> 1 +2
+3
+ghci> 2 * 3
+6
+ghci> 2 <= 10
+True
+ghci> 10 `div` 3
+3
+ghci> 10 `mod` 3
+1
+ghci> and True False
+
+<interactive>:11:1: error:
+    • Couldn't match expected type ‘Bool -> t’ with actual type ‘Bool’
+    • The function ‘and’ is applied to two value arguments,
+        but its type ‘t0 Bool -> Bool’ has only one
+      In the expression: and True False
+      In an equation for ‘it’: it = and True False
+    • Relevant bindings include it :: t (bound at <interactive>:11:1)
+
+<interactive>:11:5: error:
+    • Couldn't match expected type ‘t0 Bool’ with actual type ‘Bool’
+    • In the first argument of ‘and’, namely ‘True’
+      In the expression: and True False
+      In an equation for ‘it’: it = and True False
+ghci> :t and
+and :: Foldable t => t Bool -> Bool
+ghci> :t not
+not :: Bool -> Bool
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci> not True
+False
+ghci> :t max
+max :: Ord a => a -> a -> a
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci>
+ghci> max 10 7
+10
+ghci> max 10 71
+71
+ghci> not(True)
+False
+ghci> not True
+False
+ghci> not (not True)
+True
+ghci> not not True
+
+<interactive>:66:1: error:
+    • Couldn't match expected type ‘Bool -> t’ with actual type ‘Bool’
+    • The function ‘not’ is applied to two value arguments,
+        but its type ‘Bool -> Bool’ has only one
+      In the expression: not not True
+      In an equation for ‘it’: it = not not True
+    • Relevant bindings include it :: t (bound at <interactive>:66:1)
+
+<interactive>:66:5: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘Bool -> Bool’
+    • Probable cause: ‘not’ is applied to too few arguments
+      In the first argument of ‘not’, namely ‘not’
+      In the expression: not not True
+      In an equation for ‘it’: it = not not True
+ghci> max(10, 7)
+
+<interactive>:67:1: error:
+    • No instance for (Show ((Integer, Integer) -> (Integer, Integer)))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> max (10, 7)
+
+<interactive>:68:1: error:
+    • No instance for (Show ((Integer, Integer) -> (Integer, Integer)))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> max      (10, 7)
+
+<interactive>:69:1: error:
+    • No instance for (Show ((Integer, Integer) -> (Integer, Integer)))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> div 10 3
+3
+ghci> mod 10 1
+0
+ghci> mod 10 3
+1
+ghci> 10 `div` 3
+3
+ghci> 10 `max` 7
+10
+ghci> 10 `max` 71
+71
+ghci> 10 `max` 71 `max` 81
+81
+ghci> 10 `max` 71 `max` 81
+81
+ghci> fdsh gljkdsh ldsh foipewqur oiewur oipwequ roipwefkljdshgjldfsy goiewry ot8iewy t578943 5ykljewgh kdhjsg ukdsy giulrwyg lkurdjhgjkldryg ieuwrl kwg jdfsghdfjksgh ldfsuyg iuorwey giuerw
+
+<interactive>:78:1: error:
+    Variable not in scope:
+      fdsh
+        :: t0
+           -> t1
+           -> t2
+           -> t3
+           -> t4
+           -> t5
+           -> t6
+           -> t7
+           -> t8
+           -> t9
+           -> t10
+           -> t11
+           -> t12
+           -> t13
+           -> t14
+           -> t15
+           -> t16
+           -> t17
+           -> t18
+           -> t19
+           -> t20
+           -> t
+
+<interactive>:78:6: error: Variable not in scope: gljkdsh
+
+<interactive>:78:14: error: Variable not in scope: ldsh
+
+<interactive>:78:19: error: Variable not in scope: foipewqur
+
+<interactive>:78:29: error: Variable not in scope: oiewur
+
+<interactive>:78:36: error: Variable not in scope: oipwequ
+
+<interactive>:78:44: error:
+    Variable not in scope: roipwefkljdshgjldfsy
+
+<interactive>:78:65: error: Variable not in scope: goiewry
+
+<interactive>:78:73: error: Variable not in scope: ot8iewy
+
+<interactive>:78:81: error: Variable not in scope: t578943
+
+<interactive>:78:90: error: Variable not in scope: ykljewgh
+
+<interactive>:78:99: error: Variable not in scope: kdhjsg
+
+<interactive>:78:106: error: Variable not in scope: ukdsy
+
+<interactive>:78:112: error: Variable not in scope: giulrwyg
+
+<interactive>:78:121: error: Variable not in scope: lkurdjhgjkldryg
+
+<interactive>:78:137: error: Variable not in scope: ieuwrl
+
+<interactive>:78:144: error: Variable not in scope: kwg
+
+<interactive>:78:148: error: Variable not in scope: jdfsghdfjksgh
+
+<interactive>:78:162: error: Variable not in scope: ldfsuyg
+
+<interactive>:78:170: error: Variable not in scope: iuorwey
+
+<interactive>:78:178: error: Variable not in scope: giuerw
+ghci>
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week01 % python3
+Python 3.13.5 (main, Jun 11 2025, 15:36:57) [Clang 15.0.0 (clang-1500.1.0.2.5)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import curs01
+>>> asdf(100)
+Traceback (most recent call last):
+  File "<python-input-1>", line 1, in <module>
+    asdf(100)
+    ^^^^
+NameError: name 'asdf' is not defined
+>>> curs01.asdf(100)
+Traceback (most recent call last):
+  File "<python-input-2>", line 1, in <module>
+    curs01.asdf(100)
+    ~~~~~~~~~~~^^^^^
+  File "/Users/stefan/teaching/pf-2025-2026/week01/curs01.py", line 2, in asdf
+    return 3 + "10"
+           ~~^~~~~~
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+>>> quit()
+stefan@stefans-MacBook-Pro week01 % ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :load curs01.hs
+[1 of 2] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+ghci> a
+10
+ghci> a + 10
+20
+ghci> a ^ 2
+100
+ghci> :load curs01.hs
+[1 of 2] Compiling Main             ( curs01.hs, interpreted )
+
+curs01.hs:41:5: error:
+    • No instance for (Num String) arising from the literal ‘20’
+    • In the expression: 20
+      In an equation for ‘b’: b = 20
+   |
+41 | b = 20
+   |     ^^
+Failed, no modules loaded.
+ghci> :load curs01.hs
+[1 of 2] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+ghci> :reload
+Ok, one module loaded.
+ghci> :reload
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :l curs01
+[1 of 2] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+ghci> b
+"asdf20"
+ghci> "Hello, " ++ b ++ "!"
+"Hello, asdf20!"
+ghci> "hello" + b
+
+<interactive>:13:9: error:
+    • No instance for (Num String) arising from a use of ‘+’
+    • In the expression: "hello" + b
+      In an equation for ‘it’: it = "hello" + b
+ghci> max 10 7
+10
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> minus 17
+-17
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> suma 10 17
+27
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> max3 10 81 71
+81
+ghci> max3 100 81 71
+100
+ghci> max3 100 81 7111
+7111
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> max2 10 71
+71
+ghci> max2 100 71
+100
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+
+curs01.hs:85:20: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+   |
+85 | --max3' a b c = if
+   |                    ^
+Failed, no modules loaded.
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted )
+Ok, one module loaded.
+ghci> sumUpTo 10
+55
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+
+curs01.hs:107:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘sumUpTo'’: sumUpTo' 0 = ...
+    |
+107 | sumUpTo' 0 = 0
+    | ^^^^^^^^^^^^^^
+Ok, one module loaded.
+ghci> sumUpTo' 10
+*** Exception: stack overflow
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isPrime 2
+True
+ghci> isPrime 3
+True
+ghci> isPrime 4
+False
+ghci> isPrime 5
+True
+ghci> isPrime 6
+False
+ghci> isPrime 7
+True
+ghci> isPrime 8
+False
+ghci> isPrime 8
+False
+ghci> isPrime 9
+False
+ghci> isPrime 10
+False
+ghci> isPrime 11
+True
+ghci> isPrime 101
+True
+ghci> isPrime (11 * 11)
+False
+ghci> 10 == 10
+True
+ghci> 10 = 10
+ghci> :r
+[1 of 2] Compiling Main             ( curs01.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isPrime 2
+True
+ghci> isPrime 3
+True
+ghci> isPrime 4
+False
+ghci> isPrime 5
+True
+ghci> isPrime 6
+False
+ghci> isPrime 7
+True
+ghci> isPrime 8
+False
+ghci> isPrime 9
+False
+ghci> isPrime 10
+False
+ghci> isPrime 11
+True
+ghci> isPrime 12
+False
+ghci> isPrime 13
+True
+ghci> isPrime 101
+True
+ghci> isPrime (11 * 11)
+False
+ghci> 10 /= 10
+False
+ghci> 10 /= 0
+True
+ghci> :type 'a'
+'a' :: Char
+ghci> :type "asdf"
+"asdf" :: String
+ghci> :type True
+True :: Bool
+ghci> :type (True && False)
+(True && False) :: Bool
+ghci> :type ("asdf" ++ "10")
+("asdf" ++ "10") :: [Char]
+ghci> :type 10
+10 :: Num a => a
+ghci> :t not
+not :: Bool -> Bool
+ghci> :t isPrime
+isPrime :: Integer -> Bool
+ghci> :q
+Leaving GHCi.
