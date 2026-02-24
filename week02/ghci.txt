@@ -1,0 +1,179 @@
+stefan@stefans-MacBook-Pro week02 % ./curs02
+./curs02
+0
+1
+stefan@stefans-MacBook-Pro week02 % gcc -Wall -o curs02 curs02.c
+gcc -Wall -o curs02 curs02.c
+stefan@stefans-MacBook-Pro week02 % ./curs02
+./curs02
+Hello
+World
+stefan@stefans-MacBook-Pro week02 % gcc -Wall -o curs02 curs02.c
+gcc -Wall -o curs02 curs02.c
+stefan@stefans-MacBook-Pro week02 % ./curs02
+./curs02
+Hello
+7
+Hello
+8
+10
+3
+stefan@stefans-MacBook-Pro week02 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs02
+:l curs02
+[1 of 2] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+ghci> use_g' 3 4
+use_g' 3 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> a
+a
+10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> b
+b
+
+
+
+
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ./use_g'' 3 4 
+./use_g'' 3 4 
+
+<interactive>:8:1: error: parse error on input ‘./’
+ghci> use_g'' 3 4 
+use_g'' 3 4 
+38
+ghci> y
+y
+0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mysum 9
+mysum 9
+45
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mysum 9
+mysum 9
+45
+ghci> mysum 10
+mysum 10
+55
+ghci> mysum' 9
+mysum' 9
+45
+ghci> mysum' 10
+mysum' 10
+55
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo 10
+fibo 10
+55
+ghci> fibo 11
+fibo 11
+89
+ghci> fibo 12
+fibo 12
+144
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+
+curs02.hs:164:18: error:
+    • Couldn't match expected type ‘Int -> Int -> Int’
+                  with actual type ‘Int’
+    • The function ‘fibo’ is applied to three value arguments,
+        but its type ‘Int -> Int’ has only one
+      In the expression: fibo (n - 1) b (a + b)
+      In an equation for ‘fibo_aux’:
+          fibo_aux n a b = fibo (n - 1) b (a + b)
+    |
+164 | fibo_aux n a b = fibo (n - 1) b (a + b)
+    |                  ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted )
+Ok, one module loaded.
+ghci> fibo' 10
+fibo' 10
+34
+ghci> fibo' 11
+fibo' 11
+55
+ghci> fibo' 12
+fibo' 12
+89
+ghci> fibo' 13
+fibo' 13
+144
+ghci> fibo 10
+fibo 10
+55
+ghci> fibo 111
+fibo 111
+  C-c C-c^CInterrupted.
+ghci> fibo 11
+fibo 11
+89
+ghci> fibo 12
+fibo 12
+144
+ghci> fibo' 12
+fibo' 12
+89
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo' 12
+fibo' 12
+144
+ghci> fibo 12
+fibo 12
+144
+ghci> fibo 11
+fibo 11
+89
+ghci> fibo' 11
+fibo' 11
+89
+ghci> 
