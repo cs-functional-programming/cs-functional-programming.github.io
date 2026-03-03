@@ -1,0 +1,669 @@
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+:l curs03
+:l curs03
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs03
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> :t Dow
+:t Dow
+
+<interactive>:1:1: error:
+    • Illegal term-level use of the type constructor or class ‘Dow’
+    • defined at curs03.hs:1:1
+    • In the expression: Dow
+ghci> :i Dow
+:i Dow
+type Dow :: *
+data Dow = Mon | Tue | Wed
+  	-- Defined at curs03.hs:1:1
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week03 % gcc -Wall -o curs03 curs03.c
+gcc -Wall -o curs03 curs03.c
+curs03.c:12:3: error: must use 'enum' tag to refer to type 'Dow'
+   12 |   Dow dow;
+      |   ^
+      |   enum 
+1 error generated.
+stefan@stefans-MacBook-Pro week03 % gcc -Wall -o curs03 curs03.c
+gcc -Wall -o curs03 curs03.c
+curs03.c:12:12: warning: variable 'dow' set but not used [-Wunused-but-set-variable]
+   12 |   enum Dow dow;
+      |            ^
+1 warning generated.
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs03.hs
+:l curs03.hs
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> nextDow Fri
+nextDow Fri
+
+<interactive>:2:1: error:
+    • No instance for (Show Dow) arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> nextDow Mon
+nextDow Mon
+Tue
+ghci> nextDow Fri
+nextDow Fri
+Sat
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isWorkDay Fri
+isWorkDay Fri
+True
+ghci> isWorkDay Sun
+isWorkDay Sun
+False
+ghci> isWorkDay (nextDow Fri)
+isWorkDay (nextDow Fri)
+False
+ghci> nextDow 8
+nextDow 8
+
+<interactive>:10:9: error:
+    • No instance for (Num Dow) arising from the literal ‘8’
+    • In the first argument of ‘nextDow’, namely ‘8’
+      In the expression: nextDow 8
+      In an equation for ‘it’: it = nextDow 8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> negation (negation MyFalse)
+negation (negation MyFalse)
+MyFalse
+ghci> :type nextDow
+:type nextDow
+nextDow :: Dow -> Dow
+ghci> :type isWorkDay
+:type isWorkDay
+isWorkDay :: Dow -> Bool
+ghci> :type negation
+:type negation
+negation :: MyBool -> MyBool
+ghci> :info MyBool
+:info MyBool
+type MyBool :: *
+data MyBool = MyFalse | MyTrue
+  	-- Defined at curs03.hs:22:1
+instance Eq MyBool -- Defined at curs03.hs:22:48
+instance Show MyBool -- Defined at curs03.hs:22:42
+ghci> :info Bool
+:info Bool
+type Bool :: *
+data Bool = False | True
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Read Bool -- Defined in ‘GHC.Read’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Eq Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Show Bool -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> div 10 3
+div 10 3
+3
+ghci> mydivision 10 3 
+mydivision 10 3 
+3
+ghci> mydivision 10 0
+mydivision 10 0
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mydivision 10 0
+mydivision 10 0
+0
+ghci> mydivision 0 7
+mydivision 0 7
+0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mydivision' 10 3
+mydivision' 10 3
+3
+ghci> mydivision' 10 0
+mydivision' 10 0
+*** Exception: stack overflow
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mydivision'' 10 3
+mydivision'' 10 3
+Un 3
+ghci> mydivision'' 10 0
+mydivision'' 10 0
+Nimic
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> wasOkay (mydivision'' 10 3)
+wasOkay (mydivision'' 10 3)
+True
+ghci> wasOkay (mydivision'' 10 0)
+wasOkay (mydivision'' 10 0)
+False
+ghci> Nimic
+Nimic
+Nimic
+ghci>:t Nimic 
+
+ghci> :t Nimic
+:t Nimic
+Nimic :: EnhancedInteger
+ghci> :t Un
+:t Un
+Un :: Integer -> EnhancedInteger
+ghci> Un 5
+Un 5
+Un 5
+ghci> 5 + 5
+5 + 5
+10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :type Vida
+:type Vida
+Vida :: Mistery
+ghci> Cons 42 Vida
+Cons 42 Vida
+Cons 42 Vida
+ghci> :type Cons 42 Vida
+:type Cons 42 Vida
+Cons 42 Vida :: Mistery
+ghci> Cons 7 (Cons 42 Vida)
+Cons 7 (Cons 42 Vida)
+Cons 7 (Cons 42 Vida)
+ghci> :type Cons 7 (Cons 42 Vida)
+:type Cons 7 (Cons 42 Vida)
+Cons 7 (Cons 42 Vida) :: Mistery
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> count (Cons 7 (Cons 42 Vida))
+count (Cons 7 (Cons 42 Vida))
+2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+
+curs03.hs:72:25: error:
+    Ambiguous occurrence ‘sum’
+    It could refer to
+       either ‘Prelude.sum’,
+              imported from ‘Prelude’ at curs03.hs:1:1
+              (and originally defined in ‘Data.Foldable’)
+           or ‘Main.sum’, defined at curs03.hs:71:1
+   |
+72 | sum (Cons x tail) = x + sum tail
+   |                         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> sum' (Cons 7 (Cons 42 Vida))
+sum' (Cons 7 (Cons 42 Vida))
+49
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sum'_aux (Cons 7 (Cons 42 Vida)) 0
+sum'_aux (Cons 7 (Cons 42 Vida)) 0
+49
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> MyPair 3 4
+MyPair 3 4
+MyPair 3 4
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fst (MyPair 3 4)
+fst (MyPair 3 4)
+
+<interactive>:56:1: error:
+    Ambiguous occurrence ‘fst’
+    It could refer to
+       either ‘Prelude.fst’,
+              imported from ‘Prelude’ at curs03.hs:1:1
+              (and originally defined in ‘Data.Tuple’)
+           or ‘Main.fst’, defined at curs03.hs:81:1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fst' (MyPair 3 4)
+fst' (MyPair 3 4)
+3
+ghci> Cons True (Cons False Vida)
+Cons True (Cons False Vida)
+
+<interactive>:59:6: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘Bool’
+    • In the first argument of ‘Cons’, namely ‘True’
+      In the expression: Cons True (Cons False Vida)
+      In an equation for ‘it’: it = Cons True (Cons False Vida)
+
+<interactive>:59:17: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘Bool’
+    • In the first argument of ‘Cons’, namely ‘False’
+      In the second argument of ‘Cons’, namely ‘(Cons False Vida)’
+      In the expression: Cons True (Cons False Vida)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ConsBool True (ConsBool False VidaBool)
+ConsBool True (ConsBool False VidaBool)
+
+<interactive>:61:16: error:
+    • Couldn't match expected type ‘List’ with actual type ‘BoolList’
+    • In the second argument of ‘ConsBool’, namely
+        ‘(ConsBool False VidaBool)’
+      In the expression: ConsBool True (ConsBool False VidaBool)
+      In an equation for ‘it’:
+          it = ConsBool True (ConsBool False VidaBool)
+
+<interactive>:61:31: error:
+    • Couldn't match expected type ‘List’ with actual type ‘BoolList’
+    • In the second argument of ‘ConsBool’, namely ‘VidaBool’
+      In the second argument of ‘ConsBool’, namely
+        ‘(ConsBool False VidaBool)’
+      In the expression: ConsBool True (ConsBool False VidaBool)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ConsBool True (ConsBool False VidaBool)
+ConsBool True (ConsBool False VidaBool)
+ConsBool True (ConsBool False VidaBool)
+ghci> count (ConsBool True (ConsBool False VidaBool))
+count (ConsBool True (ConsBool False VidaBool))
+
+<interactive>:64:8: error:
+    • Couldn't match expected type ‘List’ with actual type ‘BoolList’
+    • In the first argument of ‘count’, namely
+        ‘(ConsBool True (ConsBool False VidaBool))’
+      In the expression: count (ConsBool True (ConsBool False VidaBool))
+      In an equation for ‘it’:
+          it = count (ConsBool True (ConsBool False VidaBool))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> myCount (MyCons 7 (MyCons 42 Empty))
+myCount (MyCons 7 (MyCons 42 Empty))
+2
+ghci> myCount (MyCons True (MyCons True Empty))
+myCount (MyCons True (MyCons True Empty))
+2
+ghci> myCount (MyCons False (MyCons True (MyCons True Empty)))
+myCount (MyCons False (MyCons True (MyCons True Empty)))
+3
+ghci> :type (MyCons True (MyCons 7 Empty))
+:type (MyCons True (MyCons 7 Empty))
+
+<interactive>:1:22: error:
+    • No instance for (Num Bool) arising from the literal ‘7’
+    • In the first argument of ‘MyCons’, namely ‘7’
+      In the second argument of ‘MyCons’, namely ‘(MyCons 7 Empty)’
+      In the expression: MyCons True (MyCons 7 Empty)
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :i MyBool
+:i MyBool
+type MyBool :: *
+data MyBool = MyFalse | MyTrue
+  	-- Defined at curs03.hs:24:1
+instance Eq MyBool -- Defined at curs03.hs:24:48
+instance Show MyBool -- Defined at curs03.hs:24:42
+ghci> :i Bool
+:i Bool
+type Bool :: *
+data Bool = False | True
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Read Bool -- Defined in ‘GHC.Read’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Eq Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+ghci> :i EnhancedInteger
+:i EnhancedInteger
+type EnhancedInteger :: *
+data EnhancedInteger = Un Integer | Nimic
+  	-- Defined at curs03.hs:45:1
+instance Eq EnhancedInteger -- Defined at curs03.hs:45:59
+instance Show EnhancedInteger -- Defined at curs03.hs:45:53
+ghci> :i Maybe
+:i Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mydivision''' 10 0
+mydivision''' 10 0
+Nothing
+ghci> mydivision''' 10 3
+mydivision''' 10 3
+Just 3
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week03 % hoogle sqrt
+hoogle sqrt
+Prelude sqrt :: Floating a => a -> a
+Numeric sqrt :: Floating a => a -> a
+GHC.Float sqrt :: Floating a => a -> a
+Amazonka.Prelude sqrt :: Floating a => a -> a
+Hedgehog.Internal.Prelude sqrt :: Floating a => a -> a
+GHC.Prelude.Basic sqrt :: Floating a => a -> a
+Prelude.Compat sqrt :: Floating a => a -> a
+Protolude sqrt :: Floating a => a -> a
+Protolude.Base sqrt :: Floating a => a -> a
+Relude.Numeric sqrt :: Floating a => a -> a
+-- plus more results not shown, pass --count=20 to see more
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs03.hs
+:l curs03.hs
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> sqrt 3.0
+sqrt 3.0
+1.7320508075688772
+ghci> :quit
+:quit
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week03 % hoogle ceil
+hoogle ceil
+Numeric.Extras ceil :: RealExtras a => a -> a
+Data.Number.MPFR.Integer ceil :: Precision -> MPFR -> MPFR
+Data.Number.MPFR.Mutable.Integer ceil :: MMPFR s -> MMPFR s -> ST s Int
+FMP.Term Ceil :: Term -> Term
+Prelude ceiling :: (RealFrac a, Integral b) => a -> b
+GHC.Float ceilingDouble :: Integral b => Double -> b
+GHC.Float ceilingFloat :: Integral b => Float -> b
+GHC.Float.RealFracMethods ceilingDoubleInt :: Double -> Int
+GHC.Float.RealFracMethods ceilingDoubleInteger :: Double -> Integer
+GHC.Float.RealFracMethods ceilingFloatInt :: Float -> Int
+-- plus more results not shown, pass --count=20 to see more
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs03.hs
+:l curs03.hs
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+
+curs03.hs:110:12: error:
+    Variable not in scope: ceilingFloat :: t0 -> Integer
+    |
+110 | mysqrt x = ceilingFloat (sqrt (fromInteger x))
+    |            ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> mysqrt 10
+mysqrt 10
+4
+ghci> mysqrt 100
+mysqrt 100
+10
+ghci> mysqrt 101
+mysqrt 101
+11
+ghci> mysqrt 121
+mysqrt 121
+11
+ghci> mysqrt 122
+mysqrt 122
+12
+ghci> mysqrt (-10)
+mysqrt (-10)
+-269653970229347386159395778618353710042696546841345985910145121736599013708251444699062715983611304031680170819807090036488184653221624933739271145959211186566651840137298227914453329401869141179179624428127508653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mysqrt (-10)
+mysqrt (-10)
+Nothing
+ghci> mysqrt 100
+mysqrt 100
+Just 10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+
+curs03.hs:113:23: error:
+    Variable not in scope: division''' :: t2 -> t3 -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘mydivision'''’ (line 106), ‘mydivision''’ (line 54)
+    |
+113 | myFancyComputation1 = division''' 10 3
+    |                       ^^^^^^^^^^^
+
+curs03.hs:115:23: error:
+    Variable not in scope: division''' :: t0 -> t1 -> t
+    Suggested fix:
+      Perhaps use one of these:
+        ‘mydivision'''’ (line 106), ‘mydivision''’ (line 54)
+    |
+115 | myFancyComputation3 = division''' 10 0
+    |                       ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> myFancyComputation4
+myFancyComputation4
+Nothing
+ghci> myFancyComputation3
+myFancyComputation3
+Nothing
+ghci> myFancyComputation2
+myFancyComputation2
+Just 10
+ghci> myFancyComputation1
+myFancyComputation1
+Just 3
+ghci> :info Error
+:info Error
+
+<interactive>:1:1: error: Not in scope: ‘Error’
+ghci> :info Either
+:info Either
+type Either :: * -> * -> *
+data Either a b = Left a | Right b
+  	-- Defined in ‘Data.Either’
+instance Semigroup (Either a b) -- Defined in ‘Data.Either’
+instance Foldable (Either a) -- Defined in ‘Data.Foldable’
+instance Traversable (Either a) -- Defined in ‘Data.Traversable’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Read a, Read b) => Read (Either a b)
+  -- Defined in ‘Data.Either’
+instance Applicative (Either e) -- Defined in ‘Data.Either’
+instance Functor (Either a) -- Defined in ‘Data.Either’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+
+curs03.hs:128:1: error:
+    Multiple declarations of ‘myFancyComputation1’
+    Declared at: curs03.hs:113:1
+                 curs03.hs:128:1
+    |
+128 | myFancyComputation1 = mydivision'''' 10 3
+    | ^^^^^^^^^^^^^^^^^^^
+
+curs03.hs:129:1: error:
+    Multiple declarations of ‘myFancyComputation2’
+    Declared at: curs03.hs:114:1
+                 curs03.hs:129:1
+    |
+129 | myFancyComputation2 = mysqrt' 100
+    | ^^^^^^^^^^^^^^^^^^^
+
+curs03.hs:130:1: error:
+    Multiple declarations of ‘myFancyComputation3’
+    Declared at: curs03.hs:115:1
+                 curs03.hs:130:1
+    |
+130 | myFancyComputation3 = mydivision'''' 10 0
+    | ^^^^^^^^^^^^^^^^^^^
+
+curs03.hs:131:1: error:
+    Multiple declarations of ‘myFancyComputation4’
+    Declared at: curs03.hs:116:1
+                 curs03.hs:131:1
+    |
+131 | myFancyComputation4 = mysqrt' (-10)
+    | ^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> myFancyComputation4
+myFancyComputation4
+Nothing
+ghci> myFancyComputation4'
+myFancyComputation4'
+Left "sqrt of negative number"
+ghci> myFancyComputation3'
+myFancyComputation3'
+Left "division by zero"
+ghci> myFancyComputation2'
+myFancyComputation2'
+Right 10
+ghci> myFancyComputation1'
+myFancyComputation1'
+Right 3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> myFancyComputation4'
+myFancyComputation4'
+Left SqrtOfNegative
+ghci> myFancyComputation3'
+myFancyComputation3'
+Left DivisionByZero
+ghci> myFancyComputation2'
+myFancyComputation2'
+Right 10
+ghci> myFancyComputation1'
+myFancyComputation1'
+Right 3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval (Add (Mul (Var "y") (Const 2)) (Add (Var "x") (Const 7)))
+eval (Add (Mul (Var "y") (Const 2)) (Add (Var "x") (Const 7)))
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted ) [Source file changed]
+
+curs03.hs:149:17: error:
+    Not in scope: type constructor or class ‘Expr’
+    Suggested fix: Perhaps use ‘Exp’ (line 136)
+    |
+149 | simpl :: Exp -> Expr
+    |                 ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+
+curs03.hs:150:19: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘Integer’
+    • In the expression: c
+      In an equation for ‘simpl’: simpl (Const c) = c
+    |
+150 | simpl (Const c) = c
+    |                   ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs03.hs, interpreted )
+Ok, one module loaded.
+ghci> simpl (Add (Mul (Const 1) (Var "x")) (Const 0))
+simpl (Add (Mul (Const 1) (Var "x")) (Const 0))
+Var "x"
+ghci> 
