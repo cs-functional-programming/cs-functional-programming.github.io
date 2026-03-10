@@ -1,0 +1,532 @@
+stefan@stefans-MacBook-Pro week04 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs04.hs
+:l curs04.hs
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> impartire 10 3
+impartire 10 3
+3
+ghci> impartire 10 0
+impartire 10 0
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire 10 3
+impartire 10 3
+
+<interactive>:5:1: error:
+    • No instance for (Show EnhancedInteger)
+        arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire 10 3
+impartire 10 3
+Chiar 3
+ghci> impartire 10 0
+impartire 10 0
+Nimic
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:24:23: error:
+    Multiple declarations of ‘Nimic’
+    Declared at: curs04.hs:5:24
+                 curs04.hs:24:23
+   |
+24 | data EnhancedString = Nimic | Chiar String deriving Show
+   |                       ^^^^^
+
+curs04.hs:24:31: error:
+    Multiple declarations of ‘Chiar’
+    Declared at: curs04.hs:5:32
+                 curs04.hs:24:31
+   |
+24 | data EnhancedString = Nimic | Chiar String deriving Show
+   |                               ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci>:r 
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> primeleTreiCaracter "Hello, World!"
+primeleTreiCaracter "Hello, World!"
+
+<interactive>:13:1: error:
+    Variable not in scope: primeleTreiCaracter :: String -> t
+    Suggested fix: Perhaps use ‘primeleTreiCaractere’ (line 27)
+ghci> primeleTreiCaractere "Hello, World!"
+primeleTreiCaractere "Hello, World!"
+"Hel"
+ghci> primeleTreiCaractere "ab"
+primeleTreiCaractere "ab"
+"*** Exception: curs04.hs:27:1-44: Non-exhaustive patterns in function primeleTreiCaractere
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:27:38: error:
+    • Couldn't match expected type ‘EnhancedString’
+                  with actual type ‘[Char]’
+    • In the expression: [a, b, c]
+      In an equation for ‘primeleTreiCaractere’:
+          primeleTreiCaractere (a : (b : (c : _))) = [a, b, c]
+   |
+27 | primeleTreiCaractere (a:(b:(c:_))) = [a,b,c]
+   |                                      ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> primeleTreiCaractere "ab"
+primeleTreiCaractere "ab"
+Nimic'
+ghci> primeleTreiCaractere "Hello, World!"
+primeleTreiCaractere "Hello, World!"
+Chiar' "Hel"
+ghci> :info Maybe
+:info Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire' 10 3
+impartire' 10 3
+Just 3
+ghci> impartire' 10 0
+impartire' 10 0
+Nothing
+ghci> primeleTreiCaractere "ab"
+primeleTreiCaractere "ab"
+Nimic'
+ghci> primeleTreiCaractere' "ab"
+primeleTreiCaractere' "ab"
+Nothing
+ghci> primeleTreiCaractere' "abc"
+primeleTreiCaractere' "abc"
+Just "abc"
+ghci> :info Either
+:info Either
+type Either :: * -> * -> *
+data Either a b = Left a | Right b
+  	-- Defined in ‘Data.Either’
+instance Traversable (Either a) -- Defined in ‘Data.Traversable’
+instance Semigroup (Either a b) -- Defined in ‘Data.Either’
+instance Applicative (Either e) -- Defined in ‘Data.Either’
+instance Foldable (Either a) -- Defined in ‘Data.Foldable’
+instance Functor (Either a) -- Defined in ‘Data.Either’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance (Read a, Read b) => Read (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire'' 10 3
+impartire'' 10 3
+Right 3
+ghci> impartire'' 10 0
+impartire'' 10 0
+Left "division by 0"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire'' 10 0
+impartire'' 10 0
+
+<interactive>:32:1: error:
+    • No instance for (Show MotivEroare) arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire'' 10 0
+impartire'' 10 0
+Left DivisionByZero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire'' 10 0
+impartire'' 10 0
+Left DivisionByZero
+ghci> impartire0 10 0
+impartire0 10 0
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calculInteresant 10 3 10
+calculInteresant 10 3 10
+13
+ghci> calculInteresant 10 0 10
+calculInteresant 10 0 10
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:48:44: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the first argument of ‘(+)’, namely ‘result’
+      In the expression: result + z
+      In a case alternative: Right result -> result + z
+   |
+48 |                            Right result -> result + z
+   |                                            ^^^^^^
+
+curs04.hs:48:53: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the second argument of ‘(+)’, namely ‘z’
+      In the expression: result + z
+      In a case alternative: Right result -> result + z
+   |
+48 |                            Right result -> result + z
+   |                                                     ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> calculInteresant 10 3 10
+calculInteresant 10 3 10
+Just 13
+ghci> calculInteresant 10 0 10
+calculInteresant 10 0 10
+Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:86:40: error: parse error on input ‘then’
+   |
+86 |                           else key < x then
+   |                                        ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> search 14 t4
+search 14 t4
+True
+ghci> search 13 t4
+search 13 t4
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> search 42 s4
+search 42 s4
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isBST t4
+isBST t4
+True
+ghci> isBST s4
+isBST s4
+False
+ghci> isBST s3
+isBST s3
+False
+ghci> isBST s2
+isBST s2
+True
+ghci> isBST s1
+isBST s1
+True
+ghci> isBST s3
+isBST s3
+False
+ghci> s3
+s3
+Node 42 (Node 2 Empty Empty) (Node 1 Empty Empty)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:145:18: error:
+    • Couldn't match expected type ‘Expr -> Expr’
+                  with actual type ‘Expr’
+    • The function ‘Mult’ is applied to two value arguments,
+        but its type ‘Expr -> Expr’ has only one
+      In the first argument of ‘Plus’, namely
+        ‘(Mult (Var "x") (Const 2))’
+      In the first argument of ‘Plus’, namely
+        ‘(Plus
+            (Mult (Var "x") (Const 2))
+            (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z")))’
+    |
+145 | e1 = Plus (Plus (Mult (Var "x") (Const 2)) (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z"))) (Const 27)
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs04.hs:145:45: error:
+    • Couldn't match expected type ‘Expr -> Expr’
+                  with actual type ‘Expr’
+    • The function ‘Mult’ is applied to two value arguments,
+        but its type ‘Expr -> Expr’ has only one
+      In the second argument of ‘Plus’, namely
+        ‘(Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z"))’
+      In the first argument of ‘Plus’, namely
+        ‘(Plus
+            (Mult (Var "x") (Const 2))
+            (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z")))’
+    |
+145 | e1 = Plus (Plus (Mult (Var "x") (Const 2)) (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z"))) (Const 27)
+    |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs04.hs:145:58: error:
+    • Couldn't match expected type ‘Expr -> Expr’
+                  with actual type ‘Expr’
+    • The function ‘Mult’ is applied to two value arguments,
+        but its type ‘Expr -> Expr’ has only one
+      In the first argument of ‘Minus’, namely
+        ‘(Mult (Var "y") (Const 10))’
+      In the first argument of ‘Mult’, namely
+        ‘(Minus (Mult (Var "y") (Const 10)) (Var "z"))’
+    |
+145 | e1 = Plus (Plus (Mult (Var "x") (Const 2)) (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z"))) (Const 27)
+    |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> e1
+e1
+Plus (Plus (Mult (Var "x") (Const 2)) (Mult (Minus (Mult (Var "y") (Const 10)) (Var "z")) (Var "z"))) (Const 27)
+ghci> show 10
+show 10
+"10"
+ghci> :t show
+:t show
+show :: Show a => a -> String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> prettyPrint e1
+prettyPrint e1
+"(((x * 2) + (((y * 10) - z) * z)) + 27)"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e1
+eval e1
+27
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval e1
+eval e1
+38
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:156:12: error:
+    Multiple declarations of ‘Empty’
+    Declared at: curs04.hs:50:12
+                 curs04.hs:156:12
+    |
+156 | data Map = Empty | Bind String Integer Map deriving Show
+    |            ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+
+curs04.hs:162:1: error:
+    Multiple declarations of ‘insert’
+    Declared at: curs04.hs:128:1
+                 curs04.hs:162:1
+    |
+162 | insert map var val = Bind var val map
+    | ^^^^^^
+
+curs04.hs:165:1: error:
+    Multiple declarations of ‘search’
+    Declared at: curs04.hs:107:1
+                 curs04.hs:165:1
+    |
+165 | search EmptyMap var = Nothing
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+
+curs04.hs:162:1: error:
+    Multiple declarations of ‘insert’
+    Declared at: curs04.hs:128:1
+                 curs04.hs:162:1
+    |
+162 | insert map var val = Bind var val map
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+
+curs04.hs:177:49: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the first argument of ‘(+)’, namely ‘v1’
+      In the expression: v1 + v2
+      In a case alternative: (Just v1, Just v2) -> v1 + v2
+    |
+177 |                           (Just v1, Just v2) -> v1 + v2
+    |                                                 ^^
+
+curs04.hs:177:54: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the second argument of ‘(+)’, namely ‘v2’
+      In the expression: v1 + v2
+      In a case alternative: (Just v1, Just v2) -> v1 + v2
+    |
+177 |                           (Just v1, Just v2) -> v1 + v2
+    |                                                      ^^
+
+curs04.hs:181:49: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the first argument of ‘(*)’, namely ‘v1’
+      In the expression: v1 * v2
+      In a case alternative: (Just v1, Just v2) -> v1 * v2
+    |
+181 |                           (Just v1, Just v2) -> v1 * v2
+    |                                                 ^^
+
+curs04.hs:181:54: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the second argument of ‘(*)’, namely ‘v2’
+      In the expression: v1 * v2
+      In a case alternative: (Just v1, Just v2) -> v1 * v2
+    |
+181 |                           (Just v1, Just v2) -> v1 * v2
+    |                                                      ^^
+
+curs04.hs:185:49: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the first argument of ‘(-)’, namely ‘v1’
+      In the expression: v1 - v2
+      In a case alternative: (Just v1, Just v2) -> v1 - v2
+    |
+185 |                           (Just v1, Just v2) -> v1 - v2
+    |                                                 ^^
+
+curs04.hs:185:54: error:
+    • Couldn't match expected type ‘Maybe Integer’
+                  with actual type ‘Integer’
+    • In the second argument of ‘(-)’, namely ‘v2’
+      In the expression: v1 - v2
+      In a case alternative: (Just v1, Just v2) -> v1 - v2
+    |
+185 |                           (Just v1, Just v2) -> v1 - v2
+    |                                                      ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> eval e1 m1
+eval e1 m1
+Just 111
+ghci> 42 * 2 + (13 * 10 - 0) * 0 + 27
+42 * 2 + (13 * 10 - 0) * 0 + 27
+111
+ghci> :quit
+:quit
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week04 % ./curs04
+./curs04
+27
+stefan@stefans-MacBook-Pro week04 % ./curs04
+./curs04
+38
+stefan@stefans-MacBook-Pro week04 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs04.hs
+:l curs04.hs
+[1 of 2] Compiling Main             ( curs04.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval (Impartire (Const 42) (Const 7)) EmptyMap
+eval (Impartire (Const 42) (Const 7)) EmptyMap
+Just 6
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> simpl (Plus (Const 0) (Var "x"))
+simpl (Plus (Const 0) (Var "x"))
+Var "x"
+ghci> 
