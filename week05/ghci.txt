@@ -1,0 +1,1121 @@
+stefan@stefans-MacBook-Pro week05 % ghci
+ghci
+:load curs05
+:load curs05
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :load curs05
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:1:1: error:
+    The type signature for ‘f’ lacks an accompanying binding
+  |
+1 | f :: Int -> Int
+  | ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add 7 10
+add 7 10
+17
+ghci> add 7
+add 7
+
+<interactive>:5:1: error:
+    • No instance for (Show (Int -> Int)) arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t mistery
+:t mistery
+mistery :: Int -> Int
+ghci> mistery 0
+mistery 0
+7
+ghci> mistery 5
+mistery 5
+12
+ghci> mistery 13
+mistery 13
+20
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mistery_13 33
+mistery_13 33
+46
+ghci> (add 7)
+(add 7)
+
+<interactive>:14:1: error:
+    • No instance for (Show (Int -> Int)) arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> (add 7) 6
+(add 7) 6
+13
+ghci> (add 13) 6
+(add 13) 6
+19
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add' 3 7
+add' 3 7
+10
+ghci> add' 13 7
+add' 13 7
+20
+ghci> (add' 13) 7
+(add' 13) 7
+20
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add 13 7
+add 13 7
+20
+ghci> ((add 13) 7)
+((add 13) 7)
+20
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:64:1: error:
+    The type signature for ‘functie1’ lacks an accompanying binding
+   |
+64 | functie1 :: (Int -> Int) -> Int
+   | ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> functie1 mystery'
+functie1 mystery'
+
+<interactive>:26:10: error:
+    Variable not in scope: mystery' :: Int -> Int
+    Suggested fix:
+      Perhaps use one of these: ‘mistery'’ (line 55), ‘mistery’ (line 46)
+ghci> functie1 mistery'
+functie1 mistery'
+13
+ghci> functie1 mistery
+functie1 mistery
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:68:1: error:
+    Multiple declarations of ‘functie1’
+    Declared at: curs05.hs:65:1
+                 curs05.hs:68:1
+   |
+68 | functie1 a = a 17
+   | ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> functie2 mistery'
+functie2 mistery'
+24
+ghci> functie2 mistery
+functie2 mistery
+24
+ghci> functie2 mistery_13
+functie2 mistery_13
+30
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add3 3 4 5
+add3 3 4 5
+12
+ghci> (add3 3) 4 5
+(add3 3) 4 5
+12
+ghci> ((add3 3) 4) 5
+((add3 3) 4) 5
+12
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (functie3 (add 7)) 8
+(functie3 (add 7)) 8
+15
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> functie4 (add 7) 8
+functie4 (add 7) 8
+23
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> functie5 (add 5) (add 7) 100
+functie5 (add 5) (add 7) 100
+112
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> functie5 (add 5) (mult 2) 100
+functie5 (add 5) (mult 2) 100
+205
+ghci> functie5 (mult 2) (add 5) 100
+functie5 (mult 2) (add 5) 100
+210
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> functie6 (mult 2) (add 5) 100
+functie6 (mult 2) (add 5) 100
+210
+ghci> functie6 (add 5) (mult 2) 100
+functie6 (add 5) (mult 2) 100
+205
+ghci> :t (.)
+:t (.)
+(.) :: (b -> c) -> (a -> b) -> a -> c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> functie7 (add 5) (mult 2) 100
+functie7 (add 5) (mult 2) 100
+205
+ghci> functie7 (mult 2) (add 5) 100
+functie7 (mult 2) (add 5) 100
+210
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> addv2 (1, 7)
+addv2 (1, 7)
+8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:112:16: error:
+    • Couldn't match type ‘Int’ with ‘(Int, Int)’
+      Expected: (Int, Int) -> Int
+        Actual: Int -> Int -> Int
+    • Probable cause: ‘add’ is applied to too few arguments
+      In the first argument of ‘curry'’, namely ‘add’
+      In the expression: curry' add
+      In an equation for ‘addv3’: addv3 = curry' add
+    |
+112 | addv3 = curry' add
+    |                ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> addv3 3 10
+addv3 3 10
+13
+ghci> ((addv3 3) 10)
+((addv3 3) 10)
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> addv4 (3, 4)
+addv4 (3, 4)
+7
+ghci> :t curry
+:t curry
+curry :: ((a, b) -> c) -> a -> b -> c
+ghci> :t uncurry
+:t uncurry
+uncurry :: (a -> b -> c) -> (a, b) -> c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add_point [ 7.5, 9.5, 5 ]
+add_point [ 7.5, 9.5, 5 ]
+[8.5,10.5,6.0]
+ghci> add_point [ 7.5, 8.95, 5 ]
+add_point [ 7.5, 8.95, 5 ]
+[8.5,9.95,6.0]
+ghci> 7.5 * 1.2
+7.5 * 1.2
+9.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add_percentage [ 7.5, 8.95, 5 ]
+add_percentage [ 7.5, 8.95, 5 ]
+[8.25,9.845,5.5]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add_point' [5, 8.5, 9]
+add_point' [5, 8.5, 9]
+[6.0,9.5,10.0]
+ghci> add_percentage' [5, 8.5, 9]
+add_percentage' [5, 8.5, 9]
+[5.5,9.35,9.900001]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> inc' 10
+inc' 10
+
+<interactive>:77:1: error: Variable not in scope: inc' :: t0 -> t
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> inc' 10
+inc' 10
+
+<interactive>:79:1: error: Variable not in scope: inc' :: t0 -> t
+ghci> inc_1' 10
+inc_1' 10
+11.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (\x -> x + 10) 18
+(\x -> x + 10) 18
+28
+ghci> (\x -> x * 2) 18
+(\x -> x * 2) 18
+36
+ghci> (\x y -> x + y * 2) 10 20
+(\x y -> x + y * 2) 10 20
+50
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:152:26: error:
+    • Couldn't match kind ‘k’ with ‘*’
+      When matching types
+        process_names :: k -> *
+        [] :: * -> *
+      Expected: process_names tl
+        Actual: [Char]
+      ‘k’ is a rigid type variable bound by
+        an expression type signature:
+          forall {k} (process_names :: k -> *) (tl :: k). process_names tl
+        at curs05.hs:152:53-70
+    • In the expression: ("Hello, " ++ hd ++ "!") :: (process_names tl)
+      In an equation for ‘process_names’:
+          process_names (hd : tl)
+            = ("Hello, " ++ hd ++ "!") :: (process_names tl)
+    |
+152 | process_names (hd:tl) = ("Hello, " ++ hd ++ "!") :: (process_names tl)
+    |                          ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> process_names names
+process_names names
+["Hello, Stefan!","Hello, Andrei!","Hello, Sebastian!"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> map' (\x -> x + 1) [ 15, 7.5, 9]
+map' (\x -> x + 1) [ 15, 7.5, 9]
+[16.0,8.5,10.0]
+ghci> map' (\x -> x + 1) [ 5, 7.5, 9]
+map' (\x -> x + 1) [ 5, 7.5, 9]
+[6.0,8.5,10.0]
+ghci> map' (\x -> x * 1.1) [ 5, 7.5, 9]
+map' (\x -> x * 1.1) [ 5, 7.5, 9]
+[5.5,8.25,9.9]
+ghci> map' (\x -> "Hello, " ++ x ++ "!") names
+map' (\x -> "Hello, " ++ x ++ "!") names
+["Hello, Stefan!","Hello, Andrei!","Hello, Sebastian!"]
+ghci> :t map
+:t map
+map :: (a -> b) -> [a] -> [b]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Andrei","Sebastian"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> proiectie [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+proiectie [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Stefan","Andrei","Sebastian"]
+ghci> :t filter
+:t filter
+filter :: (a -> Bool) -> [a] -> [a]
+ghci> even
+even
+
+<interactive>:99:1: error:
+    • No instance for (Show (Integer -> Bool))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> even 10
+even 10
+True
+ghci> even 5
+even 5
+False
+ghci> filter even [1, 2, 3, 4, 5]
+filter even [1, 2, 3, 4, 5]
+[2,4]
+ghci> filter (\(x, y) -> y >= 5) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+filter (\(x, y) -> y >= 5) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+[("Andrei",7),("Sebastian",8)]
+ghci> proiectie (filter (\(x, y) -> y >= 5) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)])
+proiectie (filter (\(x, y) -> y >= 5) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)])
+["Andrei","Sebastian"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)])
+cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)])
+
+<interactive>:106:63: error: parse error on input ‘)’
+ghci> cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+cine_a_trecut [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Andrei","Sebastian"]
+ghci> cine_a_trecut' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+cine_a_trecut' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Andrei","Sebastian"]
+ghci> "r
+"r
+
+<interactive>:109:3: error:
+    lexical error in string/character literal at end of input
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> cine_a_trecut'' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+cine_a_trecut'' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Andrei","Sebastian"]
+ghci> :t fst
+:t fst
+fst :: (a, b) -> a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t fst
+:t fst
+fst :: (a, b) -> a
+ghci> cine_a_trecut'' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+cine_a_trecut'' [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+["Andrei","Sebastian"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:185:29: error:
+    • Couldn't match expected type ‘Float’ with actual type ‘Int’
+    • In the second argument of ‘(/)’, namely ‘(count note)’
+      In the expression: (suma note) / (count note)
+      In an equation for ‘media’: media note = (suma note) / (count note)
+    |
+185 | media note = (suma note) / (count note)
+    |                             ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> (fromInteger 10) :: Float
+(fromInteger 10) :: Float
+10.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:185:42: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘Int’
+    • In the first argument of ‘fromInteger’, namely ‘(count note)’
+      In the second argument of ‘(/)’, namely
+        ‘(fromInteger (count note))’
+      In the expression: (suma note) / (fromInteger (count note))
+    |
+185 | media note = (suma note) / (fromInteger (count note))
+    |                                          ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> int2Float 10
+int2Float 10
+
+<interactive>:120:1: error:
+    Variable not in scope: int2Float :: t0 -> t
+ghci> import Extra
+import Extra
+
+<no location info>: error:
+    Could not find module ‘Extra’
+    It is not a module in the current program, or in any known package.
+ghci> import GHC.Float
+import GHC.Float
+ghci> int2Float 10
+int2Float 10
+10.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> media [5, 6.5, 8]
+media [5, 6.5, 8]
+6.5
+ghci> media [5, 6.5, 10]
+media [5, 6.5, 10]
+7.1666665
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce add 0 [ 5, 7, 3 ]
+reduce add 0 [ 5, 7, 3 ]
+
+<interactive>:128:8: error:
+    • Couldn't match expected type: [a0]
+                  with actual type: Int -> Int -> Int
+    • Probable cause: ‘add’ is applied to too few arguments
+      In the first argument of ‘reduce’, namely ‘add’
+      In the expression: reduce add 0 [5, 7, 3]
+      In an equation for ‘it’: it = reduce add 0 [5, 7, 3]
+ghci> :t add
+:t add
+add :: Int -> Int -> Int
+ghci> reduce [ 5, 7, 3 ] add 0
+reduce [ 5, 7, 3 ] add 0
+15
+ghci> reduce [ 5, 7, 3 ] mult 1
+reduce [ 5, 7, 3 ] mult 1
+105
+ghci> reduce [ 5, 7, 3 ] (\hd c -> c + 1) 0
+reduce [ 5, 7, 3 ] (\hd c -> c + 1) 0
+3
+ghci> reduce [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+reduce [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+4
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> media' [5, 6.5, 10]
+media' [5, 6.5, 10]
+7.1666665
+ghci> media [5, 6.5, 10]
+media [5, 6.5, 10]
+7.1666665
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce' [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+reduce' [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+4
+ghci> reduce [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+reduce [ 5, 7, 3, 100 ] (\hd c -> c + 1) 0
+4
+ghci> reduce' [ 5, 7, 3 ] mult 1
+reduce' [ 5, 7, 3 ] mult 1
+105
+ghci> reduce [ 5, 7, 3 ] mult 1
+reduce [ 5, 7, 3 ] mult 1
+105
+ghci> reduce ["aaa", "bbb", "cc"] (++) ""
+reduce ["aaa", "bbb", "cc"] (++) ""
+"aaabbbcc"
+ghci> reduce' ["aaa", "bbb", "cc"] (++) ""
+reduce' ["aaa", "bbb", "cc"] (++) ""
+"ccbbbaaa"
+ghci> reduce' ["aaa", "bbb", "cc"] (++) "init"
+reduce' ["aaa", "bbb", "cc"] (++) "init"
+"ccbbbaaainit"
+ghci> reduce ["aaa", "bbb", "cc"] (++) "init"
+reduce ["aaa", "bbb", "cc"] (++) "init"
+"aaabbbccinit"
+ghci> :t (foldl :: (b -> a -> b) -> b -> [a] -> b)
+:t (foldl :: (b -> a -> b) -> b -> [a] -> b)
+(foldl :: (b -> a -> b) -> b -> [a] -> b)
+  :: (b -> a -> b) -> b -> [a] -> b
+ghci> foldl (++) "init" ["aaa", "bbb", "ccc"]
+foldl (++) "init" ["aaa", "bbb", "ccc"]
+"initaaabbbccc"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:209:26: error:
+    • Couldn't match expected type ‘a’ with actual type ‘b’
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the first argument of ‘f’, namely ‘a’
+      In the expression: f a (reduce tl f hd)
+      In an equation for ‘reduce''’:
+          reduce'' f a (hd : tl) = f a (reduce tl f hd)
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:18)
+        hd :: a (bound at curs05.hs:209:15)
+        a :: b (bound at curs05.hs:209:12)
+        f :: a -> b -> b (bound at curs05.hs:209:10)
+        reduce'' :: (a -> b -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f a (hd:tl) = f a (reduce tl f hd)
+    |                          ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:209:26: error:
+    • Couldn't match expected type ‘a’ with actual type ‘b’
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the first argument of ‘f’, namely ‘a’
+      In the expression: f a (reduce'' f hd tl)
+      In an equation for ‘reduce''’:
+          reduce'' f a (hd : tl) = f a (reduce'' f hd tl)
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:18)
+        hd :: a (bound at curs05.hs:209:15)
+        a :: b (bound at curs05.hs:209:12)
+        f :: a -> b -> b (bound at curs05.hs:209:10)
+        reduce'' :: (a -> b -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f a (hd:tl) = f a (reduce'' f hd tl)
+    |                          ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:209:38: error:
+    • Couldn't match type ‘b’ with ‘a’
+      Expected: a -> a -> a
+        Actual: b -> a -> b
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the first argument of ‘reduce''’, namely ‘f’
+      In the second argument of ‘f’, namely ‘(reduce'' f hd tl)’
+      In the expression: f a (reduce'' f hd tl)
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:18)
+        hd :: a (bound at curs05.hs:209:15)
+        a :: b (bound at curs05.hs:209:12)
+        f :: b -> a -> b (bound at curs05.hs:209:10)
+        reduce'' :: (b -> a -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f a (hd:tl) = f a (reduce'' f hd tl)
+    |                                      ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:209:44: error:
+    • Couldn't match expected type ‘a’ with actual type ‘b’
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the second argument of ‘f’, namely ‘a’
+      In the expression: f (reduce'' f a tl) a
+      In an equation for ‘reduce''’:
+          reduce'' f a (hd : tl) = f (reduce'' f a tl) a
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:18)
+        hd :: a (bound at curs05.hs:209:15)
+        a :: b (bound at curs05.hs:209:12)
+        f :: b -> a -> b (bound at curs05.hs:209:10)
+        reduce'' :: (b -> a -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f a (hd:tl) = f (reduce'' f a tl) a
+    |                                            ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:209:50: error:
+    • Couldn't match expected type ‘a’ with actual type ‘b’
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the second argument of ‘f’, namely ‘init’
+      In the expression: f (reduce'' f init tl) init
+      In an equation for ‘reduce''’:
+          reduce'' f init (hd : tl) = f (reduce'' f init tl) init
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:21)
+        hd :: a (bound at curs05.hs:209:18)
+        init :: b (bound at curs05.hs:209:12)
+        f :: b -> a -> b (bound at curs05.hs:209:10)
+        reduce'' :: (b -> a -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f init (hd:tl) = f (reduce'' f init tl) init
+    |                                                  ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:209:44: error:
+    • Couldn't match type ‘b’ with ‘a’
+      Expected: a -> a -> a
+        Actual: b -> a -> b
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce'' :: forall b a. (b -> a -> b) -> b -> [a] -> b
+        at curs05.hs:207:1-42
+    • In the first argument of ‘reduce''’, namely ‘f’
+      In the second argument of ‘f’, namely ‘(reduce'' f init tl)’
+      In the expression: f init (reduce'' f init tl)
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:209:21)
+        hd :: a (bound at curs05.hs:209:18)
+        init :: b (bound at curs05.hs:209:12)
+        f :: b -> a -> b (bound at curs05.hs:209:10)
+        reduce'' :: (b -> a -> b) -> b -> [a] -> b
+          (bound at curs05.hs:208:1)
+    |
+209 | reduce'' f init (hd:tl) = f init (reduce'' f init tl)
+    |                                            ^
+Failed, no modules loaded.
+ghci> :t (foldl :: (b -> a -> b) -> b -> [a] -> b)
+:t (foldl :: (b -> a -> b) -> b -> [a] -> b)
+(foldl :: (b -> a -> b) -> b -> [a] -> b)
+  :: (b -> a -> b) -> b -> [a] -> b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> foldl (++) "init" ["aaa", "bbb", "ccc"]
+foldl (++) "init" ["aaa", "bbb", "ccc"]
+"initaaabbbccc"
+ghci> reduce'' (++) "init" ["aaa", "bbb", "ccc"]
+reduce'' (++) "init" ["aaa", "bbb", "ccc"]
+"initaaabbbccc"
+ghci> foldr (++) "init" ["aaa", "bbb", "ccc"]
+foldr (++) "init" ["aaa", "bbb", "ccc"]
+"aaabbbcccinit"
+ghci> :t (foldr :: (a -> b -> b) -> b -> [a] -> b)
+:t (foldr :: (a -> b -> b) -> b -> [a] -> b)
+(foldr :: (a -> b -> b) -> b -> [a] -> b)
+  :: (a -> b -> b) -> b -> [a] -> b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:213:37: error:
+    • Couldn't match type ‘a’ with ‘b’
+      Expected: b -> b -> b
+        Actual: a -> b -> b
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          reduce''' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:211:1-43
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          reduce''' :: forall a b. (a -> b -> b) -> b -> [a] -> b
+        at curs05.hs:211:1-43
+    • In the first argument of ‘reduce''’, namely ‘f’
+      In the expression: reduce'' f (f hd init) tl
+      In an equation for ‘reduce'''’:
+          reduce''' f init (hd : tl) = reduce'' f (f hd init) tl
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:213:22)
+        hd :: a (bound at curs05.hs:213:19)
+        init :: b (bound at curs05.hs:213:13)
+        f :: a -> b -> b (bound at curs05.hs:213:11)
+        reduce''' :: (a -> b -> b) -> b -> [a] -> b
+          (bound at curs05.hs:212:1)
+    |
+213 | reduce''' f init (hd:tl) = reduce'' f (f hd init) tl
+    |                                     ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> foldr (++) "init" ["aaa", "bbb", "ccc"]
+foldr (++) "init" ["aaa", "bbb", "ccc"]
+"aaabbbcccinit"
+ghci> reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+"cccbbbaaainit"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+"aaabbbcccinit"
+ghci> reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+reduce''' (++) "init" ["aaa", "bbb", "ccc"]
+"aaabbbcccinit"
+ghci> foldr (++) "init" ["aaa", "bbb", "ccc"]
+foldr (++) "init" ["aaa", "bbb", "ccc"]
+"aaabbbcccinit"
+ghci> foldr (-) 4 [ 10, 50, 100 ]
+foldr (-) 4 [ 10, 50, 100 ]
+56
+ghci> foldl (-) 4 [ 10, 50, 100 ]
+foldl (-) 4 [ 10, 50, 100 ]
+-156
+ghci> 4 - (10 - (50 - 100))
+4 - (10 - (50 - 100))
+-56
+ghci> 10 - (50 - 100)
+10 - (50 - 100)
+60
+ghci> 10 - (-50)
+10 - (-50)
+60
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:234:28: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Int -> Int’
+    • Probable cause: ‘applyFunctions’ is applied to too few arguments
+      In the expression: applyFunctions (hd x)
+      In an equation for ‘applyFunctions’:
+          applyFunctions (hd : tl) x = applyFunctions (hd x)
+    |
+234 | applyFunctions (hd:tl) x = applyFunctions (hd x)
+    |                            ^^^^^^^^^^^^^^^^^^^^^
+
+curs05.hs:234:44: error:
+    • Couldn't match expected type ‘[Int -> Int]’
+                  with actual type ‘Int’
+    • In the first argument of ‘applyFunctions’, namely ‘(hd x)’
+      In the expression: applyFunctions (hd x)
+      In an equation for ‘applyFunctions’:
+          applyFunctions (hd : tl) x = applyFunctions (hd x)
+    |
+234 | applyFunctions (hd:tl) x = applyFunctions (hd x)
+    |                                            ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> applyFunctions [ add 7, add 13, add 100 ] 0
+applyFunctions [ add 7, add 13, add 100 ] 0
+120
+ghci> applyFunctions [ add 7, add 13, mult 2, add 100 ] 13
+applyFunctions [ add 7, add 13, mult 2, add 100 ] 13
+166
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:238:9: error:
+    • Couldn't match expected type: [Int]
+                  with actual type: [Int] -> [Int]
+    • Probable cause: ‘qs’ is applied to too few arguments
+      In the expression: qs
+      In an equation for ‘qs’: qs [] = qs
+    |
+238 | qs [] = qs
+    |         ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> qs [ 9, 7, 4, 8, 6, 2, 13 ]
+qs [ 9, 7, 4, 8, 6, 2, 13 ]
+[2,4,6,7,8,9,13]
+ghci> (not . (<= 13)) 20
+(not . (<= 13)) 20
+True
+ghci> (not . (<= 13)) 13
+(not . (<= 13)) 13
+False
+ghci> (not . (<= 13)) 12
+(not . (<= 13)) 12
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted ) [Source file changed]
+
+curs05.hs:239:17: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a0] -> [a0]
+    • Probable cause: ‘qs’ is applied to too few arguments
+      In the first argument of ‘(++)’, namely ‘(qs (filter (p hd) tl))’
+      In the expression:
+        (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+      In an equation for ‘qs’:
+          qs p (hd : tl)
+            = (qs (filter (p hd) tl))
+                ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    |                 ^^^^^^^^^^^^^^^^^^^^^
+
+curs05.hs:239:21: error:
+    • Couldn't match expected type: a0 -> a0 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs’, namely ‘(filter (p hd) tl)’
+      In the first argument of ‘(++)’, namely ‘(qs (filter (p hd) tl))’
+      In the expression:
+        (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    |                     ^^^^^^^^^^^^^^^^
+
+curs05.hs:239:52: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a1] -> [a1]
+    • Probable cause: ‘qs’ is applied to too few arguments
+      In the second argument of ‘(++)’, namely
+        ‘(qs (filter (not . (p hd)) tl))’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ (qs (filter (not . (p hd)) tl))’
+      In the expression:
+        (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs05.hs:239:56: error:
+    • Couldn't match expected type: a1 -> a1 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs’, namely ‘(filter (not . (p hd)) tl)’
+      In the second argument of ‘(++)’, namely
+        ‘(qs (filter (not . (p hd)) tl))’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ (qs (filter (not . (p hd)) tl))’
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (not . (p hd)) tl))
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+
+curs05.hs:239:17: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a0] -> [a0]
+    • Probable cause: ‘qs’ is applied to too few arguments
+      In the first argument of ‘(++)’, namely ‘(qs (filter (p hd) tl))’
+      In the expression:
+        (qs (filter (p hd) tl))
+          ++ [hd] ++ (qs (filter (\ x -> not (p hd x)) tl))
+      In an equation for ‘qs’:
+          qs p (hd : tl)
+            = (qs (filter (p hd) tl))
+                ++ [hd] ++ (qs (filter (\ x -> not (p hd x)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (\x -> not (p hd x)) tl))
+    |                 ^^^^^^^^^^^^^^^^^^^^^
+
+curs05.hs:239:21: error:
+    • Couldn't match expected type: a0 -> a0 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs’, namely ‘(filter (p hd) tl)’
+      In the first argument of ‘(++)’, namely ‘(qs (filter (p hd) tl))’
+      In the expression:
+        (qs (filter (p hd) tl))
+          ++ [hd] ++ (qs (filter (\ x -> not (p hd x)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (\x -> not (p hd x)) tl))
+    |                     ^^^^^^^^^^^^^^^^
+
+curs05.hs:239:52: error:
+    • Couldn't match expected type: [a]
+                  with actual type: [a1] -> [a1]
+    • Probable cause: ‘qs’ is applied to too few arguments
+      In the second argument of ‘(++)’, namely
+        ‘(qs (filter (\ x -> not (p hd x)) tl))’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ (qs (filter (\ x -> not (p hd x)) tl))’
+      In the expression:
+        (qs (filter (p hd) tl))
+          ++ [hd] ++ (qs (filter (\ x -> not (p hd x)) tl))
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (\x -> not (p hd x)) tl))
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs05.hs:239:56: error:
+    • Couldn't match expected type: a1 -> a1 -> Bool
+                  with actual type: [a]
+    • Possible cause: ‘filter’ is applied to too many arguments
+      In the first argument of ‘qs’, namely
+        ‘(filter (\ x -> not (p hd x)) tl)’
+      In the second argument of ‘(++)’, namely
+        ‘(qs (filter (\ x -> not (p hd x)) tl))’
+      In the second argument of ‘(++)’, namely
+        ‘[hd] ++ (qs (filter (\ x -> not (p hd x)) tl))’
+    • Relevant bindings include
+        tl :: [a] (bound at curs05.hs:239:10)
+        hd :: a (bound at curs05.hs:239:7)
+        p :: a -> a -> Bool (bound at curs05.hs:239:4)
+        qs :: (a -> a -> Bool) -> [a] -> [a] (bound at curs05.hs:238:1)
+    |
+239 | qs p (hd:tl) = (qs (filter (p hd) tl)) ++ [hd] ++ (qs (filter (\x -> not (p hd x)) tl))
+    |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs05.hs, interpreted )
+Ok, one module loaded.
+ghci> qs (\(_, nota1) (_, nota2) -> nota1 > nota2) [("Stefan", 10), ("Andrei", 7), ("Sebastian", 8)]
+qs (\(_, nota1) (_, nota2) -> nota1 > nota2) [("Stefan", 10), ("Andrei", 7), ("Sebastian", 8)]
+[("Andrei",7),("Sebastian",8),("Stefan",10)]
+ghci> qs (\(nume1, _) (nume2, _) -> nume1 > nume2) [("Stefan", 10), ("Andrei", 7), ("Sebastian", 8)]
+qs (\(nume1, _) (nume2, _) -> nume1 > nume2) [("Stefan", 10), ("Andrei", 7), ("Sebastian", 8)]
+[("Andrei",7),("Sebastian",8),("Stefan",10)]
+ghci> qs (\(nume1, _) (nume2, _) -> nume1 > nume2) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+qs (\(nume1, _) (nume2, _) -> nume1 > nume2) [("Stefan", 3), ("Andrei", 7), ("Sebastian", 8)]
+[("Andrei",7),("Sebastian",8),("Stefan",3)]
+ghci> 10
+10
+10
+ghci> (\x -> x + 3)
+(\x -> x + 3)
+
+<interactive>:190:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> let mylambda = \f x = f (x + 2) in mylambda (mult 3) 7
+let mylambda = \f x = f (x + 2) in mylambda (mult 3) 7
+
+<interactive>:191:21: error: parse error on input ‘=’
+ghci> let mylambda = \f x -> f (x + 2) in mylambda (mult 3) 7
+let mylambda = \f x -> f (x + 2) in mylambda (mult 3) 7
+27
+ghci> 
