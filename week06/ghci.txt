@@ -1,0 +1,1438 @@
+stefan@stefans-MacBook-Pro week06 % ghci
+ghci
+:l curs06
+:l curs06
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs06
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon
+Mon
+
+<interactive>:3:1: error:
+    • No instance for (Show Dow) arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon'
+Mon'
+Mon'
+ghci> :info Show
+:info Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+  	-- Defined in ‘GHC.Show’
+instance Show Dow' -- Defined at curs06.hs:23:41
+instance Show Double -- Defined in ‘GHC.Float’
+instance Show Float -- Defined in ‘GHC.Float’
+instance Show () -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (a, b) -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c) => Show (a, b, c)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d) => Show (a, b, c, d)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e) =>
+         Show (a, b, c, d, e)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f) =>
+         Show (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f,
+          Show g) =>
+         Show (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h) =>
+         Show (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i) =>
+         Show (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j) =>
+         Show (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n, Show o) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Show’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Show Char -- Defined in ‘GHC.Show’
+instance Show Int -- Defined in ‘GHC.Show’
+instance Show Integer -- Defined in ‘GHC.Show’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Show Ordering -- Defined in ‘GHC.Show’
+instance Show ghc-prim-0.9.1:GHC.Types.RuntimeRep
+  -- Defined in ‘GHC.Show’
+instance Show a => Show (Solo a) -- Defined in ‘GHC.Show’
+instance Show Word -- Defined in ‘GHC.Show’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :t show
+:t show
+show :: Show a => a -> String
+ghci> show Mon'
+show Mon'
+"Mon'"
+ghci> show Mon
+show Mon
+
+<interactive>:9:1: error:
+    • No instance for (Show Dow) arising from a use of ‘show’
+    • In the expression: show Mon
+      In an equation for ‘it’: it = show Mon
+ghci> :t print
+:t print
+print :: Show a => a -> IO ()
+ghci> Mon
+Mon
+
+<interactive>:11:1: error:
+    • No instance for (Show Dow) arising from a use of ‘print’
+    • In a stmt of an interactive GHCi command: print it
+ghci> :i Show
+:i Show
+type Show :: * -> Constraint
+class Show a where
+  showsPrec :: Int -> a -> ShowS
+  show :: a -> String
+  showList :: [a] -> ShowS
+  {-# MINIMAL showsPrec | show #-}
+  	-- Defined in ‘GHC.Show’
+instance Show Dow' -- Defined at curs06.hs:23:41
+instance Show Double -- Defined in ‘GHC.Float’
+instance Show Float -- Defined in ‘GHC.Float’
+instance Show () -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (a, b) -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c) => Show (a, b, c)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d) => Show (a, b, c, d)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e) =>
+         Show (a, b, c, d, e)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f) =>
+         Show (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f,
+          Show g) =>
+         Show (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h) =>
+         Show (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i) =>
+         Show (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j) =>
+         Show (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Show’
+instance (Show a, Show b, Show c, Show d, Show e, Show f, Show g,
+          Show h, Show i, Show j, Show k, Show l, Show m, Show n, Show o) =>
+         Show (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Show’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Show Char -- Defined in ‘GHC.Show’
+instance Show Int -- Defined in ‘GHC.Show’
+instance Show Integer -- Defined in ‘GHC.Show’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Show Ordering -- Defined in ‘GHC.Show’
+instance Show ghc-prim-0.9.1:GHC.Types.RuntimeRep
+  -- Defined in ‘GHC.Show’
+instance Show a => Show (Solo a) -- Defined in ‘GHC.Show’
+instance Show Word -- Defined in ‘GHC.Show’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> show Mon
+show Mon
+
+<interactive>:14:1: error:
+    • No instance for (Show Dow) arising from a use of ‘show’
+    • In the expression: show Mon
+      In an equation for ‘it’: it = show Mon
+ghci> show Mon'
+show Mon'
+"Mon'"
+ghci> show Mon''
+show Mon''
+"Luni"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:35:10: warning: [-Wmissing-methods]
+    • No explicit implementation for
+        either ‘showsPrec’ or ‘Prelude.show’
+    • In the instance declaration for ‘Show Dow''’
+   |
+35 | instance Show Dow'' where
+   |          ^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon''
+Mon''
+Luni
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:35:10: error:
+    Duplicate instance declarations:
+      instance Show Dow'' -- Defined at curs06.hs:35:10
+      instance Show Dow'' -- Defined at curs06.hs:42:10
+   |
+35 | instance Show Dow'' where
+   |          ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> (\x -> x + 1) 10
+(\x -> x + 1) 10
+11
+ghci> (\x -> x + 1)
+(\x -> x + 1)
+
+<interactive>:22:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> (\x -> x + 1)
+(\x -> x + 1)
+<functie>
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon'' == Tue''
+Mon'' == Tue''
+
+<interactive>:26:7: error:
+    • No instance for (Eq Dow'') arising from a use of ‘==’
+    • In the expression: Mon'' == Tue''
+      In an equation for ‘it’: it = Mon'' == Tue''
+ghci> :info Eq
+:info Eq
+type Eq :: * -> Constraint
+class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+  {-# MINIMAL (==) | (/=) #-}
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Integer -- Defined in ‘GHC.Num.Integer’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+instance Eq () -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b) => Eq (a, b)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c) => Eq (a, b, c)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d) => Eq (a, b, c, d)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e) => Eq (a, b, c, d, e)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f) =>
+         Eq (a, b, c, d, e, f)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g) =>
+         Eq (a, b, c, d, e, f, g)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h) =>
+         Eq (a, b, c, d, e, f, g, h)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i) =>
+         Eq (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j) =>
+         Eq (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m, Eq n) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Eq a, Eq b, Eq c, Eq d, Eq e, Eq f, Eq g, Eq h, Eq i,
+          Eq j, Eq k, Eq l, Eq m, Eq n, Eq o) =>
+         Eq (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Char -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Double -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Float -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Int -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq a => Eq (Solo a)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq Word -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Eq a => Eq [a] -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon''' == Tue'''
+Mon''' == Tue'''
+False
+ghci> Mon''' /= Tue'''
+Mon''' /= Tue'''
+True
+ghci> 4 == 5
+4 == 5
+False
+ghci> (==) 4 5
+(==) 4 5
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon4 == Mon4
+Mon4 == Mon4
+True
+ghci> Mon4 == Wed4
+Mon4 == Wed4
+False
+ghci> (/=) Mon4 Wed4
+(/=) Mon4 Wed4
+True
+ghci> (/=) Mon4 Mon4
+(/=) Mon4 Mon4
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:71:10: warning: [-Wmissing-methods]
+    • No explicit implementation for
+        either ‘==’ or ‘/=’
+    • In the instance declaration for ‘Eq Dow4’
+   |
+71 | instance Eq Dow4 where
+   |          ^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon5 /= Mon5
+Mon5 /= Mon5
+False
+ghci> Mon5 == Mon5
+Mon5 == Mon5
+True
+ghci> Tue5 == Tue5
+Tue5 == Tue5
+True
+ghci> Mon5 == Tue5
+Mon5 == Tue5
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon6 == Wed6
+Mon6 == Wed6
+True
+ghci> Mon6 == Tue6
+Mon6 == Tue6
+True
+ghci> Mon6 /= Tue6
+Mon6 /= Tue6
+False
+ghci> Mon6 /= Wed6
+Mon6 /= Wed6
+True
+ghci> Mon6 /= Mon6
+Mon6 /= Mon6
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Zero == Succ Zero
+Zero == Succ Zero
+False
+ghci> Succ Zero == Succ Zero
+Succ Zero == Succ Zero
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Plus (Succ (Succ (Succ Zero)))
+Plus (Succ (Succ (Succ Zero)))
+Plus (Succ (Succ (Succ Zero)))
+ghci> (Succ (Succ Zero))
+(Succ (Succ Zero))
+Succ (Succ Zero)
+ghci> Minus (Succ (Succ Zero))
+Minus (Succ (Succ Zero))
+Minus (Succ (Succ Zero))
+ghci> Minus (Succ (Succ Zero)) == Minus (Succ (Succ Zero))
+Minus (Succ (Succ Zero)) == Minus (Succ (Succ Zero))
+True
+ghci> Plus (Succ (Succ Zero)) == Minus (Succ (Succ Zero))
+Plus (Succ (Succ Zero)) == Minus (Succ (Succ Zero))
+False
+ghci> Plus (Succ (Succ (Succ Zero))) == Minus (Succ (Succ Zero))
+Plus (Succ (Succ (Succ Zero))) == Minus (Succ (Succ Zero))
+False
+ghci> Plus (Succ (Succ (Succ Zero))) == Plus (Succ (Succ Zero))
+Plus (Succ (Succ (Succ Zero))) == Plus (Succ (Succ Zero))
+False
+ghci> Plus (Succ (Succ (Succ Zero))) == Plus (Succ (Succ (Succ Zero)))
+Plus (Succ (Succ (Succ Zero))) == Plus (Succ (Succ (Succ Zero)))
+True
+ghci> Plus Zero == Minus Zero
+Plus Zero == Minus Zero
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:114:11: error:
+    Multiple declarations of ‘Plus’
+    Declared at: curs06.hs:104:10
+                 curs06.hs:114:11
+    |
+114 | data Z' = Plus Nat | Minus Nat deriving Show
+    |           ^^^^^^^^
+
+curs06.hs:114:22: error:
+    Multiple declarations of ‘Minus’
+    Declared at: curs06.hs:104:21
+                 curs06.hs:114:22
+    |
+114 | data Z' = Plus Nat | Minus Nat deriving Show
+    |                      ^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> Plus' Zero' == Minus' Zero'
+Plus' Zero' == Minus' Zero'
+
+<interactive>:66:7: error:
+    Data constructor not in scope: Zero' :: Nat
+    Suggested fix: Perhaps use ‘Zero’ (line 97)
+
+<interactive>:66:23: error:
+    Data constructor not in scope: Zero' :: Nat
+    Suggested fix: Perhaps use ‘Zero’ (line 97)
+ghci> Plus' Zero == Minus' Zero
+Plus' Zero == Minus' Zero
+True
+ghci> Plus' Zero == Minus' (Succ Zero)
+Plus' Zero == Minus' (Succ Zero)
+False
+ghci> :info Ord
+:info Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord () -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Char -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Double -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Float -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Int -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord (Solo a)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Word -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord [a]
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+ghci> :info Ordering
+:info Ordering
+type Ordering :: *
+data Ordering = LT | EQ | GT
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Monoid Ordering -- Defined in ‘GHC.Base’
+instance Semigroup Ordering -- Defined in ‘GHC.Base’
+instance Bounded Ordering -- Defined in ‘GHC.Enum’
+instance Enum Ordering -- Defined in ‘GHC.Enum’
+instance Eq Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Read Ordering -- Defined in ‘GHC.Read’
+instance Show Ordering -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:138:51: error:
+    • No instance for (Ord Nat)
+        arising from the first field of ‘Succ'’ (type ‘Nat’)
+      Possible fix:
+        use a standalone 'deriving instance' declaration,
+          so you can specify the instance context yourself
+    • When deriving the instance for (Ord Nat')
+    |
+138 | data Nat' = Zero' | Succ' Nat deriving (Show, Eq, Ord)
+    |                                                   ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> Zero <= Succ Zero
+Zero <= Succ Zero
+
+<interactive>:73:6: error:
+    • No instance for (Ord Nat) arising from a use of ‘<=’
+    • In the expression: Zero <= Succ Zero
+      In an equation for ‘it’: it = Zero <= Succ Zero
+ghci> Zero' <= Succ' Zero'
+Zero' <= Succ' Zero'
+True
+ghci> Zero' <= Succ' (Succ' Zero')
+Zero' <= Succ' (Succ' Zero')
+True
+ghci> Zero' <= Zero'
+Zero' <= Zero'
+True
+ghci> Succ' Zero' <= Succ' (Succ' Zero')
+Succ' Zero' <= Succ' (Succ' Zero')
+True
+ghci> Succ' Zero' <= Succ' (Succ' (Succ' Zero'))
+Succ' Zero' <= Succ' (Succ' (Succ' Zero'))
+True
+ghci> Zero' < Zero'
+Zero' < Zero'
+False
+ghci> Zero' <= Zero'
+Zero' <= Zero'
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Zero'' <= Zero''
+Zero'' <= Zero''
+True
+ghci> Zero'' <= Succ'' Zero''
+Zero'' <= Succ'' Zero''
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:143:57: error:
+    • No instance for (Ord Nat)
+        arising from the first field of ‘Succ'''’ (type ‘Nat’)
+      Possible fix:
+        use a standalone 'deriving instance' declaration,
+          so you can specify the instance context yourself
+    • When deriving the instance for (Ord Nat''')
+    |
+143 | data Nat''' = Succ''' Nat | Zero''' deriving (Show, Eq, Ord)
+    |                                                         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> Zero4 <= Succ4 Zero4
+Zero4 <= Succ4 Zero4
+True
+ghci> Zero4 <= Zero4
+Zero4 <= Zero4
+True
+ghci> Succ4 Zero4 <= Zero4
+Succ4 Zero4 <= Zero4
+False
+ghci> Succ4 Zero4 <= Succ4 Zero4
+Succ4 Zero4 <= Succ4 Zero4
+True
+ghci> Succ4 Zero4 <= Succ4 (Succ4 Zero4)
+Succ4 Zero4 <= Succ4 (Succ4 Zero4)
+True
+ghci> min (Succ4 Zero4) (Succ4 (Succ4 Zero4))
+min (Succ4 Zero4) (Succ4 (Succ4 Zero4))
+Succ4 Zero4
+ghci> min (Succ4 (Succ4 Zero4)) (Succ4 Zero4) 
+min (Succ4 (Succ4 Zero4)) (Succ4 Zero4) 
+Succ4 Zero4
+ghci> :info Ord
+:info Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Nat' -- Defined at curs06.hs:138:52
+instance Ord Nat'' -- Defined at curs06.hs:140:56
+instance Ord Nat4 -- Defined at curs06.hs:147:10
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance Ord () -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Char -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Double -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Float -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Int -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord (Solo a)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Word -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord [a]
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+ghci> compare (Succ4 (Succ4 Zero4)) (Succ4 Zero4) 
+compare (Succ4 (Succ4 Zero4)) (Succ4 Zero4) 
+GT
+ghci> compare  (Succ4 Zero4)  (Succ4 (Succ4 Zero4))
+compare  (Succ4 Zero4)  (Succ4 (Succ4 Zero4))
+LT
+ghci> compare  (Succ4 Zero4)  (Succ4 Zero4)
+compare  (Succ4 Zero4)  (Succ4 Zero4)
+EQ
+ghci> :info Bounded
+:info Bounded
+type Bounded :: * -> Constraint
+class Bounded a where
+  minBound :: a
+  maxBound :: a
+  {-# MINIMAL minBound, maxBound #-}
+  	-- Defined in ‘GHC.Enum’
+instance Bounded () -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b) => Bounded (a, b)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c) => Bounded (a, b, c)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d) =>
+         Bounded (a, b, c, d)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e) =>
+         Bounded (a, b, c, d, e)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f) =>
+         Bounded (a, b, c, d, e, f)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g) =>
+         Bounded (a, b, c, d, e, f, g)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h) =>
+         Bounded (a, b, c, d, e, f, g, h)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i) =>
+         Bounded (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j,
+          Bounded k) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘GHC.Enum’
+instance (Bounded a, Bounded b, Bounded c, Bounded d, Bounded e,
+          Bounded f, Bounded g, Bounded h, Bounded i, Bounded j, Bounded k,
+          Bounded l, Bounded m, Bounded n, Bounded o) =>
+         Bounded (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘GHC.Enum’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Bounded Char -- Defined in ‘GHC.Enum’
+instance Bounded Int -- Defined in ‘GHC.Enum’
+instance Bounded Ordering -- Defined in ‘GHC.Enum’
+instance Bounded a => Bounded (Solo a) -- Defined in ‘GHC.Enum’
+instance Bounded Word -- Defined in ‘GHC.Enum’
+ghci> minBound :: Bool
+minBound :: Bool
+False
+ghci> maxBound :: Bool
+maxBound :: Bool
+True
+ghci> minBound :: Char
+minBound :: Char
+'\NUL'
+ghci> maxBound :: Char
+maxBound :: Char
+'\1114111'
+ghci> minBound :: Int
+minBound :: Int
+-9223372036854775808
+ghci> maxBound :: Int
+maxBound :: Int
+9223372036854775807
+ghci> 2^63
+2^63
+9223372036854775808
+ghci> minBound :: Integer
+minBound :: Integer
+
+<interactive>:105:1: error:
+    • No instance for (Bounded Integer)
+        arising from a use of ‘minBound’
+    • In the expression: minBound :: Integer
+      In an equation for ‘it’: it = minBound :: Integer
+ghci> minBound :: Word
+minBound :: Word
+0
+ghci> maxBound :: Word
+maxBound :: Word
+18446744073709551615
+ghci> 2^64
+2^64
+18446744073709551616
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> minBound :: Dow7
+minBound :: Dow7
+Mon7
+ghci> maxBound :: Dow7
+maxBound :: Dow7
+Wed7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:159:52: error:
+    • Can't make a derived instance of ‘Bounded Nat5’:
+        ‘Nat5’ must be an enumeration type
+        (an enumeration consists of one or more nullary, non-GADT constructors)
+          or
+        ‘Nat5’ must have precisely one constructor
+    • In the data declaration for ‘Nat5’
+    |
+159 | data Nat5 = Zero5 | Succ5 Nat5 deriving (Show, Eq, Bounded)
+    |                                                    ^^^^^^^
+Failed, no modules loaded.
+ghci> :info Enum
+:info Enum
+type Enum :: * -> Constraint
+class Enum a where
+  succ :: a -> a
+  pred :: a -> a
+  toEnum :: Int -> a
+  fromEnum :: a -> Int
+  enumFrom :: a -> [a]
+  enumFromThen :: a -> a -> [a]
+  enumFromTo :: a -> a -> [a]
+  enumFromThenTo :: a -> a -> a -> [a]
+  {-# MINIMAL toEnum, fromEnum #-}
+  	-- Defined in ‘GHC.Enum’
+instance Enum Double -- Defined in ‘GHC.Float’
+instance Enum Float -- Defined in ‘GHC.Float’
+instance Enum () -- Defined in ‘GHC.Enum’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Enum Char -- Defined in ‘GHC.Enum’
+instance Enum Int -- Defined in ‘GHC.Enum’
+instance Enum Integer -- Defined in ‘GHC.Enum’
+instance Enum Ordering -- Defined in ‘GHC.Enum’
+instance Enum a => Enum (Solo a) -- Defined in ‘GHC.Enum’
+instance Enum Word -- Defined in ‘GHC.Enum’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> succ Mon8
+succ Mon8
+Tue8
+ghci> succ Tue8
+succ Tue8
+Wed8
+ghci> succ Wed8
+succ Wed8
+*** Exception: succ{Dow8}: tried to take `succ' of last tag in enumeration
+CallStack (from HasCallStack):
+  error, called at curs06.hs:163:57 in main:Main
+ghci> pred Mon8
+pred Mon8
+*** Exception: pred{Dow8}: tried to take `pred' of first tag in enumeration
+CallStack (from HasCallStack):
+  error, called at curs06.hs:163:57 in main:Main
+ghci> pred Tue8
+pred Tue8
+Mon8
+ghci> pred Wed8
+pred Wed8
+Tue8
+ghci> toEnum 0
+toEnum 0
+()
+ghci> toEnum 1
+toEnum 1
+*** Exception: Prelude.Enum.().toEnum: bad argument
+ghci> toEnum 0 :: Dow8
+toEnum 0 :: Dow8
+Mon8
+ghci> toEnum 1 :: Dow8
+toEnum 1 :: Dow8
+Tue8
+ghci> toEnum 2 :: Dow8
+toEnum 2 :: Dow8
+Wed8
+ghci> toEnum 3 :: Dow8
+toEnum 3 :: Dow8
+*** Exception: toEnum{Dow8}: tag (3) is outside of enumeration's range (0,2)
+CallStack (from HasCallStack):
+  error, called at curs06.hs:163:57 in main:Main
+ghci> toEnum (-3) :: Dow8
+toEnum (-3) :: Dow8
+*** Exception: toEnum{Dow8}: tag (-3) is outside of enumeration's range (0,2)
+CallStack (from HasCallStack):
+  error, called at curs06.hs:163:57 in main:Main
+ghci> fromEnum Mon8
+fromEnum Mon8
+0
+ghci> fromEnum Tue8
+fromEnum Tue8
+1
+ghci> fromEnum WEd8
+fromEnum WEd8
+
+<interactive>:130:10: error:
+    Data constructor not in scope: WEd8
+    Suggested fix: Perhaps use ‘Wed8’ (line 163)
+ghci> fromEnum Wed8
+fromEnum Wed8
+2
+ghci> :info Enum
+:info Enum
+type Enum :: * -> Constraint
+class Enum a where
+  succ :: a -> a
+  pred :: a -> a
+  toEnum :: Int -> a
+  fromEnum :: a -> Int
+  enumFrom :: a -> [a]
+  enumFromThen :: a -> a -> [a]
+  enumFromTo :: a -> a -> [a]
+  enumFromThenTo :: a -> a -> a -> [a]
+  {-# MINIMAL toEnum, fromEnum #-}
+  	-- Defined in ‘GHC.Enum’
+instance Enum Dow8 -- Defined at curs06.hs:163:57
+instance Enum Double -- Defined in ‘GHC.Float’
+instance Enum Float -- Defined in ‘GHC.Float’
+instance Enum () -- Defined in ‘GHC.Enum’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Enum Char -- Defined in ‘GHC.Enum’
+instance Enum Int -- Defined in ‘GHC.Enum’
+instance Enum Integer -- Defined in ‘GHC.Enum’
+instance Enum Ordering -- Defined in ‘GHC.Enum’
+instance Enum a => Enum (Solo a) -- Defined in ‘GHC.Enum’
+instance Enum Word -- Defined in ‘GHC.Enum’
+ghci> toEnum False
+toEnum False
+
+<interactive>:133:8: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    • In the first argument of ‘toEnum’, namely ‘False’
+      In the expression: toEnum False
+      In an equation for ‘it’: it = toEnum False
+ghci> fromEnum False
+fromEnum False
+0
+ghci> fromEnum True
+fromEnum True
+1
+ghci> succ 0 :: Int
+succ 0 :: Int
+1
+ghci> succ maxBound :: Int
+succ maxBound :: Int
+*** Exception: Prelude.Enum.succ{Int}: tried to take `succ' of maxBound
+ghci> succ minBound :: Int
+succ minBound :: Int
+-9223372036854775807
+ghci> minBound :: Int
+minBound :: Int
+-9223372036854775808
+ghci> :info Num
+:info Num
+type Num :: * -> Constraint
+class Num a where
+  (+) :: a -> a -> a
+  (-) :: a -> a -> a
+  (*) :: a -> a -> a
+  negate :: a -> a
+  abs :: a -> a
+  signum :: a -> a
+  fromInteger :: Integer -> a
+  {-# MINIMAL (+), (*), abs, signum, fromInteger, (negate | (-)) #-}
+  	-- Defined in ‘GHC.Num’
+instance Num Double -- Defined in ‘GHC.Float’
+instance Num Float -- Defined in ‘GHC.Float’
+instance Num Int -- Defined in ‘GHC.Num’
+instance Num Integer -- Defined in ‘GHC.Num’
+instance Num Word -- Defined in ‘GHC.Num’
+ghci> :info Integral
+:info Integral
+type Integral :: * -> Constraint
+class (Real a, Enum a) => Integral a where
+  quot :: a -> a -> a
+  rem :: a -> a -> a
+  div :: a -> a -> a
+  mod :: a -> a -> a
+  quotRem :: a -> a -> (a, a)
+  divMod :: a -> a -> (a, a)
+  toInteger :: a -> Integer
+  {-# MINIMAL quotRem, toInteger #-}
+  	-- Defined in ‘GHC.Real’
+instance Integral Int -- Defined in ‘GHC.Real’
+instance Integral Integer -- Defined in ‘GHC.Real’
+instance Integral Word -- Defined in ‘GHC.Real’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:173:48: error:
+    • Can't make a derived instance of ‘MyEq Nat5’:
+        ‘MyEq’ is not a stock derivable class (Eq, Show, etc.)
+    • In the data declaration for ‘Nat5’
+    Suggested fix: Perhaps you intended to use DeriveAnyClass
+    |
+173 | data Nat5 = Succ5 Nat5 | Zero5 deriving (Show, MyEq)
+    |                                                ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+
+curs06.hs:176:15: error:
+    Not in scope: type constructor or class ‘Nat5’
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Nat’ (line 97), ‘Nat'’ (line 138), ‘Nat4’ (line 145)
+    |
+176 | instance MyEq Nat5 where
+    |               ^^^^
+
+curs06.hs:177:8: error:
+    Not in scope: data constructor ‘Zero5’
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Zero’ (line 97), ‘Zero'’ (line 138), ‘Zero4’ (line 145)
+    |
+177 |   egal Zero5 Zero5 = True
+    |        ^^^^^
+
+curs06.hs:177:14: error:
+    Not in scope: data constructor ‘Zero5’
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Zero’ (line 97), ‘Zero'’ (line 138), ‘Zero4’ (line 145)
+    |
+177 |   egal Zero5 Zero5 = True
+    |              ^^^^^
+
+curs06.hs:178:9: error:
+    Not in scope: data constructor ‘Succ5’
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Succ’ (line 97), ‘Succ'’ (line 138), ‘Succ4’ (line 145)
+    |
+178 |   egal (Succ5 x) (Succ5 y) = egal x y
+    |         ^^^^^
+
+curs06.hs:178:19: error:
+    Not in scope: data constructor ‘Succ5’
+    Suggested fix:
+      Perhaps use one of these:
+        ‘Succ’ (line 97), ‘Succ'’ (line 138), ‘Succ4’ (line 145)
+    |
+178 |   egal (Succ5 x) (Succ5 y) = egal x y
+    |                   ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> egal Zero5 Zero5 
+egal Zero5 Zero5 
+True
+ghci> egal Zero5 (Succ5 Zero5) 
+egal Zero5 (Succ5 Zero5) 
+False
+ghci>Zero5 == (Succ5 Zero5) 
+
+ghci> egal Zero5 (Succ5 Zero5) 
+egal Zero5 (Succ5 Zero5) 
+False
+ghci> Zero5 == (Succ5 Zero5) 
+Zero5 == (Succ5 Zero5) 
+
+<interactive>:150:7: error:
+    • No instance for (Eq Nat5) arising from a use of ‘==’
+    • In the expression: Zero5 == (Succ5 Zero5)
+      In an equation for ‘it’: it = Zero5 == (Succ5 Zero5)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:178:10: warning: [-Wmissing-methods]
+    • No explicit implementation for
+        ‘neegal’
+    • In the instance declaration for ‘MyEq Nat5’
+    |
+178 | instance MyEq Nat5 where
+    |          ^^^^^^^^^
+Ok, one module loaded.
+ghci> neegal Zero5 Zero5
+neegal Zero5 Zero5
+*** Exception: curs06.hs:178:10-18: No instance nor default method for class operation neegal
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> neegal Zero5 Zero5
+neegal Zero5 Zero5
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> neegal' Zero5 Zero5
+neegal' Zero5 Zero5
+False
+ghci> egal' Zero5 Zero5
+egal' Zero5 Zero5
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> egal'' Zero5 Zero5
+egal'' Zero5 Zero5
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:225:1: error:
+    Multiple declarations of ‘MyEq''’
+    Declared at: curs06.hs:209:1
+                 curs06.hs:225:1
+    |
+225 | class MyEq'' a where
+    | ^^^^^^^^^^^^^^^^^^^^...
+
+curs06.hs:226:3: error:
+    Multiple declarations of ‘egal''’
+    Declared at: curs06.hs:210:3
+                 curs06.hs:226:3
+    |
+226 |   egal'' :: a -> a -> Bool
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs06.hs:228:3: error:
+    Multiple declarations of ‘neegal''’
+    Declared at: curs06.hs:212:3
+                 curs06.hs:228:3
+    |
+228 |   neegal'' :: a -> a -> Bool
+    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+
+curs06.hs:215:10: error:
+    Duplicate instance declarations:
+      instance MyEq'' Nat5 -- Defined at curs06.hs:215:10
+      instance MyEq'' Nat5 -- Defined at curs06.hs:231:10
+    |
+215 | instance MyEq'' Nat5 where
+    |          ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> egal''' Zero5 Zero5
+egal''' Zero5 Zero5
+
+
+
+
+  C-c C-c^C  C-c C-c^CInterrupted.
+ghci> :info MyEq'''
+:info MyEq'''
+type MyEq''' :: * -> Constraint
+class MyEq''' a where
+  egal''' :: a -> a -> Bool
+  neegal''' :: a -> a -> Bool
+  	-- Defined at curs06.hs:225:1
+instance MyEq''' Nat5 -- Defined at curs06.hs:231:10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:241:10: warning: [-Wmissing-methods]
+    • No explicit implementation for
+        either ‘egal''''’ or ‘neegal''''’
+    • In the instance declaration for ‘MyEq'''' Nat5’
+    |
+241 | instance MyEq'''' Nat5 where
+    |          ^^^^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:241:10: warning: [-Wmissing-methods]
+    • No explicit implementation for
+        either ‘egal''''’ or ‘neegal''''’
+    • In the instance declaration for ‘MyEq'''' Nat5’
+    |
+241 | instance MyEq'''' Nat5 where
+    |          ^^^^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted ) [Source file changed]
+
+curs06.hs:248:27: error:
+    • No instance for (Eq a) arising from a use of ‘==’
+      Possible fix:
+        add (Eq a) to the context of
+          the type signature for:
+            search :: forall a. a -> ABC a -> Bool
+    • In the expression: x == y
+      In a stmt of a pattern guard for
+                     an equation for ‘search’:
+        x == y
+      In an equation for ‘search’:
+          search x (Node y l r)
+            | x == y = True
+            | x < y = search x l
+            | _ = search x r
+    |
+248 | search x (Node y l r) | x == y = True
+    |                           ^^
+
+curs06.hs:249:27: error:
+    • No instance for (Ord a) arising from a use of ‘<’
+      Possible fix:
+        add (Ord a) to the context of
+          the type signature for:
+            search :: forall a. a -> ABC a -> Bool
+    • In the expression: x < y
+      In a stmt of a pattern guard for
+                     an equation for ‘search’:
+        x < y
+      In an equation for ‘search’:
+          search x (Node y l r)
+            | x == y = True
+            | x < y = search x l
+            | _ = search x r
+    |
+249 |                       | x < y = search x l
+    |                           ^
+
+curs06.hs:250:25: error:
+    • Found hole: _ :: Bool
+    • In a stmt of a pattern guard for
+                     an equation for ‘search’:
+        _
+      In an equation for ‘search’:
+          search x (Node y l r)
+            | x == y = True
+            | x < y = search x l
+            | _ = search x r
+    • Relevant bindings include
+        r :: ABC a (bound at curs06.hs:248:20)
+        l :: ABC a (bound at curs06.hs:248:18)
+        y :: a (bound at curs06.hs:248:16)
+        x :: a (bound at curs06.hs:248:8)
+        search :: a -> ABC a -> Bool (bound at curs06.hs:247:1)
+      Valid hole fits include
+        otherwise :: Bool
+          (imported from ‘Prelude’ at curs06.hs:1:1
+           (and originally defined in ‘GHC.Base’))
+        False :: Bool
+          (imported from ‘Prelude’ at curs06.hs:1:1
+           (and originally defined in ‘ghc-prim-0.9.1:GHC.Types’))
+        True :: Bool
+          (imported from ‘Prelude’ at curs06.hs:1:1
+           (and originally defined in ‘ghc-prim-0.9.1:GHC.Types’))
+        maxBound :: forall a. Bounded a => a
+          with maxBound @Bool
+          (imported from ‘Prelude’ at curs06.hs:1:1
+           (and originally defined in ‘GHC.Enum’))
+        minBound :: forall a. Bounded a => a
+          with minBound @Bool
+          (imported from ‘Prelude’ at curs06.hs:1:1
+           (and originally defined in ‘GHC.Enum’))
+    |
+250 |                       | _ = search x r
+    |                         ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+
+curs06.hs:248:27: error:
+    • No instance for (Eq a) arising from a use of ‘==’
+      Possible fix:
+        add (Eq a) to the context of
+          the type signature for:
+            search :: forall a. a -> ABC a -> Bool
+    • In the expression: x == y
+      In a stmt of a pattern guard for
+                     an equation for ‘search’:
+        x == y
+      In an equation for ‘search’:
+          search x (Node y l r)
+            | x == y = True
+            | x < y = search x l
+            | otherwise = search x r
+    |
+248 | search x (Node y l r) | x == y = True
+    |                           ^^
+
+curs06.hs:249:27: error:
+    • No instance for (Ord a) arising from a use of ‘<’
+      Possible fix:
+        add (Ord a) to the context of
+          the type signature for:
+            search :: forall a. a -> ABC a -> Bool
+    • In the expression: x < y
+      In a stmt of a pattern guard for
+                     an equation for ‘search’:
+        x < y
+      In an equation for ‘search’:
+          search x (Node y l r)
+            | x == y = True
+            | x < y = search x l
+            | otherwise = search x r
+    |
+249 |                       | x < y = search x l
+    |                           ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs06.hs, interpreted )
+Ok, one module loaded.
+ghci> 
