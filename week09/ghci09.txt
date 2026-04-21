@@ -1,0 +1,1408 @@
+stefan@stefans-MacBook-Pro week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+:curs09.hs
+:curs09.hs
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :curs09.hs
+unknown command ':curs09.hs'
+use :? for help.
+ghci> :l curs09
+:l curs09
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f 10
+f 10
+()
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g ()
+g ()
+10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g ()
+g ()
+42
+ghci> r
+r
+
+<interactive>:9:1: error: Variable not in scope: r
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g ()
+g ()
+42
+ghci> h
+h
+42
+ghci> :t putStrLn
+:t putStrLn
+putStrLn :: String -> IO ()
+ghci> adsf = putStrLn "Hello, World!"
+adsf = putStrLn "Hello, World!"
+ghci> :t asdf
+:t asdf
+
+<interactive>:1:1: error:
+    Variable not in scope: asdf
+    Suggested fix: Perhaps use ‘adsf’ (line 14)
+ghci> :t adsf
+:t adsf
+adsf :: IO ()
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o )
+[2 of 2] Linking curs09
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+Hello, World!
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+Hello, World!
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+(main02) Hello, 
+World!
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+(main02) Hello, World!
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+(main03) Hello, World!
+stefan@stefans-MacBook-Pro week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs09
+:l curs09
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+(main03) Hello, World!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+(main03) Hello, asdfWorld!
+ghci> :t getLine
+:t getLine
+getLine :: IO String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+Hello!
+What is your name? Stefan
+ Stefan
+Bye, bye!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:59:32: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the second argument of ‘(++)’, namely ‘getLine’
+      In the first argument of ‘putStrLn’, namely ‘("Hello" ++ getLine)’
+      In the second argument of ‘(>>)’, namely
+        ‘(putStrLn ("Hello" ++ getLine))’
+   |
+59 |          (putStrLn ("Hello" ++ getLine))
+   |                                ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:59:15: error: parse error on input ‘=’
+   |
+59 |          name = getLine >> 
+   |               ^
+Failed, no modules loaded.
+ghci> :t getLine
+:t getLine
+getLine :: IO String
+ghci> :t ((>>=) :: IO a -> (a -> IO b) -> IO b)
+:t ((>>=) :: IO a -> (a -> IO b) -> IO b)
+((>>=) :: IO a -> (a -> IO b) -> IO b)
+  :: IO a -> (a -> IO b) -> IO b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> main06
+main06
+Hello!
+What is your name?Stefan
+Stefan
+HelloStefan
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main06
+main06
+Hello!
+What is your name?Stefan
+Stefan
+Hello, Stefan!
+ghci> :t ($)
+:t ($)
+($) :: (a -> b) -> a -> b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main07
+main07
+Hello!
+What is your name? Stefan
+Stefan
+Bye!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main07
+main07
+Hello!
+What is your name? Stefan
+Stefan
+Bye!Stefan
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Stefan
+Stefan
+
+<interactive>:23:1: error: Data constructor not in scope: Stefan
+ghci> main07
+main07
+Hello!
+What is your name? Stefan
+Stefan
+Bye, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:73:18: error:
+    parse error on input ‘=’
+    Suggested fix:
+      Perhaps you need a 'let' in a 'do' block?
+      e.g. 'let x = 5' instead of 'x = 5'
+   |
+73 |             name = getLine
+   |                  ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:74:35: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the first argument of ‘(++)’, namely ‘name’
+      In the second argument of ‘(++)’, namely ‘name ++ "!"’
+      In the second argument of ‘($)’, namely ‘"Bye, " ++ name ++ "!"’
+   |
+74 |             putStrLn $ "Bye, " ++ name ++ "!"
+   |                                   ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:79:10: error:
+    Unexpected do block in function application:
+        do putStrLn "Hello!"
+    Suggested fixes:
+      • Use parentheses.
+      • Perhaps you intended to use BlockArguments
+   |
+79 | main09 = do putStrLn "Hello!"
+   |          ^^^^^^^^^^^^^^^^^^^^
+
+curs09.hs:81:19: error:
+    parse error on input ‘<-’
+    Suggested fix: Possibly caused by a missing 'do'?
+   |
+81 |              name <- getLine
+   |                   ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> main10
+main10
+Hello!
+What is your name? Stefan
+Stefan
+Bye, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main11
+main11
+What is your name?S1
+S1
+Hello, S1!
+What is your name?S2
+S2
+Hello, S2!
+What is your name?S100
+S100
+Hello, S100!
+What is your name?
+
+Hello, !
+What is your name?
+
+Hello, !
+What is your name?
+
+Hello, !
+What is your name?  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main12
+main12
+What is your name?Stefan
+Stefan
+Hello, Stefan!
+What is your name?S123
+S123
+Hello, S123!
+What is your name?
+
+ghci> :t return :: a -> IO a
+:t return :: a -> IO a
+return :: a -> IO a :: a -> IO a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main13
+main13
+What is your name?Stefan
+Stefan
+Hello, Stefan!
+What is your name?sasasa
+sasasa
+Hello, sasasa!
+What is your name?
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main14
+main14
+Hello, World!
+Ajung aici?
+ghci> :t getArgs
+:t getArgs
+
+<interactive>:1:1: error: Variable not in scope: getArgs
+ghci> import System.IO
+import System.IO
+ghci> :t getArgs
+:t getArgs
+
+<interactive>:1:1: error: Variable not in scope: getArgs
+ghci> import System.Environment
+import System.Environment
+ghci> :t getArgs
+:t getArgs
+getArgs :: IO [String]
+ghci> :t getProgName
+:t getProgName
+getProgName :: IO String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:127:21: error: Variable not in scope: getArgs :: IO a0
+    |
+127 | main15 = do args <- getArgs
+    |                     ^^^^^^^
+
+curs09.hs:128:25: error:
+    Variable not in scope: getProgName :: IO [Char]
+    |
+128 |             progName <- getProgName
+    |                         ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main
+main
+Args: []
+Prog: <interactive>
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09 asdf 15
+./curs09 asdf 15
+Args: ["asdf","15"]
+Prog: curs09
+stefan@stefans-MacBook-Pro week09 % pwd
+pwd
+/Users/stefan/teaching/pf-2025-2026/week09
+stefan@stefans-MacBook-Pro week09 % /Users/stefan/teaching/pf-2025-2026/week09/curs09 asdfsafa 42
+/Users/stefan/teaching/pf-2025-2026/week09/curs09 asdfsafa 42
+Args: ["asdfsafa","42"]
+Prog: curs09
+stefan@stefans-MacBook-Pro week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :t getLine
+:t getLine
+getLine :: IO String
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l curs09
+:l curs09
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:141:20: error:
+    • Couldn't match type ‘IO’ with ‘[]’
+      Expected: [String]
+        Actual: IO String
+    • In a stmt of a 'do' block: s <- getLine
+      In the expression:
+        do s <- getLine
+           return s
+      In an equation for ‘getLine'’:
+          getLine'
+            = do s <- getLine
+                 return s
+    |
+141 | getLine' = do s <- getLine
+    |                    ^^^^^^^
+
+curs09.hs:142:22: error:
+    • Couldn't match type ‘[Char]’ with ‘Char’
+      Expected: Char
+        Actual: String
+    • In the first argument of ‘return’, namely ‘s’
+      In a stmt of a 'do' block: return s
+      In the expression:
+        do s <- getLine
+           return s
+    |
+142 |               return s
+    |                      ^
+Failed, no modules loaded.
+ghci> :t openFile
+:t openFile
+
+<interactive>:1:1: error: Variable not in scope: openFile
+ghci> import System.IO
+import System.IO
+ghci> :t openFile
+:t openFile
+openFile :: FilePath -> IOMode -> IO Handle
+ghci> :i FilePath
+:i FilePath
+type FilePath :: *
+type FilePath = String
+  	-- Defined in ‘GHC.IO’
+ghci> :i IOMode
+:i IOMode
+type IOMode :: *
+data IOMode = ReadMode | WriteMode | AppendMode | ReadWriteMode
+  	-- Defined in ‘GHC.IO.IOMode’
+instance Read IOMode -- Defined in ‘GHC.IO.IOMode’
+instance Enum IOMode -- Defined in ‘GHC.IO.IOMode’
+instance Ord IOMode -- Defined in ‘GHC.IO.IOMode’
+instance Show IOMode -- Defined in ‘GHC.IO.IOMode’
+instance Eq IOMode -- Defined in ‘GHC.IO.IOMode’
+ghci> :t hGetContents
+:t hGetContents
+hGetContents :: Handle -> IO String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:154:44: error:
+    Variable not in scope: openFile :: String -> t0 -> IO t1
+    |
+154 |               (filename:_) -> do handle <- openFile filename ReadMode
+    |                                            ^^^^^^^^
+
+curs09.hs:154:62: error: Data constructor not in scope: ReadMode
+    |
+154 |               (filename:_) -> do handle <- openFile filename ReadMode
+    |                                                              ^^^^^^^^
+
+curs09.hs:155:46: error:
+    Variable not in scope: hGetContents :: t1 -> IO String
+    Suggested fix: Perhaps use ‘getContents’ (imported from Prelude)
+    |
+155 |                                  contents <- hGetContents handle
+    |                                              ^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+Args: []
+Prog: curs09
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09
+./curs09
+curs09 <filename.hs>
+stefan@stefans-MacBook-Pro week09 % ./curs09 curs09.hs
+./curs09 curs09.hs
+import System.Environment
+import System.IO
+
+-- Monada IO
+-- modul in care pot scrie programe de facto imperative
+-- in Haskell.
+
+-- Tipul unit, "()", are o singura valoare posibila: "()"
+-- Are acelasi rol cu tipul "void" din C/C++/Java/C#
+
+f :: Int -> ()
+f x = ()
+
+g :: () -> Int
+g () = 42
+
+h :: Int
+h = 42
+
+-- Tipul "IO a" are ca valori
+-- comenzi/actiuni IO care, daca sunt executate, produc
+-- la sfarsit o valoare de tip "a".
+
+-- putStrLn :: String -> IO ()
+-- putStrLn primeste la intrare un sir de caractere
+--          intoarce o actiune IO care, cand este executata,
+--          afiseaza pe ecran sirul de caractere, trece la linia
+--          urmatoare, si produce o valoare de tip ()
+
+-- Terminologie:
+--    actiunea produce o valoare
+--    o functie returneaza/intoarce o valoare
+
+-- truc: daca exista in program o actiune IO care se numeste "main",
+-- programul se executa in felul urmator:
+--     se evalueaza "main"
+--     se executa actiunea rezultata
+
+main01 :: IO ()
+main01 = putStrLn "Hello, World!"
+
+main02 :: IO ()
+main02 = (putStrLn "(main02) Hello, ") >> (putStrLn "World!")
+
+main03 :: IO ()
+main03 = (putStr "(main03) Hello, ") >> (putStrLn "World!")
+
+main04 :: IO ()
+main04 = (putStr "(main03) Hello, ") >>
+         (putStr "asdf") >>
+         (putStrLn "World!")
+
+main05 :: IO ()
+main05 = (putStrLn "Hello!") >>
+         (putStr "What is your name?") >>
+         getLine >>
+         (putStrLn "Bye, bye!")
+
+main06 :: IO ()
+main06 = (putStrLn "Hello!") >>
+         (putStr "What is your name?") >>
+         (getLine >>=
+          (\name -> putStrLn $ "Hello, " ++ name ++ "!"))
+
+-- Pentru monada IO, sistemul suporta zahar sintactic (notatia "do")
+main07 :: IO ()
+main07 = do putStrLn "Hello!"
+            putStr "What is your name? "
+            name <- getLine
+            putStrLn $ "Bye, " ++ name ++ "!"
+
+-- Greseala Frecventa!
+-- main08 :: IO ()
+-- main08 = do putStrLn "Hello!"
+--             putStr "What is your name? "
+--             let name = getLine
+--             putStrLn $ "Bye, " ++ name ++ "!"
+
+
+-- Atentie! Notatia do este "indentation-sensitive"
+-- main09 :: IO ()
+-- main09 = do putStrLn "Hello!"
+--            putStr "What is your name? "
+--              name <- getLine
+--             putStrLn $ "Bye, " ++ name ++ "!"
+
+-- Varianta notatie do:
+
+main10 :: IO ()
+main10 = do {
+          putStrLn "Hello!";
+            putStr "What is your name? ";
+        name <- getLine;
+            putStrLn $ "Bye, " ++ name ++ "!" }
+
+-- bucla infinita
+-- main11 :: IO ()
+-- main11 = do putStr "What is your name?"
+--             name <- getLine
+--             putStrLn $ "Hello, " ++ name ++ "!"
+--             main11
+
+main12 :: IO ()
+main12 = do putStr "What is your name?"
+            name <- getLine
+            if name == "" then do
+              putStr ""
+            else do
+              putStrLn $ "Hello, " ++ name ++ "!"
+              main12
+
+main13 :: IO ()
+main13 = do putStr "What is your name?"
+            name <- getLine
+            if name == "" then
+              return () -- actiune care nu face nimic si produce "()"
+            else do
+              putStrLn $ "Hello, " ++ name ++ "!"
+              main13
+
+-- Atentie! "return" este o functie care oricare alta, nu afecteaza
+-- fluxul de control al programului (ca in C/C++)
+
+main14 :: IO ()
+main14 = do putStrLn "Hello, World!"
+            return ()
+            putStrLn "Ajung aici?"
+
+main15 :: IO ()
+main15 = do args <- getArgs
+            progName <- getProgName
+            putStrLn $ "Args: " ++ (show args)
+            putStrLn $ "Prog: " ++ progName
+
+-- Este imposibil de scris o functie
+
+-- transform :: IO a -> a
+
+-- Intentionat!
+
+-- getLine' :: String
+-- getLine' = do s <- getLine
+--               return s
+
+-- Nu pot scapa de markerul "IO"
+-- Daca o functie este "contaminata" de IO, nu o pot decontamina
+-- Functiile care intorc actiuni pot fi folosite doar
+-- in alte functii care intorc si ele actiuni.
+-- Nu pot sa folosesc o functie IO intr-o functie pura.
+
+main16 :: IO ()
+main16 = do args <- getArgs
+            case args of
+              [] -> putStrLn "curs09 <filename.hs>"
+              (filename:_) -> do handle <- openFile filename ReadMode
+                                 contents <- hGetContents handle
+                                 putStrLn contents
+
+
+main :: IO ()
+main = main16
+
+-- Truc: daca in ghci o expresie se evalueaza la o actiune,
+-- sistemul nu numai ca evalueaza expresia, dar si executa
+-- actiunea dupa evaluare
+
+stefan@stefans-MacBook-Pro week09 % :r
+:r
+zsh: command not found: :r
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+
+curs09.hs:159:34: error:
+    Variable not in scope: printFromFirstNewline :: [Char] -> IO ()
+    Suggested fix:
+      Perhaps use one of these:
+        ‘printFromFirstNewLine’ (line 157),
+        ‘printToFirstNewLine’ (line 162)
+    |
+159 | printFromFirstNewLine (_:rest) = printFromFirstNewline rest
+    |                                  ^^^^^^^^^^^^^^^^^^^^^
+
+curs09.hs:165:35: error:
+    Variable not in scope: printToFirstNewline :: [Char] -> IO ()
+    Suggested fix:
+      Perhaps use one of these:
+        ‘printToFirstNewLine’ (line 162),
+        ‘printFromFirstNewLine’ (line 157)
+    |
+165 |                                   printToFirstNewline rest
+    |                                   ^^^^^^^^^^^^^^^^^^^
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09 curs.hs
+./curs09 curs.hs
+curs09: curs.hs: openFile: does not exist (No such file or directory)
+stefan@stefans-MacBook-Pro week09 % ./curs09 curs09.hs
+./curs09 curs09.hs
+stefan@stefans-MacBook-Pro week09 % ./curs09 curs09.hs
+./curs09 curs09.hs
+stefan@stefans-MacBook-Pro week09 % ghc -o curs09 curs09.hs
+ghc -o curs09 curs09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( curs09.hs, curs09.o ) [Source file changed]
+[2 of 2] Linking curs09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro week09 % ./curs09 curs09.hs
+./curs09 curs09.hs
+import System.Environment
+import System.IO
+
+
+
+f :: Int -> ()
+f x = ()
+
+g :: () -> Int
+g () = 42
+
+h :: Int
+h = 42
+
+
+
+
+
+main01 :: IO ()
+main01 = putStrLn "Hello, World!"
+
+main02 :: IO ()
+main02 = (putStrLn "(main02) Hello, ") >> (putStrLn "World!")
+
+main03 :: IO ()
+main03 = (putStr "(main03) Hello, ") >> (putStrLn "World!")
+
+main04 :: IO ()
+main04 = (putStr "(main03) Hello, ") >>
+         (putStr "asdf") >>
+         (putStrLn "World!")
+
+main05 :: IO ()
+main05 = (putStrLn "Hello!") >>
+         (putStr "What is your name?") >>
+         getLine >>
+         (putStrLn "Bye, bye!")
+
+main06 :: IO ()
+main06 = (putStrLn "Hello!") >>
+         (putStr "What is your name?") >>
+         (getLine >>=
+          (\name -> putStrLn $ "Hello, " ++ name ++ "!"))
+
+main07 :: IO ()
+main07 = do putStrLn "Hello!"
+            putStr "What is your name? "
+            name <- getLine
+            putStrLn $ "Bye, " ++ name ++ "!"
+
+
+
+
+
+main10 :: IO ()
+main10 = do {
+          putStrLn "Hello!";
+            putStr "What is your name? ";
+        name <- getLine;
+            putStrLn $ "Bye, " ++ name ++ "!" }
+
+
+main12 :: IO ()
+main12 = do putStr "What is your name?"
+            name <- getLine
+            if name == "" then do
+              putStr ""
+            else do
+              putStrLn $ "Hello, " ++ name ++ "!"
+              main12
+
+main13 :: IO ()
+main13 = do putStr "What is your name?"
+            name <- getLine
+            if name == "" then
+              return () -- actiune care nu face nimic si produce "()"
+            else do
+              putStrLn $ "Hello, " ++ name ++ "!"
+              main13
+
+
+main14 :: IO ()
+main14 = do putStrLn "Hello, World!"
+            return ()
+            putStrLn "Ajung aici?"
+
+main15 :: IO ()
+main15 = do args <- getArgs
+            progName <- getProgName
+            putStrLn $ "Args: " ++ (show args)
+            putStrLn $ "Prog: " ++ progName
+
+
+
+
+
+
+printWithoutComments :: String -> IO ()
+printWithoutComments [] = return ()
+printWithoutComments ('-':'-':rest) = printFromFirstNewLine rest
+printWithoutComments s = printToFirstNewLine s
+
+printFromFirstNewLine :: String -> IO ()
+printFromFirstNewLine [] = return ()
+printFromFirstNewLine ('\n':rest) = printWithoutComments rest
+printFromFirstNewLine (_:rest) = printFromFirstNewLine rest
+
+printToFirstNewLine :: String -> IO ()
+printToFirstNewLine [] = return ()
+printToFirstNewLine ('\n':rest) = do putStrLn ""
+                                     printWithoutComments rest
+printToFirstNewLine (c:rest) = do putStr [c]
+                                  printToFirstNewLine rest
+
+main16 :: IO ()
+main16 = do args <- getArgs
+            case args of
+              [] -> putStrLn "curs09 <filename.hs>"
+              (filename:_) -> do handle <- openFile filename ReadMode
+                                 contents <- hGetContents handle
+                                 printWithoutComments contents
+
+
+main :: IO ()
+main = main16
+
+stefan@stefans-MacBook-Pro week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l curs09
+:l curs09
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:185:1: error:
+    Parse error: module header, import declaration
+    or top-level declaration expected.
+    |
+185 | removeComments 
+    | ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:193:45: error:
+    Variable not in scope: removeComments :: String -> String
+    |
+193 |                                  putStrLn $ removeComments contents
+    |                                             ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci>:r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> lines "Hello\nWorld\nAsfd"
+lines "Hello\nWorld\nAsfd"
+["Hello","World","Asfd"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isCommentLine "-- Hello!"
+isCommentLine "-- Hello!"
+True
+ghci> isCommentLine "main :: IO ()"
+isCommentLine "main :: IO ()"
+False
+ghci> filter isCommentLine (lines "--Hello!\nmain :: IO()")
+filter isCommentLine (lines "--Hello!\nmain :: IO()")
+["--Hello!"]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:189:34: error:
+    • Couldn't match type ‘[Char]’ with ‘Char’
+      Expected: Char -> Bool
+        Actual: String -> Bool
+    • In the second argument of ‘(.)’, namely ‘isCommentLine’
+      In the first argument of ‘filter’, namely ‘(not . isCommentLine)’
+      In the expression: filter (not . isCommentLine) (lines s)
+    |
+189 | removeComments s = filter (not . isCommentLine) (lines s)
+    |                                  ^^^^^^^^^^^^^
+
+curs09.hs:189:50: error:
+    • Couldn't match type ‘[Char]’ with ‘Char’
+      Expected: [Char]
+        Actual: [String]
+    • In the second argument of ‘filter’, namely ‘(lines s)’
+      In the expression: filter (not . isCommentLine) (lines s)
+      In an equation for ‘removeComments’:
+          removeComments s = filter (not . isCommentLine) (lines s)
+    |
+189 | removeComments s = filter (not . isCommentLine) (lines s)
+    |                                                  ^^^^^^^
+Failed, no modules loaded.
+ghci> filter (not . isCommentLine) (lines "--Hello!\nmain :: IO()")
+filter (not . isCommentLine) (lines "--Hello!\nmain :: IO()")
+
+<interactive>:10:15: error:
+    Variable not in scope: isCommentLine :: String -> Bool
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> filter (not . isCommentLine) (lines "--Hello!\nmain :: IO()")
+filter (not . isCommentLine) (lines "--Hello!\nmain :: IO()")
+["main :: IO()"]
+ghci> filter (not . isCommentLine) (lines "x = 17\n--Hello!\nmain :: IO()")
+filter (not . isCommentLine) (lines "x = 17\n--Hello!\nmain :: IO()")
+["x = 17","main :: IO()"]
+ghci> unlines ["a", "asd"]
+unlines ["a", "asd"]
+"a\nasd\n"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:197:1: error:
+    Duplicate type signatures for ‘main17’
+    at curs09.hs:189:1-6
+       curs09.hs:197:1-6
+    |
+197 | main17 :: IO ()
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> import Control.Exception
+import Control.Exception
+ghci> :t catch
+:t catch
+catch :: Exception e => IO a -> (e -> IO a) -> IO a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:201:31: error:
+    Variable not in scope: catch :: IO () -> (p0 -> IO ()) -> IO ()
+    |
+201 |               (filename:_) -> catch
+    |                               ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:202:31: error:
+    • Ambiguous type variable ‘e0’ arising from a use of ‘catch’
+      prevents the constraint ‘(Exception e0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘e0’ should be.
+      Potentially matching instances:
+        instance Exception ArithException
+          -- Defined in ‘GHC.Exception.Type’
+        instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+    • In the expression:
+        catch
+          (do putStrLn $ "Init"
+              handle <- openFile filename ReadMode
+              putStrLn $ "Opened file"
+              contents <- hGetContents handle
+              putStrLn $ "Get contents"
+              ....)
+          (\ e -> putStrLn "Hopa!")
+      In a case alternative:
+          (filename : _)
+            -> catch
+                 (do putStrLn $ "Init"
+                     handle <- openFile filename ReadMode
+                     putStrLn $ "Opened file"
+                     contents <- hGetContents handle
+                     ....)
+                 (\ e -> putStrLn "Hopa!")
+      In a stmt of a 'do' block:
+        case args of
+          [] -> putStrLn "curs09 <filename.hs>"
+          (filename : _)
+            -> catch
+                 (do putStrLn $ "Init"
+                     handle <- openFile filename ReadMode
+                     putStrLn $ "Opened file"
+                     ....)
+                 (\ e -> putStrLn "Hopa!")
+    |
+202 |               (filename:_) -> catch
+    |                               ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> :i Exception
+:i Exception
+type Exception :: * -> Constraint
+class (base-4.17.2.1:Data.Typeable.Internal.Typeable e, Show e) =>
+      Exception e where
+  toException :: e -> SomeException
+  fromException :: SomeException -> Maybe e
+  displayException :: e -> String
+  	-- Defined in ‘GHC.Exception.Type’
+instance Exception ArithException
+  -- Defined in ‘GHC.Exception.Type’
+instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+instance Exception AllocationLimitExceeded
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception ArrayException -- Defined in ‘GHC.IO.Exception’
+instance Exception AssertionFailed -- Defined in ‘GHC.IO.Exception’
+instance Exception AsyncException -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnMVar
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnSTM
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception CompactionFailed
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception Deadlock -- Defined in ‘GHC.IO.Exception’
+instance Exception IOException -- Defined in ‘GHC.IO.Exception’
+instance Exception SomeAsyncException
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception NestedAtomically
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NoMethodError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NonTermination
+  -- Defined in ‘Control.Exception.Base’
+instance Exception PatternMatchFail
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecConError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecSelError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecUpdError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception TypeError -- Defined in ‘Control.Exception.Base’
+instance Exception ErrorCall -- Defined in ‘GHC.Exception’
+ghci> :i IOError
+:i IOError
+type IOError :: *
+type IOError = IOException
+  	-- Defined in ‘GHC.IO.Exception’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :i IOException
+:i IOException
+type IOException :: *
+data IOException
+  = GHC.IO.Exception.IOError {GHC.IO.Exception.ioe_handle :: Maybe
+                                                               Handle,
+                              GHC.IO.Exception.ioe_type :: GHC.IO.Exception.IOErrorType,
+                              GHC.IO.Exception.ioe_location :: String,
+                              GHC.IO.Exception.ioe_description :: String,
+                              GHC.IO.Exception.ioe_errno :: Maybe Foreign.C.Types.CInt,
+                              GHC.IO.Exception.ioe_filename :: Maybe FilePath}
+  	-- Defined in ‘GHC.IO.Exception’
+instance Exception IOException -- Defined in ‘GHC.IO.Exception’
+instance Eq IOException -- Defined in ‘GHC.IO.Exception’
+instance Show IOException -- Defined in ‘GHC.IO.Exception’
+ghci> :i GHC.IO.Exception.IOErrorType
+:i GHC.IO.Exception.IOErrorType
+type GHC.IO.Exception.IOErrorType :: *
+data GHC.IO.Exception.IOErrorType
+  = GHC.IO.Exception.AlreadyExists
+  | GHC.IO.Exception.NoSuchThing
+  | GHC.IO.Exception.ResourceBusy
+  | GHC.IO.Exception.ResourceExhausted
+  | GHC.IO.Exception.EOF
+  | GHC.IO.Exception.IllegalOperation
+  | GHC.IO.Exception.PermissionDenied
+  | GHC.IO.Exception.UserError
+  | GHC.IO.Exception.UnsatisfiedConstraints
+  | GHC.IO.Exception.SystemError
+  | GHC.IO.Exception.ProtocolError
+  | GHC.IO.Exception.OtherError
+  | GHC.IO.Exception.InvalidArgument
+  | GHC.IO.Exception.InappropriateType
+  | GHC.IO.Exception.HardwareFault
+  | GHC.IO.Exception.UnsupportedOperation
+  | GHC.IO.Exception.TimeExpired
+  | GHC.IO.Exception.ResourceVanished
+  | GHC.IO.Exception.Interrupted
+  	-- Defined in ‘GHC.IO.Exception’
+instance Eq GHC.IO.Exception.IOErrorType
+  -- Defined in ‘GHC.IO.Exception’
+instance Show GHC.IO.Exception.IOErrorType
+  -- Defined in ‘GHC.IO.Exception’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:226:10: error:
+    The last statement in a 'do' block must be an expression
+      value <- return (10 `div` 0)
+    |
+226 |          value <- return (10 `div` 0)
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+curs09.hs:228:18: error:
+    Not in scope: type constructor or class ‘ArithError’
+    |
+228 |          (\(e :: ArithError) -> putStrLn $ "Hopa!" ++ show e)
+    |                  ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :i Exception
+:i Exception
+type Exception :: * -> Constraint
+class (base-4.17.2.1:Data.Typeable.Internal.Typeable e, Show e) =>
+      Exception e where
+  toException :: e -> SomeException
+  fromException :: SomeException -> Maybe e
+  displayException :: e -> String
+  	-- Defined in ‘GHC.Exception.Type’
+instance Exception ArithException
+  -- Defined in ‘GHC.Exception.Type’
+instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+instance Exception AllocationLimitExceeded
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception ArrayException -- Defined in ‘GHC.IO.Exception’
+instance Exception AssertionFailed -- Defined in ‘GHC.IO.Exception’
+instance Exception AsyncException -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnMVar
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnSTM
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception CompactionFailed
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception Deadlock -- Defined in ‘GHC.IO.Exception’
+instance Exception IOException -- Defined in ‘GHC.IO.Exception’
+instance Exception SomeAsyncException
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception NestedAtomically
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NoMethodError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NonTermination
+  -- Defined in ‘Control.Exception.Base’
+instance Exception PatternMatchFail
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecConError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecSelError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecUpdError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception TypeError -- Defined in ‘Control.Exception.Base’
+instance Exception ErrorCall -- Defined in ‘GHC.Exception’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:226:10: error:
+    The last statement in a 'do' block must be an expression
+      value <- return (10 `div` 0)
+    |
+226 |          value <- return (10 `div` 0)
+    |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+
+curs09.hs:225:16: error:
+    parse error on input ‘<-’
+    Suggested fix: Possibly caused by a missing 'do'?
+    |
+225 | main20 = value <- return (10 `div` 0)
+    |                ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> main20
+main20
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main20
+main20
+Hopa!divide by zero:
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:225:1: error:
+    Multiple declarations of ‘f’
+    Declared at: curs09.hs:13:1
+                 curs09.hs:225:1
+    |
+225 | f x | x > 20 = ()
+    | ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> f 10
+f 10
+()
+ghci> f' 10
+f' 10
+*** Exception: curs09.hs:225:1-18: Non-exhaustive patterns in function f'
+
+ghci> f' 30
+f' 30
+()
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+
+curs09.hs:235:1: error:
+    Multiple declarations of ‘main20’
+    Declared at: curs09.hs:225:1
+                 curs09.hs:235:1
+    |
+235 | main20 = do value <- return (f' 10)
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted )
+Ok, one module loaded.
+ghci> main21
+main21
+*** Exception: curs09.hs:232:1-18: Non-exhaustive patterns in function f'
+
+ghci> :i Exception
+:i Exception
+type Exception :: * -> Constraint
+class (base-4.17.2.1:Data.Typeable.Internal.Typeable e, Show e) =>
+      Exception e where
+  toException :: e -> SomeException
+  fromException :: SomeException -> Maybe e
+  displayException :: e -> String
+  	-- Defined in ‘GHC.Exception.Type’
+instance Exception ArithException
+  -- Defined in ‘GHC.Exception.Type’
+instance Exception SomeException -- Defined in ‘GHC.Exception.Type’
+instance Exception AllocationLimitExceeded
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception ArrayException -- Defined in ‘GHC.IO.Exception’
+instance Exception AssertionFailed -- Defined in ‘GHC.IO.Exception’
+instance Exception AsyncException -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnMVar
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception BlockedIndefinitelyOnSTM
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception CompactionFailed
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception Deadlock -- Defined in ‘GHC.IO.Exception’
+instance Exception IOException -- Defined in ‘GHC.IO.Exception’
+instance Exception SomeAsyncException
+  -- Defined in ‘GHC.IO.Exception’
+instance Exception NestedAtomically
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NoMethodError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception NonTermination
+  -- Defined in ‘Control.Exception.Base’
+instance Exception PatternMatchFail
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecConError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecSelError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception RecUpdError
+  -- Defined in ‘Control.Exception.Base’
+instance Exception TypeError -- Defined in ‘Control.Exception.Base’
+instance Exception ErrorCall -- Defined in ‘GHC.Exception’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main21
+main21
+Hopa!curs09.hs:232:1-18: Non-exhaustive patterns in function f'
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> test00
+test00
+Just 10
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> test01
+test01
+Just 20
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> test02 (Just 23)
+test02 (Just 23)
+Just 33
+ghci> test02 Nothing
+test02 Nothing
+Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> impartire (Just 10) (Just 5)
+impartire (Just 10) (Just 5)
+Just 2
+ghci> impartire Nothing (Just 5)
+impartire Nothing (Just 5)
+Nothing
+ghci> impartire (Just 10) Nothing
+impartire (Just 10) Nothing
+Nothing
+ghci> impartire (Just 10) (Just 5)
+impartire (Just 10) (Just 5)
+Just 2
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> list01
+list01
+[20]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( curs09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> list02 [10, 20, 30]
+list02 [10, 20, 30]
+[20,30,40]
+ghci> 
