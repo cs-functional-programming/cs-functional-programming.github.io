@@ -1,0 +1,881 @@
+stefan@stefans-MBP week10 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week10.hs
+:l week10.hs
+[1 of 2] Compiling Main             ( week10.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+
+week10.hs:40:16: error:
+    Cannot parse data constructor in a data/newtype declaration:
+      [Directie]
+   |
+40 | data Pozitie = [Directie]
+   |                ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted )
+
+week10.hs:45:33: error:
+    Ambiguous occurrence ‘Left’
+    It could refer to
+       either ‘Prelude.Left’,
+              imported from ‘Prelude’ at week10.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Left’, defined at week10.hs:38:17
+   |
+45 | takeSubTree (Nod x left right) (Left:dirs) = takeSubTree left dirs
+   |                                 ^^^^
+
+week10.hs:46:33: error:
+    Ambiguous occurrence ‘Right’
+    It could refer to
+       either ‘Prelude.Right’,
+              imported from ‘Prelude’ at week10.hs:1:1
+              (and originally defined in ‘Data.Either’)
+           or ‘Main.Right’, defined at week10.hs:38:24
+   |
+46 | takeSubTree (Nod x left right) (Right:dirs) = takeSubTree right dirs
+   |                                 ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted )
+Ok, one module loaded.
+ghci> t1
+t1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> takeSubTree [L, L] t1
+takeSubTree [L, L] t1
+
+<interactive>:6:13: error:
+    • Couldn't match expected type ‘Tree’ with actual type ‘[Directie]’
+    • In the first argument of ‘takeSubTree’, namely ‘[L, L]’
+      In the expression: takeSubTree [L, L] t1
+      In an equation for ‘it’: it = takeSubTree [L, L] t1
+
+<interactive>:6:20: error:
+    • Couldn't match type ‘Tree’ with ‘[Directie]’
+      Expected: Pozitie
+        Actual: Tree
+    • In the second argument of ‘takeSubTree’, namely ‘t1’
+      In the expression: takeSubTree [L, L] t1
+      In an equation for ‘it’: it = takeSubTree [L, L] t1
+ghci> takeSubTree t1 [L, L]
+takeSubTree t1 [L, L]
+Nod 100 Empty Empty
+ghci> t1
+t1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> takeSubTree t1 [R, L]
+takeSubTree t1 [R, L]
+Nod 6 Empty Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> takeValue t1 [R, L]
+takeValue t1 [R, L]
+6
+ghci> takeValue t1 [L, L]
+takeValue t1 [L, L]
+100
+ghci> takeValue t1 [L, L, R, R, R]
+takeValue t1 [L, L, R, R, R]
+*** Exception: Nu pot urma directia
+CallStack (from HasCallStack):
+  error, called at week10.hs:49:21 in main:Main
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+
+week10.hs:55:1: error:
+    equations for ‘changeValue’ have different numbers of arguments
+      week10.hs:55:1-75
+      week10.hs:58:1-86
+   |
+55 | changeValue Empty _ _ = error "Nu pot schimba o valoare in subarborele vid"
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted )
+Ok, one module loaded.
+ghci> takeValue t1 [L, L]
+takeValue t1 [L, L]
+100
+ghci> t1
+t1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> changeValue t1 [L, L] 1
+changeValue t1 [L, L] 1
+Nod 7 (Nod 3 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> changeValue t1 [R, L] 1
+changeValue t1 [R, L] 1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 1 Empty Empty) (Nod 5 Empty Empty))
+ghci> (changeValue t1 [L, L] 1)
+(changeValue t1 [L, L] 1)
+Nod 7 (Nod 3 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> (change (changeValue t1 [L, L] 1) [L] 13)
+(change (changeValue t1 [L, L] 1) [L] 13)
+
+<interactive>:21:2: error:
+    Variable not in scope: change :: Tree -> [Directie] -> t0 -> t
+ghci> (changeValue (changeValue t1 [L, L] 1) [L] 13)
+(changeValue (changeValue t1 [L, L] 1) [L] 13)
+Nod 7 (Nod 13 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> t1
+t1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t drop
+:t drop
+drop :: Int -> [a] -> [a]
+ghci> :t take
+:t take
+take :: Int -> [a] -> [a]
+ghci> :t length
+:t length
+length :: Foldable t => t a -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> goLeft initZipper
+goLeft initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[L])
+ghci> goRight (goLeft initZipper)
+goRight (goLeft initZipper)
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[L,R])
+ghci> getVal (goRight (goLeft initZipper))
+getVal (goRight (goLeft initZipper))
+*** Exception: Nu pot urma directia
+CallStack (from HasCallStack):
+  error, called at week10.hs:49:21 in main:Main
+ghci> getVal (goLeft (goRight initZipper))
+getVal (goLeft (goRight initZipper))
+6
+ghci> getVal (goUp (goUp (goLeft (goRight initZipper))))
+getVal (goUp (goUp (goLeft (goRight initZipper))))
+7
+ghci> getVal (goLeft (goLeft (goUp (goUp (goLeft (goRight initZipper))))))
+getVal (goLeft (goLeft (goUp (goUp (goLeft (goRight initZipper))))))
+100
+ghci> getVal (goLeft (goLeft (changeValue (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16) )) 13)))
+) 13)))
+
+<interactive>:37:25: error:
+    • Couldn't match type: Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goLeft’, namely
+        ‘(changeValue
+            (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16))) 13)’
+      In the first argument of ‘goLeft’, namely
+        ‘(goLeft
+            (changeValue
+               (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16))) 13))’
+      In the first argument of ‘getVal’, namely
+        ‘(goLeft
+            (goLeft
+               (changeValue
+                  (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16))) 13)))’
+
+<interactive>:37:38: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))’
+      In the first argument of ‘goLeft’, namely
+        ‘(changeValue
+            (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16))) 13)’
+      In the first argument of ‘goLeft’, namely
+        ‘(goLeft
+            (changeValue
+               (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16))) 13))’
+
+<interactive>:37:50: error:
+    • Couldn't match type: Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+      In the first argument of ‘changeValue’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))’
+
+<interactive>:37:63: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+ghci> getVal (goLeft (goLeft (changeValue (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16) ) 13))))
+ 13))))
+
+<interactive>:38:25: error:
+    • Couldn't match type: Pozitie -> Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Pozitie -> Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goLeft’, namely
+        ‘(changeValue
+            (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13))’
+      In the first argument of ‘goLeft’, namely
+        ‘(goLeft
+            (changeValue
+               (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13)))’
+      In the first argument of ‘getVal’, namely
+        ‘(goLeft
+            (goLeft
+               (changeValue
+                  (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13))))’
+
+<interactive>:38:38: error:
+    • Couldn't match expected type: t0 -> Tree
+                  with actual type: (Tree, Pozitie)
+    • The function ‘goUp’ is applied to two value arguments,
+        but its type ‘Zipper -> (Tree, Pozitie)’ has only one
+      In the first argument of ‘changeValue’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13)’
+      In the first argument of ‘goLeft’, namely
+        ‘(changeValue
+            (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13))’
+
+<interactive>:38:50: error:
+    • Couldn't match type: Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+      In the first argument of ‘changeValue’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)) 13)’
+
+<interactive>:38:63: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+ghci> getVal (goLeft (goLeft (goUp (goUp (goLeft (goRight initZipper))))))
+getVal (goLeft (goLeft (goUp (goUp (goLeft (goRight initZipper))))))
+100
+ghci> getVal (goLeft (goLeft (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))))
+getVal (goLeft (goLeft (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))))
+
+<interactive>:40:37: error:
+    • Couldn't match type: Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+      In the first argument of ‘goLeft’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))’
+
+<interactive>:40:50: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+ghci> getVal (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))
+getVal (goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))
+
+<interactive>:41:21: error:
+    • Couldn't match type: Int -> Tree
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Tree
+    • Probable cause: ‘changeValue’ is applied to too few arguments
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+      In the first argument of ‘getVal’, namely
+        ‘(goUp (goUp (changeValue (goLeft (goRight initZipper)) 16)))’
+
+<interactive>:41:34: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the first argument of ‘goUp’, namely
+        ‘(changeValue (goLeft (goRight initZipper)) 16)’
+      In the first argument of ‘goUp’, namely
+        ‘(goUp (changeValue (goLeft (goRight initZipper)) 16))’
+ghci> (changeValue (goLeft (goRight initZipper)) 16)
+(changeValue (goLeft (goRight initZipper)) 16)
+
+<interactive>:42:15: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the expression: changeValue (goLeft (goRight initZipper)) 16
+      In an equation for ‘it’:
+          it = (changeValue (goLeft (goRight initZipper)) 16)
+ghci> changeValue (goLeft (goRight initZipper)) 16
+changeValue (goLeft (goRight initZipper)) 16
+
+<interactive>:43:14: error:
+    • Couldn't match type ‘(Tree, Pozitie)’ with ‘Tree’
+      Expected: Tree
+        Actual: Zipper
+    • In the first argument of ‘changeValue’, namely
+        ‘(goLeft (goRight initZipper))’
+      In the expression: changeValue (goLeft (goRight initZipper)) 16
+      In an equation for ‘it’:
+          it = changeValue (goLeft (goRight initZipper)) 16
+ghci> getVal (goLeft (goLeft (updateZipper (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16) ) 13))))
+ ) 13))))
+
+<interactive>:44:25: error:
+    • Couldn't match type: Int -> Zipper
+                     with: (Tree, Pozitie)
+      Expected: Zipper
+        Actual: Int -> Zipper
+    • Probable cause: ‘updateZipper’ is applied to too few arguments
+      In the first argument of ‘goLeft’, namely
+        ‘(updateZipper
+            (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)) 13))’
+      In the first argument of ‘goLeft’, namely
+        ‘(goLeft
+            (updateZipper
+               (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)) 13)))’
+      In the first argument of ‘getVal’, namely
+        ‘(goLeft
+            (goLeft
+               (updateZipper
+                  (goUp
+                     (goUp (updateZipper (goLeft (goRight initZipper)) 16)) 13))))’
+
+<interactive>:44:39: error:
+    • Couldn't match expected type: t0 -> Zipper
+                  with actual type: (Tree, Pozitie)
+    • The function ‘goUp’ is applied to two value arguments,
+        but its type ‘Zipper -> (Tree, Pozitie)’ has only one
+      In the first argument of ‘updateZipper’, namely
+        ‘(goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)) 13)’
+      In the first argument of ‘goLeft’, namely
+        ‘(updateZipper
+            (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)) 13))’
+ghci> getVal (updateZipper (goLeft (goRight initZipper)) 16)
+getVal (updateZipper (goLeft (goRight initZipper)) 16)
+16
+ghci> getVal (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)))
+getVal (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)))
+7
+ghci> getVal (goLeft (goLeft (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)))))
+getVal (goLeft (goLeft (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16)))))
+100
+ghci> getVal (updateZipper (goLeft (goLeft (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16))))) 1)
+)))) 1)
+1
+ghci> updateZipper (goLeft (goLeft (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16))))) 1
+updateZipper (goLeft (goLeft (goUp (goUp (updateZipper (goLeft (goRight initZipper)) 16))))) 1
+(Nod 7 (Nod 3 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 16 Empty Empty) (Nod 5 Empty Empty)),[L,L])
+ghci> :l week10v2
+:l week10v2
+[1 of 2] Compiling Main             ( week10v2.hs, interpreted )
+
+week10v2.hs:17:1: error:
+    Multiple declarations of ‘goLeft’
+    Declared at: week10v2.hs:13:1
+                 week10v2.hs:17:1
+   |
+17 | goLeft (Empty, _) = error "nu pot merge la dreapta"
+   | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v2.hs, interpreted )
+Ok, one module loaded.
+ghci> getVal (goLeft (goLeft t1))
+getVal (goLeft (goLeft t1))
+
+<interactive>:52:24: error:
+    • Couldn't match type ‘Tree’ with ‘(Tree, Pozitie)’
+      Expected: Zipper
+        Actual: Tree
+    • In the first argument of ‘goLeft’, namely ‘t1’
+      In the first argument of ‘goLeft’, namely ‘(goLeft t1)’
+      In the first argument of ‘getVal’, namely ‘(goLeft (goLeft t1))’
+ghci> t1
+t1
+Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))
+ghci> initialZipper
+initialZipper
+
+<interactive>:54:1: error:
+    Variable not in scope: initialZipper
+    Suggested fix: Perhaps use ‘initZipper’ (line 30)
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> getVal (goLeft (goLeft initZipper))
+getVal (goLeft (goLeft initZipper))
+100
+ghci> getVal (goLeft (goRight initZipper))
+getVal (goLeft (goRight initZipper))
+6
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+(Nod 100 Empty Empty,[L,L])
+ghci> :l week10v3
+:l week10v3
+[1 of 2] Compiling Main             ( week10v3.hs, interpreted )
+Ok, one module loaded.
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+(Nod 100 Empty Empty,[L,L])
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+(Nod 100 Empty Empty,[L 3 Empty,L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+(Nod 100 Empty Empty,[L 3 Empty,L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> goUp (goUp (goLeft (goLeft initZipper)))
+goUp (goUp (goLeft (goLeft initZipper)))
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> initZipper == goUp (goUp (goLeft (goLeft initZipper)))
+initZipper == goUp (goUp (goLeft (goLeft initZipper)))
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v3.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> goUp (goUp (goLeft (goLeft initZipper)))
+goUp (goUp (goLeft (goLeft initZipper)))
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> 
+ghci> 
+
+
+
+ghci> ghci> 
+
+<interactive>:71:7: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+ghci> 
+ghci> 
+ghci> updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13
+updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13
+(Nod 13 (Nod 1 Empty Empty) Empty,[L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13
+updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13
+(Nod 13 (Nod 1 Empty Empty) Empty,[L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> goUp (updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13)
+goUp (updateZipper (goUp (updateZipper (goLeft (goLeft initZipper)) 1)) 13)
+(Nod 7 (Nod 13 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> :l week10v4
+:l week10v4
+[1 of 2] Compiling Main             ( week10v4.hs, interpreted )
+Ok, one module loaded.
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+
+<interactive>:79:9: error:
+    • Couldn't match type: Maybe Zipper
+                     with: (Tree, Trace)
+      Expected: Zipper
+        Actual: Maybe Zipper
+    • In the first argument of ‘goLeft’, namely ‘(goLeft initZipper)’
+      In the expression: goLeft (goLeft initZipper)
+      In an equation for ‘it’: it = goLeft (goLeft initZipper)
+ghci> :l week10v5
+:l week10v5
+[1 of 2] Compiling Main             ( week10v5.hs, interpreted )
+
+week10v5.hs:13:1: error:
+    equations for ‘goLeft’ have different numbers of arguments
+      week10v5.hs:13:1-24
+      week10v5.hs:14:1-32
+   |
+13 | goLeft Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:18:1: error:
+    equations for ‘goRight’ have different numbers of arguments
+      week10v5.hs:18:1-25
+      week10v5.hs:19:1-33
+   |
+18 | goRight Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:23:1: error:
+    equations for ‘getVal’ have different numbers of arguments
+      week10v5.hs:23:1-24
+      week10v5.hs:24:1-38
+   |
+23 | getVal Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:28:1: error:
+    equations for ‘goUp’ have different numbers of arguments
+      week10v5.hs:28:1-22
+      week10v5.hs:29:1-27
+   |
+28 | goUp Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:34:1: error:
+    equations for ‘updateZipper’ have different numbers of arguments
+      week10v5.hs:34:1-32
+      week10v5.hs:35:1-53
+   |
+34 | updateZipper Nothing _ = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v5.hs, interpreted )
+
+week10v5.hs:13:1: error:
+    equations for ‘goLeft’ have different numbers of arguments
+      week10v5.hs:13:1-24
+      week10v5.hs:14:1-32
+   |
+13 | goLeft Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:18:1: error:
+    equations for ‘goRight’ have different numbers of arguments
+      week10v5.hs:18:1-25
+      week10v5.hs:19:1-33
+   |
+18 | goRight Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:23:1: error:
+    equations for ‘getVal’ have different numbers of arguments
+      week10v5.hs:23:1-24
+      week10v5.hs:24:1-38
+   |
+23 | getVal Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:28:1: error:
+    equations for ‘goUp’ have different numbers of arguments
+      week10v5.hs:28:1-22
+      week10v5.hs:29:1-27
+   |
+28 | goUp Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v5.hs, interpreted )
+
+week10v5.hs:13:1: error:
+    equations for ‘goLeft’ have different numbers of arguments
+      week10v5.hs:13:1-24
+      week10v5.hs:14:1-32
+   |
+13 | goLeft Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:18:1: error:
+    equations for ‘goRight’ have different numbers of arguments
+      week10v5.hs:18:1-25
+      week10v5.hs:19:1-33
+   |
+18 | goRight Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:23:1: error:
+    equations for ‘getVal’ have different numbers of arguments
+      week10v5.hs:23:1-24
+      week10v5.hs:24:1-38
+   |
+23 | getVal Nothing = Nothing
+   | ^^^^^^^^^^^^^^^^^^^^^^^^...
+
+week10v5.hs:29:6: error:
+    • The constructor ‘Just’ should have 1 argument, but has been given none
+    • In the pattern: Just
+      In an equation for ‘goUp’: goUp Just (t, []) = Nothing
+      The equations for ‘goUp’ have two value arguments,
+        but its type ‘Maybe Zipper -> Maybe Zipper’ has only one
+   |
+29 | goUp Just (t, []) = Nothing
+   |      ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v5.hs, interpreted )
+Ok, one module loaded.
+ghci> goLeft (goLeft initZipper)
+goLeft (goLeft initZipper)
+Just (Nod 100 Empty Empty,[L 3 Empty,L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> updateZipper (goLeft (goLeft initZipper))
+updateZipper (goLeft (goLeft initZipper))
+
+<interactive>:85:1: error:
+    • No instance for (Show (Int -> Maybe Zipper))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> updateZipper (goLeft (goLeft initZipper)) 10
+updateZipper (goLeft (goLeft initZipper)) 10
+Just (Nod 10 Empty Empty,[L 3 Empty,L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> goUp (updateZipper (goLeft (goLeft initZipper)) 10)
+goUp (updateZipper (goLeft (goLeft initZipper)) 10)
+Just (Nod 3 (Nod 10 Empty Empty) Empty,[L 7 (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty))])
+ghci> goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10))
+goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10))
+Just (Nod 7 (Nod 3 (Nod 10 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> goUp (goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10)))
+goUp (goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10)))
+Nothing
+ghci> updateZipper (goUp (goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10)))) 123
+updateZipper (goUp (goUp (goUp (updateZipper (goLeft (goLeft initZipper)) 10)))) 123
+Nothing
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :l week10v6
+:l week10v6
+[1 of 2] Compiling Main             ( week10v6.hs, interpreted )
+Ok, one module loaded.
+ghci> process initZipper
+process initZipper
+Just (Nod 7 (Nod 3 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> :t (>>)
+:t (>>)
+(>>) :: Monad m => m a -> m b -> m b
+ghci> :t flip
+:t flip
+flip :: (a -> b -> c) -> b -> a -> c
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v6.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process' initZipper
+process' initZipper
+Just (Nod 7 (Nod 3 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v6.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process'' initZipper
+process'' initZipper
+Just (Nod 7 (Nod 13 (Nod 1 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> initZipper
+initZipper
+(Nod 7 (Nod 3 (Nod 100 Empty Empty) Empty) (Nod 18 (Nod 6 Empty Empty) (Nod 5 Empty Empty)),[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10v6.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process''' initZipper
+process''' initZipper
+Nothing
+ghci> :l week10list
+:l week10list
+[1 of 2] Compiling Main             ( week10list.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10list.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> getValue (goFwd (goFwd initZipper))
+getValue (goFwd (goFwd initZipper))
+
+<interactive>:106:24: error:
+    • Couldn't match type ‘Integer’ with ‘Int’
+      Expected: Zipper
+        Actual: ([Integer], [Directie])
+    • In the first argument of ‘goFwd’, namely ‘initZipper’
+      In the first argument of ‘goFwd’, namely ‘(goFwd initZipper)’
+      In the first argument of ‘getValue’, namely
+        ‘(goFwd (goFwd initZipper))’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10list.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> getValue (goFwd (goFwd initZipper))
+getValue (goFwd (goFwd initZipper))
+7
+ghci> getValue (goBwd (goFwd (goFwd initZipper)))
+getValue (goBwd (goFwd (goFwd initZipper)))
+4
+ghci> getValue (goBwd (goBwd (goFwd (goFwd initZipper))))
+getValue (goBwd (goBwd (goFwd (goFwd initZipper))))
+1
+ghci> :l week10listv1
+:l week10listv1
+[1 of 2] Compiling Main             ( week10listv1.hs, interpreted )
+Ok, one module loaded.
+ghci> getValue (goFwd (goFwd initZipper))
+getValue (goFwd (goFwd initZipper))
+
+<interactive>:112:24: error:
+    Variable not in scope: initZipper :: Zipper
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv1.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> getValue (goFwd (goFwd initZipper))
+getValue (goFwd (goFwd initZipper))
+7
+ghci> getValue (goFwd initZipper)
+getValue (goFwd initZipper)
+4
+ghci> goFwd initZipper
+goFwd initZipper
+([4,7],[Fwd])
+ghci> :l week10listv2
+:l week10listv2
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted )
+
+week10listv2.hs:3:24: error:
+    Not in scope: type constructor or class ‘Directie’
+  |
+3 | type Zipper = ([Int], [Directie])
+  |                        ^^^^^^^^
+
+week10listv2.hs:16:24: error:
+    Not in scope: type constructor or class ‘Directie’
+   |
+16 | initZipper :: ([Int], [Directie])
+   |                        ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted )
+Ok, one module loaded.
+ghci> goFwd initZipper
+goFwd initZipper
+([4,7],[Fwd 1])
+ghci> goFwd (goFwd initZipper)
+goFwd (goFwd initZipper)
+([7],[Fwd 4,Fwd 1])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted ) [Source file changed]
+
+week10listv2.hs:10:1: error:
+    Multiple declarations of ‘goFwd’
+    Declared at: week10listv2.hs:6:1
+                 week10listv2.hs:10:1
+   |
+10 | goFwd (_, []) = error "nu pot sa ma intorc"
+   | ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted )
+Ok, one module loaded.
+ghci> goBwd (goBwd (goFwd (goFwd initZipper)))
+goBwd (goBwd (goFwd (goFwd initZipper)))
+([1,4,7],[])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted ) [Source file changed]
+
+week10listv2.hs:19:38: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘([Int], [Crumb])’
+    • In the expression: (newValue : tl, dirs)
+      In an equation for ‘updateValue’:
+          updateValue newValue (hd : tl, dirs) = (newValue : tl, dirs)
+   |
+19 | updateValue newValue (hd:tl, dirs) = (newValue:tl, dirs)
+   |                                      ^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week10listv2.hs, interpreted )
+Ok, one module loaded.
+ghci> goBwd (goBwd (goFwd (goFwd initZipper)))
+goBwd (goBwd (goFwd (goFwd initZipper)))
+([1,4,7],[])
+ghci> initZipper
+initZipper
+([1,4,7],[])
+ghci> goBwd (goBwd (updateValue 17 (goFwd (goFwd initZipper))))
+goBwd (goBwd (updateValue 17 (goFwd (goFwd initZipper))))
+([1,4,17],[])
+ghci> goBwd (updateValue 14 (goBwd (updateValue 17 (goFwd (goFwd initZipper)))))
+goBwd (updateValue 14 (goBwd (updateValue 17 (goFwd (goFwd initZipper)))))
+([1,14,17],[])
+ghci> :l week10listv3
+:l week10listv3
+[1 of 2] Compiling Main             ( week10listv3.hs, interpreted )
+Ok, one module loaded.
+ghci> goBwd (updateValue 14 (goBwd (updateValue 17 (goFwd (goFwd initZipper)))))
+goBwd (updateValue 14 (goBwd (updateValue 17 (goFwd (goFwd initZipper)))))
+([1,14,17],[])
+ghci> (goFwd (goFwd initZipper))
+(goFwd (goFwd initZipper))
+([7],[4,1])
+ghci> initZipper
+initZipper
+([1,4,7],[])
+ghci> (goFwd (goFwd (goFwd ([1, 4, 7, 8, 13], []))))
+(goFwd (goFwd (goFwd ([1, 4, 7, 8, 13], []))))
+([8,13],[7,4,1])
+ghci> 
