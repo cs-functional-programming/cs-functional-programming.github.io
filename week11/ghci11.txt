@@ -1,0 +1,928 @@
+stefan@stefans-MacBook-Pro week11 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week11
+:l week11
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> x
+x
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calcul [1,4,5]
+calcul [1,4,5]
+[5,5]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calculDistanta 100 2
+calculDistanta 100 2
+
+<interactive>:8:16: error:
+    • No instance for (Num Viteza) arising from the literal ‘100’
+    • In the first argument of ‘calculDistanta’, namely ‘100’
+      In the expression: calculDistanta 100 2
+      In an equation for ‘it’: it = calculDistanta 100 2
+
+<interactive>:8:20: error:
+    • No instance for (Num Timp) arising from the literal ‘2’
+    • In the second argument of ‘calculDistanta’, namely ‘2’
+      In the expression: calculDistanta 100 2
+      In an equation for ‘it’: it = calculDistanta 100 2
+ghci> calculDistanta (Viteza 100) (Timp 2()
+calculDistanta (Viteza 100) (Timp 2()
+
+<interactive>:9:38: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+ghci> calculDistanta (Viteza 100) (Timp 2)
+calculDistanta (Viteza 100) (Timp 2)
+Distanta 200.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calculDistanta' n3 n2
+calculDistanta' n3 n2
+100.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calculDistanta n3' n2'
+calculDistanta n3' n2'
+
+<interactive>:15:16: error:
+    • Couldn't match expected type ‘Viteza’ with actual type ‘Distanta’
+    • In the first argument of ‘calculDistanta’, namely ‘n3'’
+      In the expression: calculDistanta n3' n2'
+      In an equation for ‘it’: it = calculDistanta n3' n2'
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:103:1: error:
+    Multiple declarations of ‘pop’
+    Declared at: week11.hs:7:1
+                 week11.hs:103:1
+    |
+103 | pop = State $ \(hd:tl) -> (hd, tl)
+    | ^^^
+
+week11.hs:106:1: error:
+    Multiple declarations of ‘push’
+    Declared at: week11.hs:10:1
+                 week11.hs:106:1
+    |
+106 | push x = State $ \st -> x:st
+    | ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:106:26: error:
+    • Couldn't match expected type: ((), Stack)
+                  with actual type: [Int]
+    • In the expression: x : st
+      In the second argument of ‘($)’, namely ‘\ st -> x : st’
+      In the expression: State $ \ st -> x : st
+    |
+106 | push' x = State $ \st -> x:st
+    |                          ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:106:27: error:
+    • Couldn't match expected type: ((), Stack)
+                  with actual type: [Int]
+    • In the expression: x : st
+      In the second argument of ‘($)’, namely ‘\ st -> (x : st)’
+      In the expression: State $ \ st -> (x : st)
+    |
+106 | push' x = State $ \st -> (x:st)
+    |                           ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> Lr
+Lr
+
+<interactive>:20:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:109:1: error:
+    Multiple declarations of ‘calcul’
+    Declared at: week11.hs:20:1
+                 week11.hs:109:1
+    |
+109 | calcul = State $ \st -> pop' st
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:109:26: error:
+    • Couldn't match expected type: Stack -> ((), Stack)
+                  with actual type: State Stack Int
+    • The function ‘pop'’ is applied to one value argument,
+        but its type ‘State Stack Int’ has none
+      In the expression: pop' st
+      In the second argument of ‘($)’, namely ‘\ st -> pop' st’
+    |
+109 | calcul' = State $ \st -> pop' st
+    |                          ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:109:43: error:
+    • Couldn't match expected type: Stack -> (a, b)
+                  with actual type: State Stack Int
+    • The function ‘pop'’ is applied to one value argument,
+        but its type ‘State Stack Int’ has none
+      In the expression: pop' st
+      In a pattern binding: (n1, st1) = (pop' st)
+    |
+109 | calcul' = State $ \st -> let (n1, st1) = (pop' st) in ((), st1)
+    |                                           ^^^^^^^
+Failed, no modules loaded.
+ghci> :t pop'
+:t pop'
+
+<interactive>:1:1: error: Variable not in scope: pop'
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> :t pop'
+:t pop'
+pop' :: State Stack Int
+ghci> :t runState
+:t runState
+runState :: State s a -> s -> (a, s)
+ghci> runState pop' [1,2,3]
+runState pop' [1,2,3]
+(1,[2,3])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calcul' [ 1, 4, 5 ]
+calcul' [ 1, 4, 5 ]
+
+<interactive>:30:1: error:
+    • Couldn't match expected type: [a0] -> t
+                  with actual type: State Stack ()
+    • The function ‘calcul'’ is applied to one value argument,
+        but its type ‘State Stack ()’ has none
+      In the expression: calcul' [1, 4, 5]
+      In an equation for ‘it’: it = calcul' [1, 4, 5]
+    • Relevant bindings include it :: t (bound at <interactive>:30:1)
+ghci> runState calcul' [ 1, 4, 5 ]
+runState calcul' [ 1, 4, 5 ]
+((),[4,5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul' [ 1, 4, 5 ]
+runState calcul' [ 1, 4, 5 ]
+((),[5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul' [ 1, 4, 5 ]
+runState calcul' [ 1, 4, 5 ]
+((),[5,5])
+ghci> calcul [ 1, 4, 5 ]
+calcul [ 1, 4, 5 ]
+[5,5]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:113:22: error:
+    • Couldn't match type ‘Int’ with ‘()’
+      Expected: State Stack ()
+        Actual: State Stack Int
+    • In the second argument of ‘secv’, namely ‘pop'’
+      In the expression: secv pop' pop'
+      In an equation for ‘calcul''’: calcul'' = secv pop' pop'
+    |
+113 | calcul'' = secv pop' pop'
+    |                      ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState calcul'' [ 1, 4, 5 ]
+runState calcul'' [ 1, 4, 5 ]
+(4,[5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:120:24: error:
+    • Couldn't match expected type: State Stack Int
+                  with actual type: p0 -> State Stack Int
+    • The lambda expression ‘\ r -> pop'’ has one value argument,
+        but its type ‘State Stack Int’ has none
+      In the second argument of ‘secv’, namely ‘(\ r -> pop')’
+      In the expression: secv pop' (\ r -> pop')
+    |
+120 | calcul''' = secv pop' (\r -> pop')
+    |                        ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul''' [ 1, 4, 5 ]
+runState calcul''' [ 1, 4, 5 ]
+(2,[5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul''' [ 1, 4, 5 ]
+runState calcul''' [ 1, 4, 5 ]
+(5,[5])
+ghci> :i (>>=)
+:i (>>=)
+type Monad :: (* -> *) -> Constraint
+class Applicative m => Monad m where
+  (>>=) :: m a -> (a -> m b) -> m b
+  ...
+  	-- Defined in ‘GHC.Base’
+infixl 1 >>=
+ghci> :t (>>=)
+:t (>>=)
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+ghci> :i Monad
+:i Monad
+type Monad :: (* -> *) -> Constraint
+class Applicative m => Monad m where
+  (>>=) :: m a -> (a -> m b) -> m b
+  (>>) :: m a -> m b -> m b
+  return :: a -> m a
+  {-# MINIMAL (>>=) #-}
+  	-- Defined in ‘GHC.Base’
+instance Monoid a => Monad ((,) a) -- Defined in ‘GHC.Base’
+instance (Monoid a, Monoid b) => Monad ((,,) a b)
+  -- Defined in ‘GHC.Base’
+instance (Monoid a, Monoid b, Monoid c) => Monad ((,,,) a b c)
+  -- Defined in ‘GHC.Base’
+instance Monad ((->) r) -- Defined in ‘GHC.Base’
+instance Monad IO -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Monad Solo -- Defined in ‘GHC.Base’
+instance Monad [] -- Defined in ‘GHC.Base’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:117:3: error:
+    ‘>>=’ is not a (visible) method of class ‘State’
+    |
+117 |   (>>=) c1 c2 = secv' c1 c2
+    |   ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:116:10: error:
+    • No instance for (Applicative (State s))
+        arising from the superclasses of an instance declaration
+    • In the instance declaration for ‘Monad (State s)’
+    |
+116 | instance Monad (State s) where
+    |          ^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :i Applicative
+:i Applicative
+type Applicative :: (* -> *) -> Constraint
+class Functor f => Applicative f where
+  pure :: a -> f a
+  (<*>) :: f (a -> b) -> f a -> f b
+  GHC.Base.liftA2 :: (a -> b -> c) -> f a -> f b -> f c
+  (*>) :: f a -> f b -> f b
+  (<*) :: f a -> f b -> f a
+  {-# MINIMAL pure, ((<*>) | liftA2) #-}
+  	-- Defined in ‘GHC.Base’
+instance Monoid a => Applicative ((,) a) -- Defined in ‘GHC.Base’
+instance (Monoid a, Monoid b) => Applicative ((,,) a b)
+  -- Defined in ‘GHC.Base’
+instance (Monoid a, Monoid b, Monoid c) =>
+         Applicative ((,,,) a b c)
+  -- Defined in ‘GHC.Base’
+instance Applicative ((->) r) -- Defined in ‘GHC.Base’
+instance Applicative IO -- Defined in ‘GHC.Base’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Applicative Solo -- Defined in ‘GHC.Base’
+instance Applicative [] -- Defined in ‘GHC.Base’
+instance Applicative (Either e) -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:121:23: error:
+    • Couldn't match expected type: (b, s)
+                  with actual type: State s0 b
+    • In the expression: State $ \ s''' -> (f a, s''')
+      In the expression:
+        let (a, s'') = runState fa s' in State $ \ s''' -> (f a, s''')
+      In the expression:
+        let (f, s') = runState fab s in
+        let (a, s'') = runState fa s' in State $ \ s''' -> (f a, s''')
+    • Relevant bindings include
+        s'' :: s (bound at week11.hs:120:29)
+        f :: a -> b (bound at week11.hs:119:24)
+        s' :: s (bound at week11.hs:119:27)
+        s :: s (bound at week11.hs:119:14)
+        fa :: State s a (bound at week11.hs:118:36)
+        fab :: State s (a -> b) (bound at week11.hs:118:10)
+        (Some bindings suppressed; use -fmax-relevant-binds=N or -fno-max-relevant-binds)
+    |
+121 |                       State $ \s''' -> (f a, s''')
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:116:10: error:
+    • No instance for (Functor (State s))
+        arising from the superclasses of an instance declaration
+    • In the instance declaration for ‘Applicative (State s)’
+    |
+116 | instance Applicative (State s) where
+    |          ^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :i Functor
+:i Functor
+type Functor :: (* -> *) -> Constraint
+class Functor f where
+  fmap :: (a -> b) -> f a -> f b
+  (<$) :: a -> f b -> f a
+  {-# MINIMAL fmap #-}
+  	-- Defined in ‘GHC.Base’
+instance Functor ((,) a) -- Defined in ‘GHC.Base’
+instance Functor ((,,) a b) -- Defined in ‘GHC.Base’
+instance Functor ((,,,) a b c) -- Defined in ‘GHC.Base’
+instance Functor ((->) r) -- Defined in ‘GHC.Base’
+instance Functor IO -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Functor Solo -- Defined in ‘GHC.Base’
+instance Functor [] -- Defined in ‘GHC.Base’
+instance Functor (Either a) -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:118:12: error: parse error on input ‘=’
+    |
+118 |   fmap f c = State $ \s -> let (r, s') = runState c s in
+    |            ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:119:12: error: parse error on input ‘=’
+    |
+119 |   fmap f c = State $ \s -> let (r, s') = runState c s in
+    |            ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul4 [1, 4, 5]
+runState calcul4 [1, 4, 5]
+(5,[5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> calcul5 [1, 4, 5 ]
+calcul5 [1, 4, 5 ]
+
+<interactive>:62:1: error:
+    • Couldn't match expected type: [a0] -> t
+                  with actual type: State Stack Int
+    • The function ‘calcul5’ is applied to one value argument,
+        but its type ‘State Stack Int’ has none
+      In the expression: calcul5 [1, 4, 5]
+      In an equation for ‘it’: it = calcul5 [1, 4, 5]
+    • Relevant bindings include it :: t (bound at <interactive>:62:1)
+ghci> runState calcul5 [1, 4, 5 ]
+runState calcul5 [1, 4, 5 ]
+(5,[5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul6 [1, 4, 5 ]
+runState calcul6 [1, 4, 5 ]
+(5,[5,5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul6 [1, 4, 5 ]
+runState calcul6 [1, 4, 5 ]
+(5,[5,5])
+ghci> runState calcul7 [1, 4, 5 ]
+runState calcul7 [1, 4, 5 ]
+((),[5,5])
+ghci> runState calcul7 [1, 4, 6, 8, 5 ]
+runState calcul7 [1, 4, 6, 8, 5 ]
+((),[5,6,8,5])
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul8 [1, 4, 6, 8, 5 ]
+runState calcul8 [1, 4, 6, 8, 5 ]
+((),[5,6,8,5])
+ghci>:t fst
+:t fst
+fst :: (a, b) -> a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:186:1: error:
+    parse error (possibly incorrect indentation or mismatched brackets)
+    |
+186 | put1 :: Int -> State Pereche ()
+    | ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:195:21: error:
+    Variable not in scope: get0 :: State Pereche Int
+    |
+195 |                     get0
+    |                     ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState calcul_perechi (15, 28)
+runState calcul_perechi (15, 28)
+(7,(7,3))
+ghci> (7,(7,3))
+(7,(7,3))
+(7,(7,3))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:198:1: error:
+    Multiple declarations of ‘calcul_perechi’
+    Declared at: week11.hs:190:1
+                 week11.hs:198:1
+    |
+198 | calcul_perechi = do n0 <- get0
+    | ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:201:24: error:
+    • Couldn't match type ‘()’ with ‘Int’
+      Expected: State Pereche Int
+        Actual: State Pereche ()
+    • In the expression: put1 (n1 - n0)
+      In a stmt of a 'do' block:
+        if n0 < n1 then
+            put1 (n1 - n0)
+        else
+            if n1 < n0 then put0 (n0 - n1) else return n0
+      In the expression:
+        do n0 <- get0
+           n1 <- get1
+           if n0 < n1 then
+               put1 (n1 - n0)
+           else
+               if n1 < n0 then put0 (n0 - n1) else return n0
+    |
+201 |                        put1 (n1 - n0)
+    |                        ^^^^^^^^^^^^^^
+
+week11.hs:203:24: error:
+    • Couldn't match type ‘()’ with ‘Int’
+      Expected: State Pereche Int
+        Actual: State Pereche ()
+    • In the expression: put0 (n0 - n1)
+      In the expression: if n1 < n0 then put0 (n0 - n1) else return n0
+      In a stmt of a 'do' block:
+        if n0 < n1 then
+            put1 (n1 - n0)
+        else
+            if n1 < n0 then put0 (n0 - n1) else return n0
+    |
+203 |                        put0 (n0 - n1)
+    |                        ^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:201:24: error:
+    • Couldn't match expected type: (a0 -> m1 a0)
+                                    -> t0 -> State Pereche Int
+                  with actual type: State Pereche ()
+    • The function ‘put1’ is applied to three value arguments,
+        but its type ‘Int -> State Pereche ()’ has only one
+      In the expression: put1 (n1 - n0) return (- 1)
+      In a stmt of a 'do' block:
+        if n0 < n1 then
+            put1 (n1 - n0) return (- 1)
+        else
+            if n1 < n0 then put0 (n0 - n1) return (- 1) else return n0
+    |
+201 |                        put1 (n1 - n0)
+    |                        ^^^^^^^^^^^^^^...
+
+week11.hs:204:24: error:
+    • Couldn't match expected type: (a1 -> m0 a1)
+                                    -> t1 -> State Pereche Int
+                  with actual type: State Pereche ()
+    • The function ‘put0’ is applied to three value arguments,
+        but its type ‘Int -> State Pereche ()’ has only one
+      In the expression: put0 (n0 - n1) return (- 1)
+      In the expression:
+        if n1 < n0 then put0 (n0 - n1) return (- 1) else return n0
+    |
+204 |                        put0 (n0 - n1)
+    |                        ^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState calcul_perechi' (10, 23)
+runState calcul_perechi' (10, 23)
+(-1,(10,13))
+ghci> runState calcul_perechi' (10, 13)
+runState calcul_perechi' (10, 13)
+(-1,(10,3))
+ghci> runState calcul_perechi' (10, 3)
+runState calcul_perechi' (10, 3)
+(-1,(7,3))
+ghci> runState calcul_perechi' (7, 3)
+runState calcul_perechi' (7, 3)
+(-1,(4,3))
+ghci> runState calcul_perechi' (4, 3)
+runState calcul_perechi' (4, 3)
+(-1,(1,3))
+ghci> runState calcul_perechi' (1, 3)
+runState calcul_perechi' (1, 3)
+(-1,(1,2))
+ghci> runState calcul_perechi' (1, 2)
+runState calcul_perechi' (1, 2)
+(-1,(1,1))
+ghci> runState calcul_perechi' (1, 1)
+runState calcul_perechi' (1, 1)
+(1,(1,1))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul_perechi' (10, 23)
+runState calcul_perechi' (10, 23)
+(1,(1,1))
+ghci> runState calcul_perechi' (14, 21)
+runState calcul_perechi' (14, 21)
+(7,(7,7))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :i State
+:i State
+type State :: * -> * -> *
+type State s = StateT s Data.Functor.Identity.Identity :: * -> *
+  	-- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+ghci> :i StateT
+:i StateT
+type role StateT nominal representational nominal
+type StateT :: * -> (* -> *) -> * -> *
+newtype StateT s m a = StateT {runStateT :: s -> m (a, s)}
+  	-- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => MonadState s (StateT s m)
+  -- Defined in ‘Control.Monad.State.Class’
+instance [safe] (Functor m, Monad m) => Applicative (StateT s m)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] Functor m => Functor (StateT s m)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] MonadFail m => MonadFail (StateT s m)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] MonadIO m => MonadIO (StateT s m)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] MonadTrans (StateT s)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+instance [safe] Monad m => Monad (StateT s m)
+  -- Defined in ‘transformers-0.5.6.2:Control.Monad.Trans.State.Lazy’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:227:23: error:
+    Unexpected do block in function application:
+        do put0 10
+    Suggested fixes:
+      • Use parentheses.
+      • Perhaps you intended to use BlockArguments
+    |
+227 | calcul_perechiState = do put0 10
+    |                       ^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState calcul_perechiState (15, 23)
+runState calcul_perechiState (15, 23)
+(7,(7,3))
+ghci> :i get
+:i get
+type MonadState :: * -> (* -> *) -> Constraint
+class Monad m => MonadState s m | m -> s where
+  get :: m s
+  ...
+  	-- Defined in ‘Control.Monad.State.Class’
+ghci> :i put
+:i put
+type MonadState :: * -> (* -> *) -> Constraint
+class Monad m => MonadState s m | m -> s where
+  ...
+  put :: s -> m ()
+  ...
+  	-- Defined in ‘Control.Monad.State.Class’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState calcul_perechiState (15, 23)
+runState calcul_perechiState (15, 23)
+(10,(7,3))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState nextChar ("42+26", 0)
+runState nextChar ("42+26", 0)
+(Right '4',("42+26",0))
+ghci> runState nextChar ("", 0)
+runState nextChar ("", 0)
+(Left "Unexpected end of string at 0",("",0))
+ghci> runState nextChar ("42+26", 0)
+runState nextChar ("42+26", 0)
+(Right '4',("42+26",0))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState nextChar ("42+26", 0)
+runState nextChar ("42+26", 0)
+(Right '4',("2+26",1))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:261:105: error:
+    Variable not in scope: pos
+    Suggested fix:
+      Perhaps use one of these:
+        ‘cos’ (imported from Prelude), ‘pop’ (line 9)
+    |
+261 |                                    return $ Left ("Expected " ++ [expected] ++ " at position " ++ (show pos))
+    |                                                                                                         ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState char '4' ("42+26", 0)
+runState char '4' ("42+26", 0)
+
+<interactive>:111:10: error:
+    Variable not in scope: char :: State Char a0
+    Suggested fix: Perhaps use ‘charp’ (line 255)
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> runState charp '4' ("42+26", 0)
+runState charp '4' ("42+26", 0)
+
+<interactive>:113:1: error:
+    • Couldn't match expected type: (String, b0) -> t
+                  with actual type: (a0, Char)
+    • The function ‘runState’ is applied to three value arguments,
+        but its type ‘State Char a0 -> Char -> (a0, Char)’ has only two
+      In the expression: runState charp '4' ("42+26", 0)
+      In an equation for ‘it’: it = runState charp '4' ("42+26", 0)
+    • Relevant bindings include it :: t (bound at <interactive>:113:1)
+
+<interactive>:113:10: error:
+    • Couldn't match type: Char -> Parser Char
+                     with: StateT Char Data.Functor.Identity.Identity a0
+      Expected: State Char a0
+        Actual: Char -> Parser Char
+    • Probable cause: ‘charp’ is applied to too few arguments
+      In the first argument of ‘runState’, namely ‘charp’
+      In the expression: runState charp '4' ("42+26", 0)
+      In an equation for ‘it’: it = runState charp '4' ("42+26", 0)
+ghci> runState (charp '4') ("42+26", 0)
+runState (charp '4') ("42+26", 0)
+(Right '4',("2+26",1))
+ghci> runState (charp '5') ("42+26", 0)
+runState (charp '5') ("42+26", 0)
+(Left "Expected 5 at position 1",("2+26",1))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState (charp '5') ("42+26", 0)
+runState (charp '5') ("42+26", 0)
+(Left "Expected 5 at position 0",("2+26",1))
+ghci> runState (charp '4') ("42+26", 0)
+runState (charp '4') ("42+26", 0)
+(Right '4',("2+26",1))
+ghci> isDigit
+isDigit
+
+<interactive>:119:1: error: Variable not in scope: isDigit
+ghci> import Data.Char
+import Data.Char
+ghci> isDigit '4'
+isDigit '4'
+True
+ghci> isDigit 'a'
+isDigit 'a'
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState digit ("42+26", 0)
+runState digit ("42+26", 0)
+(Right '4',("2+26",1))
+ghci> runState digit ("32+26", 0)
+runState digit ("32+26", 0)
+(Right '3',("2+26",1))
+ghci> runState digit ("a32+26", 0)
+runState digit ("a32+26", 0)
+(Left "Expected digit at position 0",("32+26",1))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:288:1: error:
+    The type signature for ‘number’ lacks an accompanying binding
+    |
+288 | number :: Parser Int
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:286:27: error:
+    • Couldn't match expected type: [a]
+                  with actual type: Either String [a]
+    • In the second argument of ‘(:)’, namely ‘tl’
+      In the first argument of ‘Right’, namely ‘(x : tl)’
+      In the second argument of ‘($)’, namely ‘Right (x : tl)’
+    • Relevant bindings include
+        tl :: Either String [a] (bound at week11.hs:285:7)
+        x :: a (bound at week11.hs:284:11)
+        result :: Either String a (bound at week11.hs:279:3)
+        parser :: Parser a (bound at week11.hs:277:6)
+        many :: Parser a -> Parser [a] (bound at week11.hs:277:1)
+    |
+286 |       return $ Right (x : tl)
+    |                           ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> runState (many digit) ("32+26", 0)
+runState (many digit) ("32+26", 0)
+(Right "32",("+26",2))
+ghci> read "32" :: Int
+read "32" :: Int
+32
+ghci> read "asdadsa32" :: Int
+read "asdadsa32" :: Int
+*** Exception: Prelude.read: no parse
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState number ("32+26", 0)
+runState number ("32+26", 0)
+(Right 32,("+26",2))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+
+week11.hs:297:15: error:
+    Not in scope: type constructor or class ‘Parse’
+    Suggested fix: Perhaps use ‘Parser’ (line 245)
+    |
+297 | exprParser :: Parse (Int, Int)
+    |               ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+
+week11.hs:301:26: error:
+    • Couldn't match expected type: Either String (Int, Int)
+                  with actual type: (a0, b0)
+    • In the second argument of ‘($)’, namely ‘(0, 0)’
+      In a stmt of a 'do' block: return $ (0, 0)
+      In the expression:
+        do r1 <- number
+           charp '+'
+           r2 <- number
+           return $ (0, 0)
+    |
+301 |                 return $ (0, 0)
+    |                          ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState exprParser ("32+26", 0)
+runState exprParser ("32+26", 0)
+(Right (32,26),("",5))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week11.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> runState evalParser ("42+26", 0)
+runState evalParser ("42+26", 0)
+(Right 68,("",5))
+ghci> 
