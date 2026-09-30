@@ -1,0 +1,79 @@
+body {
+    font-family:sans-serif;
+    font-size:24px;
+  margin: auto;
+  max-width: 960pt;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  #border: 1px solid #8c8b8b;
+  #box-shadow: 0 50px 50px -10px #8c8b8b inset;
+  background-size: 32pt 32pt;
+  background-image:
+    linear-gradient(to right, #F2F2F2 1pt, transparent 1pt),
+    linear-gradient(to bottom, #F2F2F2 1pt, transparent 1pt);
+}
+
+h1 {
+    text-align:center;
+}
+
+h2, h3, h4 {
+    padding-left: 1%;
+}
+
+h5 {
+    padding-left: 50px;
+}
+
+p, li {
+    font-size: 16pt;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.m_paper {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.justifiedpar {
+    font-size: 16pt;
+    padding-left: 1%;
+    padding-right: 2%;
+    text-align: justify;
+}
+
+.mytext {
+    font-size: 16pt;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: justify;
+}
+
+.top {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-radius: 1%;
+}
+
+    
+.bodypic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+    border-radius: 1%;
+    padding-top: 30px;
+    padding-bottom: 30px;  
+}
+
+hr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
