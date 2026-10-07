@@ -1,0 +1,497 @@
+stefan@stefans-MacBook-Pro week02 % pwd
+pwd
+/Users/stefan/teaching/pf-2026-2027/week02
+stefan@stefans-MacBook-Pro week02 % gcc -Wall -o week02 week02.c
+gcc -Wall -o week02 week02.c
+week02.c:1:10: fatal error: 'iostream' file not found
+    1 | #include <iostream>
+      |          ^~~~~~~~~~
+1 error generated.
+stefan@stefans-MacBook-Pro week02 % g++ -Wall -o week02 week02.c
+g++ -Wall -o week02 week02.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro week02 % ./week02
+./week02
+2
+2
+stefan@stefans-MacBook-Pro week02 % g++ -Wall -o week02 week02.c
+g++ -Wall -o week02 week02.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro week02 % ./week02
+./week02
+7
+5000
+stefan@stefans-MacBook-Pro week02 % g++ -Wall -o week02 week02.c
+g++ -Wall -o week02 week02.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro week02 % ./week02
+./week02
+stefan@stefans-MacBook-Pro week02 % g++ -Wall -o week02 week02.c
+g++ -Wall -o week02 week02.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro week02 % ./week02
+./week02
+stefan@stefans-MacBook-Pro week02 % g++ -Wall -o week02 week02.c
+g++ -Wall -o week02 week02.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro week02 % ./week02
+./week02
+0x00077128
+0x00177128
+stefan@stefans-MacBook-Pro week02 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week02.hs
+:l week02.hs
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> is_even_0 10
+is_even_0 10
+True
+ghci> is_even_0 13
+is_even_0 13
+False
+ghci> is_even_0 13.3
+is_even_0 13.3
+
+<interactive>:4:1: error:
+    • Ambiguous type variable ‘a0’ arising from a use of ‘is_even_0’
+      prevents the constraint ‘(Integral a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Integral Integer -- Defined in ‘GHC.Real’
+        instance Integral Int -- Defined in ‘GHC.Real’
+        ...plus one other
+        ...plus one instance involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the expression: is_even_0 13.3
+      In an equation for ‘it’: it = is_even_0 13.3
+
+<interactive>:4:11: error:
+    • Ambiguous type variable ‘a0’ arising from the literal ‘13.3’
+      prevents the constraint ‘(Fractional a0)’ from being solved.
+      Probable fix: use a type annotation to specify what ‘a0’ should be.
+      Potentially matching instances:
+        instance Fractional Double -- Defined in ‘GHC.Float’
+        instance Fractional Float -- Defined in ‘GHC.Float’
+        ...plus one instance involving out-of-scope types
+        (use -fprint-potential-instances to see them all)
+    • In the first argument of ‘is_even_0’, namely ‘13.3’
+      In the expression: is_even_0 13.3
+      In an equation for ‘it’: it = is_even_0 13.3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_even_1 10
+is_even_1 10
+True
+ghci> is_even_1 13
+is_even_1 13
+False
+ghci> is_even_1 13.3
+is_even_1 13.3
+
+<interactive>:8:11: error:
+    • No instance for (Fractional Int) arising from the literal ‘13.3’
+    • In the first argument of ‘is_even_1’, namely ‘13.3’
+      In the expression: is_even_1 13.3
+      In an equation for ‘it’: it = is_even_1 13.3
+ghci> :type is_even_1
+:type is_even_1
+is_even_1 :: Int -> Bool
+ghci> :type is_even_0
+:type is_even_0
+is_even_0 :: Integral a => a -> Bool
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_even_2 10
+is_even_2 10
+True
+ghci> is_even_2 13
+is_even_2 13
+False
+ghci> :i mod
+:i mod
+type Integral :: * -> Constraint
+class (Real a, Enum a) => Integral a where
+  ...
+  mod :: a -> a -> a
+  ...
+  	-- Defined in ‘GHC.Real’
+infixl 7 `mod`
+ghci> :i xand
+:i xand
+
+<interactive>:1:1: error: Not in scope: ‘xand’
+ghci> :i and
+:i and
+and :: Foldable t => t Bool -> Bool 	-- Defined in ‘Data.Foldable’
+ghci> :i andb
+:i andb
+
+<interactive>:1:1: error: Not in scope: ‘andb’
+ghci> :i band
+:i band
+
+<interactive>:1:1: error: Not in scope: ‘band’
+ghci> :i xor
+:i xor
+
+<interactive>:1:1: error: Not in scope: ‘xor’
+ghci> :i xand
+:i xand
+
+<interactive>:1:1: error: Not in scope: ‘xand’
+ghci> :i (^)
+:i (^)
+(^) :: (Num a, Integral b) => a -> b -> a 	-- Defined in ‘GHC.Real’
+infixr 8 ^
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_even_3 10
+is_even_3 10
+True
+ghci> is_even_3 13
+is_even_3 13
+False
+ghci> is_even_3 13.3
+is_even_3 13.3
+
+<interactive>:25:11: error:
+    • No instance for (Fractional Int) arising from the literal ‘13.3’
+    • In the first argument of ‘is_even_3’, namely ‘13.3’
+      In the expression: is_even_3 13.3
+      In an equation for ‘it’: it = is_even_3 13.3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_even_4 10
+is_even_4 10
+True
+ghci> is_even_4 13
+is_even_4 13
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_even_5 10
+is_even_5 10
+True
+ghci> is_even_5 13
+is_even_5 13
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:144:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘is_even_6’: is_even_6 0 = ...
+    |
+144 | is_even_6 0 = True      
+    | ^^^^^^^^^^^^^^^^^^
+
+week02.hs:145:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘is_even_6’: is_even_6 1 = ...
+    |
+145 | is_even_6 1 = False
+    | ^^^^^^^^^^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:144:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘is_even_6’: is_even_6 0 = ...
+    |
+144 | is_even_6 0 = True        -- 0 si 1 sunt "redundant"     
+    | ^^^^^^^^^^^^^^^^^^
+
+week02.hs:145:1: warning: [-Woverlapping-patterns]
+    Pattern match is redundant
+    In an equation for ‘is_even_6’: is_even_6 1 = ...
+    |
+145 | is_even_6 1 = False
+    | ^^^^^^^^^^^^^^^^^^^
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:167:34: error:
+    • No instance for (Fractional Int) arising from a use of ‘/’
+    • In the second argument of ‘(>)’, namely ‘x / 2’
+      In the expression: i > x / 2
+      In the expression:
+        if i > x / 2 then True else is_prime_aux x (i + 1)
+    |
+167 |                    else if i > x / 2 then
+    |                                  ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> is_prime 2
+is_prime 2
+False
+ghci> is_prime 3
+is_prime 3
+True
+ghci> is_prime 4
+is_prime 4
+False
+ghci> is_prime 5
+is_prime 5
+True
+ghci> is_prime 6
+is_prime 6
+False
+ghci> is_prime 2
+is_prime 2
+False
+ghci> is_prime 11
+is_prime 11
+True
+ghci> is_prime 13
+is_prime 13
+True
+ghci> is_prime 12
+is_prime 12
+False
+ghci> is_prime 21
+is_prime 21
+False
+ghci> is_prime 2
+is_prime 2
+False:r
+ghci> False:r
+False:r
+
+<interactive>:49:7: error: Variable not in scope: r :: [Bool]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_prime 2
+is_prime 2
+True
+ghci> is_prime 3
+is_prime 3
+True
+ghci> is_prime 4
+is_prime 4
+False
+ghci> is_prime 5
+is_prime 5
+True
+ghci> is_prime 6
+is_prime 6
+False
+ghci> is_prime 7
+is_prime 7
+True
+ghci> is_prime 8
+is_prime 8
+False
+ghci> is_prime 9
+is_prime 9
+False
+ghci> is_prime 10
+is_prime 10
+False
+ghci> is_prime 11
+is_prime 11
+True
+ghci> is_prime 13
+is_prime 13
+True
+ghci> is_prime 101
+is_prime 101
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:200:1: error:
+    Multiple declarations of ‘is_prime’
+    Declared at: week02.hs:183:1
+                 week02.hs:200:1
+    |
+200 | is_prime x = hasNoDivisorsBetween x 2 (x `div` 2)
+    | ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> is_prime 2
+is_prime 2
+True
+ghci> is_prime 3
+is_prime 3
+True
+ghci> is_prime 4
+is_prime 4
+False
+ghci> is_prime 5
+is_prime 5
+True
+ghci> is_prime 6
+is_prime 6
+False
+ghci> is_prime 7
+is_prime 7
+True
+ghci> is_prime' 2
+is_prime' 2
+True
+ghci> is_prime' 3
+is_prime' 3
+True
+ghci> is_prime' 4
+is_prime' 4
+False
+ghci> is_prime' 5
+is_prime' 5
+True
+ghci> is_prime' 6
+is_prime' 6
+False
+ghci> is_prime' 7
+is_prime' 7
+True
+ghci> is_prime' 8
+is_prime' 8
+False
+ghci> is_prime' 9
+is_prime' 9
+False
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> is_prime'' 9
+is_prime'' 9
+False
+ghci> is_prime'' 7
+is_prime'' 7
+True
+ghci> is_prime'' 2
+is_prime'' 2
+True
+ghci> is_prime'' 13
+is_prime'' 13
+True
+ghci> is_prime'' 12
+is_prime'' 12
+False
+ghci> Lr
+Lr
+
+<interactive>:85:1: error:
+    Data constructor not in scope: Lr
+    Suggested fix:
+      Perhaps use one of these:
+        ‘LT’ (imported from Prelude), variable ‘or’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted ) [Source file changed]
+
+week02.hs:215:26: error:
+    • Couldn't match expected type ‘Int -> Bool’
+                  with actual type ‘Bool’
+    • In the expression: False
+      In the expression:
+        if a > (x `div` 2) then
+            False
+        else
+            if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+      In an equation for ‘hasDivisorsAbove’:
+          hasDivisorsAbove x a
+            = if a > (x `div` 2) then
+                  False
+              else
+                  if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+    |
+215 |                          False
+    |                          ^^^^^
+
+week02.hs:217:26: error:
+    • Couldn't match expected type ‘Int -> Bool’
+                  with actual type ‘Bool’
+    • In the expression: True
+      In the expression:
+        if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+      In the expression:
+        if a > (x `div` 2) then
+            False
+        else
+            if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+    |
+217 |                          True
+    |                          ^^^^
+
+week02.hs:222:22: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘Int -> Bool’
+    • Probable cause: ‘hasDivisorsAbove’ is applied to too few arguments
+      In the first argument of ‘not’, namely ‘(hasDivisorsAbove x 2)’
+      In the expression: not (hasDivisorsAbove x 2)
+      In an equation for ‘is_prime'''’:
+          is_prime''' x = not (hasDivisorsAbove x 2)
+    |
+222 | is_prime''' x = not (hasDivisorsAbove x 2)
+    |                      ^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+
+week02.hs:219:26: error:
+    • Couldn't match expected type ‘Bool’
+                  with actual type ‘Int -> Bool’
+    • Probable cause: ‘hasDivisorsBetween’ is applied to too few arguments
+      In the expression: hasDivisorsBetween x (a + 1)
+      In the expression:
+        if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+      In the expression:
+        if a > (x `div` 2) then
+            False
+        else
+            if x `mod` a == 0 then True else hasDivisorsBetween x (a + 1)
+    |
+219 |                          hasDivisorsBetween x (a + 1)
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week02.hs, interpreted )
+Ok, one module loaded.
+ghci> is_prime''' 7
+is_prime''' 7
+True
+ghci> is_prime''' 10
+is_prime''' 10
+False
+ghci> 
