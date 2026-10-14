@@ -1,0 +1,435 @@
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week03
+:l week03
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Mon
+Mon
+Mon
+ghci> :t Mon
+:t Mon
+Mon :: Dow
+ghci> :info Dow
+:info Dow
+type Dow :: *
+data Dow = Mon | Tue | Wed | Thu | Fri | Sat | Sun
+  	-- Defined at week03.hs:13:1
+instance Show Dow -- Defined at week03.hs:13:61
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isWeekend Wed
+isWeekend Wed
+False
+ghci> isWeekend Sun
+isWeekend Sun
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> isWeekend (nextDay Wed)
+isWeekend (nextDay Wed)
+False
+ghci> isWeekend (nextDay (nextDay Wed))
+isWeekend (nextDay (nextDay Wed))
+False
+ghci> isWeekend (nextDay (nextDay (nextDay Wed)))
+isWeekend (nextDay (nextDay (nextDay Wed)))
+True
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week03 % gcc -Wall -o week03 week03.c
+gcc -Wall -o week03 week03.c
+week03.c:7:7: warning: unused variable 'day' [-Wunused-variable]
+    7 |   Dow day = 8;
+      |       ^~~
+1 warning generated.
+stefan@stefans-MacBook-Pro week03 % gcc -Wall -o week03 week03.c
+gcc -Wall -o week03 week03.c
+stefan@stefans-MacBook-Pro week03 % ./week03
+./week03
+8
+stefan@stefans-MacBook-Pro week03 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week03.hs
+:l week03.hs
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+Ok, one module loaded.
+ghci> divide 10 3
+divide 10 3
+3
+ghci> divide 3 100
+divide 3 100
+0
+ghci> divide 3 0
+divide 3 0
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide' 10 3
+divide' 10 3
+3
+ghci> divide' 3 10
+divide' 3 10
+0
+ghci> divide' 3 0
+divide' 3 0
+0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide'' 10 0
+divide'' 10 0
+-1
+ghci> divide'' 10 3
+divide'' 10 3
+3
+ghci> divide'' (-10) 10
+divide'' (-10) 10
+-1
+ghci> divide'' (-10) 0
+divide'' (-10) 0
+-1
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide''' 10 3
+divide''' 10 3
+(3,True)
+ghci> divide''' 10 0
+divide''' 10 0
+(42,False)
+ghci> divide''' 42 1
+divide''' 42 1
+(42,True)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide4 10 0
+divide4 10 0
+NotAnInt
+ghci> divide4 10 3
+divide4 10 3
+AnInt 3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> interestingComputation 7
+interestingComputation 7
+11
+ghci> interestingComputation 0
+interestingComputation 0
+*** Exception: divide by zero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> interestingComputation 7
+interestingComputation 7
+11
+ghci> interestingComputation' 7
+interestingComputation' 7
+AnInt 6
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+
+week03.hs:72:44: error:
+    • No instance for (Num MaybeInt) arising from a use of ‘+’
+    • In the expression: (divide4 42 x) + 5
+      In an equation for ‘interestingComputation'’:
+          interestingComputation' x = (divide4 42 x) + 5
+   |
+72 | interestingComputation' x = (divide4 42 x) + 5
+   |                                            ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+Ok, one module loaded.
+ghci> interestingComputation 7
+interestingComputation 7
+11
+ghci> interestingComputation' 7
+interestingComputation' 7
+AnInt 11
+ghci> interestingComputation' 0
+interestingComputation' 0
+NotAnInt
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> extractFst (createPair 7 42)
+extractFst (createPair 7 42)
+7
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> sumAll (Cons 4 (Cons 7 (Cons 42 Done)))
+sumAll (Cons 4 (Cons 7 (Cons 42 Done)))
+53
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eraseLast (Cons 4 (Cons 7 (Cons 42 Done)))
+eraseLast (Cons 4 (Cons 7 (Cons 42 Done)))
+Cons 4 (Cons 7 Done)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> search (Cons 4 (Cons 7 (Cons 42 Done))) 6
+search (Cons 4 (Cons 7 (Cons 42 Done))) 6
+False
+ghci> search (Cons 4 (Cons 7 (Cons 42 Done))) 42
+search (Cons 4 (Cons 7 (Cons 42 Done))) 42
+True
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+
+week03.hs:151:1: error:
+    Multiple declarations of ‘eraseLast’
+    Declared at: week03.hs:127:1
+                 week03.hs:151:1
+    |
+151 | eraseLast Done = NotAMistery
+    | ^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+
+week03.hs:154:27: error:
+    • Couldn't match expected type ‘Mistery’
+                  with actual type ‘MaybeMistery’
+    • In the pattern: NotAMistery
+      In a case alternative: NotAMistery -> NotAMistery
+      In the expression:
+        case eraseLast y of
+          NotAMistery -> NotAMistery
+          AMistery y' -> Cons x y'
+    |
+154 |                           NotAMistery -> NotAMistery
+    |                           ^^^^^^^^^^^
+
+week03.hs:155:27: error:
+    • Couldn't match expected type ‘Mistery’
+                  with actual type ‘MaybeMistery’
+    • In the pattern: AMistery y'
+      In a case alternative: AMistery y' -> Cons x y'
+      In the expression:
+        case eraseLast y of
+          NotAMistery -> NotAMistery
+          AMistery y' -> Cons x y'
+    |
+155 |                           AMistery y' -> Cons x y'
+    |                           ^^^^^^^^^^^
+
+week03.hs:155:42: error:
+    • Couldn't match expected type ‘MaybeMistery’
+                  with actual type ‘Mistery’
+    • In the expression: Cons x y'
+      In a case alternative: AMistery y' -> Cons x y'
+      In the expression:
+        case eraseLast y of
+          NotAMistery -> NotAMistery
+          AMistery y' -> Cons x y'
+    |
+155 |                           AMistery y' -> Cons x y'
+    |                                          ^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+
+week03.hs:154:27: error:
+    • Couldn't match expected type ‘Mistery’
+                  with actual type ‘MaybeMistery’
+    • In the pattern: NotAMistery
+      In a case alternative: NotAMistery -> NotAMistery
+      In the expression:
+        case eraseLast y of
+          NotAMistery -> NotAMistery
+          AMistery y' -> AMistery (Cons x y')
+    |
+154 |                           NotAMistery -> NotAMistery
+    |                           ^^^^^^^^^^^
+
+week03.hs:155:27: error:
+    • Couldn't match expected type ‘Mistery’
+                  with actual type ‘MaybeMistery’
+    • In the pattern: AMistery y'
+      In a case alternative: AMistery y' -> AMistery (Cons x y')
+      In the expression:
+        case eraseLast y of
+          NotAMistery -> NotAMistery
+          AMistery y' -> AMistery (Cons x y')
+    |
+155 |                           AMistery y' -> AMistery (Cons x y')
+    |                           ^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+Ok, one module loaded.
+ghci> eraseLast' (Cons 4 (Cons 7 (Cons 42 Done)))
+eraseLast' (Cons 4 (Cons 7 (Cons 42 Done)))
+AMistery (Cons 4 (Cons 7 Done))
+ghci> eraseLast' Done
+eraseLast' Done
+NotAMistery
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eraseLast'' (Cons 4 (Cons 7 (Cons 42 Done)))
+eraseLast'' (Cons 4 (Cons 7 (Cons 42 Done)))
+Some (Cons 4 (Cons 7 Done))
+ghci> eraseLast'' Done
+eraseLast'' Done
+None
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide5 10 3
+divide5 10 3
+Some 3
+ghci> divide5 10 0
+divide5 10 0
+None
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :info Option
+:info Option
+type Option :: * -> *
+data Option a = None | Some a
+  	-- Defined at week03.hs:163:1
+instance Show a => Show (Option a) -- Defined at week03.hs:163:40
+ghci> :info MaybeInt
+:info MaybeInt
+type MaybeInt :: *
+data MaybeInt = NotAnInt | AnInt Int
+  	-- Defined at week03.hs:54:1
+instance Show MaybeInt -- Defined at week03.hs:54:47
+ghci> :info Maybe
+:info Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+
+week03.hs:190:1: error:
+    Multiple declarations of ‘divide5’
+    Declared at: week03.hs:178:1
+                 week03.hs:190:1
+    |
+190 | divide5 x 0 = Nothing
+    | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted )
+Ok, one module loaded.
+ghci> eraseLast''' (Cons 4 (Cons 7 (Cons 42 Done)))
+eraseLast''' (Cons 4 (Cons 7 (Cons 42 Done)))
+Just (Cons 4 (Cons 7 Done))
+ghci> divide6 10 3
+divide6 10 3
+Just 3
+ghci> divide6 10 0
+divide6 10 0
+Nothing
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Add (Const 7) (Mult (Var "x") (Var "y"))
+Add (Const 7) (Mult (Var "x") (Var "y"))
+Add (Const 7) (Mult (Var "x") (Var "y"))
+ghci> :type Add (Const 7) (Mult (Var "x") (Var "y"))
+:type Add (Const 7) (Mult (Var "x") (Var "y"))
+Add (Const 7) (Mult (Var "x") (Var "y")) :: Exp
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> eval ( Add (Const 7) (Mult (Var "x") (Var "y")))
+eval ( Add (Const 7) (Mult (Var "x") (Var "y")))
+7
+ghci> :info Either
+:info Either
+type Either :: * -> * -> *
+data Either a b = Left a | Right b
+  	-- Defined in ‘Data.Either’
+instance Traversable (Either a) -- Defined in ‘Data.Traversable’
+instance Foldable (Either a) -- Defined in ‘Data.Foldable’
+instance Applicative (Either e) -- Defined in ‘Data.Either’
+instance Functor (Either a) -- Defined in ‘Data.Either’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance Semigroup (Either a b) -- Defined in ‘Data.Either’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Read a, Read b) => Read (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week03.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> divide7 10 3
+divide7 10 3
+Left 3
+ghci> divide7 10 0
+divide7 10 0
+Right "division by zero"
+ghci> 
