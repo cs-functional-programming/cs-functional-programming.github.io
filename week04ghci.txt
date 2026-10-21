@@ -1,0 +1,1376 @@
+stefan@stefans-MacBook-Pro week04 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week04
+:l week04
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> negation MyTrue
+negation MyTrue
+MyFalse
+ghci> :info MyBool
+:info MyBool
+type MyBool :: *
+data MyBool = MyFalse | MyTrue
+  	-- Defined at week04.hs:1:1
+instance Show MyBool -- Defined at week04.hs:1:41
+ghci> :info Bool
+:info Bool
+type Bool :: *
+data Bool = False | True
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Read Bool -- Defined in ‘GHC.Read’
+instance Bounded Bool -- Defined in ‘GHC.Enum’
+instance Enum Bool -- Defined in ‘GHC.Enum’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Show Bool -- Defined in ‘GHC.Show’
+instance Eq Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+ghci> False && True
+False && True
+False
+ghci> false && true
+false && true
+
+<interactive>:7:1: error:
+    Variable not in scope: false :: Bool
+    Suggested fix:
+      Perhaps use data constructor ‘False’ (imported from Prelude)
+
+<interactive>:7:10: error:
+    Variable not in scope: true :: Bool
+    Suggested fix:
+      Perhaps use data constructor ‘True’ (imported from Prelude)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> Pair MyTrue MyFalse
+Pair MyTrue MyFalse
+Pair MyTrue MyFalse
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fstComponent (Pair MyTrue MyFalse)
+fstComponent (Pair MyTrue MyFalse)
+MyTrue
+ghci> :info Maybe
+:info Maybe
+type Maybe :: * -> *
+data Maybe a = Nothing | Just a
+  	-- Defined in ‘GHC.Maybe’
+instance Traversable Maybe -- Defined in ‘Data.Traversable’
+instance MonadFail Maybe -- Defined in ‘Control.Monad.Fail’
+instance Semigroup a => Monoid (Maybe a) -- Defined in ‘GHC.Base’
+instance Semigroup a => Semigroup (Maybe a)
+  -- Defined in ‘GHC.Base’
+instance Foldable Maybe -- Defined in ‘Data.Foldable’
+instance Read a => Read (Maybe a) -- Defined in ‘GHC.Read’
+instance Applicative Maybe -- Defined in ‘GHC.Base’
+instance Functor Maybe -- Defined in ‘GHC.Base’
+instance Monad Maybe -- Defined in ‘GHC.Base’
+instance Eq a => Eq (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance Show a => Show (Maybe a) -- Defined in ‘GHC.Show’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> division 10 0
+division 10 0
+Nothing
+ghci> division 10 3 
+division 10 3 
+Just 3:r
+ghci> Just 3:r
+Just 3:r
+
+<interactive>:17:8: error: Variable not in scope: r :: [Maybe a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> firstCharacter "Hello, World!"
+firstCharacter "Hello, World!"
+Just 'H'
+ghci> firstCharacter ""
+firstCharacter ""
+Nothing
+ghci> sqrt
+sqrt
+
+<interactive>:21:1: error:
+    • No instance for (Show (Double -> Double))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> sqrt 5.0
+sqrt 5.0
+2.23606797749979
+ghci> floor (sqrt 5.0)
+floor (sqrt 5.0)
+2
+ghci> (fromInteger 5) :: Double
+(fromInteger 5) :: Double
+5.0
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> squareRoot 10
+squareRoot 10
+3
+ghci> 3 * 3
+3 * 3
+9
+ghci> squareRoot (-10)
+squareRoot (-10)
+:r-269653970229347386159395778618353710042696546841345985910145121736599013708251444699062715983611304031680170819807090036488184653221624933739271145959211186566651840137298227914453329401869141179179624428127508653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824
+ghci> :r-269653970229347386159395778618353710042696546841345985910145121736599013708251444699062715983611304031680170819807090036488184653221624933739271145959211186566651840137298227914453329401869141179179624428127508653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824
+8653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824
+unknown command ':r-269653970229347386159395778618353710042696546841345985910145121736599013708251444699062715983611304031680170819807090036488184653221624933739271145959211186566651840137298227914453329401869141179179624428127508653257226023513694322210869665811240855745025766026879447359920868907719574457253034494436336205824'
+use :? for help.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> squareRoot2 (-10)
+squareRoot2 (-10)
+Nothing
+ghci> squareRoot2 (10)
+squareRoot2 (10)
+Just 3
+ghci> :info Either
+:info Either
+type Either :: * -> * -> *
+data Either a b = Left a | Right b
+  	-- Defined in ‘Data.Either’
+instance Traversable (Either a) -- Defined in ‘Data.Traversable’
+instance Foldable (Either a) -- Defined in ‘Data.Foldable’
+instance Applicative (Either e) -- Defined in ‘Data.Either’
+instance Functor (Either a) -- Defined in ‘Data.Either’
+instance Monad (Either e) -- Defined in ‘Data.Either’
+instance Semigroup (Either a b) -- Defined in ‘Data.Either’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Read a, Read b) => Read (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Show a, Show b) => Show (Either a b)
+  -- Defined in ‘Data.Either’
+instance (Eq a, Eq b) => Eq (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> division2 10 0
+division2 10 0
+Left DivisionByZero
+ghci> squareRoot3 (-10)
+squareRoot3 (-10)
+Left SquareRootOfNegative
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> value3
+value3
+Left SquareRootOfNegative
+ghci> value4
+value4
+Left DivisionByZero
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+
+week04.hs:93:71: error:
+    Not in scope: type constructor or class ‘Exp’
+    Suggested fix: Perhaps use ‘AExp’ (line 93)
+   |
+93 | data AExp = Const Int | Plus AExp AExp | Minus AExp AExp | Times AExp Exp
+   |                                                                       ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> Times (Plus (Const 7) (Variable "x")) (Variable "y")
+Times (Plus (Const 7) (Variable "x")) (Variable "y")
+Times (Plus (Const 7) (Variable "x")) (Variable "y")
+ghci> evalute (Times (Plus (Const 7) (Variable "x")) (Variable "y"))
+evalute (Times (Plus (Const 7) (Variable "x")) (Variable "y"))
+
+<interactive>:43:1: error:
+    Variable not in scope: evalute :: AExp -> t
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> evaluate (Times (Plus (Const 7) (Variable "x")) (Variable "y"))
+evaluate (Times (Plus (Const 7) (Variable "x")) (Variable "y"))
+0
+ghci> evaluate (Times (Plus (Const 7) (Variable "x")) (Plus (Const 3) (Variable "y")))
+evaluate (Times (Plus (Const 7) (Variable "x")) (Plus (Const 3) (Variable "y")))
+21
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+
+week04.hs:104:43: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: value
+      In the expression: if x == variableName then value else find x rest
+      In an equation for ‘find’:
+          find x (Cons variableName value rest)
+            = if x == variableName then value else find x rest
+    |
+104 |                                           value
+    |                                           ^^^^^
+
+week04.hs:111:26: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the first argument of ‘(+)’, namely ‘evaluate e1’
+      In the expression: evaluate e1 + evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Plus e1 e2) = evaluate e1 + evaluate e2
+    |
+111 | evaluate0 (Plus e1 e2) = evaluate e1 + evaluate e2
+    |                          ^^^^^^^^^^^
+
+week04.hs:111:40: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the second argument of ‘(+)’, namely ‘evaluate e2’
+      In the expression: evaluate e1 + evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Plus e1 e2) = evaluate e1 + evaluate e2
+    |
+111 | evaluate0 (Plus e1 e2) = evaluate e1 + evaluate e2
+    |                                        ^^^^^^^^^^^
+
+week04.hs:112:27: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the first argument of ‘(-)’, namely ‘evaluate e1’
+      In the expression: evaluate e1 - evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Minus e1 e2) = evaluate e1 - evaluate e2
+    |
+112 | evaluate0 (Minus e1 e2) = evaluate e1 - evaluate e2
+    |                           ^^^^^^^^^^^
+
+week04.hs:112:41: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the second argument of ‘(-)’, namely ‘evaluate e2’
+      In the expression: evaluate e1 - evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Minus e1 e2) = evaluate e1 - evaluate e2
+    |
+112 | evaluate0 (Minus e1 e2) = evaluate e1 - evaluate e2
+    |                                         ^^^^^^^^^^^
+
+week04.hs:113:27: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the first argument of ‘(*)’, namely ‘evaluate e1’
+      In the expression: evaluate e1 * evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Times e1 e2) = evaluate e1 * evaluate e2
+    |
+113 | evaluate0 (Times e1 e2) = evaluate e1 * evaluate e2
+    |                           ^^^^^^^^^^^
+
+week04.hs:113:41: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the second argument of ‘(*)’, namely ‘evaluate e2’
+      In the expression: evaluate e1 * evaluate e2
+      In an equation for ‘evaluate0’:
+          evaluate0 (Times e1 e2) = evaluate e1 * evaluate e2
+    |
+113 | evaluate0 (Times e1 e2) = evaluate e1 * evaluate e2
+    |                                         ^^^^^^^^^^^
+
+week04.hs:114:30: error:
+    • Couldn't match expected type ‘Int’
+                  with actual type ‘Dictionary -> Maybe Int’
+    • Probable cause: ‘evaluate’ is applied to too few arguments
+      In the expression: evaluate e
+      In the expression: - (evaluate e)
+      In an equation for ‘evaluate0’:
+          evaluate0 (UnaryMinus e) = - (evaluate e)
+    |
+114 | evaluate0 (UnaryMinus e) = -(evaluate e)
+    |                              ^^^^^^^^^^
+
+week04.hs:120:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a0
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+    |
+120 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:121:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+    |
+121 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:122:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a1
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 + v2
+    |
+122 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:123:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 + v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                        ^^^^^^^
+
+week04.hs:125:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a2
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+    |
+125 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:126:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+    |
+126 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:127:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a3
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 - v2
+    |
+127 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:128:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 - v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                        ^^^^^^^
+
+week04.hs:130:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a4
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+    |
+130 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:131:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+    |
+131 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:132:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a5
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 * v2
+    |
+132 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:133:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 * v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2
+    |                                        ^^^^^^^
+
+week04.hs:135:29: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a6
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e of
+          Nothing -> Nothing
+          Just v -> - v
+    |
+135 |                             Nothing -> Nothing
+    |                             ^^^^^^^
+
+week04.hs:136:29: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v
+      In a case alternative: Just v -> - v
+      In the expression:
+        case evaluate e of
+          Nothing -> Nothing
+          Just v -> - v
+    |
+136 |                             Just v -> -v
+    |                             ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:104:43: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: value
+      In the expression: if x == variableName then value else find x rest
+      In an equation for ‘find’:
+          find x (Cons variableName value rest)
+            = if x == variableName then value else find x rest
+    |
+104 |                                           value
+    |                                           ^^^^^
+
+week04.hs:120:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a0
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+    |
+120 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:121:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 + v2
+    |
+121 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:122:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a1
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 + v2
+    |
+122 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:123:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 + v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                        ^^^^^^^
+
+week04.hs:125:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a2
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+    |
+125 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:126:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 - v2
+    |
+126 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:127:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a3
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 - v2
+    |
+127 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:128:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 - v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                        ^^^^^^^
+
+week04.hs:130:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a4
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+    |
+130 |                           Nothing -> Nothing
+    |                           ^^^^^^^
+
+week04.hs:131:27: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v1
+      In a case alternative:
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+      In the expression:
+        case evaluate e1 of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate e2 of
+                 Nothing -> Nothing
+                 Just v2 -> v1 * v2
+    |
+131 |                           Just v1 -> case evaluate e2 of
+    |                           ^^^^^^^
+
+week04.hs:132:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a5
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 * v2
+    |
+132 |                                        Nothing -> Nothing
+    |                                        ^^^^^^^
+
+week04.hs:133:40: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v2
+      In a case alternative: Just v2 -> v1 * v2
+      In the expression:
+        case evaluate e2 of
+          Nothing -> Nothing
+          Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2
+    |                                        ^^^^^^^
+
+week04.hs:135:29: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe a6
+    • In the pattern: Nothing
+      In a case alternative: Nothing -> Nothing
+      In the expression:
+        case evaluate e of
+          Nothing -> Nothing
+          Just v -> - v
+    |
+135 |                             Nothing -> Nothing
+    |                             ^^^^^^^
+
+week04.hs:136:29: error:
+    • Couldn't match expected type: Dictionary -> Maybe Int
+                  with actual type: Maybe (Maybe Int)
+    • In the pattern: Just v
+      In a case alternative: Just v -> - v
+      In the expression:
+        case evaluate e of
+          Nothing -> Nothing
+          Just v -> - v
+    |
+136 |                             Just v -> -v
+    |                             ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:104:43: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: value
+      In the expression: if x == variableName then value else find x rest
+      In an equation for ‘find’:
+          find x (Cons variableName value rest)
+            = if x == variableName then value else find x rest
+    |
+104 |                                           value
+    |                                           ^^^^^
+
+week04.hs:123:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(+)’, namely ‘v1’
+      In the expression: v1 + v2
+      In a case alternative: Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                                   ^^
+
+week04.hs:123:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(+)’, namely ‘v2’
+      In the expression: v1 + v2
+      In a case alternative: Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                                        ^^
+
+week04.hs:128:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(-)’, namely ‘v1’
+      In the expression: v1 - v2
+      In a case alternative: Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                                   ^^
+
+week04.hs:128:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(-)’, namely ‘v2’
+      In the expression: v1 - v2
+      In a case alternative: Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                                        ^^
+
+week04.hs:133:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(*)’, namely ‘v1’
+      In the expression: v1 * v2
+      In a case alternative: Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2
+    |                                                   ^^
+
+week04.hs:133:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(*)’, namely ‘v2’
+      In the expression: v1 * v2
+      In a case alternative: Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2
+    |                                                        ^^
+
+week04.hs:136:40: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: v
+      In the expression: - v
+      In a case alternative: Just v -> - v
+    |
+136 |                             Just v -> -v
+    |                                        ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:104:43: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: value
+      In the expression: if x == variableName then value else find x rest
+      In an equation for ‘find’:
+          find x (Cons variableName value rest)
+            = if x == variableName then value else find x rest
+    |
+104 |                                           value
+    |                                           ^^^^^
+
+week04.hs:123:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(+)’, namely ‘v1’
+      In the expression: v1 + v2
+      In a case alternative: Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                                   ^^
+
+week04.hs:123:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(+)’, namely ‘v2’
+      In the expression: v1 + v2
+      In a case alternative: Just v2 -> v1 + v2
+    |
+123 |                                        Just v2 -> v1 + v2
+    |                                                        ^^
+
+week04.hs:128:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(-)’, namely ‘v1’
+      In the expression: v1 - v2
+      In a case alternative: Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                                   ^^
+
+week04.hs:128:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(-)’, namely ‘v2’
+      In the expression: v1 - v2
+      In a case alternative: Just v2 -> v1 - v2
+    |
+128 |                                        Just v2 -> v1 - v2
+    |                                                        ^^
+
+week04.hs:133:51: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the first argument of ‘(*)’, namely ‘v1’
+      In the expression: v1 * v2
+      In a case alternative: Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2
+    |                                                   ^^
+
+week04.hs:133:56: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the second argument of ‘(*)’, namely ‘v2’
+      In the expression: v1 * v2
+      In a case alternative: Just v2 -> v1 * v2
+    |
+133 |                                        Just v2 -> v1 * v2>
+    |                                                        ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:104:43: error:
+    • Couldn't match expected type ‘Maybe Int’ with actual type ‘Int’
+    • In the expression: value
+      In the expression: if x == variableName then value else find x rest
+      In an equation for ‘find’:
+          find x (Cons variableName value rest)
+            = if x == variableName then value else find x rest
+    |
+104 |                                           value
+    |                                           ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> evaluate (Times (Plus (Const 7) (Variable "x")) (Plus (Const 3) (Variable "y"))) myDictionary
+evaluate (Times (Plus (Const 7) (Variable "x")) (Plus (Const 3) (Variable "y"))) myDictionary:
+Just 120
+ghci> 7 * 5 + 3 * 3
+7 * 5 + 3 * 3
+44
+ghci> 7 * 5 + 7 * 3
+7 * 5 + 7 * 3
+56
+ghci> (7 + 5) * (7 + 3)
+(7 + 5) * (7 + 3)
+120
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+
+week04.hs:139:24: error:
+    Multiple declarations of ‘Plus’
+    Declared at: week04.hs:93:25
+                 week04.hs:139:24
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                        ^^^^
+
+week04.hs:139:31: error:
+    Multiple declarations of ‘Minus’
+    Declared at: week04.hs:93:42
+                 week04.hs:139:31
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                               ^^^^^
+
+week04.hs:139:39: error:
+    Multiple declarations of ‘Times’
+    Declared at: week04.hs:93:60
+                 week04.hs:139:39
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                                       ^^^^^
+
+week04.hs:141:14: error:
+    Multiple declarations of ‘Const’
+    Declared at: week04.hs:93:13
+                 week04.hs:141:14
+    |
+141 | data AExp' = Const Int | BinOp BinaryOperation AExp AExp
+    |              ^^^^^^^^^
+
+week04.hs:142:13: error:
+    Multiple declarations of ‘UnaryMinus’
+    Declared at: week04.hs:94:13
+                 week04.hs:142:13
+    |
+142 |           | UnaryMinus AExp | Variable String deriving Show
+    |             ^^^^^^^^^^^^^^^
+
+week04.hs:142:31: error:
+    Multiple declarations of ‘Variable’
+    Declared at: week04.hs:94:31
+                 week04.hs:142:31
+    |
+142 |           | UnaryMinus AExp | Variable String deriving Show
+    |                               ^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:139:24: error:
+    Multiple declarations of ‘Plus’
+    Declared at: week04.hs:93:25
+                 week04.hs:139:24
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                        ^^^^
+
+week04.hs:139:31: error:
+    Multiple declarations of ‘Minus’
+    Declared at: week04.hs:93:42
+                 week04.hs:139:31
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                               ^^^^^
+
+week04.hs:139:39: error:
+    Multiple declarations of ‘Times’
+    Declared at: week04.hs:93:60
+                 week04.hs:139:39
+    |
+139 | data BinaryOperation = Plus | Minus | Times deriving Show
+    |                                       ^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+
+week04.hs:146:51: error:
+    • Couldn't match expected type ‘AExp'’ with actual type ‘AExp’
+    • In the first argument of ‘evaluate'’, namely ‘e1’
+      In the expression: evaluate' e1 dict
+      In the expression:
+        case evaluate' e1 dict of
+          Nothing -> Nothing
+          Just v1
+            -> case evaluate' e2 dict of
+                 Nothing -> Nothing
+                 Just v2
+                   -> Just
+                        (case op of
+                           Plus' -> v1 + v2
+                           Minus' -> v1 - v2
+                           Times' -> v1 * v2)
+    |
+146 | evaluate' (BinOp' op e1 e2) dict = case evaluate' e1 dict of
+    |                                                   ^^
+
+week04.hs:148:53: error:
+    • Couldn't match expected type ‘AExp'’ with actual type ‘AExp’
+    • In the first argument of ‘evaluate'’, namely ‘e2’
+      In the expression: evaluate' e2 dict
+      In the expression:
+        case evaluate' e2 dict of
+          Nothing -> Nothing
+          Just v2
+            -> Just
+                 (case op of
+                    Plus' -> v1 + v2
+                    Minus' -> v1 - v2
+                    Times' -> v1 * v2)
+    |
+148 |                           Just v1 -> case evaluate' e2 dict of
+    |                                                     ^^
+
+week04.hs:155:49: error:
+    • Couldn't match expected type ‘AExp'’ with actual type ‘AExp’
+    • In the first argument of ‘evaluate'’, namely ‘e’
+      In the expression: evaluate' e dict
+      In the expression:
+        case evaluate' e dict of
+          Nothing -> Nothing
+          Just v -> Just (- v)
+    |
+155 | evaluate' (UnaryMinus' e) dict = case evaluate' e dict of
+    |                                                 ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> evaluate' (BinOp' Times' (BinOp' Plus' (Const' 7) (Variable' "x")) (BinOp' Plus' (Const' 3) (Variable' "y"))) myDictionary
+"y"))) myDictionary
+Just 120
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+
+week04.hs:190:36: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the first argument of ‘evaluate1’, namely ‘e’
+      In the expression: evaluate1 e
+      In the expression: - (evaluate1 e)
+    |
+190 | evaluate1 (UMinus e) = -(evaluate1 e)
+    |                                    ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> evaluate1 (Times (Division (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+evaluate1 (Times (Division (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:64:19: error:
+    Data constructor not in scope: Division :: AExp -> AExp -> AExp
+    Suggested fix:
+      Perhaps use one of these:
+        variable ‘division’ (line 39), variable ‘division2’ (line 71)
+ghci> evaluate1 (Times (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+evaluate1 (Times (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:65:12: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the first argument of ‘evaluate1’, namely
+        ‘(Times
+            (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))’
+      In the expression:
+        evaluate1
+          (Times (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+      In an equation for ‘it’:
+          it
+            = evaluate1
+                (Times (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:65:19: error:
+    • Couldn't match expected type ‘AExp’ with actual type ‘Exp’
+    • In the first argument of ‘Times’, namely
+        ‘(BDiv (Const 7) (Const 2))’
+      In the first argument of ‘evaluate1’, namely
+        ‘(Times
+            (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))’
+      In the expression:
+        evaluate1
+          (Times (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:65:25: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the first argument of ‘BDiv’, namely ‘(Const 7)’
+      In the first argument of ‘Times’, namely
+        ‘(BDiv (Const 7) (Const 2))’
+      In the first argument of ‘evaluate1’, namely
+        ‘(Times
+            (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))’
+
+<interactive>:65:35: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the second argument of ‘BDiv’, namely ‘(Const 2)’
+      In the first argument of ‘Times’, namely
+        ‘(BDiv (Const 7) (Const 2))’
+      In the first argument of ‘evaluate1’, namely
+        ‘(Times
+            (BDiv (Const 7) (Const 2)) (Plus (Const 3) (Variable "y")))’
+ghci> evaluate1 (BTimes (BDiv (Constant 7) (Constant 2)) (BPlus (Constant 3) (Var "y")))
+evaluate1 (BTimes (BDiv (Constant 7) (Constant 2)) (BPlus (Constant 3) (Var "y")))
+9
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted ) [Source file changed]
+
+week04.hs:204:29: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const c1
+      In the pattern: (Const c1, Const c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 + c2)
+    |
+204 |                            (Const c1, Const c2) -> Const (c1 + c2)
+    |                             ^^^^^^^^
+
+week04.hs:204:39: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const c2
+      In the pattern: (Const c1, Const c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 + c2)
+    |
+204 |                            (Const c1, Const c2) -> Const (c1 + c2)
+    |                                       ^^^^^^^^
+
+week04.hs:204:52: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the expression: Const (c1 + c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 + c2)
+      In the expression:
+        case (simplify e1, simplify e2) of
+          (Const c1, Const c2) -> Const (c1 + c2)
+          (Const 0, e2') -> e2'
+          (e1', Const 0) -> e1'
+          (e1', e2') -> BPlus e1' e2'
+    |
+204 |                            (Const c1, Const c2) -> Const (c1 + c2)
+    |                                                    ^^^^^^^^^^^^^^^
+
+week04.hs:205:29: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 0
+      In the pattern: (Const 0, e2')
+      In a case alternative: (Const 0, e2') -> e2'
+    |
+205 |                            (Const 0, e2') -> e2'
+    |                             ^^^^^^^
+
+week04.hs:206:34: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 0
+      In the pattern: (e1', Const 0)
+      In a case alternative: (e1', Const 0) -> e1'
+    |
+206 |                            (e1', Const 0) -> e1'
+    |                                  ^^^^^^^
+
+week04.hs:209:29: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const c1
+      In the pattern: (Const c1, Const c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 * c2)
+    |
+209 |                            (Const c1, Const c2) -> Const (c1 * c2)
+    |                             ^^^^^^^^
+
+week04.hs:209:39: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const c2
+      In the pattern: (Const c1, Const c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 * c2)
+    |
+209 |                            (Const c1, Const c2) -> Const (c1 * c2)
+    |                                       ^^^^^^^^
+
+week04.hs:209:52: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the expression: Const (c1 * c2)
+      In a case alternative: (Const c1, Const c2) -> Const (c1 * c2)
+      In the expression:
+        case (simplify e1, simplify e2) of
+          (Const c1, Const c2) -> Const (c1 * c2)
+          (Const 0, e2') -> Const 0
+          (e1', Const 0) -> Const 0
+          (Const 1, e2') -> e2'
+          (e1', Const 1) -> e1'
+          (e1', e2') -> BTimes e1' e2'
+    |
+209 |                            (Const c1, Const c2) -> Const (c1 * c2)
+    |                                                    ^^^^^^^^^^^^^^^
+
+week04.hs:210:29: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 0
+      In the pattern: (Const 0, e2')
+      In a case alternative: (Const 0, e2') -> Const 0
+    |
+210 |                            (Const 0, e2') -> Const 0
+    |                             ^^^^^^^
+
+week04.hs:210:46: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the expression: Const 0
+      In a case alternative: (Const 0, e2') -> Const 0
+      In the expression:
+        case (simplify e1, simplify e2) of
+          (Const c1, Const c2) -> Const (c1 * c2)
+          (Const 0, e2') -> Const 0
+          (e1', Const 0) -> Const 0
+          (Const 1, e2') -> e2'
+          (e1', Const 1) -> e1'
+          (e1', e2') -> BTimes e1' e2'
+    |
+210 |                            (Const 0, e2') -> Const 0
+    |                                              ^^^^^^^
+
+week04.hs:211:34: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 0
+      In the pattern: (e1', Const 0)
+      In a case alternative: (e1', Const 0) -> Const 0
+    |
+211 |                            (e1', Const 0) -> Const 0
+    |                                  ^^^^^^^
+
+week04.hs:211:46: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the expression: Const 0
+      In a case alternative: (e1', Const 0) -> Const 0
+      In the expression:
+        case (simplify e1, simplify e2) of
+          (Const c1, Const c2) -> Const (c1 * c2)
+          (Const 0, e2') -> Const 0
+          (e1', Const 0) -> Const 0
+          (Const 1, e2') -> e2'
+          (e1', Const 1) -> e1'
+          (e1', e2') -> BTimes e1' e2'
+    |
+211 |                            (e1', Const 0) -> Const 0
+    |                                              ^^^^^^^
+
+week04.hs:212:29: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 1
+      In the pattern: (Const 1, e2')
+      In a case alternative: (Const 1, e2') -> e2'
+    |
+212 |                            (Const 1, e2') -> e2'
+    |                             ^^^^^^^
+
+week04.hs:213:34: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the pattern: Const 1
+      In the pattern: (e1', Const 1)
+      In a case alternative: (e1', Const 1) -> e1'
+    |
+213 |                            (e1', Const 1) -> e1'
+    |                                  ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week04.hs, interpreted )
+Ok, one module loaded.
+ghci> simplify (Times (BPlus (Const (-2)) (Const 2)) (Plus (Const 3) (Variable "y")))
+simplify (Times (BPlus (Const (-2)) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:69:11: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the first argument of ‘simplify’, namely
+        ‘(Times
+            (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))’
+      In the expression:
+        simplify
+          (Times
+             (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))
+      In an equation for ‘it’:
+          it
+            = simplify
+                (Times
+                   (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:69:18: error:
+    • Couldn't match expected type ‘AExp’ with actual type ‘Exp’
+    • In the first argument of ‘Times’, namely
+        ‘(BPlus (Const (- 2)) (Const 2))’
+      In the first argument of ‘simplify’, namely
+        ‘(Times
+            (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))’
+      In the expression:
+        simplify
+          (Times
+             (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))
+
+<interactive>:69:25: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the first argument of ‘BPlus’, namely ‘(Const (- 2))’
+      In the first argument of ‘Times’, namely
+        ‘(BPlus (Const (- 2)) (Const 2))’
+      In the first argument of ‘simplify’, namely
+        ‘(Times
+            (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))’
+
+<interactive>:69:38: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the second argument of ‘BPlus’, namely ‘(Const 2)’
+      In the first argument of ‘Times’, namely
+        ‘(BPlus (Const (- 2)) (Const 2))’
+      In the first argument of ‘simplify’, namely
+        ‘(Times
+            (BPlus (Const (- 2)) (Const 2)) (Plus (Const 3) (Variable "y")))’
+ghci> simplify (BTimes (BPlus (Constant (-2)) (Constant 2)) (BPlus (Constant 3) (Variable "y")))
+simplify (BTimes (BPlus (Constant (-2)) (Constant 2)) (BPlus (Constant 3) (Variable "y")))
+
+<interactive>:70:76: error:
+    • Couldn't match expected type ‘Exp’ with actual type ‘AExp’
+    • In the second argument of ‘BPlus’, namely ‘(Variable "y")’
+      In the second argument of ‘BTimes’, namely
+        ‘(BPlus (Constant 3) (Variable "y"))’
+      In the first argument of ‘simplify’, namely
+        ‘(BTimes
+            (BPlus (Constant (- 2)) (Constant 2))
+            (BPlus (Constant 3) (Variable "y")))’
+ghci> simplify (BTimes (BPlus (Constant (-2)) (Constant 2)) (BPlus (Constant 3) (Var "y")))
+simplify (BTimes (BPlus (Constant (-2)) (Constant 2)) (BPlus (Constant 3) (Var "y")))
+Constant 0
+ghci> 
