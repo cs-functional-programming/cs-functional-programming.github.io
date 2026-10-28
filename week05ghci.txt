@@ -1,0 +1,672 @@
+stefan@stefans-MacBook-Pro week05 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l week05
+:l week05
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> :t (\x y -> 3 * x + y)
+:t (\x y -> 3 * x + y)
+(\x y -> 3 * x + y) :: Num a => a -> a -> a
+ghci> (\x y -> 3 * x + y) 3 4
+(\x y -> 3 * x + y) 3 4
+13
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g 3 4
+g 3 4
+13
+ghci> :t g
+:t g
+g :: Integer -> Integer -> Integer
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> h 100
+h 100
+130
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> h' 100
+h' 100
+133
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (v1, v2)
+(v1, v2)
+(37,40)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> (compute_adder 10) 33
+(compute_adder 10) 33
+43
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> (compute_adder 100) 7
+(compute_adder 100) 7
+107
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add_100 88
+add_100 88
+188
+ghci> add_7 88
+add_7 88
+95
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t add_100
+:t add_100
+add_100 :: Integer -> Integer
+ghci> add_100 1000
+add_100 1000
+1100
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> addition 7 13
+addition 7 13
+20
+ghci> :t addion
+:t addion
+
+<interactive>:1:1: error:
+    Variable not in scope: addion
+    Suggested fix: Perhaps use ‘addition’ (line 106)
+ghci> :t addition
+:t addition
+addition :: Integer -> Integer -> Integer
+ghci> :t compute_adder
+:t compute_adder
+compute_adder :: Integer -> Integer -> Integer
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:108:18: error:
+    • Expected kind ‘k0 -> *’, but ‘Int’ has kind ‘*’
+    • In the type signature:
+        compute_adder :: Int eger -> (Integer -> Integer)
+    |
+108 | compute_adder :: Int eger -> (Integer -> Integer)
+    |                  ^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> :t addition
+:t addition
+addition :: Integer -> Integer -> Integer
+ghci> :t compute_adder
+:t compute_adder
+compute_adder :: Integer -> Integer -> Integer
+ghci> compute_adder 13 7
+compute_adder 13 7
+20
+ghci> add_99 = computer_adder 99
+add_99 = computer_adder 99
+
+<interactive>:41:10: error:
+    Variable not in scope: computer_adder :: t0 -> t
+    Suggested fix: Perhaps use ‘compute_adder’ (line 109)
+ghci> add_99 = compute_adder 99
+add_99 = compute_adder 99
+ghci> add_99 1
+add_99 1
+100
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add_42 21
+add_42 21
+63
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> addition' 13 17
+addition' 13 17
+30
+ghci> (addition' 13) 17
+(addition' 13) 17
+30
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t sumList
+:t sumList
+sumList :: List -> Int
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> incValuesList list1
+incValuesList list1
+Cons 43 (Cons 8 (Cons 54 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> add7ValuesList
+add7ValuesList
+
+<interactive>:61:1: error:
+    • No instance for (Show (List -> List))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> add7ValuesList list1
+add7ValuesList list1
+Cons 49 (Cons 8 (Cons 54 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:185:48: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Integer’
+    • In the second argument of ‘(+)’, namely ‘value’
+      In the first argument of ‘Cons’, namely ‘(hd + value)’
+      In the expression: Cons (hd + value) (addValueToList value tl)
+    |
+185 | addValueToList value (Cons hd tl) = Cons (hd + value) (addValueToList value tl)
+    |                                                ^^^^^
+Failed, no modules loaded.
+ghci> 48392759843275984327589432759842379587342985342795 :: Int
+48392759843275984327589432759842379587342985342795 :: Int
+
+<interactive>:64:1: warning: [-Woverflowed-literals]
+    Literal 48392759843275984327589432759842379587342985342795 is out of the Int range -9223372036854775808..9223372036854775807
+6537560564743810891
+ghci> 48392759843275984327589432759842379587342985342795 :: Int + 1
+48392759843275984327589432759842379587342985342795 :: Int + 1
+
+<interactive>:65:59: error:
+    Not in scope: type constructor or class ‘+’
+
+<interactive>:65:61: error:
+    Illegal type: ‘1’ Perhaps you intended to use DataKinds
+ghci> (48392759843275984327589432759842379587342985342795 :: Int) + 1
+(48392759843275984327589432759842379587342985342795 :: Int) + 1
+
+<interactive>:66:2: warning: [-Woverflowed-literals]
+    Literal 48392759843275984327589432759842379587342985342795 is out of the Int range -9223372036854775808..9223372036854775807
+6537560564743810892
+ghci> (48392759843275984327589432759842379587342985342795 :: Integer) + 1
+(48392759843275984327589432759842379587342985342795 :: Integer) + 1
+48392759843275984327589432759842379587342985342796
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> addValueToList 13 list1
+addValueToList 13 list1
+Cons 55 (Cons 20 (Cons 66 Empty))
+ghci> list1
+list1
+Cons 42 (Cons 7 (Cons 53 Empty))
+ghci> addValueToList 1 list1
+addValueToList 1 list1
+Cons 43 (Cons 8 (Cons 54 Empty))
+ghci> addValueToList 7 list1
+addValueToList 7 list1
+Cons 49 (Cons 14 (Cons 60 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t addValueToList
+:t addValueToList
+addValueToList :: Integer -> List -> List
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t incValuesList
+:t incValuesList
+incValuesList :: List -> List
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mult2list list1
+mult2list list1
+
+<interactive>:78:1: error:
+    Variable not in scope: mult2list :: List -> t
+    Suggested fix: Perhaps use ‘mult2List’ (line 195)
+ghci> mult2List list1
+mult2List list1
+Cons 84 (Cons 14 (Cons 106 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> multList 7 list1
+multList 7 list1
+Cons 294 (Cons 14 (Cons 106 Empty))
+ghci> multList 2 list1
+multList 2 list1
+Cons 84 (Cons 14 (Cons 106 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> multList 7 list1
+multList 7 list1
+Cons 294 (Cons 49 (Cons 371 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> multListOld list1
+multListOld list1
+
+<interactive>:87:13: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘List’
+    • In the first argument of ‘multListOld’, namely ‘list1’
+      In the expression: multListOld list1
+      In an equation for ‘it’: it = multListOld list1
+ghci> multListOld 2 list1
+multListOld 2 list1
+Cons 84 (Cons 14 (Cons 106 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :t processList
+:t processList
+processList :: (Integer -> Integer) -> List -> List
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:218:24: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘List’
+    • In the pattern: Empty
+      In an equation for ‘processList’:
+          processList processInt Empty = Empty
+    |
+218 | processList processInt Empty = Empty
+    |                        ^^^^^
+
+week05.hs:218:32: error:
+    • Couldn't match expected type ‘List -> List’
+                  with actual type ‘List’
+    • In the expression: Empty
+      In an equation for ‘processList’:
+          processList processInt Empty = Empty
+    |
+218 | processList processInt Empty = Empty
+    |                                ^^^^^
+
+week05.hs:219:25: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘List’
+    • In the pattern: Cons hd tl
+      In an equation for ‘processList’:
+          processList processInt (Cons hd tl)
+            = Cons (processInt hd) (processList processInt tl)
+    |
+219 | processList processInt (Cons hd tl) = Cons (processInt hd) (processList processInt tl)
+    |                         ^^^^^^^^^^
+
+week05.hs:219:39: error:
+    • Couldn't match expected type ‘List -> List’
+                  with actual type ‘List’
+    • Possible cause: ‘Cons’ is applied to too many arguments
+      In the expression: Cons (processInt hd) (processList processInt tl)
+      In an equation for ‘processList’:
+          processList processInt (Cons hd tl)
+            = Cons (processInt hd) (processList processInt tl)
+    |
+219 | processList processInt (Cons hd tl) = Cons (processInt hd) (processList processInt tl)
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week05.hs:219:45: error:
+    • Couldn't match expected type ‘Integer -> Integer’
+                  with actual type ‘Integer’
+    • The function ‘processInt’ is applied to one value argument,
+        but its type ‘Integer’ has none
+      In the first argument of ‘Cons’, namely ‘(processInt hd)’
+      In the expression: Cons (processInt hd) (processList processInt tl)
+    |
+219 | processList processInt (Cons hd tl) = Cons (processInt hd) (processList processInt tl)
+    |                                             ^^^^^^^^^^^^^
+
+week05.hs:219:61: error:
+    • Couldn't match expected type ‘List’
+                  with actual type ‘List -> List’
+    • Probable cause: ‘processList’ is applied to too few arguments
+      In the second argument of ‘Cons’, namely
+        ‘(processList processInt tl)’
+      In the expression: Cons (processInt hd) (processList processInt tl)
+      In an equation for ‘processList’:
+          processList processInt (Cons hd tl)
+            = Cons (processInt hd) (processList processInt tl)
+    |
+219 | processList processInt (Cons hd tl) = Cons (processInt hd) (processList processInt tl)
+    |                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week05.hs:219:84: error:
+    • Couldn't match expected type ‘Integer’ with actual type ‘List’
+    • In the second argument of ‘processList’, namely ‘tl’
+      In the second argument of ‘Cons’, namely
+        ‘(processList processInt tl)’
+      In the expression: Cons (processInt hd) (processList processInt tl)
+    |
+219 | processList processInt (Cons hd tl) = Cons (processInt hd) (processList processInt tl)
+    |                                                                                    ^^
+
+week05.hs:222:27: error:
+    • Couldn't match type ‘Integer’ with ‘List’
+      Expected: List -> List
+        Actual: Integer -> List -> List
+    • Probable cause: ‘processList’ is applied to too few arguments
+      In the expression: processList (\ x -> x + value)
+      In an equation for ‘addValueToListOld’:
+          addValueToListOld value = processList (\ x -> x + value)
+    |
+222 | addValueToListOld value = processList (\x -> x + value)
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week05.hs:222:40: error:
+    • Couldn't match expected type ‘Integer’
+                  with actual type ‘Integer -> Integer’
+    • The lambda expression ‘\ x -> x + value’ has one value argument,
+        but its type ‘Integer’ has none
+      In the first argument of ‘processList’, namely ‘(\ x -> x + value)’
+      In the expression: processList (\ x -> x + value)
+    |
+222 | addValueToListOld value = processList (\x -> x + value)
+    |                                        ^^^^^^^^^^^^^^^
+
+week05.hs:225:21: error:
+    • Couldn't match type ‘Integer’ with ‘List’
+      Expected: List -> List
+        Actual: Integer -> List -> List
+    • Probable cause: ‘processList’ is applied to too few arguments
+      In the expression: processList (\ x -> x * value)
+      In an equation for ‘multListOld’:
+          multListOld value = processList (\ x -> x * value)
+    |
+225 | multListOld value = processList (\x -> x * value)
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week05.hs:225:34: error:
+    • Couldn't match expected type ‘Integer’
+                  with actual type ‘Integer -> Integer’
+    • The lambda expression ‘\ x -> x * value’ has one value argument,
+        but its type ‘Integer’ has none
+      In the first argument of ‘processList’, namely ‘(\ x -> x * value)’
+      In the expression: processList (\ x -> x * value)
+    |
+225 | multListOld value = processList (\x -> x * value)
+    |                                  ^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> processList (\x -> (x + 13) * 2) list1
+processList (\x -> (x + 13) * 2) list1
+Cons 110 (Cons 40 (Cons 132 Empty))
+ghci> [1, 3, 6]
+[1, 3, 6]
+[1,3,6]
+ghci> map (\x -> x * 2 + 13) [1, 3, 6]
+map (\x -> x * 2 + 13) [1, 3, 6]
+[15,19,25]
+ghci> :info []
+:info []
+type [] :: * -> *
+data [] a = [] | a : [a]
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Monoid [a] -- Defined in ‘GHC.Base’
+instance Semigroup [a] -- Defined in ‘GHC.Base’
+instance Foldable [] -- Defined in ‘Data.Foldable’
+instance Traversable [] -- Defined in ‘Data.Traversable’
+instance Read a => Read [a] -- Defined in ‘GHC.Read’
+instance Eq a => Eq [a] -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord [a]
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance Applicative [] -- Defined in ‘GHC.Base’
+instance Functor [] -- Defined in ‘GHC.Base’
+instance MonadFail [] -- Defined in ‘Control.Monad.Fail’
+instance Monad [] -- Defined in ‘GHC.Base’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+
+week05.hs:173:16: error:
+    Multiple declarations of ‘Empty’
+    Declared at: week05.hs:171:13
+                 week05.hs:173:16
+    |
+173 | data List' a = Empty | Cons Integer (List' a) deriving (Show, Eq)
+    |                ^^^^^
+
+week05.hs:173:24: error:
+    Multiple declarations of ‘Cons’
+    Declared at: week05.hs:171:21
+                 week05.hs:173:24
+    |
+173 | data List' a = Empty | Cons Integer (List' a) deriving (Show, Eq)
+    |                        ^^^^^^^^^^^^^^^^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted )
+Ok, one module loaded.
+ghci> :info List'
+:info List'
+type role List' phantom
+type List' :: forall {k}. k -> *
+data List' a = Empty' | Cons' Integer (List' a)
+  	-- Defined at week05.hs:173:1
+instance forall k (a :: k). Eq (List' a)
+  -- Defined at week05.hs:173:65
+instance forall k (a :: k). Show (List' a)
+  -- Defined at week05.hs:173:59
+ghci> :info []
+:info []
+type [] :: * -> *
+data [] a = [] | a : [a]
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Types’
+instance Traversable [] -- Defined in ‘Data.Traversable’
+instance MonadFail [] -- Defined in ‘Control.Monad.Fail’
+instance Monoid [a] -- Defined in ‘GHC.Base’
+instance Semigroup [a] -- Defined in ‘GHC.Base’
+instance Foldable [] -- Defined in ‘Data.Foldable’
+instance Eq a => Eq [a] -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord [a]
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Read a => Read [a] -- Defined in ‘GHC.Read’
+instance Show a => Show [a] -- Defined in ‘GHC.Show’
+instance Applicative [] -- Defined in ‘GHC.Base’
+instance Functor [] -- Defined in ‘GHC.Base’
+instance Monad [] -- Defined in ‘GHC.Base’
+ghci> list1
+list1
+Cons 42 (Cons 7 (Cons 53 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> onlyOdd list1
+onlyOdd list1
+Cons 7 (Cons 53 Empty)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> onlyNonnegative (Cons (-8) list1)
+onlyNonnegative (Cons (-8) list1)
+Cons (-8) Empty
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> onlyNonnegative (Cons (-8) list1)
+onlyNonnegative (Cons (-8) list1)
+Cons 42 (Cons 7 (Cons 53 Empty))
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> keep (\x -> x `mod` 2 == 0) list1
+keep (\x -> x `mod` 2 == 0) list1
+Cons 42 Empty
+ghci> keep (\x -> x `mod` 2 == 1) list1
+keep (\x -> x `mod` 2 == 1) list1
+Cons 7 (Cons 53 Empty)
+ghci> keep (\x -> x > 10) list1
+keep (\x -> x > 10) list1
+Cons 42 (Cons 53 Empty)
+ghci> filter (\x -> x `mod` 2 == 1) [10, 42, 7, 13]
+filter (\x -> x `mod` 2 == 1) [10, 42, 7, 13]
+[7,13]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mistery div 10 80
+mistery div 10 80
+8
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> div 80 10
+div 80 10
+8
+ghci> myDiv 80 10
+myDiv 80 10
+0
+ghci> myDiv 10 80
+myDiv 10 80
+8
+ghci> :t flip
+:t flip
+flip :: (a -> b -> c) -> b -> a -> c
+ghci> (flip div) 10 80
+(flip div) 10 80
+8
+ghci> ((flip map) [1, 2, 3]) (\x -> x + 3)
+((flip map) [1, 2, 3]) (\x -> x + 3)
+[4,5,6]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f1 42
+f1 42
+94
+ghci> ((.) (\x -> x + 10) (\x -> x * 2)) 42
+((.) (\x -> x + 10) (\x -> x * 2)) 42
+94
+ghci> ((\x -> x + 10) . (\x -> x * 2)) 42
+((\x -> x + 10) . (\x -> x * 2)) 42
+94
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week05.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> 
