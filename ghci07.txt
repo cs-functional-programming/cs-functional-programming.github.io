@@ -1,0 +1,656 @@
+stefan@stefans-MacBook-Pro week07 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week07
+:l week07
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> f 3
+f 3
+6
+ghci> :exit
+:exit
+unknown command ':exit'
+use :? for help.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07
+<         g++ -Wall -o week07 week07
+clang++: error: no such file or directory: 'week07'
+clang++: error: no input files
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+week07.cpp:9:5: error: use of undeclared identifier
+      'cout'
+    9 |     cout << "x = " << x << "; ";
+      |     ^~~~
+week07.cpp:10:5: error: use of undeclared identifier
+      'cout'
+   10 |     cout << "y = " << y << "; ";
+      |     ^~~~
+week07.cpp:22:5: error: use of undeclared identifier
+      'cout'
+   22 |     cout << "x = " << x << "; ";
+      |     ^~~~
+week07.cpp:22:23: error: 'x' is a private member of
+      'Punct2D'
+   22 |     cout << "x = " << x << "; ";
+      |                       ^
+week07.cpp:4:7: note: declared private here
+    4 |   int x, y;
+      |       ^
+week07.cpp:23:5: error: use of undeclared identifier
+      'cout'
+   23 |     cout << "y = " << y << "; ";
+      |     ^~~~
+week07.cpp:23:23: error: 'y' is a private member of
+      'Punct2D'
+   23 |     cout << "y = " << y << "; ";
+      |                       ^
+week07.cpp:4:10: note: declared private here
+    4 |   int x, y;
+      |          ^
+week07.cpp:24:5: error: use of undeclared identifier
+      'cout'
+   24 |     cout << "z = " << z << "; ";
+      |     ^~~~
+7 errors generated.
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+week07.cpp:24:23: error: 'x' is a private member of
+      'Punct2D'
+   24 |     cout << "x = " << x << "; ";
+      |                       ^
+week07.cpp:6:7: note: declared private here
+    6 |   int x, y;
+      |       ^
+week07.cpp:25:23: error: 'y' is a private member of
+      'Punct2D'
+   25 |     cout << "y = " << y << "; ";
+      |                       ^
+week07.cpp:6:10: note: declared private here
+    6 |   int x, y;
+      |          ^
+2 errors generated.
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+stefan@stefans-MacBook-Pro week07 % ./week07
+./week07
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+stefan@stefans-MacBook-Pro week07 % ./week07
+./week07
+x = 10; y = 13; x = 10; y = 13; z = 46; 
+stefan@stefans-MacBook-Pro week07 % g++ -Wall -o week07 week07.cpp
+<         g++ -Wall -o week07 week07.cpp
+stefan@stefans-MacBook-Pro week07 % ./week07
+./week07
+x = 10; y = 13; 
+x = 10; y = 13; z = 46; 
+
+stefan@stefans-MacBook-Pro week07 % ghci
+ghci
+:l week07
+:l week07
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week07
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> len (Cons 3 (Cons 7 (Cons 42 Empty)))
+len (Cons 3 (Cons 7 (Cons 42 Empty)))
+3
+ghci> len (Cons True (Cons False (Cons True Empty)))
+pty)))
+3
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:38:14: error:
+    Variable not in scope: sort :: [a] -> [a]
+    Suggested fix: Perhaps use ‘sqrt’ (imported from Prelude)
+   |
+38 | qs (hd:tl) = sort (filter (<=hd) tl) ++ [hd] ++ sort (filter (>hd) tl)
+   |              ^^^^
+
+week07.hs:38:49: error:
+    Variable not in scope: sort :: [a] -> [a]
+    Suggested fix: Perhaps use ‘sqrt’ (imported from Prelude)
+   |
+38 | qs (hd:tl) = sort (filter (<=hd) tl) ++ [hd] ++ sort (filter (>hd) tl)
+   |                                                 ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> qs [5, 8, 2]
+qs [5, 8, 2]
+[2,5,8]
+ghci> qs [True, False, True]
+qs [True, False, True]
+[False,True,True]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:40:44: error:
+    • No instance for (Eq Dow)
+        arising from the 'deriving' clause of a data type declaration
+      Possible fix:
+        use a standalone 'deriving instance' declaration,
+          so you can specify the instance context yourself
+    • When deriving the instance for (Ord Dow)
+   |
+40 | data Dow = Mon | Tue | Wed deriving (Show, Ord)
+   |                                            ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> qs [Mon, Wed, Tue]
+qs [Mon, Wed, Tue]
+[Mon,Tue,Wed]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs [Mon, Wed, Tue]
+qs [Mon, Wed, Tue]
+[Mon,Tue,Wed]
+ghci> qs 
+qs 
+
+<interactive>:15:1: error:
+    • No instance for (Show ([()] -> [()]))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> qs [1, 3, 4]
+qs [1, 3, 4]
+[1,3,4]
+ghci> qs [True, False, True]
+qs [True, False, True]
+[False,True,True]
+ghci> qs [Mon, Wed, Tue]
+qs [Mon, Wed, Tue]
+[Mon,Tue,Wed]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> qs [Mon, Wed, Tue]
+qs [Mon, Wed, Tue]
+[Wed,Tue,Mon]
+ghci> qs [Mon, Wed, Tue, Mon, Tue, Wed, Mon, Wed, Wed, Tue]
+ed, Tue]
+[Wed,Tue,Mon]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> ex 3 7 "123" "98"
+ex 3 7 "123" "98"
+"123"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> mistery 42
+mistery 42
+  C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:73:1: error:
+    The type signature for ‘mistery’ lacks an accompanying binding
+   |
+73 | mistery :: a -> b
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+
+week07.hs:74:13: error:
+    • Couldn't match expected type ‘b’ with actual type ‘Bool’
+      ‘b’ is a rigid type variable bound by
+        the type signature for:
+          mistery :: forall a b. a -> b
+        at week07.hs:73:1-17
+    • In the expression: True
+      In an equation for ‘mistery’: mistery _ = True
+    • Relevant bindings include
+        mistery :: a -> b (bound at week07.hs:74:1)
+   |
+74 | mistery _ = True
+   |             ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> mistery 42
+mistery 42
+*** Exception: Prelude.undefined
+CallStack (from HasCallStack):
+  undefined, called at week07.hs:74:13 in main:Main
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:90:1: error:
+    The type signature for ‘mistery’ lacks an accompanying binding
+    Suggested fix:
+      Perhaps use one of these:
+        ‘mister’ (Defined at week07.hs:91:1),
+        ‘mistery1’ (Defined at week07.hs:71:1),
+        ‘mistery2’ (Defined at week07.hs:74:1)
+   |
+90 | mistery :: a -> a
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+
+week07.hs:91:15: error:
+    • No instance for (Num a) arising from a use of ‘+’
+      Possible fix:
+        add (Num a) to the context of
+          the type signature for:
+            mistery :: forall a. a -> a
+    • In the expression: x + 2
+      In an equation for ‘mistery’: mistery x = x + 2
+   |
+91 | mistery x = x + 2
+   |               ^
+Failed, no modules loaded.
+ghci> :t (+)
+:t (+)
+(+) :: Num a => a -> a -> a
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> mistery 10
+mistery 10
+10
+ghci> mistery True
+mistery True
+True
+ghci> :t tail
+:t tail
+tail :: GHC.Stack.Types.HasCallStack => [a] -> [a]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:99:1: error:
+    The type signature for ‘mistery’ lacks an accompanying binding
+    Suggested fix:
+      Perhaps use one of these:
+        ‘mistery1’ (Defined at week07.hs:71:1),
+        ‘mistery2’ (Defined at week07.hs:74:1),
+        ‘mistery3’ (Defined at week07.hs:93:1)
+   |
+99 | mistery :: [a] -> a
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> mistery4 [8, 5, 6, 7, 8, 3, 2]
+mistery4 [8, 5, 6, 7, 8, 3, 2]
+8
+ghci> mistery4 [8, 5, 6, 7]
+mistery4 [8, 5, 6, 7]
+5
+ghci> :t (map :: (a -> b) -> [a] -> [b])
+:t (map :: (a -> b) -> [a] -> [b])
+(map :: (a -> b) -> [a] -> [b]) :: (a -> b) -> [a] -> [b]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:99:1: error:
+    The type signature for ‘mistery’ lacks an accompanying binding
+    Suggested fix:
+      Perhaps use one of these:
+        ‘mistery1’ (Defined at week07.hs:71:1),
+        ‘mistery2’ (Defined at week07.hs:74:1),
+        ‘mistery3’ (Defined at week07.hs:93:1)
+   |
+99 | mistery :: [a] -> a
+   | ^^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> (map f) [1, 2, 3]
+(map f) [1, 2, 3]
+[False,True,False]
+ghci> :t reverse
+:t reverse
+reverse :: [a] -> [a]
+ghci> map f (r [1, 2, 3])
+map f (r [1, 2, 3])
+
+<interactive>:46:8: error:
+    Variable not in scope: r :: [a0] -> [Int]
+ghci> map f (r [1, 2, 3])
+map f (r [1, 2, 3])
+
+<interactive>:47:8: error:
+    Variable not in scope: r :: [a0] -> [Int]
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> map f (r [1, 2, 3])
+map f (r [1, 2, 3])
+[False,True,False]
+ghci> r (map f [1, 2, 3])
+r (map f [1, 2, 3])
+[False,True,False]
+ghci> :i Ord
+:i Ord
+type Ord :: * -> Constraint
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) :: a -> a -> Bool
+  (<=) :: a -> a -> Bool
+  (>) :: a -> a -> Bool
+  (>=) :: a -> a -> Bool
+  max :: a -> a -> a
+  min :: a -> a -> a
+  {-# MINIMAL compare | (<=) #-}
+  	-- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Dow -- Defined at week07.hs:47:10
+instance Ord () -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b) => Ord (a, b)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c) => Ord (a, b, c)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d) => Ord (a, b, c, d)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e) => Ord (a, b, c, d, e)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f) =>
+         Ord (a, b, c, d, e, f)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g) =>
+         Ord (a, b, c, d, e, f, g)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g,
+          Ord h) =>
+         Ord (a, b, c, d, e, f, g, h)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i) =>
+         Ord (a, b, c, d, e, f, g, h, i)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j) =>
+         Ord (a, b, c, d, e, f, g, h, i, j)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance (Ord a, Ord b, Ord c, Ord d, Ord e, Ord f, Ord g, Ord h,
+          Ord i, Ord j, Ord k, Ord l, Ord m, Ord n, Ord o) =>
+         Ord (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Bool -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Char -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Double -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Float -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Int -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Ordering -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord (Solo a)
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Word -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord a => Ord [a]
+  -- Defined in ‘ghc-prim-0.9.1:GHC.Classes’
+instance Ord Integer -- Defined in ‘GHC.Num.Integer’
+instance Ord a => Ord (Maybe a) -- Defined in ‘GHC.Maybe’
+instance (Ord a, Ord b) => Ord (Either a b)
+  -- Defined in ‘Data.Either’
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:160:1: error:
+    Multiple declarations of ‘qs’
+    Declared at: week07.hs:44:1
+                 week07.hs:160:1
+    |
+160 | qs [] = []
+    | ^^
+
+week07.hs:190:1: error:
+    Multiple declarations of ‘f’
+    Declared at: week07.hs:152:1
+                 week07.hs:190:1
+    |
+190 | f x y = 42
+    | ^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+
+week07.hs:160:1: error:
+    Multiple declarations of ‘qs’
+    Declared at: week07.hs:44:1
+                 week07.hs:160:1
+    |
+160 | qs [] = []
+    | ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> fibo 10
+fibo 10
+55
+ghci> fibo 20
+fibo 20
+6765
+ghci> fibo 30
+fibo 30
+832040
+ghci> fibo 40
+fibo 40
+fibo 40  C-c C-c^CInterrupted.
+ghci> fibo 35
+fibo 35
+  C-c C-c^CInterrupted.
+ghci> fibo 32
+fibo 32
+2178309
+ghci> :set +s
+:set +s
+ghci> fibo 32
+fibo 32
+2178309
+(1.80 secs, 1,275,573,296 bytes)
+ghci> fibo 32
+fibo 32
+2178309
+(1.81 secs, 1,275,573,296 bytes)
+ghci> fibo 33
+fibo 33
+3524578
+(2.89 secs, 2,063,878,376 bytes)
+ghci> fibo 33
+fibo 33
+3524578
+(2.92 secs, 2,063,878,360 bytes)
+ghci> fibo 33
+fibo 33
+3524578
+(3.11 secs, 2,063,878,360 bytes)
+ghci> f1 (fibo 33) 2
+f1 (fibo 33) 2
+42
+(0.00 secs, 65,472 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:198:13: error:
+    Variable not in scope: fib :: t0 -> t
+    Suggested fix: Perhaps use ‘fibo’ (line 193)
+    |
+198 | a = let x = fib 100 in 2
+    |             ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> a
+a
+2
+(0.00 secs, 31,848 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f2 (fibo 33) (fibo 34)
+f2 (fibo 33) (fibo 34)
+
+<interactive>:73:5: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Integer’
+    • In the first argument of ‘f2’, namely ‘(fibo 33)’
+      In the expression: f2 (fibo 33) (fibo 34)
+      In an equation for ‘it’: it = f2 (fibo 33) (fibo 34)
+
+<interactive>:73:15: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Integer’
+    • In the second argument of ‘f2’, namely ‘(fibo 34)’
+      In the expression: f2 (fibo 33) (fibo 34)
+      In an equation for ‘it’: it = f2 (fibo 33) (fibo 34)
+(0.02 secs,)
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> f2 (fibo 33) (fibo 34)
+f2 (fibo 33) (fibo 34)
+
+<interactive>:75:5: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Integer’
+    • In the first argument of ‘f2’, namely ‘(fibo 33)’
+      In the expression: f2 (fibo 33) (fibo 34)
+      In an equation for ‘it’: it = f2 (fibo 33) (fibo 34)
+
+<interactive>:75:15: error:
+    • Couldn't match expected type ‘Int’ with actual type ‘Integer’
+    • In the second argument of ‘f2’, namely ‘(fibo 34)’
+      In the expression: f2 (fibo 33) (fibo 34)
+      In an equation for ‘it’: it = f2 (fibo 33) (fibo 34)
+(0.01 secs,)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f2 (fibo 33) (fibo 34)
+f2 (fibo 33) (fibo 34)
+5702887
+(7.50 secs, 5,403,193,016 bytes)
+ghci> f2 (fibo 1) (fibo 34)
+f2 (fibo 1) (fibo 34)
+1
+(0.00 secs, 64,824 bytes)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> x = fibo 100
+x = fibo 100
+(0.00 secs, 29,992 bytes)
+ghci> :t x
+:t x
+x :: Integer
+ghci> x
+x
+  C-c C-c^CInterrupted.
+ghci> r
+r
+
+<interactive>:83:1: error:
+    • No instance for (Show ([x0] -> [x0]))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+(0.00 secs,)
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted ) [Source file changed]
+
+week07.hs:214:1: error:
+    • Couldn't match expected type ‘a’ with actual type ‘a -> a’
+      ‘a’ is a rigid type variable bound by
+        the type signature for:
+          ite :: forall a. Bool -> a -> a
+        at week07.hs:213:1-21
+    • The equations for ‘ite’ have three value arguments,
+        but its type ‘Bool -> a -> a’ has only two
+    • Relevant bindings include
+        ite :: Bool -> a -> a (bound at week07.hs:214:1)
+    |
+214 | ite True x y = x
+    | ^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week07.hs, interpreted )
+Ok, one module loaded.
+ghci> ite (7 > 8) 42 3
+ite (7 > 8) 42 3
+3
+(0.01 secs, 64,880 bytes)
+ghci> ite (7 > 8) (fibo 100) 3
+ite (7 > 8) (fibo 100) 3
+3
+(0.00 secs, 64,784 bytes)
+ghci> 
