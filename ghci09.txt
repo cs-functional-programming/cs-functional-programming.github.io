@@ -1,0 +1,1427 @@
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+
+
+
+
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> 
+ghci> 
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> :t ()
+:t ()
+() :: ()
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> f 13
+f 13
+()
+ghci> f 42
+f 42
+()
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> g ()
+g ()
+42
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> h
+h
+42
+ghci> :t putStrLn "Hello, World!"
+:t putStrLn "Hello, World!"
+putStrLn "Hello, World!" :: IO ()
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o main week09.hs
+ghc -o main week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o )
+[2 of 2] Linking main
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ls -al
+ls -al
+total 2744
+drwxr-xr-x@  6 stefan  staff      192 25 Nov 08:27 .
+drwxr-xr-x  14 stefan  staff      448 25 Nov 08:15 ..
+-rwxr-xr-x@  1 stefan  staff  1392400 25 Nov 08:27 main
+-rw-r--r--@  1 stefan  staff      715 25 Nov 08:27 week09.hi
+-rw-r--r--@  1 stefan  staff      752 25 Nov 08:27 week09.hs
+-rw-r--r--@  1 stefan  staff     2464 25 Nov 08:27 week09.o
+stefan@stefans-MacBook-Pro-2 week09 % ./main
+./main
+Hello, World!
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> :t putStrLn "Hello, World!"
+:t putStrLn "Hello, World!"
+putStrLn "Hello, World!" :: IO ()
+ghci> :t getLine
+:t getLine
+getLine :: IO String
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o main week09.hs
+<          ghc -o main week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking main [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./main
+./main
+asjdhjahdjksahfkjdshfjkads
+asjdhjahdjksahfkjdshfjkads
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> main
+main
+safdsadfsadf
+safdsadfsadf
+"safdsadfsadf"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main1
+main1
+Hello, World!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o main week09.hs
+ghc -o main week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+
+week09.hs:1:1: error:
+    The IO action ‘main’ is not defined in module ‘Main’
+  |
+1 | -- UNIT TYPE: ()
+  | ^
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> matei2
+matei2
+Hello, World!
+Welcome to Haskell!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main3
+main3
+Hello, World!
+Welcome to Haskell!
+Third action here!
+ghci> :i (>>)
+:i (>>)
+type Monad :: (* -> *) -> Constraint
+class Applicative m => Monad m where
+  ...
+  (>>) :: m a -> m b -> m b
+  ...
+  	-- Defined in ‘GHC.Base’
+infixl 1 >>
+ghci> :Lr
+:Lr
+unknown command ':Lr'
+use :? for help.
+ghci> 
+
+ghci>:r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main3
+main3
+Hello, World!
+Welcome to Haskell!
+Third action here!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main4
+main4
+What is your name? 
+Stefan
+Stefan
+Welcome!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:102:9: error:
+    • Couldn't match type ‘[]’ with ‘IO’
+      Expected: IO ()
+        Actual: [()]
+    • In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Welcome, " ++ "Stefan" ++ "!"’
+      In the expression:
+        putStrLn "What is your name? " >> getLine
+          >> putStrLn "Welcome, " ++ "Stefan" ++ "!"
+      In an equation for ‘main5’:
+          main5
+            = putStrLn "What is your name? " >> getLine
+                >> putStrLn "Welcome, " ++ "Stefan" ++ "!"
+    |
+102 |         putStrLn "Welcome, " ++ "Stefan" ++ "!"
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+week09.hs:102:33: error:
+    • Couldn't match type ‘Char’ with ‘()’
+      Expected: [()]
+        Actual: String
+    • In the first argument of ‘(++)’, namely ‘"Stefan"’
+      In the second argument of ‘(++)’, namely ‘"Stefan" ++ "!"’
+      In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Welcome, " ++ "Stefan" ++ "!"’
+    |
+102 |         putStrLn "Welcome, " ++ "Stefan" ++ "!"
+    |                                 ^^^^^^^^
+
+week09.hs:102:45: error:
+    • Couldn't match type ‘Char’ with ‘()’
+      Expected: [()]
+        Actual: String
+    • In the second argument of ‘(++)’, namely ‘"!"’
+      In the second argument of ‘(++)’, namely ‘"Stefan" ++ "!"’
+      In the second argument of ‘(>>)’, namely
+        ‘putStrLn "Welcome, " ++ "Stefan" ++ "!"’
+    |
+102 |         putStrLn "Welcome, " ++ "Stefan" ++ "!"
+    |                                             ^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> main5
+main5
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+ghci> Stefan
+Stefan
+
+<interactive>:16:1: error: Data constructor not in scope: Stefan
+ghci> main5
+main5
+What is your name? 
+Matei
+Matei
+Welcome, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:102:34: error:
+    • Couldn't match expected type: [Char]
+                  with actual type: IO String
+    • In the first argument of ‘(++)’, namely ‘getLine’
+      In the second argument of ‘(++)’, namely ‘getLine ++ "!"’
+      In the first argument of ‘putStrLn’, namely
+        ‘("Welcome, " ++ getLine ++ "!")’
+    |
+102 |         putStrLn ("Welcome, " ++ getLine ++ "!")
+    |                                  ^^^^^^^
+Failed, no modules loaded.
+ghci> :t getLine
+:t getLine
+getLine :: IO String
+ghci> :t (++)
+:t (++)
+(++) :: [a] -> [a] -> [a]
+ghci> "asdf"
+"asdf"
+"asdf"
+ghci> ['a', 's', 'd', 'f']
+['a', 's', 'd', 'f']
+"asdf"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+
+week09.hs:113:35: error:
+    • Couldn't match type: IO String
+                     with: [Char]
+      Expected: String
+        Actual: IO String
+    • In the first argument of ‘(++)’, namely ‘(getLine :: String)’
+      In the second argument of ‘(++)’, namely
+        ‘(getLine :: String) ++ "!"’
+      In the first argument of ‘putStrLn’, namely
+        ‘("Welcome, " ++ (getLine :: String) ++ "!")’
+    |
+113 |         putStrLn ("Welcome, " ++ (getLine :: String) ++ "!")
+    |                                   ^^^^^^^
+Failed, no modules loaded.
+ghci> :t (>>)
+:t (>>)
+(>>) :: Monad m => m a -> m b -> m b
+ghci> :t (>>) :: IO a -> IO b -> IO b
+:t (>>) :: IO a -> IO b -> IO b
+(>>) :: IO a -> IO b -> IO b :: IO a -> IO b -> IO b
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> main7
+main7
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+ghci> main7
+main7
+What is your name? 
+Matei
+Matei
+Welcome, Matei!
+ghci> \x -> x + 1
+\x -> x + 1
+
+<interactive>:29:1: error:
+    • No instance for (Show (Integer -> Integer))
+        arising from a use of ‘print’
+        (maybe you haven't applied a function to enough arguments?)
+    • In a stmt of an interactive GHCi command: print it
+ghci> (\x -> x + 1) 7
+(\x -> x + 1) 7
+8
+ghci> /
+/
+
+<interactive>:31:1: error: parse error on input ‘/’
+ghci>:r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main8
+main8
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+ghci> main8
+main8
+What is your name? 
+Matei
+Matei
+Welcome, Stefan!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+Ok, one module loaded.
+ghci> main8
+main8
+What is your name? 
+Matei
+Matei
+Welcome, Matei!
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:159:12: error:
+    Parse error in pattern: putStrLn
+    Suggested fix: Possibly caused by a missing 'do'?
+    |
+159 | main9 = do putStrLn "What is your name? "
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % g++ -Wall -o main main.c
+g++ -Wall -o main main.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro-2 week09 % ./main
+./main
+What is your name?Stefan
+Stefan
+What is your name?Matei
+Matei
+What is your name?
+
+
+
+
+
+stefan@stefans-MacBook-Pro-2 week09 % g++ -Wall -o main main.c
+g++ -Wall -o main main.c
+clang++: warning: treating 'c' input as 'c++' when in C++ mode, this behavior is deprecated [-Wdeprecated]
+stefan@stefans-MacBook-Pro-2 week09 % ./main
+./main
+What is your name?Stefan
+Stefan
+What is your name?Matei
+Matei
+What is your name?Andrei
+Andrei
+What is your name?Hello
+Hello
+What is your name?asdfdsa
+asdfdsa
+What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your name?What is your n  C-c C-c^C
+stefan@stefans-MacBook-Pro-2 week09 %   C-c C-c
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+
+week09.hs:168:11: error: parse error on input ‘do’
+    |
+168 | main10 :: do putStrLn "What is your name? "
+    |           ^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> main10
+main10
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+What is your name? 
+What is your name?   C-c C-c^CInterrupted.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:180:1: error:
+    Multiple declarations of ‘main10’
+    Declared at: week09.hs:168:1
+                 week09.hs:180:1
+    |
+180 | main10 = do putStrLn "What is your name? "
+    | ^^^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> r
+r
+
+<interactive>:6:1: error: Variable not in scope: r
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main11
+main11
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+What is your name? 
+Matei
+Matei
+Welcome, Matei!
+What is your name? 
+
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main12
+main12
+What is your name? 
+Stefan
+Stefan
+Welcome, Stefan!
+What is your name? 
+Matei
+Matei
+Welcome, Matei!
+What is your name? 
+
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> main12
+main12
+What is your name? 
+asdasd
+asdasd
+Welcome, asdasd!
+What is your name? 
+dasdsa
+dasdsa
+Welcome, dasdsa!
+What is your name? 
+
+
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:196:15: error:
+    • Couldn't match expected type: IO () -> IO ()
+                  with actual type: IO ()
+    • The function ‘putStrLn’ is applied to two value arguments,
+        but its type ‘String -> IO ()’ has only one
+      In the expression: putStrLn ("Welcome, " ++ name ++ "!") main12
+      In a stmt of a 'do' block:
+        if name == "" then
+            return ()
+        else
+            putStrLn ("Welcome, " ++ name ++ "!") main12
+    |
+196 |               putStrLn ("Welcome, " ++ name ++ "!")
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> produce42
+produce42
+42
+ghci> getLine
+getLine
+Stefan
+Stefan
+"Stefan"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+
+week09.hs:204:21: error:
+    • Couldn't match type ‘IO’ with ‘[]’
+      Expected: [String]
+        Actual: IO String
+    • In a stmt of a 'do' block: s <- getLine
+      In the expression:
+        do s <- getLine
+           return s
+      In an equation for ‘myGetLine’:
+          myGetLine
+            = do s <- getLine
+                 return s
+    |
+204 | myGetLine = do s <- getLine
+    |                     ^^^^^^^
+
+week09.hs:205:23: error:
+    • Couldn't match type ‘[Char]’ with ‘Char’
+      Expected: Char
+        Actual: String
+    • In the first argument of ‘return’, namely ‘s’
+      In a stmt of a 'do' block: return s
+      In the expression:
+        do s <- getLine
+           return s
+    |
+205 |                return s
+    |                       ^
+
+week09.hs:208:16: error: Variable not in scope: name :: String
+    |
+208 |             if name == "" then
+    |                ^^^^
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> main14
+main14
+Enter two lines
+asdf
+asdf
+1234
+1234
+result = asdf1234
+ghci> import System.Environment
+import System.Environment
+ghci> :t getArgs
+:t getArgs
+getArgs :: IO [String]
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs
+<          ghc -o week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./main
+./main
+What is your name?:q
+:q
+What is your name?  C-c C-c^C
+stefan@stefans-MacBook-Pro-2 week09 % ./week09
+./week09
+[]
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 file1.txt
+<          ./week09 file1.txt
+["file1.txt"]
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+<k09.hs && ./week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+Proceesing week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+
+week09.hs:258:36: error:
+    Variable not in scope: openFile :: String -> t0 -> IO t1
+    |
+258 |             (fn:_) -> do handle <- openFile fn ReadMode
+    |                                    ^^^^^^^^
+
+week09.hs:258:48: error: Data constructor not in scope: ReadMode
+    |
+258 |             (fn:_) -> do handle <- openFile fn ReadMode
+    |                                                ^^^^^^^^
+
+week09.hs:259:38: error:
+    Variable not in scope: hGetContents :: t1 -> IO String
+    Suggested fix: Perhaps use ‘getContents’ (imported from Prelude)
+    |
+259 |                          contents <- hGetContents handle
+    |                                      ^^^^^^^^^^^^
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+import System.Environment
+import System.IO
+
+-- UNIT TYPE: ()
+-- It only has one value: ()
+
+f :: Int -> ()
+f x = ()
+
+g :: () -> Int
+g () = 42
+
+-- What is the point????!!!????
+
+h :: Int
+h = 42
+
+-- Why would I need unit????
+
+-- create a function that
+-- does not return anything
+
+-- what is the point of such a
+-- function???
+
+-- In C, it would be interesting
+-- such a function could have side
+-- effects.
+
+-- () corresponds to void in C(++)
+
+-- The way to have side effects
+-- in Haskell is to use the
+-- following trick:
+
+-- We will a type "IO a" whose
+-- values are commands/actions.
+
+-- If a Haskell program has a
+-- function called "main" that
+-- returns a command, then
+-- the system will execute the
+-- command/action after it is
+-- evaluated.
+
+--main :: IO ()
+--main = putStrLn "Hello, World!"
+
+-- 1. Firstly, the program
+--    will evaluate the expression
+--    "main" and compute a command
+-- 2. Secondly, the command
+--    will be executed
+
+
+-- IO actions/IO commands
+-- can be executed and, at the end,
+-- if they execute successfully
+-- they can produce a value (the
+-- value comes after execution is done)
+
+-- When the value is not useful,
+-- we use the unit value.
+
+-- "IO a" are actions that
+-- eventually produce a value
+-- of type "a".
+
+main0 :: IO String
+main0 = getLine
+
+-- If I evaluate in ghci a value
+-- of type IO a, not only will
+-- ghci compute the action/command
+-- but also execute it.
+
+main1 :: IO ()
+main1 = putStrLn "Hello, World!"
+
+-- One way to create IO actions
+-- (or IO commands) is to use
+-- builtin functions that return
+-- such actions: putStrLn, getLine.
+
+-- But it would be useful to
+-- combine such actions together.
+
+matei2 :: IO ()
+matei2 = (putStrLn "Hello, World!") >>
+         (putStrLn "Welcome to Haskell!")
+
+main3 :: IO ()
+main3 = putStrLn "Hello, World!" >>
+        putStrLn "Welcome to Haskell!" >>
+        putStrLn "Third action here!"
+
+main4 :: IO ()
+main4 = putStrLn "What is your name? " >>
+        getLine >>
+        putStrLn "Welcome!"
+
+-- main5 :: IO ()
+-- main5 = putStrLn "What is your name? " >>
+--         --getLine >>
+--                                            String
+--                                            vvvvv
+--         putStrLn ("Welcome, " ++ getLine ++ "!")
+--                                  ^^^^^^^    ^^^
+--                                :: IO String
+
+-- Keep in mind Matei's question:
+-- could we cast the IO String to a String (???)
+
+-- main6 :: IO ()
+-- main6 = putStrLn "What is your name? " >>
+--         putStrLn ("Welcome, " ++ (getLine :: String) ++ "!")
+
+-- (>>) :: IO a -> IO b -> IO b
+-- (>>=) :: IO a -> (a -> IO b) -> IO b
+-- "bind" operator
+
+main7 :: IO ()
+main7 = putStrLn "What is your name? " >>
+        getLine >>=
+        (\name -> putStrLn ("Welcome, " ++ name ++ "!"))
+
+-- In ghci, if you evaluate a typical value
+--    1. evalutes the result
+--    2. uses the class Show to print up the result
+-- In ghci, if you evaluate a value of type "IO a"
+--    1. evaluates the result (which is an action)
+--    2. instead of printing the action, it executes it
+
+-- if the type of the expression is "IO a " then
+--   execute the result
+-- else if the type of the expression in in the class "Show"
+--   print the result
+-- else
+--   give back an error.
+
+-- Sorin: Q: can we produce a value (IO 2).
+
+-- A function computes a value.
+-- An IO action will produce a value (at the end of the action).
+
+
+-- I find this syntax cumbersome:
+-- main7 :: IO ()
+-- main7 = putStrLn "What is your name? " >>
+--         getLine >>=
+--         (\name -> putStrLn ("Welcome, " ++ name ++ "!"))
+
+-- I have a better syntax, which is called "do-notation"
+-- and which the compiler translates into the syntax above
+main8 :: IO ()
+main8 = do putStrLn "What is your name? "
+           name <- getLine
+           putStrLn ("Welcome, " ++ name ++ "!")
+
+-- the lexer will translate main8 into main9, and somewhere
+-- after the parser there will be a phase that translates
+-- main8 into main7.
+
+-- indentation-sensitive
+main9 :: IO ()
+main9 = do { putStrLn "What is your name? " ;
+            name <- getLine ;
+          putStrLn ("Welcome, " ++ name ++ "!") }
+
+main10 :: IO ()
+main10 = do putStrLn "What is your name? "
+            name <- getLine
+            putStrLn ("Welcome, " ++ name ++ "!")
+            main10
+
+-- But what if I want to stop the recursion at some point?
+-- We need a base case
+
+emptyAction :: IO ()
+emptyAction = return ()
+
+main11 :: IO ()
+main11 = do putStrLn "What is your name? "
+            name <- getLine
+            if name == "" then
+              return () -- the action that does nothing and produces the value "()"
+            else do
+              putStrLn ("Welcome, " ++ name ++ "!")
+              main11
+
+main12 :: IO ()
+main12 = do putStrLn "What is your name? "
+            return () -- In Haskell, return is not a control-flow structure
+                      -- But it returns an action
+            name <- getLine
+            if name == "" then
+              return ()
+            else
+              do putStrLn ("Welcome, " ++ name ++ "!")
+                 main12
+
+produce42 :: IO Integer
+produce42 = return 42
+
+
+-- myGetLine :: String
+-- myGetLine = do s <- getLine
+--                return s
+
+-- main13 = do putStrLn "What is your name? "
+--             if name == "" then
+--               return ()
+--             else
+--               do putStrLn ("Welcome, " ++ myGetLine ++ "!")
+--                  main13
+
+-- It is not possible to "convert" from IO String
+-- to String.
+
+-- It is impossible to write a function
+-- transform :: IO String -> String
+-- The type system does not allow this
+-- You cannot "extract" a String from
+-- under an IO action.
+
+-- In fact, you can think of "IO String"
+-- as a String that is contaminated, you cannot
+-- make it escape the IO monad.
+
+-- You cannot call an action from a pure function.
+
+appendIOString :: IO String -> IO String -> IO String
+appendIOString action1 action2 = do s1 <- action1
+                                    s2 <- action2
+                                    return (s1 ++ s2)
+
+main14 :: IO ()
+main14 = do putStrLn "Enter two lines"
+            result <- appendIOString getLine getLine
+            putStrLn ("result = " ++ result)
+
+
+-- functions in the IO monad are impure
+-- functions outside of the IO monad are pure
+
+-- Typically: you want as many pure functions
+-- as possible.
+
+-- As few impure functions as possible.
+
+-- Let us write a program that prints a Haskell file
+-- without the comments.
+-- Comments = lines starting with '--'
+
+-- Approach #1 (not the best)
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "./week09 <filename>"
+            (fn:_) -> do handle <- openFile fn ReadMode
+                         contents <- hGetContents handle
+                         putStrLn contents
+
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs && ./week09 week09.hs
+</week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+./week09 week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> printToNewline "asdf\nasddf"
+df"
+ghci> printToNewline "asdf\n123\n"
+printToNewline "asdf\n123\n"
+asdf123ghci> printFromNewline "asdf\n123\n"
+printFromNewline "asdf\n123\n"
+123ghci> printWithoutComments "asdf\n123\n"
+printWithoutComments "asdf\n123\n"
+asdf123ghci> printWithoutComments "asdf\n123\n"
+printWithoutComments "asdf\n123\n"
+asdf123ghci> printWithoutComments "--asdf\n123\n"
+printWithoutComments "--asdf\n123\n"
+123ghci> :quit
+:quit
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ./week09
+./week09
+./week09 <filename>
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+ro-2 week09 % ./week09 week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+<            ./week09 week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+<            ./week09 week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+<            ./week09 week09.hs
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs
+ghc -o week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+./week09 week09.hs
+import System.Environmentimport System.IOf :: Int -> ()f x = ()g :: () -> Intg () = 42h :: Inth = 42main0 :: IO Stringmain0 = getLinemain1 :: IO ()main1 = putStrLn "Hello, World!"matei2 :: IO ()matei2 = (putStrLn "Hello, World!") >>         (putStrLn "Welcome to Haskell!")main3 :: IO ()main3 = putStrLn "Hello, World!" >>        putStrLn "Welcome to Haskell!" >>        putStrLn "Third action here!"main4 :: IO ()main4 = putStrLn "What is your name? " >>        getLine >>        putStrLn "Welcome!"main7 :: IO ()main7 = putStrLn "What is your name? " >>        getLine >>=        (\name -> putStrLn ("Welcome, " ++ name ++ "!"))main8 :: IO ()main8 = do putStrLn "What is your name? "           name <- getLine           putStrLn ("Welcome, " ++ name ++ "!")main9 :: IO ()main9 = do { putStrLn "What is your name? " ;            name <- getLine ;          putStrLn ("Welcome, " ++ name ++ "!") }main10 :: IO ()main10 = do putStrLn "What is your name? "            name <- getLine            putStrLn ("Welcome, " ++ name ++ "!")            main10emptyAction :: IO ()emptyAction = return ()main11 :: IO ()main11 = do putStrLn "What is your name? "            name <- getLine            if name == "" then              return () -- the action that does nothing and produces the value "()"            else do              putStrLn ("Welcome, " ++ name ++ "!")              main11main12 :: IO ()main12 = do putStrLn "What is your name? "            return () -- In Haskell, return is not a control-flow structure                      -- But it returns an action            name <- getLine            if name == "" then              return ()            else              do putStrLn ("Welcome, " ++ name ++ "!")                 main12produce42 :: IO Integerproduce42 = return 42appendIOString :: IO String -> IO String -> IO StringappendIOString action1 action2 = do s1 <- action1                                    s2 <- action2                                    return (s1 ++ s2)main14 :: IO ()main14 = do putStrLn "Enter two lines"            result <- appendIOString getLine getLine            putStrLn ("result = " ++ result)printWithoutComments :: String -> IO ()printWithoutComments [] = return ()printWithoutComments ('-':'-':rest) = printFromNewline restprintWithoutComments s = printToNewline sprintFromNewline :: String -> IO ()printFromNewline [] = return ()printFromNewline ('\n':rest) = printWithoutComments restprintFromNewline (c:rest) = printFromNewline restprintToNewline :: String -> IO ()printToNewline [] = return ()printToNewline ('\n':rest) = printWithoutComments restprintToNewline (c:rest) = do putStr [c]                             printToNewline restmain = do args <- getArgs          case args of            [] -> putStrLn "./week09 <filename>"            (fn:_) -> do handle <- openFile fn ReadMode                         contents <- hGetContents handle                         printWithoutComments contents                         putStrLn "Hello!"Hello!
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs
+Pro-2 week09 % ghc -o week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+Pro-2 week09 % ./week09 week09.hs
+import System.Environment
+import System.IO
+
+
+f :: Int -> ()
+f x = ()
+
+g :: () -> Int
+g () = 42
+
+
+h :: Int
+h = 42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+main0 :: IO String
+main0 = getLine
+
+
+main1 :: IO ()
+main1 = putStrLn "Hello, World!"
+
+
+
+matei2 :: IO ()
+matei2 = (putStrLn "Hello, World!") >>
+         (putStrLn "Welcome to Haskell!")
+
+main3 :: IO ()
+main3 = putStrLn "Hello, World!" >>
+        putStrLn "Welcome to Haskell!" >>
+        putStrLn "Third action here!"
+
+main4 :: IO ()
+main4 = putStrLn "What is your name? " >>
+        getLine >>
+        putStrLn "Welcome!"
+
+
+
+
+
+main7 :: IO ()
+main7 = putStrLn "What is your name? " >>
+        getLine >>=
+        (\name -> putStrLn ("Welcome, " ++ name ++ "!"))
+
+
+
+
+
+
+
+main8 :: IO ()
+main8 = do putStrLn "What is your name? "
+           name <- getLine
+           putStrLn ("Welcome, " ++ name ++ "!")
+
+
+main9 :: IO ()
+main9 = do { putStrLn "What is your name? " ;
+            name <- getLine ;
+          putStrLn ("Welcome, " ++ name ++ "!") }
+
+main10 :: IO ()
+main10 = do putStrLn "What is your name? "
+            name <- getLine
+            putStrLn ("Welcome, " ++ name ++ "!")
+            main10
+
+
+emptyAction :: IO ()
+emptyAction = return ()
+
+main11 :: IO ()
+main11 = do putStrLn "What is your name? "
+            name <- getLine
+            if name == "" then
+              return () -- the action that does nothing and produces the value "()"
+            else do
+              putStrLn ("Welcome, " ++ name ++ "!")
+              main11
+
+main12 :: IO ()
+main12 = do putStrLn "What is your name? "
+            return () -- In Haskell, return is not a control-flow structure
+                      -- But it returns an action
+            name <- getLine
+            if name == "" then
+              return ()
+            else
+              do putStrLn ("Welcome, " ++ name ++ "!")
+                 main12
+
+produce42 :: IO Integer
+produce42 = return 42
+
+
+
+
+
+
+
+
+appendIOString :: IO String -> IO String -> IO String
+appendIOString action1 action2 = do s1 <- action1
+                                    s2 <- action2
+                                    return (s1 ++ s2)
+
+main14 :: IO ()
+main14 = do putStrLn "Enter two lines"
+            result <- appendIOString getLine getLine
+            putStrLn ("result = " ++ result)
+
+
+
+
+
+
+printWithoutComments :: String -> IO ()
+printWithoutComments [] = return ()
+printWithoutComments ('-':'-':rest) = printFromNewline rest
+printWithoutComments s = printToNewline s
+
+printFromNewline :: String -> IO ()
+printFromNewline [] = return ()
+printFromNewline ('\n':rest) = printWithoutComments rest
+printFromNewline (c:rest) = printFromNewline rest
+
+printToNewline :: String -> IO ()
+printToNewline [] = return ()
+printToNewline ('\n':rest) = do putStrLn ""
+                                printWithoutComments rest
+printToNewline (c:rest) = do putStr [c]
+                             printToNewline rest
+
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "./week09 <filename>"
+            (fn:_) -> do handle <- openFile fn ReadMode
+                         contents <- hGetContents handle
+                         printWithoutComments contents
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> :t lines
+:t lines
+lines :: String -> [String]
+ghci> lines "asdafsa\n21312321\n123131"
+lines "asdafsa\n21312321\n123131"
+["asdafsa","21312321","123131"]
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> process "asd\n123\nasdfggggg\n65" 
+process "asd\n123\nasdfggggg\n65" 
+
+<interactive>:4:1: error:
+    Variable not in scope: process :: String -> t
+ghci> :r
+:r
+Ok, no modules loaded.
+ghci> :l week09
+:l week09
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+
+week09.hs:273:13: error:
+    Unexpected do block in function application:
+        do args <- getArgs
+    Suggested fixes:
+      • Use parentheses.
+      • Perhaps you intended to use BlockArguments
+    |
+273 | mainwrong = do args <- getArgs
+    |             ^^^^^^^^^^^^^^^^^^
+
+week09.hs:274:13: error:
+    Unexpected case expression in function application:
+        case args of
+          [] -> putStrLn "./week09 <filename>"
+          (fn : _)
+            -> do handle <- openFile fn ReadMode
+                  contents <- hGetContents handle
+                  ....
+    Suggested fixes:
+      • Use parentheses.
+      • Perhaps you intended to use BlockArguments
+    |
+274 |             case args of
+    |             ^^^^^^^^^^^^...
+Failed, no modules loaded.
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted )
+Ok, one module loaded.
+ghci> process "asd\n123\nasdfggggg\n65" 
+process "asd\n123\nasdfggggg\n65" 
+["asd","123","asdfggggg","65"]
+ghci> process "asd\n--123\nasdfggggg\n65" 
+ 
+["asd","asdfggggg","65"]
+ghci> unlines ["asd", "123", "asdfffff"]
+unlines ["asd", "123", "asdfffff"]
+"asd\n123\nasdfffff\n"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> process "asd\n--123\nasdfggggg\n65" 
+ 
+"asd\nasdfggggg\n65\n"
+ghci> :r
+:r
+[1 of 2] Compiling Main             ( week09.hs, interpreted ) [Source file changed]
+Ok, one module loaded.
+ghci> :q
+:q
+Leaving GHCi.
+stefan@stefans-MacBook-Pro-2 week09 % ghc -o week09 week09.hs
+<                ghc -o week09 week09.hs
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+[1 of 2] Compiling Main             ( week09.hs, week09.o ) [Source file changed]
+[2 of 2] Linking week09 [Objects changed]
+ld: warning: ignoring duplicate libraries: '-lm'
+stefan@stefans-MacBook-Pro-2 week09 % ./week09 week09.hs
+<                ./week09 week09.hs
+import System.Environment
+import System.IO
+
+
+f :: Int -> ()
+f x = ()
+
+g :: () -> Int
+g () = 42
+
+
+h :: Int
+h = 42
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+main0 :: IO String
+main0 = getLine
+
+
+main1 :: IO ()
+main1 = putStrLn "Hello, World!"
+
+
+
+matei2 :: IO ()
+matei2 = (putStrLn "Hello, World!") >>
+         (putStrLn "Welcome to Haskell!")
+
+main3 :: IO ()
+main3 = putStrLn "Hello, World!" >>
+        putStrLn "Welcome to Haskell!" >>
+        putStrLn "Third action here!"
+
+main4 :: IO ()
+main4 = putStrLn "What is your name? " >>
+        getLine >>
+        putStrLn "Welcome!"
+
+
+
+
+
+main7 :: IO ()
+main7 = putStrLn "What is your name? " >>
+        getLine >>=
+        (\name -> putStrLn ("Welcome, " ++ name ++ "!"))
+
+
+
+
+
+
+
+main8 :: IO ()
+main8 = do putStrLn "What is your name? "
+           name <- getLine
+           putStrLn ("Welcome, " ++ name ++ "!")
+
+
+main9 :: IO ()
+main9 = do { putStrLn "What is your name? " ;
+            name <- getLine ;
+          putStrLn ("Welcome, " ++ name ++ "!") }
+
+main10 :: IO ()
+main10 = do putStrLn "What is your name? "
+            name <- getLine
+            putStrLn ("Welcome, " ++ name ++ "!")
+            main10
+
+
+emptyAction :: IO ()
+emptyAction = return ()
+
+main11 :: IO ()
+main11 = do putStrLn "What is your name? "
+            name <- getLine
+            if name == "" then
+              return () -- the action that does nothing and produces the value "()"
+            else do
+              putStrLn ("Welcome, " ++ name ++ "!")
+              main11
+
+main12 :: IO ()
+main12 = do putStrLn "What is your name? "
+            return () -- In Haskell, return is not a control-flow structure
+                      -- But it returns an action
+            name <- getLine
+            if name == "" then
+              return ()
+            else
+              do putStrLn ("Welcome, " ++ name ++ "!")
+                 main12
+
+produce42 :: IO Integer
+produce42 = return 42
+
+
+
+
+
+
+
+
+appendIOString :: IO String -> IO String -> IO String
+appendIOString action1 action2 = do s1 <- action1
+                                    s2 <- action2
+                                    return (s1 ++ s2)
+
+main14 :: IO ()
+main14 = do putStrLn "Enter two lines"
+            result <- appendIOString getLine getLine
+            putStrLn ("result = " ++ result)
+
+
+
+
+
+
+printWithoutComments :: String -> IO ()
+printWithoutComments [] = return ()
+printWithoutComments ('-':'-':rest) = printFromNewline rest
+printWithoutComments s = printToNewline s
+
+printFromNewline :: String -> IO ()
+printFromNewline [] = return ()
+printFromNewline ('\n':rest) = printWithoutComments rest
+printFromNewline (c:rest) = printFromNewline rest
+
+printToNewline :: String -> IO ()
+printToNewline [] = return ()
+printToNewline ('\n':rest) = do putStrLn ""
+                                printWithoutComments rest
+printToNewline (c:rest) = do putStr [c]
+                             printToNewline rest
+
+mainwrong = do args <- getArgs
+               case args of
+                 [] -> putStrLn "./week09 <filename>"
+                 (fn:_) -> do handle <- openFile fn ReadMode
+                              contents <- hGetContents handle
+                              printWithoutComments contents
+
+isCommentLine :: String -> Bool
+isCommentLine ('-':'-':_) = True
+isCommentLine _ = False
+
+process :: String -> String
+process contents = unlines (filter (not . isCommentLine) (lines contents))
+
+main = do args <- getArgs
+          case args of
+            [] -> putStrLn "./week09 <filename>"
+            (fn:_) -> do handle <- openFile fn ReadMode
+                         contents <- hGetContents handle
+                         putStrLn (process contents)
+
+stefan@stefans-MacBook-Pro-2 week09 % ghci
+ghci
+Loaded package environment from /Users/stefan/.ghc/x86_64-darwin-9.4.8/environments/default
+GHCi, version 9.4.8: https://www.haskell.org/ghc/  :? for help
+macro 'doc' overwrites builtin command.  Use ':def!' to overwrite.
+Loaded GHCi configuration from /Users/stefan/.ghci
+ghci> import System.IO
+import System.IO
+ghci> :t hGetContents
+:t hGetContents
+hGetContents :: Handle -> IO String
+ghci> 
